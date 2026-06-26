@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DollarSeeds — Make Your Dollar Seeds Sprout into Blessings</title>
+  <meta name="description" content="A faith-rooted budgeting app built on the 50/30/20 rule. Track your income, expenses, and goals through the lens of biblical stewardship." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F1E6;
+      --forest: #0F3D2E;
+      --dark: #0A1612;
+      --emerald: #10B981;
+      --amber: #C2701C;
+      --violet: #7C3AED;
+      --harvest: #F4D35E;
+      --muted: #6B7280;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--forest); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,22,18,0.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(16,185,129,0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; background: var(--forest); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+    .nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); letter-spacing: -0.01em; }
+    .nav-cta {
+      background: var(--emerald); color: var(--dark);
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
+      padding: 0.5rem 1.375rem; border-radius: 999px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      background: var(--dark); min-height: 100vh;
+      padding: 8rem 2.5rem 5rem;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-blob { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+    .blob-1 { width: 560px; height: 560px; background: var(--emerald); opacity: 0.1; top: -120px; right: -120px; }
+    .blob-2 { width: 320px; height: 320px; background: var(--harvest); opacity: 0.08; bottom: -60px; left: -60px; }
+
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--emerald); margin-bottom: 1.25rem;
+    }
+    .hero-heading {
+      font-family: var(--serif); font-size: clamp(2.4rem, 4.5vw, 3.75rem);
+      color: var(--cream); line-height: 1.14; letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .hero-heading em { color: var(--emerald); font-style: italic; }
+    .hero-sub {
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(245,241,230,0.4); margin-bottom: 2.5rem;
+    }
+
+    .waitlist-form { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .waitlist-form input[type="email"] {
+      flex: 1; min-width: 210px;
+      padding: 0.875rem 1.375rem;
+      background: rgba(245,241,230,0.07);
+      border: 1px solid rgba(245,241,230,0.18);
+      border-radius: 999px; color: var(--cream);
+      font-family: var(--sans); font-size: 0.9375rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .waitlist-form input[type="email"]::placeholder { color: rgba(245,241,230,0.3); }
+    .waitlist-form input[type="email"]:focus { border-color: var(--emerald); }
+    .waitlist-form button {
+      background: var(--emerald); color: var(--dark);
+      font-family: var(--sans); font-weight: 600; font-size: 0.9375rem;
+      padding: 0.875rem 1.875rem; border: none; border-radius: 999px;
+      cursor: pointer; white-space: nowrap;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .waitlist-form button:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .hero-note { margin-top: 0.875rem; font-size: 0.775rem; color: rgba(245,241,230,0.3); font-family: var(--mono); letter-spacing: 0.04em; }
+
+    .phone-wrap { display: flex; justify-content: center; align-items: center; }
+    .phone-frame {
+      width: 255px; height: 530px; background: #0d0d0d;
+      border-radius: 42px; border: 3px solid rgba(255,255,255,0.1);
+      overflow: hidden; position: relative;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.55), 0 0 60px rgba(16,185,129,0.08);
+    }
+    .phone-notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 95px; height: 26px; background: #0d0d0d;
+      border-radius: 0 0 18px 18px; z-index: 2;
+    }
+    .phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+    /* SHARED */
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.75rem; }
+    .section-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem); line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-body { font-size: 1.0625rem; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 3.5rem; }
+
+    /* FEATURES */
+    .features { background: var(--cream); padding: 7rem 2.5rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .feature-card:nth-child(4) { grid-column: 1 / 2; }
+    .feature-card:nth-child(5) { grid-column: 2 / 4; }
+
+    .feature-card {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(15,61,46,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(15,61,46,0.1); }
+
+    .card-screen { height: 310px; overflow: hidden; background: var(--dark); }
+    .card-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .card-body { padding: 1.5rem; }
+    .card-tag {
+      display: inline-block; font-family: var(--mono); font-size: 0.63rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border-radius: 999px; margin-bottom: 0.75rem;
+    }
+    .tag-green  { background: rgba(16,185,129,0.12); color: var(--emerald); }
+    .tag-violet { background: rgba(124,58,237,0.1);  color: var(--violet); }
+    .tag-amber  { background: rgba(194,112,28,0.1);  color: var(--amber); }
+    .tag-gold   { background: rgba(244,211,94,0.2);  color: #9A6B00; }
+    .card-title { font-family: var(--serif); font-size: 1.3125rem; color: var(--forest); margin-bottom: 0.4rem; }
+    .card-desc  { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* WHY */
+    .why { background: var(--forest); padding: 7rem 2.5rem; position: relative; overflow: hidden; }
+    .why-glow {
+      position: absolute; width: 700px; height: 700px; background: var(--emerald);
+      border-radius: 50%; filter: blur(140px); opacity: 0.05;
+      right: -200px; top: -150px; pointer-events: none;
+    }
+    .why .eyebrow { color: var(--harvest); }
+    .why .section-heading { color: var(--cream); }
+
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .why-text p { font-size: 1.0625rem; color: rgba(245,241,230,0.68); line-height: 1.82; margin-bottom: 1.25rem; }
+    .why-verse {
+      border-left: 3px solid var(--emerald);
+      padding: 1.25rem 1.5rem;
+      background: rgba(16,185,129,0.05);
+      border-radius: 0 14px 14px 0;
+      margin-top: 1.75rem;
+    }
+    .why-verse blockquote { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; color: var(--cream); margin-bottom: 0.5rem; }
+    .why-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--emerald); letter-spacing: 0.08em; font-style: normal; }
+
+    .pillars { display: flex; flex-direction: column; gap: 1.125rem; }
+    .pillars-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,241,230,0.28); margin-bottom: 0.25rem; }
+    .pillar {
+      background: rgba(245,241,230,0.04); border: 1px solid rgba(245,241,230,0.08);
+      border-radius: 16px; padding: 1.375rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .pillar:hover { background: rgba(245,241,230,0.07); }
+    .pillar-cat { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.375rem; }
+    .pillar-cat.needs { color: var(--amber); }
+    .pillar-cat.wants { color: #A78BFA; }
+    .pillar-cat.goals { color: var(--emerald); }
+    .pillar h4 { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); margin-bottom: 0.375rem; }
+    .pillar p  { font-size: 0.875rem; color: rgba(245,241,230,0.5); line-height: 1.6; }
+
+    /* ABOUT */
+    .about { background: #EAE6DB; padding: 7rem 2.5rem; }
+    .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 5rem; align-items: start; }
+    .about-card { background: var(--forest); border-radius: 24px; padding: 2.5rem; position: sticky; top: 5.5rem; }
+    .about-name { font-family: var(--serif); font-size: 2rem; color: var(--cream); margin-bottom: 0.2rem; }
+    .about-role { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--emerald); margin-bottom: 1.75rem; }
+    .about-facts { display: flex; flex-direction: column; gap: 0.75rem; }
+    .fact { display: flex; gap: 0.75rem; font-size: 0.875rem; align-items: flex-start; }
+    .fact-key { font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--emerald); min-width: 60px; padding-top: 2px; }
+    .fact-val { color: rgba(245,241,230,0.65); line-height: 1.5; }
+
+    .about-content .eyebrow { margin-bottom: 0.5rem; }
+    .about-content .section-heading { color: var(--forest); margin-bottom: 2rem; }
+    .about-blocks { display: flex; flex-direction: column; gap: 2rem; }
+    .about-block h3 { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.625rem; }
+    .about-block p  { font-size: 1rem; color: #4B5563; line-height: 1.8; }
+
+    /* FOOTER CTA */
+    .footer-cta { background: var(--dark); padding: 7rem 2.5rem 3.5rem; position: relative; overflow: hidden; }
+    .footer-glow {
+      position: absolute; width: 500px; height: 500px; background: var(--emerald);
+      border-radius: 50%; filter: blur(120px); opacity: 0.07;
+      left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none;
+    }
+    .footer-cta-inner { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .footer-cta-inner .eyebrow { color: var(--harvest); display: block; }
+    .footer-cta h2 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); color: var(--cream); line-height: 1.2; margin-bottom: 0.875rem; }
+    .footer-cta p  { color: rgba(245,241,230,0.45); line-height: 1.75; margin-bottom: 2.5rem; }
+    .footer-cta .waitlist-form { justify-content: center; }
+
+    .footer-bottom {
+      max-width: 1200px; margin: 4rem auto 0; padding-top: 2rem;
+      border-top: 1px solid rgba(245,241,230,0.07);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.125rem; color: rgba(245,241,230,0.35); }
+    .footer-copy { font-size: 0.775rem; color: rgba(245,241,230,0.22); font-family: var(--mono); letter-spacing: 0.04em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .phone-wrap { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .feature-card:nth-child(4), .feature-card:nth-child(5) { grid-column: auto; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-card { position: static; }
+    }
+    @media (max-width: 580px) {
+      .features-grid { grid-template-columns: 1fr; }
+      nav { padding: 0.875rem 1.25rem; }
+      .hero { padding: 7rem 1.25rem 4rem; }
+      .features, .why, .about, .footer-cta { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="18" height="21" viewBox="0 0 18 22" fill="none">
+        <path d="M9 1C4 7 2 11.5 2 15.5a7 7 0 0014 0C16 11.5 14 7 9 1z" fill="#10B981"/>
+        <path d="M9 11v9" stroke="#0F3D2E" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="nav-logo-name">DollarSeeds</span>
+  </a>
+  <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Coming Soon &nbsp;·&nbsp; iOS</p>
+      <h1 class="hero-heading">Make Your Dollar Seeds <em>Sprout into Blessings</em></h1>
+      <p class="hero-sub">Called to be Faithful Stewards</p>
+      <form class="waitlist-form js-waitlist" id="waitlist" method="POST" action="https://formspree.io/f/mbdvgvaq">
+        <input type="hidden" name="_subject" value="New DollarSeeds waitlist signup" />
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="email" name="email" placeholder="Enter your email address" required />
+        <button type="submit">Join the Waitlist</button>
+      </form>
+      <p class="hero-note js-waitlist-note">No spam. We'll let you know the moment it launches.</p>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <img src="assets/images/screen-dashboard.png" alt="DollarSeeds Dashboard" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <p class="eyebrow">What's Inside</p>
+    <h2 class="section-heading">Everything you need to <em style="font-style:italic;">grow</em> your finances</h2>
+    <p class="section-body">Built on the 50/30/20 rule — every dollar has a purpose, every decision reflects your values.</p>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="card-screen"><img src="assets/images/screen-dashboard.png" alt="Dashboard" /></div>
+        <div class="card-body">
+          <span class="card-tag tag-green">Dashboard</span>
+          <h3 class="card-title">See the full picture at a glance</h3>
+          <p class="card-desc">Budget health score, monthly income, and your Needs / Wants / Goals progress — all in one view.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-screen"><img src="assets/images/screen-expense.png" alt="Expenses" /></div>
+        <div class="card-body">
+          <span class="card-tag tag-violet">Expenses</span>
+          <h3 class="card-title">Plant where it counts</h3>
+          <p class="card-desc">Log expenses by category and subcategory. Every spend assigned, nothing lost.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-screen"><img src="assets/images/screen-income.png" alt="Income" /></div>
+        <div class="card-body">
+          <span class="card-tag tag-green">Income</span>
+          <h3 class="card-title">Every harvest counts</h3>
+          <p class="card-desc">Log income and watch it split across your budget automatically. Every good gift accounted for.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-screen"><img src="assets/images/screen-savings.png" alt="Goals & Savings" /></div>
+        <div class="card-body">
+          <span class="card-tag tag-gold">Goals &amp; Savings</span>
+          <h3 class="card-title">Watch your seeds grow</h3>
+          <p class="card-desc">Set savings goals with target amounts and timelines. Little by little, it grows.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="card-screen"><img src="assets/images/screen-lessons.png" alt="Lessons" /></div>
+        <div class="card-body">
+          <span class="card-tag tag-amber">Lessons</span>
+          <h3 class="card-title">Lessons from the field</h3>
+          <p class="card-desc">Scripture-rooted reflections on money, generosity, and stewardship. Finance and faith, finally together.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY DOLLARSEEDS -->
+<section class="why" id="why">
+  <div class="why-glow"></div>
+  <div class="section-inner">
+    <p class="eyebrow">Why DollarSeeds</p>
+    <h2 class="section-heading" style="margin-bottom:3rem;">The name behind the mission</h2>
+    <div class="why-grid">
+      <div class="why-text">
+        <p>A seed is small. It requires patience, intention, and care before it ever becomes something visible. That's exactly how finances work — not through sudden windfalls, but through faithful, daily decisions that compound over time.</p>
+        <p>The name DollarSeeds comes from that idea. Every dollar you earn is a seed. Where you plant it — how you tend it — determines what grows. Spend carelessly and nothing takes root. Steward it well, and it becomes provision, security, and generosity.</p>
+        <p>The Bible speaks about money more than almost any other topic. Yet for many Christians, faith and finances remain in separate rooms. DollarSeeds was built to open the door between them — not just to budget better, but to steward faithfully.</p>
+        <div class="why-verse">
+          <blockquote>"Little by little, it grows."</blockquote>
+          <cite>Proverbs 13:11</cite>
+        </div>
+      </div>
+      <div class="pillars">
+        <p class="pillars-label">Built on the 50/30/20 rule</p>
+        <div class="pillar">
+          <div class="pillar-cat needs">50% · Needs</div>
+          <h4>The Essentials</h4>
+          <p>Rent, groceries, bills — the things you need to live and serve faithfully where you are.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-cat wants">30% · Wants</div>
+          <h4>The Joys</h4>
+          <p>Dining, travel, lifestyle — enjoying God's gifts without letting them consume you.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-cat goals">20% · Goals</div>
+          <h4>The Future</h4>
+          <p>Savings, investments, generosity — planting seeds today for a harvest that blesses tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ME -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="about-card">
+          <h2 class="about-name">Lucas Custodio</h2>
+          <p class="about-role">Builder · Steward · Developer</p>
+          <div class="about-facts">
+            <div class="fact"><span class="fact-key">Age</span><span class="fact-val">21 years old</span></div>
+            <div class="fact"><span class="fact-key">From</span><span class="fact-val">Born in Brazil · 10 years in the U.S.</span></div>
+            <div class="fact"><span class="fact-key">School</span><span class="fact-val">FAU, Senior Year</span></div>
+            <div class="fact"><span class="fact-key">Stack</span><span class="fact-val">React · TypeScript · Python · PostgreSQL</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="eyebrow">About the Builder</p>
+        <h2 class="section-heading">The story behind the app</h2>
+        <div class="about-blocks">
+          <div class="about-block">
+            <h3>Faith &amp; Finances</h3>
+            <p>I wanted to create this app because finances is something that is heavily talked about in the Bible, but so many Christians either have no idea how to be financially capable, or they get lost in greed. With this application, I wanted to provide a way that helps users see finances through the lens that God wants us to see it. Finances should not remain disconnected from our faith life — it should go beyond tithing. It's something that should really be explored more.</p>
+          </div>
+          <div class="about-block">
+            <h3>Background</h3>
+            <p>I'm a senior at FAU, born in Brazil and living in the U.S. for the past 10 years. My programming background is rooted in web development — HTML, CSS, JavaScript, React, TypeScript, and PostgreSQL. I also know Java, C, C++, and Python.</p>
+          </div>
+          <div class="about-block">
+            <h3>Experience</h3>
+            <p>I've worked as an AfterSchool Counselor, a web developer at OneHope on frontend and SEO projects, a contractor at TB Financial Services building RPA tools for accounting workflows, and I'm currently a developer at Treevah and UTS Consult — two startups where I get to build meaningful products from the ground up.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<footer class="footer-cta" id="footer">
+  <div class="footer-glow"></div>
+  <div class="footer-cta-inner">
+    <p class="eyebrow">Achieve Your Goals</p>
+    <h2>Ready to be a faithful steward?</h2>
+    <p>Join the waitlist and be the first to know when DollarSeeds launches on the App Store.</p>
+    <form class="waitlist-form js-waitlist" method="POST" action="https://formspree.io/f/mbdvgvaq">
+      <input type="hidden" name="_subject" value="New DollarSeeds waitlist signup" />
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+      <input type="email" name="email" placeholder="Enter your email address" required />
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <p class="hero-note js-waitlist-note" style="margin-top:0.875rem; text-align:center;">No spam. We'll let you know the moment it launches.</p>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-logo">🌱 DollarSeeds</span>
+    <p class="footer-copy">© 2026 Lucas Custodio · Built with faith &amp; purpose</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.js-waitlist').forEach(function (form) {
+    var note = form.parentElement.querySelector('.js-waitlist-note');
+    var button = form.querySelector('button');
+    var defaultNote = note ? note.textContent : '';
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (note) { note.textContent = defaultNote; note.style.color = ''; }
+      button.disabled = true;
+      var originalLabel = button.textContent;
+      button.textContent = 'Joining…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            if (note) { note.textContent = "You're on the list! We'll be in touch. 🌱"; note.style.color = 'var(--emerald)'; }
+          } else {
+            return res.json().then(function (data) {
+              var msg = data && data.errors ? data.errors.map(function (err) { return err.message; }).join(', ') : 'Something went wrong. Please try again.';
+              throw new Error(msg);
+            });
+          }
+        })
+        .catch(function (err) {
+          if (note) { note.textContent = err.message || 'Network error. Please try again.'; note.style.color = '#F4D35E'; }
+        })
+        .finally(function () {
+          button.disabled = false;
+          button.textContent = originalLabel;
+        });
+    });
+  });
+</script>
+
+</body>
+</html>
