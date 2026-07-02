@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — DollarSeeds</title>
+  <meta name="description" content="How DollarSeeds collects, uses, and protects your information. Your financial data stays in our database and is never sold or sent to advertisers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F1E6;
+      --forest: #0F3D2E;
+      --dark: #0A1612;
+      --emerald: #10B981;
+      --amber: #C2701C;
+      --violet: #7C3AED;
+      --harvest: #F4D35E;
+      --muted: #6B7280;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--forest); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,22,18,0.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(16,185,129,0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; background: var(--forest); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+    .nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); letter-spacing: -0.01em; }
+    .nav-cta {
+      background: var(--emerald); color: var(--dark);
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
+      padding: 0.5rem 1.375rem; border-radius: 999px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* HEADER */
+    .legal-header {
+      background: var(--dark); padding: 8rem 2.5rem 3.5rem;
+      position: relative; overflow: hidden;
+    }
+    .legal-header-blob {
+      position: absolute; width: 460px; height: 460px; background: var(--emerald);
+      border-radius: 50%; filter: blur(100px); opacity: 0.09; top: -140px; right: -120px; pointer-events: none;
+    }
+    .legal-header-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
+    .legal-eyebrow {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--emerald); margin-bottom: 1rem;
+    }
+    .legal-title {
+      font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.25rem);
+      color: var(--cream); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem;
+    }
+    .legal-meta { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: rgba(245,241,230,0.4); }
+
+    /* CONTENT */
+    .legal-body { padding: 4rem 2.5rem 5rem; }
+    .legal-inner { max-width: 760px; margin: 0 auto; }
+
+    .legal-intro { font-size: 1.0625rem; color: #4B5563; line-height: 1.8; margin-bottom: 2.5rem; }
+
+    .legal-toc {
+      background: #fff; border: 1px solid rgba(15,61,46,0.08); border-radius: 16px;
+      padding: 1.5rem 1.75rem; margin-bottom: 3rem;
+    }
+    .legal-toc h2 { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.875rem; }
+    .legal-toc ol { list-style: none; counter-reset: toc; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; }
+    .legal-toc li { counter-increment: toc; font-size: 0.9rem; }
+    .legal-toc a { color: var(--forest); text-decoration: none; display: flex; gap: 0.5rem; padding: 0.15rem 0; }
+    .legal-toc a::before { content: counter(toc); font-family: var(--mono); font-size: 0.72rem; color: var(--emerald); min-width: 18px; }
+    .legal-toc a:hover { color: var(--emerald); }
+
+    .legal-section { margin-bottom: 2.75rem; scroll-margin-top: 6rem; }
+    .legal-section h2 {
+      font-family: var(--serif); font-size: 1.65rem; color: var(--forest);
+      letter-spacing: -0.01em; margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(15,61,46,0.1);
+    }
+    .legal-section h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--forest); margin: 1.5rem 0 0.6rem; }
+    .legal-section p { font-size: 1rem; color: #414B54; line-height: 1.8; margin-bottom: 1rem; }
+    .legal-section ul { margin: 0 0 1rem 1.25rem; }
+    .legal-section li { font-size: 1rem; color: #414B54; line-height: 1.75; margin-bottom: 0.5rem; }
+    .legal-section a { color: var(--emerald); text-decoration: underline; text-underline-offset: 2px; }
+    .legal-section strong { color: var(--forest); }
+
+    .callout {
+      background: rgba(16,185,129,0.06); border-left: 3px solid var(--emerald);
+      border-radius: 0 12px 12px 0; padding: 1.125rem 1.375rem; margin: 1.25rem 0;
+    }
+    .callout p { margin-bottom: 0; font-size: 0.95rem; }
+
+    table.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.25rem; font-size: 0.9rem; }
+    table.data-table th, table.data-table td { text-align: left; padding: 0.7rem 0.85rem; border: 1px solid rgba(15,61,46,0.1); vertical-align: top; line-height: 1.55; }
+    table.data-table th { background: rgba(15,61,46,0.05); font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--forest); font-weight: 500; }
+    table.data-table td { color: #414B54; }
+
+    /* FOOTER */
+    .legal-footer { background: var(--dark); padding: 3rem 2.5rem; }
+    .legal-footer-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .legal-footer-links { display: flex; gap: 1.5rem; }
+    .legal-footer-links a { font-size: 0.85rem; color: rgba(245,241,230,0.6); text-decoration: none; font-family: var(--sans); }
+    .legal-footer-links a:hover { color: var(--emerald); }
+    .legal-footer-copy { font-size: 0.775rem; color: rgba(245,241,230,0.25); font-family: var(--mono); letter-spacing: 0.04em; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0.875rem 1.25rem; }
+      .legal-header { padding: 7rem 1.25rem 3rem; }
+      .legal-body { padding: 3rem 1.25rem 4rem; }
+      .legal-toc ol { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="18" height="21" viewBox="0 0 18 22" fill="none">
+        <path d="M9 1C4 7 2 11.5 2 15.5a7 7 0 0014 0C16 11.5 14 7 9 1z" fill="#10B981"/>
+        <path d="M9 11v9" stroke="#0F3D2E" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="nav-logo-name">DollarSeeds</span>
+  </a>
+  <a href="/" class="nav-cta">Back to Home</a>
+</nav>
+
+<!-- HEADER -->
+<header class="legal-header">
+  <div class="legal-header-blob"></div>
+  <div class="legal-header-inner">
+    <p class="legal-eyebrow">Legal</p>
+    <h1 class="legal-title">Privacy Policy</h1>
+    <p class="legal-meta">Effective date: July 2, 2026 &nbsp;·&nbsp; Last updated: July 2, 2026</p>
+  </div>
+</header>
+
+<!-- CONTENT -->
+<main class="legal-body">
+  <div class="legal-inner">
+
+    <p class="legal-intro">
+      DollarSeeds is a faith-rooted personal budgeting app built on the 50/30/20 rule. This Privacy Policy explains what
+      information the app collects, how it is used, who it is shared with, and the choices and rights you have. We built
+      DollarSeeds to help you steward your money well — and that includes handling your data carefully. Above all:
+      <strong>the financial figures you enter stay in our database, are never sold, and are never sent to advertisers or
+      analytics providers.</strong>
+    </p>
+
+    <div class="legal-toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#who-we-are">Who we are</a></li>
+        <li><a href="#scope">Scope of this policy</a></li>
+        <li><a href="#collect">Information we collect</a></li>
+        <li><a href="#not-collect">What we do not collect</a></li>
+        <li><a href="#use">How we use information</a></li>
+        <li><a href="#legal-basis">Legal bases (GDPR)</a></li>
+        <li><a href="#sharing">How information is shared</a></li>
+        <li><a href="#retention">Data retention</a></li>
+        <li><a href="#security">How we protect your data</a></li>
+        <li><a href="#rights">Your rights and choices</a></li>
+        <li><a href="#deletion">Account &amp; data deletion</a></li>
+        <li><a href="#children">Children's privacy</a></li>
+        <li><a href="#transfers">International data transfers</a></li>
+        <li><a href="#regional">Regional disclosures</a></li>
+        <li><a href="#stores">App Store &amp; Google Play</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ol>
+    </div>
+
+    <section class="legal-section" id="who-we-are">
+      <h2>1. Who we are</h2>
+      <p>
+        DollarSeeds ("DollarSeeds", "we", "us", or "our") is operated by <strong>Lucas Fracasso Custodio</strong>, an
+        independent developer. For the purposes of data protection laws such as the EU/UK GDPR, Lucas Fracasso Custodio is
+        the "data controller" responsible for your personal information.
+      </p>
+      <p>
+        If you have any questions about this policy or your data, you can reach us at
+        <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a>.
+      </p>
+    </section>
+
+    <section class="legal-section" id="scope">
+      <h2>2. Scope of this policy</h2>
+      <p>
+        This policy applies to the DollarSeeds mobile application on Apple iOS and Google Android, and to this website. It
+        does not apply to third-party services we rely on, which handle data under their own privacy policies (linked in
+        the "How information is shared" section below).
+      </p>
+    </section>
+
+    <section class="legal-section" id="collect">
+      <h2>3. Information we collect</h2>
+      <p>We collect only what the app needs to function and to stay reliable. The categories are:</p>
+
+      <h3>a. Account information</h3>
+      <p>
+        When you create an account, we collect your <strong>email address</strong> and an authentication identifier. This is
+        used to sign you in and to associate your data with your account. Authentication and account records are managed
+        through our backend provider, Supabase.
+      </p>
+
+      <h3>b. Financial information you enter</h3>
+      <p>
+        DollarSeeds stores the budgeting information you choose to enter, including income entries (such as an income source
+        label, amount, and type), expenses (such as a title, amount, and category — Needs, Wants, or Goals), and savings and
+        debt goals and their transactions. This information is stored in our own database (Supabase) so the app can show you
+        your budget. <strong>It is never shared with analytics providers, advertisers, or data brokers.</strong>
+      </p>
+
+      <h3>c. Usage and analytics data</h3>
+      <p>
+        To understand how the app is used and improve it, we collect a limited, deliberate set of <strong>behavioral
+        events</strong> through PostHog — for example, that an expense was logged (including only its category, such as
+        "Needs" or "Wants"), that a lesson was opened, or how far a lesson video was watched. These events are tied to a
+        pseudonymous account identifier, not to your name or email. <strong>Dollar amounts and other financial values are
+        never included in analytics events.</strong> Automatic capture of screen taps and session replay (screen recording)
+        are disabled.
+      </p>
+
+      <h3>d. Diagnostics and crash data</h3>
+      <p>
+        To keep the app stable, we use Sentry to collect crash reports and error diagnostics, which may include device model,
+        operating system version, app version, and technical details about the error (such as a stack trace). This helps us
+        find and fix problems.
+      </p>
+    </section>
+
+    <section class="legal-section" id="not-collect">
+      <h2>4. What we do not collect</h2>
+      <ul>
+        <li>We do <strong>not</strong> sell or rent your personal information to anyone.</li>
+        <li>We do <strong>not</strong> use your data for third-party or cross-app advertising, and the app contains no ad SDKs.</li>
+        <li>We do <strong>not</strong> use the Apple advertising identifier (IDFA) and do not track you across other companies' apps or websites.</li>
+        <li>We do <strong>not</strong> record your screen or session, and analytics autocapture is turned off.</li>
+        <li>We do <strong>not</strong> collect your precise location, contacts, photos, microphone, or health data.</li>
+        <li>We do <strong>not</strong> send your financial figures (incomes, expenses, balances, goals) to any analytics or advertising service.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section" id="use">
+      <h2>5. How we use information</h2>
+      <ul>
+        <li><strong>To provide the app:</strong> authenticate you, store and display your budget, income, expenses, goals, and lessons progress.</li>
+        <li><strong>To improve the app:</strong> understand which features are used and where users encounter friction, using pseudonymous analytics.</li>
+        <li><strong>To keep the app reliable and secure:</strong> detect, diagnose, and fix crashes and errors.</li>
+        <li><strong>To communicate with you:</strong> respond to support requests you send us.</li>
+        <li><strong>To comply with the law:</strong> meet legal obligations and enforce our Terms of Service.</li>
+      </ul>
+      <div class="callout">
+        <p>We do not use your financial information to make automated decisions that produce legal or similarly significant effects about you, and we do not provide it to third parties for their own purposes.</p>
+      </div>
+    </section>
+
+    <section class="legal-section" id="legal-basis">
+      <h2>6. Legal bases for processing (GDPR / UK GDPR)</h2>
+      <p>If you are in the European Economic Area or the United Kingdom, we rely on the following legal bases:</p>
+      <ul>
+        <li><strong>Performance of a contract</strong> — to provide the app's core functionality once you create an account (account and financial data).</li>
+        <li><strong>Legitimate interests</strong> — to keep the app secure and reliable (diagnostics) and to improve it (pseudonymous analytics), balanced against your rights.</li>
+        <li><strong>Consent</strong> — where required by law, for any optional processing; you may withdraw consent at any time.</li>
+        <li><strong>Legal obligation</strong> — where we must process data to comply with applicable law.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section" id="sharing">
+      <h2>7. How information is shared</h2>
+      <p>
+        We do not sell your data. We share limited information only with the service providers ("sub-processors") that make
+        the app work, and only for the purposes described above. Each operates under its own privacy policy:
+      </p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Provider</th><th>Purpose</th><th>Data involved</th><th>Privacy policy</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Supabase</td>
+            <td>Authentication, database &amp; hosting</td>
+            <td>Account email, authentication identifier, the financial data you enter</td>
+            <td><a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td>PostHog</td>
+            <td>Product analytics</td>
+            <td>Pseudonymous account ID and behavioral events (no financial amounts, no email)</td>
+            <td><a href="https://posthog.com/privacy" target="_blank" rel="noopener">posthog.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td>Sentry</td>
+            <td>Crash &amp; error diagnostics</td>
+            <td>Device/OS/app version and technical error details</td>
+            <td><a href="https://sentry.io/privacy/" target="_blank" rel="noopener">sentry.io/privacy</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        We may also disclose information if required by law, to comply with a legal process, to protect the rights, property,
+        or safety of our users or others, or in connection with a business transfer (such as a merger or acquisition), in
+        which case we will notify you of any material change to how your data is handled.
+      </p>
+    </section>
+
+    <section class="legal-section" id="retention">
+      <h2>8. Data retention</h2>
+      <p>
+        We keep your account and financial data for as long as your account is active, so the app can show your history over
+        time. If you delete your account, we delete your associated personal and financial data from our systems within a
+        reasonable period, except where we must retain limited information to comply with legal obligations, resolve
+        disputes, or enforce our agreements. Pseudonymous analytics and crash diagnostics are retained on a rolling basis
+        according to our providers' standard retention periods.
+      </p>
+    </section>
+
+    <section class="legal-section" id="security">
+      <h2>9. How we protect your data</h2>
+      <p>
+        Data is encrypted in transit using HTTPS/TLS, and stored in a managed PostgreSQL database (Supabase) that encrypts
+        data at rest. Access to your data is restricted to your authenticated account, and access to production systems is
+        limited. No method of transmission or storage is completely secure, but we take reasonable measures to protect your
+        information and to promptly address issues if they arise.
+      </p>
+    </section>
+
+    <section class="legal-section" id="rights">
+      <h2>10. Your rights and choices</h2>
+      <p>Depending on where you live, you may have some or all of the following rights over your personal information:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
+        <li><strong>Correction</strong> — ask us to correct inaccurate or incomplete data.</li>
+        <li><strong>Deletion</strong> — ask us to delete your account and personal data.</li>
+        <li><strong>Portability</strong> — request your data in a portable format.</li>
+        <li><strong>Objection / restriction</strong> — object to or ask us to restrict certain processing.</li>
+        <li><strong>Withdraw consent</strong> — where processing is based on consent.</li>
+        <li><strong>Opt out of "sale" or "sharing"</strong> — we do not sell or share your data for advertising, so there is nothing to opt out of, but you may still contact us with any concern.</li>
+      </ul>
+      <p>
+        To exercise any of these rights, email us at <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a>.
+        We will respond within the timeframe required by applicable law. You will not be discriminated against for exercising
+        your rights. If you are in the EEA or UK, you also have the right to lodge a complaint with your local data
+        protection authority.
+      </p>
+    </section>
+
+    <section class="legal-section" id="deletion">
+      <h2>11. Account &amp; data deletion</h2>
+      <p>
+        You can delete your account and all associated personal and financial data at any time directly within the app, using
+        the <strong>Delete Account</strong> option in the Settings screen. You may also request deletion by emailing
+        <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a> from the address associated with your
+        account. Once processed, your account and its financial records are removed from our database, subject to the limited
+        legal exceptions described in the Data retention section.
+      </p>
+    </section>
+
+    <section class="legal-section" id="children">
+      <h2>12. Children's privacy</h2>
+      <p>
+        DollarSeeds is not directed to children. The app is intended for users aged 13 and older (and 16 and older where
+        required by local law, such as parts of the EEA). We do not knowingly collect personal information from children
+        under these ages. If you believe a child has provided us with personal information, please contact us and we will
+        delete it.
+      </p>
+    </section>
+
+    <section class="legal-section" id="transfers">
+      <h2>13. International data transfers</h2>
+      <p>
+        We and our service providers may process and store your information in countries other than your own, including the
+        United States. Where personal data is transferred internationally, we rely on appropriate safeguards (such as the
+        European Commission's Standard Contractual Clauses) where required by law. By using the app, you understand that your
+        information may be transferred to and processed in these locations.
+      </p>
+    </section>
+
+    <section class="legal-section" id="regional">
+      <h2>14. Regional disclosures</h2>
+      <h3>European Economic Area &amp; United Kingdom (GDPR)</h3>
+      <p>
+        The data controller is Lucas Fracasso Custodio (contact above). We process the categories of data and rely on the
+        legal bases described in Sections 5 and 6, and you have the rights described in Section 10, including the right to
+        complain to a supervisory authority.
+      </p>
+      <h3>California (CCPA/CPRA)</h3>
+      <p>
+        In the past month we have collected the categories of "identifiers" (email, account ID), "commercial/financial
+        information you enter", and "internet or other electronic network activity" (pseudonymous usage and diagnostics), for
+        the business purposes described above. We have <strong>not sold or shared</strong> personal information for
+        cross-context behavioral advertising, and we do not do so. California residents have the right to know, delete,
+        correct, and opt out, and the right not to be discriminated against for exercising these rights.
+      </p>
+      <h3>Other regions</h3>
+      <p>
+        Residents of other jurisdictions (for example, under India's DPDP Act or similar laws) may have comparable rights to
+        access, correct, and delete their data, and to withdraw consent. Contact us to exercise them.
+      </p>
+    </section>
+
+    <section class="legal-section" id="stores">
+      <h2>15. App Store &amp; Google Play disclosures</h2>
+      <p>
+        This policy reflects the data practices we declare on the app stores. In Apple's App Privacy details, DollarSeeds
+        declares Contact Info (email) and Identifiers linked to your account for app functionality, and pseudonymous Usage
+        Data and Diagnostics for analytics and app functionality; DollarSeeds does <strong>not</strong> use data to track you
+        across other companies' apps and websites, so App Tracking Transparency is not triggered. In Google Play's Data
+        Safety section, we disclose the same categories, confirm data is encrypted in transit, and provide this deletion
+        mechanism. If any store's requirements and this policy ever appear to conflict, we will update this policy to remain
+        accurate.
+      </p>
+    </section>
+
+    <section class="legal-section" id="changes">
+      <h2>16. Changes to this policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. When we make material changes, we will revise the "Last updated"
+        date above and, where appropriate, notify you in the app. Your continued use of DollarSeeds after an update means you
+        accept the revised policy.
+      </p>
+    </section>
+
+    <section class="legal-section" id="contact">
+      <h2>17. Contact us</h2>
+      <p>
+        If you have questions, requests, or concerns about this Privacy Policy or your personal data, contact:
+      </p>
+      <p>
+        <strong>Lucas Fracasso Custodio</strong><br />
+        Email: <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a>
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="legal-footer">
+  <div class="legal-footer-inner">
+    <div class="legal-footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
+    <p class="legal-footer-copy">© 2026 Lucas Fracasso Custodio</p>
+  </div>
+</footer>
+
+</body>
+</html>

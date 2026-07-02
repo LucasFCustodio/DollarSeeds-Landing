@@ -225,6 +225,9 @@
       display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
     }
     .footer-logo { font-family: var(--serif); font-size: 1.125rem; color: rgba(245,241,230,0.35); }
+    .footer-legal-links { display: flex; gap: 1.25rem; }
+    .footer-legal-links a { font-size: 0.8rem; color: rgba(245,241,230,0.45); text-decoration: none; font-family: var(--sans); transition: color 0.2s; }
+    .footer-legal-links a:hover { color: var(--emerald); }
     .footer-copy { font-size: 0.775rem; color: rgba(245,241,230,0.22); font-family: var(--mono); letter-spacing: 0.04em; }
 
     /* RESPONSIVE */
@@ -437,6 +440,10 @@
   </div>
   <div class="footer-bottom">
     <span class="footer-logo">🌱 DollarSeeds</span>
+    <div class="footer-legal-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
     <p class="footer-copy">© 2026 Lucas Custodio · Built with faith &amp; purpose</p>
   </div>
 </footer>
