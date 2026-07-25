@@ -206,6 +206,29 @@
     .about-block h3 { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.625rem; }
     .about-block p  { font-size: 1rem; color: #4B5563; line-height: 1.8; }
 
+    /* ACCOUNT DELETION */
+    .data-control { background: var(--cream); padding: 5.5rem 2.5rem; }
+    .data-control-card {
+      max-width: 1200px; margin: 0 auto;
+      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 24px;
+      padding: 2.75rem 3rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center;
+    }
+    .data-control .eyebrow { margin-bottom: 0.75rem; }
+    .data-control h2 {
+      font-family: var(--serif); font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      color: var(--forest); letter-spacing: -0.01em; margin-bottom: 0.75rem;
+    }
+    .data-control p { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 620px; }
+    .data-control-link {
+      display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
+      background: var(--forest); color: var(--cream);
+      font-family: var(--sans); font-size: 0.9375rem; font-weight: 600;
+      padding: 0.875rem 1.75rem; border-radius: 999px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .data-control-link:hover { opacity: 0.9; transform: translateY(-1px); }
+
     /* FOOTER CTA */
     .footer-cta { background: var(--dark); padding: 7rem 2.5rem 3.5rem; position: relative; overflow: hidden; }
     .footer-glow {
@@ -239,12 +262,15 @@
       .why-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-grid { grid-template-columns: 1fr; }
       .about-card { position: static; }
+      .data-control-card { grid-template-columns: 1fr; gap: 1.75rem; }
     }
     @media (max-width: 580px) {
       .features-grid { grid-template-columns: 1fr; }
       nav { padding: 0.875rem 1.25rem; }
       .hero { padding: 7rem 1.25rem 4rem; }
-      .features, .why, .about, .footer-cta { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .features, .why, .about, .data-control, .footer-cta { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .data-control-card { padding: 2rem 1.5rem; }
+      .data-control-link { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -423,6 +449,18 @@
   </div>
 </section>
 
+<!-- ACCOUNT DELETION -->
+<section class="data-control" id="account-deletion">
+  <div class="data-control-card">
+    <div>
+      <p class="eyebrow">Your Data, Your Control</p>
+      <h2>Delete your account anytime</h2>
+      <p>Your finances are yours alone. You can permanently delete your DollarSeeds account — along with every income, expense, savings, and goal record tied to it — right from Settings in the app, or by email if you can't sign in.</p>
+    </div>
+    <a href="/delete-account" class="data-control-link">How to delete your account &rarr;</a>
+  </div>
+</section>
+
 <!-- FOOTER CTA -->
 <footer class="footer-cta" id="footer">
   <div class="footer-glow"></div>
@@ -443,6 +481,7 @@
     <div class="footer-legal-links">
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
+      <a href="/delete-account">Delete Account</a>
     </div>
     <p class="footer-copy">© 2026 Lucas Custodio · Built with faith &amp; purpose</p>
   </div>
