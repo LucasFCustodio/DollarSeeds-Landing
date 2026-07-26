@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Termly consent banner + Auto Blocker.
+       Must stay the FIRST script tag on the page, and ahead of the font/resource
+       link tags below so Auto Blocker can gate them before they load. -->
+  <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+
   <title>Privacy Policy — DollarSeeds</title>
   <meta name="description" content="How DollarSeeds collects, uses, stores, and shares your personal information, and the privacy rights and choices you have." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -224,6 +230,7 @@ word-break: break-word !important;
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/delete-account">Delete Account</a>
+      <a href="#" class="termly-display-preferences">Consent Preferences</a>
     </div>
     <p class="legal-footer-copy">© 2026 Lucas Fracasso Custodio</p>
   </div>

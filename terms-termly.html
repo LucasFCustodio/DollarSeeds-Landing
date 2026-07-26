@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Termly consent banner + Auto Blocker.
-       Must stay the FIRST script tag on the page, and ahead of the font/resource
-       link tags below so Auto Blocker can gate them before they load. -->
+       Must stay the FIRST script tag on the page (ahead of the policy embed
+       script below), and ahead of the font/resource link tags. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
 
-  <title>Delete Your Account — DollarSeeds</title>
-  <meta name="description" content="How to delete your DollarSeeds account and associated data, what is removed, and what may be retained." />
+  <title>Terms of Service — DollarSeeds</title>
+  <meta name="description" content="The terms that govern your use of DollarSeeds. DollarSeeds is a budgeting tool for educational purposes and is not financial, investment, tax, or legal advice." />
+  <link rel="canonical" href="https://dollarseeds.netlify.app/terms" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://app.termly.io" />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -82,30 +84,47 @@
     .legal-body { padding: 4rem 2.5rem 5rem; }
     .legal-inner { max-width: 760px; margin: 0 auto; }
 
-    .legal-intro { font-size: 1.0625rem; color: #4B5563; line-height: 1.8; margin-bottom: 2.5rem; }
-
-    .legal-section { margin-bottom: 2.75rem; scroll-margin-top: 6rem; }
-    .legal-section h2 {
-      font-family: var(--serif); font-size: 1.65rem; color: var(--forest);
-      letter-spacing: -0.01em; margin-bottom: 1rem; padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(15,61,46,0.1);
+    /* TERMLY DOCUMENT — the embed injects Termly's markup (same data-custom-class
+       scheme as their static exports) into the container below. Termly's own rules
+       use !important, so these overrides are scoped under .termly-doc to win on
+       specificity. min-height reserves space so the page doesn't jump while loading. */
+    .termly-doc { overflow-wrap: break-word; min-height: 60vh; }
+    .termly-doc [data-custom-class='title'], .termly-doc [data-custom-class='title'] * {
+      font-family: var(--serif) !important; font-size: 2rem !important;
+      color: var(--forest) !important; line-height: 1.2 !important;
     }
-    .legal-section h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--forest); margin: 1.5rem 0 0.6rem; }
-    .legal-section p { font-size: 1rem; color: #414B54; line-height: 1.8; margin-bottom: 1rem; }
-    .legal-section ol, .legal-section ul { margin: 0 0 1rem 1.25rem; }
-    .legal-section li { font-size: 1rem; color: #414B54; line-height: 1.75; margin-bottom: 0.5rem; }
-    .legal-section a { color: var(--emerald); text-decoration: underline; text-underline-offset: 2px; }
-    .legal-section strong { color: var(--forest); }
-    .legal-section code {
-      font-family: var(--mono); font-size: 0.9em; background: rgba(15,61,46,0.06);
-      padding: 0.1rem 0.4rem; border-radius: 5px; color: var(--forest);
+    .termly-doc [data-custom-class='subtitle'], .termly-doc [data-custom-class='subtitle'] * {
+      font-family: var(--mono) !important; font-size: 0.75rem !important;
+      color: var(--muted) !important; letter-spacing: 0.05em !important;
     }
+    .termly-doc [data-custom-class='heading_1'], .termly-doc [data-custom-class='heading_1'] * {
+      font-family: var(--serif) !important; font-size: 1.5rem !important; color: var(--forest) !important;
+    }
+    .termly-doc [data-custom-class='heading_2'], .termly-doc [data-custom-class='heading_2'] * {
+      font-family: var(--sans) !important; font-size: 1.0625rem !important;
+      font-weight: 600 !important; color: var(--forest) !important;
+    }
+    .termly-doc [data-custom-class='body_text'], .termly-doc [data-custom-class='body_text'] * {
+      font-family: var(--sans) !important; font-size: 1rem !important; color: #414B54 !important;
+    }
+    .termly-doc [data-custom-class='link'], .termly-doc [data-custom-class='link'] * {
+      font-family: var(--sans) !important; color: var(--emerald) !important;
+    }
+    .termly-doc a { color: var(--emerald); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    .termly-doc ul, .termly-doc ol { margin: 0 0 1rem 1.5rem; }
+    .termly-doc li { line-height: 1.75; margin-bottom: 0.4rem; }
+    .termly-doc div, .termly-doc span { line-height: 1.75; }
+    .termly-doc table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+    .termly-doc td, .termly-doc th { border: 1px solid rgba(15,61,46,0.12); padding: 0.5rem 0.65rem; text-align: left; }
+    .termly-doc img { max-width: 100%; height: auto; }
 
-    .callout {
+    /* Fallback shown only when JavaScript is unavailable */
+    .embed-fallback {
       background: rgba(16,185,129,0.06); border-left: 3px solid var(--emerald);
-      border-radius: 0 12px 12px 0; padding: 1.125rem 1.375rem; margin: 1.25rem 0;
+      border-radius: 0 12px 12px 0; padding: 1.25rem 1.5rem;
     }
-    .callout p { margin-bottom: 0; font-size: 0.95rem; }
+    .embed-fallback p { font-size: 1rem; color: #414B54; line-height: 1.8; margin-bottom: 0.5rem; }
+    .embed-fallback a { color: var(--emerald); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
 
     /* FOOTER */
     .legal-footer { background: var(--dark); padding: 3rem 2.5rem; }
@@ -145,65 +164,33 @@
 <header class="legal-header">
   <div class="legal-header-blob"></div>
   <div class="legal-header-inner">
-    <p class="legal-eyebrow">Account</p>
-    <h1 class="legal-title">Delete Your Account</h1>
-    <p class="legal-meta">Last updated: July 9, 2026</p>
+    <p class="legal-eyebrow">Legal</p>
+    <h1 class="legal-title">Terms of Service</h1>
+    <p class="legal-meta">The effective date is shown at the top of the document below.</p>
   </div>
 </header>
 
 <!-- CONTENT -->
 <main class="legal-body">
   <div class="legal-inner">
-
-    <p class="legal-intro">
-      This page explains how to permanently delete your <strong>DollarSeeds</strong> account and the personal and financial
-      data associated with it, what is removed, and what may be retained.
-    </p>
-
-    <section class="legal-section">
-      <h2>Delete your account in the app</h2>
-      <p>You can delete your account and all associated data at any time, directly within the app:</p>
-      <ol>
-        <li>Open the <strong>DollarSeeds</strong> app and sign in.</li>
-        <li>Go to <strong>Settings</strong>.</li>
-        <li>Tap <strong>Delete Account</strong>.</li>
-        <li>Type <code>DELETE</code> to confirm.</li>
-      </ol>
-      <div class="callout">
-        <p>Once confirmed, your account is deleted immediately. This action is permanent and cannot be undone.</p>
-      </div>
-    </section>
-
-    <section class="legal-section">
-      <h2>Can't access the app?</h2>
-      <p>
-        You can also request deletion by emailing
-        <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a> from the email address associated with your
-        account, and we will process it for you.
-      </p>
-    </section>
-
-    <section class="legal-section">
-      <h2>What data is deleted</h2>
-      <p>
-        Deleting your account permanently removes your profile and all financial data you entered, including your income and
-        expense records, savings balances and transactions, savings goals, and budget settings.
-      </p>
-    </section>
-
-    <section class="legal-section">
-      <h2>What data may be retained</h2>
-      <p>
-        Your account and its financial records are removed from our database within a reasonable period, except where we must
-        retain limited information to comply with legal obligations, resolve disputes, or enforce our agreements. Pseudonymous
-        analytics and crash diagnostics that contain no financial figures are retained on a rolling basis according to our
-        providers' standard retention periods. For full details, see our
-        <a href="/privacy#inforetain">Privacy Policy</a>.
-      </p>
-    </section>
-
+    <div class="termly-doc">
+      <div name="termly-embed" data-id="9415bf4b-aa9a-43de-82c2-fb486594718e"></div>
+      <noscript>
+        <div class="embed-fallback">
+          <p><strong>These Terms of Service require JavaScript to display.</strong></p>
+          <p>
+            You can read the full document here:
+            <a href="https://app.termly.io/document/terms-of-service/9415bf4b-aa9a-43de-82c2-fb486594718e" target="_blank" rel="noopener">
+              View the DollarSeeds Terms of Service
+            </a>
+          </p>
+          <p>Or request a copy by email: <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a></p>
+        </div>
+      </noscript>
+    </div>
   </div>
 </main>
+<script src="https://app.termly.io/embed-policy.min.js" async></script>
 
 <!-- FOOTER -->
 <footer class="legal-footer">

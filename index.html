@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Termly consent banner + Auto Blocker.
+       Must stay the FIRST script tag on the page, and ahead of the font/resource
+       link tags below so Auto Blocker can gate them before they load. -->
+  <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+
   <title>DollarSeeds — Make Your Dollar Seeds Sprout into Blessings</title>
   <meta name="description" content="A faith-rooted budgeting app built on the 50/30/20 rule. Track your income, expenses, and goals through the lens of biblical stewardship." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -248,7 +254,7 @@
       display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
     }
     .footer-logo { font-family: var(--serif); font-size: 1.125rem; color: rgba(245,241,230,0.35); }
-    .footer-legal-links { display: flex; gap: 1.25rem; }
+    .footer-legal-links { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
     .footer-legal-links a { font-size: 0.8rem; color: rgba(245,241,230,0.45); text-decoration: none; font-family: var(--sans); transition: color 0.2s; }
     .footer-legal-links a:hover { color: var(--emerald); }
     .footer-copy { font-size: 0.775rem; color: rgba(245,241,230,0.22); font-family: var(--mono); letter-spacing: 0.04em; }
@@ -482,6 +488,7 @@
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/delete-account">Delete Account</a>
+      <a href="#" class="termly-display-preferences">Consent Preferences</a>
     </div>
     <p class="footer-copy">© 2026 Lucas Custodio · Built with faith &amp; purpose</p>
   </div>

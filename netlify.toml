@@ -1,2 +1,11 @@
 [build]
   publish = "."
+
+# Serve terms-termly.html at the original /terms URL.
+# status = 200 is a rewrite, not a redirect: the address bar stays on /terms,
+# so every existing link and any Google Play / App Store listing that points
+# at /terms keeps working unchanged.
+[[redirects]]
+  from = "/terms"
+  to = "/terms-termly.html"
+  status = 200
