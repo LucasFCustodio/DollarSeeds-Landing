@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<!-- Source for the 1200x630 Open Graph card. Rendered by tools/gen-og-image.js
+     with headless Chrome so the real self-hosted brand faces are used
+     (Urbanist at weight 580 in particular). Not served to visitors. -->
+<link rel="stylesheet" href="/assets/css/base.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background: linear-gradient(160deg, var(--ground-0) 0%, var(--ground-1) 55%, var(--ground-3) 100%);
+    position: relative;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+  .blob-a { width: 620px; height: 620px; background: var(--emerald); opacity: 0.16; top: -220px; right: -140px; }
+  .blob-b { width: 380px; height: 380px; background: var(--harvest); opacity: 0.20; bottom: -170px; left: -90px; }
+
+  .card {
+    position: relative; z-index: 1; height: 100%;
+    display: grid; grid-template-columns: 1fr 360px;
+    align-items: center; gap: 24px; padding: 48px 0 84px 68px;
+  }
+
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .brand img { width: 62px; height: 62px; border-radius: 16px; }
+  .brand span {
+    font-family: var(--display); font-weight: 580; font-size: 31px;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-family: var(--display); font-weight: 580; font-size: 48px; line-height: 1.08;
+    letter-spacing: -0.015em; color: var(--ink); margin: 0 0 20px; max-width: 15ch;
+  }
+  h1 .accent { color: var(--accent-text); font-style: italic; }
+
+  p.tagline {
+    font-family: var(--sans); font-size: 21px; line-height: 1.5;
+    color: var(--ink-soft); margin: 0 0 24px; max-width: 36ch;
+  }
+
+  .chips { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 22px; }
+  .chips span {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 8px 16px; border-radius: 999px; background: var(--card);
+    border: 1px solid var(--line); color: var(--ink);
+  }
+  .chips .needs   { color: var(--amber);       background: rgba(194,112,28,0.11); border-color: transparent; }
+  .chips .wants   { color: var(--violet);      background: rgba(124,58,237,0.10); border-color: transparent; }
+  .chips .savings { color: var(--accent-text); background: rgba(16,185,129,0.15); border-color: transparent; }
+
+  .foot {
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; color: var(--muted);
+  }
+  .foot .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--emerald); }
+
+  .phone {
+    width: 306px; height: 620px; margin-right: -56px;
+    border-radius: 48px; border: 4px solid rgba(15,61,46,0.16); background: #0d0d0d;
+    overflow: hidden; position: relative; box-shadow: var(--shadow-lift);
+    transform: rotate(5deg) translateY(26px);
+  }
+  .phone .notch {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 116px; height: 32px; background: #0d0d0d; border-radius: 0 0 22px 22px; z-index: 2;
+  }
+  .phone img { width: 100%; display: block; }
+</style>
+</head>
+<body>
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+
+  <div class="card">
+    <div>
+      <div class="brand">
+        <img src="/assets/brand/seedling.svg" alt="" />
+        <span>DollarSeeds</span>
+      </div>
+
+      <h1>The Christian budgeting app for <span class="accent">real financial freedom</span></h1>
+      <p class="tagline">Every dollar you earn splits itself across Needs, Wants, and Savings — automatically.</p>
+
+      <div class="chips">
+        <span class="needs">Needs</span>
+        <span class="wants">Wants</span>
+        <span class="savings">Savings</span>
+      </div>
+
+      <div class="foot">
+        <span>Free on the App&nbsp;Store</span><i class="dot"></i>
+        <span>iPhone</span><i class="dot"></i>
+        <span>No bank login</span>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="notch"></div>
+      <img src="/assets/images/dashboard-screen.jpeg" alt="" />
+    </div>
+  </div>
+</body>
+</html>

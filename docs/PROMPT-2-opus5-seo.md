@@ -16,8 +16,8 @@ You are doing the technical SEO and performance pass on the DollarSeeds marketin
 - `.app` is an HSTS-preloaded TLD — the entire TLD is HTTPS-only at the browser level. Confirm Netlify's "Force HTTPS" is on and that nothing in the repo emits an `http://` URL, including inside JSON-LD.
 - App Store URL: `https://apps.apple.com/us/app/dollarseeds/id6780037284`
 - App Store ID: `6780037284`
-- Apple Team ID: `YBSBHHBC5R` — needed for universal links. Stop and ask if unfilled.
-- Bundle ID: `com.lucasfcustodio.dollarseeds` — same.
+- Apple Team ID: `{{APPLE_TEAM_ID}}` — needed for universal links. Stop and ask if unfilled.
+- Bundle ID: `{{BUNDLE_ID}}` — same.
 - App released 2026-08-07. iOS only. Free. Categories: Finance, Education.
 - Author/publisher: Lucas Custodio.
 - Static site on Netlify. No framework, no bundler. Adding a small Node build step is acceptable; adding a framework is not.
@@ -107,7 +107,9 @@ Add a `netlify.toml` build command that runs this script and the sitemap generat
 
 Current state before the redesign: five PNGs at 300–430KB, no width/height attributes anywhere, three Google Font families loading render-blocking, and a synchronous third-party script ahead of everything.
 
-1. **Self-host the fonts.** Instrument Serif, Inter, JetBrains Mono are all loaded from Google Fonts as a render-blocking stylesheet, behind Termly's auto-blocker. Download WOFF2, subset to Latin, serve from `assets/fonts/`, `font-display: swap`, and `<link rel="preload">` only the face used in the `<h1>`. Drop the `fonts.googleapis.com` / `fonts.gstatic.com` preconnects once nothing loads from them.
+1. **Self-host the fonts.** The site loads **Urbanist** (headings), **Figtree** (body), and **JetBrains Mono** (eyebrows) from Google Fonts as a render-blocking stylesheet, behind Termly's auto-blocker. Download WOFF2, subset to Latin, serve from `assets/fonts/`, `font-display: swap`, and `<link rel="preload">` only the face used in the `<h1>`. Drop the `fonts.googleapis.com` / `fonts.gstatic.com` preconnects once nothing loads from them.
+
+   **Critical:** headings use `font-weight: 580`, which only resolves on a **variable** font. Self-host the variable WOFF2 with the `wght` axis intact — do **not** subset to static weights, or every heading silently snaps to 600. After the swap, confirm in DevTools that the rendered weight is still 580.
 
 2. **Re-evaluate the Termly auto-blocker.** It is the first synchronous script in `<head>` and deliberately gates the font requests, which puts a render-blocking third party directly in front of the LCP element. Once fonts are self-hosted, the only remaining third parties are Termly itself and whatever analytics gets added. Determine whether `autoBlock=on` is still doing necessary work; if it isn't, move the script to `defer`. **Do not remove the consent banner** — if you're not confident the compliance behavior is preserved, leave it exactly as-is and say so.
 

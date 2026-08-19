@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DollarSeeds seedling mark">
+  <!-- DollarSeeds seedling mark.
+       The badge logo (assets/brand/logo.png) is a detailed greyscale illustration
+       that turns to mud below ~64px, so every small mark uses this instead: two
+       leaves and a stem in the brand emerald over the forest ground.
+       Colors are the CSS custom properties: forest, emerald, harvest. -->
+  <rect width="64" height="64" rx="14" fill="#0F3D2E"/>
+  <circle cx="32" cy="49" r="7" fill="#F4D35E"/>
+  <path d="M32 45.2v7.6M30.1 46.6h3.8M30.1 51.4h3.8" stroke="#0F3D2E" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M32 44V25" stroke="#10B981" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M32 34c-8.2 0-14-5.4-14-13 8.2 0 14 5.4 14 13z" fill="#10B981"/>
+  <path d="M32 29c8.2 0 14-5.4 14-13-8.2 0-14 5.4-14 13z" fill="#34D399"/>
+</svg>

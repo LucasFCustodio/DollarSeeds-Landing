@@ -27,14 +27,18 @@ Manual (non-Claude Code) steps live in the Google Doc: **DollarSeeds Site Revamp
 - Trust bar shows rating and rating count only. **No download count.**
 - Logo at `assets/brand/logo.png`
 
-## Still unfilled
+## Placeholders — resolved
 
-`PROMPT-2` has two placeholders that must be replaced before it runs:
+`PROMPT-2`'s two placeholders were supplied during the run and now live in
+`build/site.config.js` (`APP.appleTeamId`, `APP.bundleId`), which is the only
+place either value appears:
 
-- `{{APPLE_TEAM_ID}}`
-- `{{BUNDLE_ID}}`
+- `APPLE_TEAM_ID` → `YBSBHHBC5R`
+- `BUNDLE_ID` → `com.lucasfcustodio.dollarseeds` (confirmed against Apple's lookup API)
 
-Both are needed for `apple-app-site-association` (universal links). Get them from App Store Connect / Xcode.
+Both feed `/.well-known/apple-app-site-association`. **The app side still needs
+its half:** add `applinks:dollarseeds.app` to the Associated Domains entitlement
+in the next iOS build, or universal links stay inert no matter what the site serves.
 
 Search Console and Bing no longer need placeholder values — the domain is verified as a GSC **Domain property** via DNS TXT, and Bing is verified by importing that property.
 

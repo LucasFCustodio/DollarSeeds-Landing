@@ -12,9 +12,48 @@
 
   <title>Christian Budgeting App for Financial Freedom — DollarSeeds</title>
   <meta name="description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- === head: canonical, social, icons === -->
+  <link rel="canonical" href="https://dollarseeds.app/" />
+
+  <!-- Self-hosted variable fonts. Preload only the face the h1 uses
+       (Urbanist); the other two are discovered from the stylesheet. -->
+  <link rel="preload" href="/assets/fonts/urbanist-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Hero phone screen: the LCP element. Preloaded as AVIF; browsers without
+       AVIF skip this (type filter) and pick WebP from the <picture> normally. -->
+  <link rel="preload" as="image" fetchpriority="high" type="image/avif"
+        imagesrcset="/assets/images/gen/dashboard-screen-250.avif 1x, /assets/images/gen/dashboard-screen-500.avif 2x" />
+
+  <!-- Icons, manifest, browser chrome -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAF7EE" />
+  <!-- Smart App Banner: one-tap install from mobile Safari. -->
+  <meta name="apple-itunes-app" content="app-id=6780037284" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DollarSeeds — the Christian budgeting app for real financial freedom" />
+  <meta property="og:description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <meta property="og:url" content="https://dollarseeds.app/" />
+  <meta property="og:site_name" content="DollarSeeds" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://dollarseeds.app/assets/images/og-default.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DollarSeeds — the Christian budgeting app for real financial freedom" />
+  <meta name="twitter:description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <meta name="twitter:image" content="https://dollarseeds.app/assets/images/og-default.png" />
+  <meta name="twitter:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
+
   <link rel="stylesheet" href="/assets/css/base.css" />
   <style>
     section { scroll-margin-top: 5rem; }
@@ -395,13 +434,341 @@
       .demo-income-controls input[type="range"] { min-width: 100%; }
     }
   </style>
+
+  <!-- === structured data (JSON-LD) === -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://dollarseeds.app/about#person",
+        "name": "Lucas Custodio",
+        "url": "https://dollarseeds.app/about",
+        "jobTitle": "Software developer",
+        "description": "Developer with a background in financial software, SEO, and accounting automation, and the builder of DollarSeeds.",
+        "knowsAbout": [
+          "Personal budgeting",
+          "The 50/30/20 rule",
+          "Biblical stewardship",
+          "Christian personal finance",
+          "Accounting automation",
+          "iOS development"
+        ],
+        "worksFor": {
+          "@id": "https://dollarseeds.app/#organization"
+        },
+        "email": "lucasquality555@gmail.com"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dollarseeds.app/#organization",
+        "name": "DollarSeeds",
+        "alternateName": "DollarSeeds — Financial Growth",
+        "url": "https://dollarseeds.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://dollarseeds.app/#logo",
+          "url": "https://dollarseeds.app/icon-512.png",
+          "contentUrl": "https://dollarseeds.app/icon-512.png",
+          "width": 512,
+          "height": 512,
+          "caption": "DollarSeeds"
+        },
+        "image": {
+          "@id": "https://dollarseeds.app/#logo"
+        },
+        "description": "Maker of DollarSeeds, a Christian budgeting app for iPhone that splits income across Needs, Wants, and Savings automatically.",
+        "founder": {
+          "@id": "https://dollarseeds.app/about#person"
+        },
+        "foundingDate": "2026",
+        "sameAs": [
+          "https://apps.apple.com/us/app/dollarseeds/id6780037284"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "lucasquality555@gmail.com",
+          "url": "https://dollarseeds.app/support",
+          "availableLanguage": [
+            "English"
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://dollarseeds.app/#website",
+        "url": "https://dollarseeds.app/",
+        "name": "DollarSeeds",
+        "description": "A Christian budgeting app for iPhone — split every dollar across Needs, Wants, and Savings automatically.",
+        "publisher": {
+          "@id": "https://dollarseeds.app/#organization"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://dollarseeds.app/#webpage",
+        "url": "https://dollarseeds.app/",
+        "name": "Christian Budgeting App for Financial Freedom — DollarSeeds",
+        "isPartOf": {
+          "@id": "https://dollarseeds.app/#website"
+        },
+        "about": {
+          "@id": "https://dollarseeds.app/#app"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://dollarseeds.app/#logo"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://dollarseeds.app/#app",
+        "name": "DollarSeeds",
+        "alternateName": "DollarSeeds — Christian Budgeting App",
+        "url": "https://dollarseeds.app/",
+        "description": "DollarSeeds splits every dollar you earn across Needs, Wants, and Savings automatically, tracks spending against each target, and grounds it in biblical stewardship — with no bank login.",
+        "applicationCategory": "FinanceApplication",
+        "applicationSubCategory": "Budgeting",
+        "operatingSystem": "iOS 15.1 or later",
+        "softwareVersion": "1.0",
+        "datePublished": "2026-08-07",
+        "installUrl": "https://apps.apple.com/us/app/dollarseeds/id6780037284",
+        "downloadUrl": "https://apps.apple.com/us/app/dollarseeds/id6780037284",
+        "screenshot": "https://dollarseeds.app/assets/images/screen-dashboard.png",
+        "image": "https://dollarseeds.app/assets/images/og-default.png",
+        "inLanguage": "en-US",
+        "author": {
+          "@id": "https://dollarseeds.app/about#person"
+        },
+        "publisher": {
+          "@id": "https://dollarseeds.app/#organization"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://apps.apple.com/us/app/dollarseeds/id6780037284"
+        },
+        "featureList": [
+          "Automatic income split across Needs, Wants, and Savings",
+          "Three budgeting types: 50/30/20, Wealth Builder, Firm Foundation",
+          "Expense tracking with categories and subcategories",
+          "Savings goals with targets and timelines",
+          "Debt payoff from general savings",
+          "Scripture-rooted money lessons"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "ratingCount": "11",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "name": "Excellent",
+            "reviewBody": "Great app! DollarSeeds is easy to use, simple to navigate, and very convenient. Everything is well organized, and the app makes the whole experience quick and hassle-free. I've really enjoyed using it and would definitely recommend it to others.",
+            "datePublished": "2026-08-08",
+            "author": {
+              "@type": "Person",
+              "name": "Cláudio93"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Apple App Store"
+            }
+          },
+          {
+            "@type": "Review",
+            "name": "Awesome Features",
+            "reviewBody": "The unique features for Tithing and Entrepreneurship lessons are awesome! The app works great for tracking all my income and expenses!",
+            "datePublished": "2026-08-07",
+            "author": {
+              "@type": "Person",
+              "name": "XLUC4O"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Apple App Store"
+            }
+          },
+          {
+            "@type": "Review",
+            "name": "Nice App",
+            "reviewBody": "Pretty nice money management app, clean design and works well, 5/5.",
+            "datePublished": "2026-08-08",
+            "author": {
+              "@type": "Person",
+              "name": "OlayBrian"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Apple App Store"
+            }
+          },
+          {
+            "@type": "Review",
+            "name": "Amazing App!",
+            "reviewBody": "Amazing App to control your finances ! I loved it!",
+            "datePublished": "2026-08-09",
+            "author": {
+              "@type": "Person",
+              "name": "gangagratidao"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Apple App Store"
+            }
+          },
+          {
+            "@type": "Review",
+            "name": "Best budgeting app on the AppStore",
+            "reviewBody": "Very helpful and unique app to work with",
+            "datePublished": "2026-08-08",
+            "author": {
+              "@type": "Person",
+              "name": "Fofinho203"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Apple App Store"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://dollarseeds.app/#faq",
+        "url": "https://dollarseeds.app/#faq",
+        "name": "DollarSeeds — frequently asked questions",
+        "isPartOf": {
+          "@id": "https://dollarseeds.app/#website"
+        },
+        "inLanguage": "en-US",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is DollarSeeds free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — DollarSeeds is free to download on the App Store . Download it, pick a budgeting type, and start logging income the same day."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does DollarSeeds connect to my bank account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No — DollarSeeds never asks for your bank login, and it can't see your accounts. You log income and expenses yourself, in a few seconds each. That's a deliberate choice: logging a purchase by hand is the moment you actually feel where your money goes, and it means your credentials are never shared with anyone. Read more on our security page ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is DollarSeeds only for Christians?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No — anyone can use DollarSeeds; the budgeting system works the same regardless of what you believe. The app is unapologetically rooted in biblical stewardship — you'll see Scripture on the dashboard and faith-based lessons inside. But nothing is gated behind belief, and the Needs / Wants / Savings discipline stands on its own."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the three budgeting types in DollarSeeds?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "DollarSeeds ships three budgeting types: 50/30/20 (balanced), Wealth Builder (30/20/50, for aggressive savers), and Firm Foundation (70/10/20, for tight seasons). Every one of them saves at least 20% of your income — what changes is the balance between needs and wants. Try them in the live demo above or read the full budgeting types guide ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the 50/30/20 budget rule?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The 50/30/20 rule splits your after-tax income into 50% for needs, 30% for wants, and 20% for savings. Needs are the essentials — rent, groceries, bills. Wants are the joys — dining out, travel, hobbies. Savings is the future — emergency fund, goals, investing, generosity. DollarSeeds applies the split automatically every time you log income. Full worked example on our 50/30/20 rule page ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I track debt payoff with DollarSeeds?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — DollarSeeds lets you pay down debt using the money you've built up in general savings, right from the Savings screen. Choose the debt, enter the payment, and watch the balance shrink the same way you watch a savings goal fill."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my financial data private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — your financial data belongs to you, is never sold, and the app holds no bank credentials that could be exposed. Only what you type in is stored, and you can permanently delete your account and every record with it at any time. The plain-language version is on our security page ; the legal version is the privacy policy ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there an Android version of DollarSeeds?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not yet — DollarSeeds is currently iPhone-only. An Android version depends on how the iOS app grows. If you want it, tell us — real requests are how it gets prioritized."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I delete my DollarSeeds account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the app, go to Settings, tap Delete Account, and type DELETE to confirm — deletion is immediate and permanent. Every income, expense, savings, and goal record tied to the account is removed. If you can't sign in, you can request deletion by email instead — full steps on the delete account page ."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary">
     <a href="/" class="nav-logo">
-      <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      <picture>
+        <source type="image/avif" srcset="/assets/images/gen/logo-76.avif 1x, /assets/images/gen/logo-144.avif 2x" />
+        <source type="image/webp" srcset="/assets/images/gen/logo-76.webp 1x, /assets/images/gen/logo-144.webp 2x" />
+        <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      </picture>
       <span class="nav-logo-name">DollarSeeds</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
@@ -441,11 +808,19 @@
       <div class="hero-visual">
         <div class="phone-frame">
           <div class="phone-notch"></div>
-          <img src="/assets/images/dashboard-screen.jpeg" width="739" height="1600" fetchpriority="high" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score, a Bible verse card, and Needs, Wants, and Savings progress bars" />
+          <picture>
+            <source type="image/avif" srcset="/assets/images/gen/dashboard-screen-250.avif 1x, /assets/images/gen/dashboard-screen-500.avif 2x" />
+            <source type="image/webp" srcset="/assets/images/gen/dashboard-screen-250.webp 1x, /assets/images/gen/dashboard-screen-500.webp 2x" />
+            <img src="/assets/images/dashboard-screen.jpeg" width="739" height="1600" fetchpriority="high" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score, a Bible verse card, and Needs, Wants, and Savings progress bars" />
+          </picture>
         </div>
         <div class="growth">
-          <img src="/assets/images/dollarseeds-tree.png" width="1349" height="1349" fetchpriority="low"
-               alt="Black-and-white cartoon money tree in the DollarSeeds logo style: a cloud-like canopy bearing dollar-coin fruit, growing from a mound of soil" />
+          <picture>
+            <source type="image/avif" srcset="/assets/images/gen/dollarseeds-tree-400.avif 400w, /assets/images/gen/dollarseeds-tree-540.avif 540w, /assets/images/gen/dollarseeds-tree-1080.avif 1080w" sizes="(max-width: 900px) 432px, 540px" />
+            <source type="image/webp" srcset="/assets/images/gen/dollarseeds-tree-400.webp 400w, /assets/images/gen/dollarseeds-tree-540.webp 540w, /assets/images/gen/dollarseeds-tree-1080.webp 1080w" sizes="(max-width: 900px) 432px, 540px" />
+            <img src="/assets/images/dollarseeds-tree.png" width="1349" height="1349" fetchpriority="low"
+                   alt="Black-and-white cartoon money tree in the DollarSeeds logo style: a cloud-like canopy bearing dollar-coin fruit, growing from a mound of soil" />
+          </picture>
         </div>
       </div>
     </div>
@@ -540,7 +915,7 @@
         <figure class="feature-row" data-reveal-group>
           <div class="feature-media" data-reveal>
             <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1434" poster="/assets/images/posters/log-income.jpg" aria-label="Screen recording of logging income in DollarSeeds and watching it split across Needs, Wants, and Savings">
+              <video muted loop playsinline preload="none" width="720" height="1434" poster="/assets/images/gen/log-income-600.jpg" aria-label="Screen recording of logging income in DollarSeeds and watching it split across Needs, Wants, and Savings">
                 <source src="/assets/video/log-income.webm" type="video/webm" />
                 <source src="/assets/video/log-income.mp4" type="video/mp4" />
               </video>
@@ -558,7 +933,7 @@
         <figure class="feature-row" data-reveal-group>
           <div class="feature-media" data-reveal>
             <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1420" poster="/assets/images/posters/log-expense.jpg" aria-label="Screen recording of logging an expense in DollarSeeds with a category and subcategory">
+              <video muted loop playsinline preload="none" width="720" height="1420" poster="/assets/images/gen/log-expense-600.jpg" aria-label="Screen recording of logging an expense in DollarSeeds with a category and subcategory">
                 <source src="/assets/video/log-expense.webm" type="video/webm" />
                 <source src="/assets/video/log-expense.mp4" type="video/mp4" />
               </video>
@@ -576,7 +951,7 @@
         <figure class="feature-row" data-reveal-group>
           <div class="feature-media" data-reveal>
             <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1444" poster="/assets/images/posters/create-goal.jpg" aria-label="Screen recording of creating a savings goal in DollarSeeds with a target amount and timeline">
+              <video muted loop playsinline preload="none" width="720" height="1444" poster="/assets/images/gen/create-goal-600.jpg" aria-label="Screen recording of creating a savings goal in DollarSeeds with a target amount and timeline">
                 <source src="/assets/video/create-goal.webm" type="video/webm" />
                 <source src="/assets/video/create-goal.mp4" type="video/mp4" />
               </video>
@@ -594,7 +969,7 @@
         <figure class="feature-row" data-reveal-group>
           <div class="feature-media" data-reveal>
             <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/posters/fund-goal.jpg" aria-label="Screen recording of setting money aside toward a savings goal in DollarSeeds">
+              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/gen/fund-goal-600.jpg" aria-label="Screen recording of setting money aside toward a savings goal in DollarSeeds">
                 <source src="/assets/video/fund-goal.webm" type="video/webm" />
                 <source src="/assets/video/fund-goal.mp4" type="video/mp4" />
               </video>
@@ -612,7 +987,7 @@
         <figure class="feature-row" data-reveal-group>
           <div class="feature-media" data-reveal>
             <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/posters/pay-debt.jpg" aria-label="Screen recording of paying off debt from general savings in DollarSeeds">
+              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/gen/pay-debt-600.jpg" aria-label="Screen recording of paying off debt from general savings in DollarSeeds">
                 <source src="/assets/video/pay-debt.webm" type="video/webm" />
                 <source src="/assets/video/pay-debt.mp4" type="video/mp4" />
               </video>
@@ -708,7 +1083,11 @@
         </div>
         <div class="faith-lessons surface-card" id="lessons" data-reveal>
           <div class="faith-lessons-screen">
-            <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/screen-lessons-480.avif 480w, /assets/images/gen/screen-lessons-739.avif 739w" sizes="(max-width: 900px) 100vw, 430px" />
+              <source type="image/webp" srcset="/assets/images/gen/screen-lessons-480.webp 480w, /assets/images/gen/screen-lessons-739.webp 739w" sizes="(max-width: 900px) 100vw, 430px" />
+              <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
+            </picture>
           </div>
           <div class="faith-lessons-body">
             <h3>Go deeper · Lessons inside the app</h3>
@@ -931,7 +1310,11 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        <picture>
+          <source type="image/avif" srcset="/assets/images/gen/logo-144.avif 1x, /assets/images/gen/logo-240.avif 2x" />
+          <source type="image/webp" srcset="/assets/images/gen/logo-144.webp 1x, /assets/images/gen/logo-240.webp 2x" />
+          <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        </picture>
         <span class="footer-wordmark">DollarSeeds</span>
         <p>A Christian budgeting app for iPhone. Every dollar is a seed — plant it with purpose.</p>
       </div>

@@ -12,9 +12,42 @@
 
   <title>Page Not Found — DollarSeeds</title>
   <meta name="description" content="That page doesn't exist. Head back to DollarSeeds — the Christian budgeting app for iPhone." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- === head: canonical, social, icons === -->
+  <!-- No canonical: this page is only ever served with a 404 status. -->
+
+  <!-- Self-hosted variable fonts. Preload only the face the h1 uses
+       (Urbanist); the other two are discovered from the stylesheet. -->
+  <link rel="preload" href="/assets/fonts/urbanist-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Icons, manifest, browser chrome -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAF7EE" />
+  <!-- Smart App Banner: one-tap install from mobile Safari. -->
+  <meta name="apple-itunes-app" content="app-id=6780037284" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Page not found" />
+  <meta property="og:description" content="That page doesn't exist. Head back to DollarSeeds — the Christian budgeting app for iPhone." />
+  <meta property="og:site_name" content="DollarSeeds" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://dollarseeds.app/assets/images/og-default.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Page not found" />
+  <meta name="twitter:description" content="That page doesn't exist. Head back to DollarSeeds — the Christian budgeting app for iPhone." />
+  <meta name="twitter:image" content="https://dollarseeds.app/assets/images/og-default.png" />
+  <meta name="twitter:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
+
   <link rel="stylesheet" href="/assets/css/base.css" />
 </head>
 <body>
@@ -22,7 +55,11 @@
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary">
     <a href="/" class="nav-logo">
-      <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      <picture>
+        <source type="image/avif" srcset="/assets/images/gen/logo-76.avif 1x, /assets/images/gen/logo-144.avif 2x" />
+        <source type="image/webp" srcset="/assets/images/gen/logo-76.webp 1x, /assets/images/gen/logo-144.webp 2x" />
+        <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      </picture>
       <span class="nav-logo-name">DollarSeeds</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
@@ -87,7 +124,11 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        <picture>
+          <source type="image/avif" srcset="/assets/images/gen/logo-144.avif 1x, /assets/images/gen/logo-240.avif 2x" />
+          <source type="image/webp" srcset="/assets/images/gen/logo-144.webp 1x, /assets/images/gen/logo-240.webp 2x" />
+          <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        </picture>
         <span class="footer-wordmark">DollarSeeds</span>
         <p>A Christian budgeting app for iPhone. Every dollar is a seed — plant it with purpose.</p>
       </div>

@@ -1,0 +1,24 @@
+{
+  "name": "dollarseeds-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marketing site for DollarSeeds — static HTML on Netlify with a small Node build step.",
+  "license": "UNLICENSED",
+  "author": "Lucas Custodio",
+  "scripts": {
+    "build": "node build",
+    "images": "node build/gen-images.js",
+    "stats": "node build/sync-app-stats.js",
+    "sitemap": "node build/gen-sitemap.js",
+    "icons": "node tools/gen-icons.js",
+    "og": "node tools/gen-og-image.js",
+    "fonts": "node tools/fetch-fonts.js",
+    "serve": "node tools/serve.js"
+  },
+  "dependencies": {
+    "sharp": "^0.34.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,2 +1,6 @@
 # Local Netlify folder
 .netlify
+
+# Installed by `npm ci` on the build machine; package-lock.json is committed
+# so Netlify resolves the same dependency tree every deploy.
+node_modules

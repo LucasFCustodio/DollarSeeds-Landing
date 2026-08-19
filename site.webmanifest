@@ -1,0 +1,51 @@
+{
+  "name": "DollarSeeds — Christian Budgeting App",
+  "short_name": "DollarSeeds",
+  "description": "Split every dollar across Needs, Wants, and Savings automatically. A Christian budgeting app for iPhone — no bank login required.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#FAF7EE",
+  "theme_color": "#FAF7EE",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": [
+    "finance",
+    "education",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/us/app/dollarseeds/id6780037284",
+      "id": "com.lucasfcustodio.dollarseeds"
+    }
+  ],
+  "prefer_related_applications": true
+}

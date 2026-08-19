@@ -12,17 +12,203 @@
 
   <title>50/30/20 Budget Rule Explained with Real Numbers — DollarSeeds</title>
   <meta name="description" content="What the 50/30/20 rule is, how needs, wants, and savings work, a worked example on a $3,200 paycheck, and how DollarSeeds applies the split automatically." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- === head: canonical, social, icons === -->
+  <link rel="canonical" href="https://dollarseeds.app/50-30-20-rule" />
+
+  <!-- Self-hosted variable fonts. Preload only the face the h1 uses
+       (Urbanist); the other two are discovered from the stylesheet. -->
+  <link rel="preload" href="/assets/fonts/urbanist-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Icons, manifest, browser chrome -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAF7EE" />
+  <!-- Smart App Banner: one-tap install from mobile Safari. -->
+  <meta name="apple-itunes-app" content="app-id=6780037284" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The 50/30/20 rule, explained with real numbers" />
+  <meta property="og:description" content="What the 50/30/20 rule is, how needs, wants, and savings work, a worked example on a $3,200 paycheck, and how DollarSeeds applies the split automatically." />
+  <meta property="og:url" content="https://dollarseeds.app/50-30-20-rule" />
+  <meta property="og:site_name" content="DollarSeeds" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://dollarseeds.app/assets/images/og-default.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The 50/30/20 rule, explained with real numbers" />
+  <meta name="twitter:description" content="What the 50/30/20 rule is, how needs, wants, and savings work, a worked example on a $3,200 paycheck, and how DollarSeeds applies the split automatically." />
+  <meta name="twitter:image" content="https://dollarseeds.app/assets/images/og-default.png" />
+  <meta name="twitter:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
+
   <link rel="stylesheet" href="/assets/css/base.css" />
+
+  <!-- === structured data (JSON-LD) === -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://dollarseeds.app/about#person",
+        "name": "Lucas Custodio",
+        "url": "https://dollarseeds.app/about",
+        "jobTitle": "Software developer",
+        "description": "Developer with a background in financial software, SEO, and accounting automation, and the builder of DollarSeeds.",
+        "knowsAbout": [
+          "Personal budgeting",
+          "The 50/30/20 rule",
+          "Biblical stewardship",
+          "Christian personal finance",
+          "Accounting automation",
+          "iOS development"
+        ],
+        "worksFor": {
+          "@id": "https://dollarseeds.app/#organization"
+        },
+        "email": "lucasquality555@gmail.com"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dollarseeds.app/#organization",
+        "name": "DollarSeeds",
+        "alternateName": "DollarSeeds — Financial Growth",
+        "url": "https://dollarseeds.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://dollarseeds.app/#logo",
+          "url": "https://dollarseeds.app/icon-512.png",
+          "contentUrl": "https://dollarseeds.app/icon-512.png",
+          "width": 512,
+          "height": 512,
+          "caption": "DollarSeeds"
+        },
+        "image": {
+          "@id": "https://dollarseeds.app/#logo"
+        },
+        "description": "Maker of DollarSeeds, a Christian budgeting app for iPhone that splits income across Needs, Wants, and Savings automatically.",
+        "founder": {
+          "@id": "https://dollarseeds.app/about#person"
+        },
+        "foundingDate": "2026",
+        "sameAs": [
+          "https://apps.apple.com/us/app/dollarseeds/id6780037284"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "lucasquality555@gmail.com",
+          "url": "https://dollarseeds.app/support",
+          "availableLanguage": [
+            "English"
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://dollarseeds.app/#website",
+        "url": "https://dollarseeds.app/",
+        "name": "DollarSeeds",
+        "description": "A Christian budgeting app for iPhone — split every dollar across Needs, Wants, and Savings automatically.",
+        "publisher": {
+          "@id": "https://dollarseeds.app/#organization"
+        },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://dollarseeds.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "50/30/20 Rule",
+            "item": "https://dollarseeds.app/50-30-20-rule"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://dollarseeds.app/50-30-20-rule#faq",
+        "url": "https://dollarseeds.app/50-30-20-rule",
+        "name": "The 50/30/20 rule, explained with real numbers",
+        "isPartOf": {
+          "@id": "https://dollarseeds.app/#website"
+        },
+        "publisher": {
+          "@id": "https://dollarseeds.app/#organization"
+        },
+        "inLanguage": "en-US",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the 50/30/20 rule?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The 50/30/20 rule splits your after-tax income into three buckets: 50% for needs, 30% for wants, and 20% for savings . Every dollar you earn lands in exactly one bucket, so there's never money floating around without a job. The rule was popularized by Elizabeth Warren and Amelia Warren Tyagi in their book All Your Worth (2005), and it has stuck around for twenty years because it answers the question every budget beginner actually has — \"how much is normal to spend?\" — with three numbers you can remember."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What counts as a need, a want, and savings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A need is anything you'd have to pay even in a hard month; a want is anything you could pause without your life breaking; savings is everything aimed at the future. Needs (50%) — rent or mortgage, groceries, utilities, insurance, transportation, minimum debt payments. The essentials that keep you living and serving where you are. Wants (30%) — dining out, streaming, travel, hobbies, shopping. The joys. They're not sins — they're gifts to enjoy, held inside a boundary. Savings (20%) — emergency fund, savings goals, investments, extra debt payoff, generosity. Seeds planted for a harvest that blesses tomorrow. The honest edge cases go to needs. Groceries are a need; DoorDash is a want. A car payment is a need; the upgrade you didn't need is a want wearing a need's jacket."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does 50/30/20 look like on a real paycheck?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Take $3,200 a month after tax — the split gives you $1,600 for needs, $960 for wants, and $640 for savings. Do that for twelve months and the savings bucket alone is $7,680 — an emergency fund most Americans don't have, built on a completely ordinary income."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does DollarSeeds implement the rule?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "DollarSeeds applies the split the moment you log income — you never do the math. Log a paycheck (say, $400) and the app instantly shows the split: $200 to Needs, $120 to Wants, $80 to Savings. Every expense you log lands in a category inside one bucket, counted against that bucket's target. The dashboard tracks each bucket through the month, with a Budget Health score that tells you honestly how it's going. No spreadsheet, no formulas, and no bank login — you stay the one holding the numbers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if 50/30/20 doesn't fit my situation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Then don't force it — DollarSeeds ships two other budgeting types built on the same 20% savings floor. If your needs are small and your income is strong, Wealth Builder flips the script: 30% needs, 20% wants, and a full 50% to savings. If your needs eat most of your paycheck right now, Firm Foundation makes honest room for that — 70% needs, 10% wants — while deliberately protecting the same 20% savings rate, because that margin is what gets you out. All three are compared side-by-side in the budgeting types guide ."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary">
     <a href="/" class="nav-logo">
-      <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      <picture>
+        <source type="image/avif" srcset="/assets/images/gen/logo-76.avif 1x, /assets/images/gen/logo-144.avif 2x" />
+        <source type="image/webp" srcset="/assets/images/gen/logo-76.webp 1x, /assets/images/gen/logo-144.webp 2x" />
+        <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      </picture>
       <span class="nav-logo-name">DollarSeeds</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
@@ -130,7 +316,11 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        <picture>
+          <source type="image/avif" srcset="/assets/images/gen/logo-144.avif 1x, /assets/images/gen/logo-240.avif 2x" />
+          <source type="image/webp" srcset="/assets/images/gen/logo-144.webp 1x, /assets/images/gen/logo-240.webp 2x" />
+          <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        </picture>
         <span class="footer-wordmark">DollarSeeds</span>
         <p>A Christian budgeting app for iPhone. Every dollar is a seed — plant it with purpose.</p>
       </div>

@@ -1,0 +1,43 @@
+# DollarSeeds
+
+> DollarSeeds is a Christian budgeting app for iPhone that splits every dollar of income
+> across Needs, Wants, and Savings automatically, with no bank login required. It tracks
+> spending against each bucket, funds savings goals and debt payoff, and teaches money
+> through Scripture-rooted lessons.
+
+The app ships three budgeting types, all of which save at least 20% of income:
+
+- **50/30/20** — 50% Needs, 30% Wants, 20% Savings. The balanced default.
+- **Wealth Builder** — 30% Needs, 20% Wants, 50% Savings. For strong incomes and small fixed costs.
+- **Firm Foundation** — 70% Needs, 10% Wants, 20% Savings. For tight seasons, without giving up the savings floor.
+
+Free on the App Store, iOS only, released 2026-08-07. Built by Lucas Custodio.
+App Store listing: https://apps.apple.com/us/app/dollarseeds/id6780037284
+
+## Core pages
+
+- [/](https://dollarseeds.app/): Home — what DollarSeeds is, how the automatic income split works, feature walkthroughs, reviews, and FAQ.
+- [/50-30-20-rule](https://dollarseeds.app/50-30-20-rule): The 50/30/20 budget rule explained from scratch, with a worked example on a $3,200 monthly income.
+- [/budgeting-types](https://dollarseeds.app/budgeting-types): The three budgeting types DollarSeeds ships — 50/30/20, Wealth Builder, and Firm Foundation — compared side by side.
+- [/about](https://dollarseeds.app/about): About Lucas Custodio, the developer who builds DollarSeeds, and why the app exists.
+- [/security](https://dollarseeds.app/security): How DollarSeeds handles financial data in plain language: no bank logins, no selling data, one-tap deletion.
+- [/changelog](https://dollarseeds.app/changelog): Release notes for the DollarSeeds iPhone app.
+- [/press](https://dollarseeds.app/press): Press kit — boilerplate, key facts, logo and screenshot downloads, press contact.
+- [/support](https://dollarseeds.app/support): Support — contact email, common issues, bug reports, and feature requests.
+
+## Lessons
+
+- [/lessons](https://dollarseeds.app/lessons): Scripture-rooted money lessons: what is available to read here and what ships inside the app.
+- [/lessons/tithing](https://dollarseeds.app/lessons/tithing): Lesson — what the tithe is, where it comes from in the Bible, and how to budget the first tenth without guilt.
+- [/lessons/entrepreneurship](https://dollarseeds.app/lessons/entrepreneurship): Lesson — entrepreneurship as stewardship: the parable of the talents, risk, work, and funding the first step.
+
+## Legal and account
+
+- [/delete-account](https://dollarseeds.app/delete-account): How to delete a DollarSeeds account and every record attached to it.
+- [/privacy](https://dollarseeds.app/privacy): Privacy policy.
+- [/terms](https://dollarseeds.app/terms): Terms of service.
+- [/cookie-policy](https://dollarseeds.app/cookie-policy): Cookie policy and consent preferences.
+
+## Optional
+
+- [Download](https://dollarseeds.app/download): redirects to the App Store listing.

@@ -1,0 +1,62 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "YBSBHHBC5R.com.lucasfcustodio.dollarseeds"
+        ],
+        "components": [
+          {
+            "/": "/",
+            "comment": "Home"
+          },
+          {
+            "/": "/lessons",
+            "comment": "Lessons index"
+          },
+          {
+            "/": "/lessons/*",
+            "comment": "Individual lessons"
+          },
+          {
+            "/": "/50-30-20-rule",
+            "comment": "Budgeting guide"
+          },
+          {
+            "/": "/budgeting-types",
+            "comment": "Budgeting types guide"
+          },
+          {
+            "/": "/download",
+            "comment": "App Store redirect"
+          },
+          {
+            "/": "/privacy",
+            "exclude": true,
+            "comment": "Legal pages stay in the browser"
+          },
+          {
+            "/": "/terms",
+            "exclude": true,
+            "comment": "Legal pages stay in the browser"
+          },
+          {
+            "/": "/cookie-policy",
+            "exclude": true,
+            "comment": "Legal pages stay in the browser"
+          },
+          {
+            "/": "/delete-account",
+            "exclude": true,
+            "comment": "Account deletion stays in the browser"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "YBSBHHBC5R.com.lucasfcustodio.dollarseeds"
+    ]
+  }
+}

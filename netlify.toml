@@ -1,11 +1,218 @@
 [build]
   publish = "."
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ============================================================================
+# REDIRECTS
+# Netlify evaluates these top to bottom; the first match wins. Host
+# canonicalisation comes first so it applies to every path.
+# ============================================================================
+
+# --- Host canonicalisation: the apex is the only indexable host -------------
+#
+# Netlify's own "primary domain" redirect is a 301, but it is configured in the
+# UI rather than the repo, and it does not cover the legacy netlify.app
+# subdomain. These rules make the behaviour explicit and version-controlled.
+#
+# force = true so the redirect wins even when a real file exists at the path.
+# 301 (not 302) is what consolidates link equity onto the apex.
+
+[[redirects]]
+  from = "https://www.dollarseeds.app/*"
+  to = "https://dollarseeds.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.dollarseeds.app/*"
+  to = "https://dollarseeds.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://dollarseeds.netlify.app/*"
+  to = "https://dollarseeds.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://dollarseeds.netlify.app/*"
+  to = "https://dollarseeds.app/:splat"
+  status = 301
+  force = true
+
+# http:// -> https:// on the apex is handled by Netlify's "Force HTTPS"
+# setting, and .app is an HSTS-preloaded TLD, so browsers refuse plain HTTP to
+# this domain before a request is ever sent. Both belts, one pair of braces.
+
+# --- Application redirects --------------------------------------------------
+
+# One measurable off-site destination for every "download" link. 302 because
+# the App Store URL is where this points today, not a permanent property of
+# the /download path.
+[[redirects]]
+  from = "/download"
+  to = "https://apps.apple.com/us/app/dollarseeds/id6780037284"
+  status = 302
+  force = true
 
 # Serve terms-termly.html at the original /terms URL.
 # status = 200 is a rewrite, not a redirect: the address bar stays on /terms,
 # so every existing link and any Google Play / App Store listing that points
 # at /terms keeps working unchanged.
+#
+# The file is still reachable at /terms-termly.html, so that page carries
+# <link rel="canonical" href="https://dollarseeds.app/terms"> to keep the two
+# paths from indexing separately.
 [[redirects]]
   from = "/terms"
   to = "/terms-termly.html"
   status = 200
+
+# --- Repo internals: present in the publish dir, not part of the site --------
+[[redirects]]
+  from = "/docs/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/build/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tools/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# --- Catch-all 404 ----------------------------------------------------------
+#
+# Must be the LAST redirect. force is deliberately omitted, so real files and
+# the pretty-URL rewrites above still win; only genuinely unmatched paths land
+# here, and they get a real 404 status rather than a soft 200.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# ============================================================================
+# HEADERS
+# ============================================================================
+
+# --- Security, applied to every response -----------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # .app is HSTS-preloaded at the TLD level, so this is belt-and-braces —
+    # but it is also what keeps the domain eligible for the preload list.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # No feature on this site needs any of these.
+    Permissions-Policy = "accelerometer=(), autoplay=(self), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(self), usb=(), interest-cohort=()"
+
+    # Content-Security-Policy.
+    #
+    # Termly runs the consent banner and the embedded policy pages, and its
+    # resource blocker rewrites tags at runtime, so it needs script, style,
+    # frame, image and connect access. The allowances below were derived from
+    # what the live banner actually loads — see the CSP note in docs/.
+    #
+    # 'unsafe-inline' is required for both script and style: the pages carry
+    # inline <style> blocks and inline <script> by design, and Termly injects
+    # inline styles of its own. Nonces would mean generating HTML per request,
+    # which a static site on a CDN does not do.
+    #
+    # img-src includes the Apple CDN because the App Store badge and any
+    # artwork pulled from an itunes lookup are served from mzstatic.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; style-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; img-src 'self' data: blob: https://app.termly.io https://*.termly.io https://*.mzstatic.com; font-src 'self' data:; connect-src 'self' https://app.termly.io https://*.termly.io https://itunes.apple.com; frame-src https://app.termly.io https://*.termly.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+
+# --- Fingerprint-stable assets: cache hard ----------------------------------
+#
+# Everything under /assets is either a source master or a width-suffixed
+# derivative, and neither is edited in place without a filename change.
+# See the caching note at the top of build/images.config.js.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+# --- HTML: always revalidate ------------------------------------------------
+#
+# Pages are rewritten on every deploy (ratings, dateModified), so they must
+# never be served from cache without a conditional request.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Extensionless pretty URLs resolve to HTML too.
+[[headers]]
+  for = "/lessons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# --- Crawler-facing files ---------------------------------------------------
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+# --- Universal links --------------------------------------------------------
+#
+# The file has no extension, so Netlify would otherwise guess a content type.
+# iOS refuses to parse it as anything but application/json.
+[[headers]]
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
