@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>Christian Budgeting App for Financial Freedom — DollarSeeds</title>
   <meta name="description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
@@ -16,47 +17,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/base.css" />
   <style>
+    section { scroll-margin-top: 5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent-text); margin-bottom: 0.875rem;
+    }
+    .section-heading {
+      font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      line-height: 1.14; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem;
+    }
+    .section-heading .accent { font-style: italic; color: var(--accent-text); }
+    .section-body { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 62ch; margin-bottom: 3rem; }
+
+    .surface-card {
+      background: var(--card); border: 1px solid var(--line-soft); border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
     /* ===== HERO ===== */
     .hero {
-      background: var(--dark);
-      padding: 8.5rem 2.5rem 4.5rem;
+      background: linear-gradient(to bottom, var(--ground-0), var(--ground-1));
+      padding: 9rem 2.5rem 5rem;
       position: relative; overflow: hidden;
     }
-    .hero-blob { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
-    .blob-1 { width: 560px; height: 560px; background: var(--emerald); opacity: 0.1; top: -120px; right: -120px; }
-    .blob-2 { width: 320px; height: 320px; background: var(--harvest); opacity: 0.08; bottom: -60px; left: -60px; }
-
+    .hero-blob { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+    .blob-1 { width: 560px; height: 560px; background: var(--emerald); opacity: 0.07; top: -160px; right: -120px; }
+    .blob-2 { width: 340px; height: 340px; background: var(--harvest); opacity: 0.10; bottom: -80px; left: -80px; }
     .hero-inner {
       max-width: 1200px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; align-items: center;
-      position: relative; z-index: 1;
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 3.5rem; align-items: center; position: relative; z-index: 1;
     }
     .hero-eyebrow {
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--emerald); margin-bottom: 1.25rem;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent-text); margin-bottom: 1.25rem;
     }
     .hero-heading {
       font-family: var(--serif); font-size: clamp(2.3rem, 4.2vw, 3.6rem);
-      color: var(--cream); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 1rem;
+      color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem;
     }
-    .hero-heading .accent { color: var(--emerald); font-style: italic; }
-    .hero-tagline {
-      font-family: var(--serif); font-style: italic; font-size: 1.25rem;
-      color: rgba(245,241,230,0.65); margin-bottom: 1.25rem;
-    }
-    .hero-desc {
-      font-size: 1.0625rem; color: rgba(245,241,230,0.7); line-height: 1.75;
-      max-width: 540px; margin-bottom: 2.25rem;
-    }
+    .hero-heading .accent { color: var(--accent-text); font-style: italic; }
+    .hero-tagline { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--ink-soft); margin-bottom: 1.25rem; }
+    .hero-desc { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 56ch; margin-bottom: 2.25rem; }
     .hero-cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-    .hero-note { font-size: 0.775rem; color: rgba(245,241,230,0.35); font-family: var(--mono); letter-spacing: 0.04em; }
+    .hero-note { font-size: 0.775rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.04em; }
 
-    .phone-wrap { display: flex; justify-content: center; align-items: center; }
+    .hero-visual { display: flex; justify-content: center; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap; }
     .phone-frame {
-      width: 255px; background: #0d0d0d;
-      border-radius: 42px; border: 3px solid rgba(255,255,255,0.1);
+      width: 250px; flex-shrink: 0; background: #0d0d0d;
+      border-radius: 42px; border: 3px solid rgba(15,61,46,0.15);
       overflow: hidden; position: relative;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.55), 0 0 60px rgba(16,185,129,0.08);
+      box-shadow: var(--shadow-lift);
     }
     .phone-notch {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
@@ -65,62 +77,139 @@
     }
     .phone-frame img { width: 100%; height: auto; display: block; }
 
+    /* ===== GROWTH ANIMATION ===== */
+    .growth { width: 262px; max-width: 42%; }
+    .growth-svg { display: block; width: 100%; height: auto; overflow: hidden; }
+    .growth-svg.is-paused * { animation-play-state: paused !important; }
+    .growth-svg .gs-seed, .growth-svg .gs-sprout { opacity: 0; }
+    .growth-svg .gs-seed   { animation: gsSeed 16s infinite; }
+    .growth-svg .gs-sprout { animation: gsSprout 16s infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+    .growth-svg .gs-tree   { animation: gsTreeFade 16s infinite; }
+    .growth-svg .gs-trunk  { animation: gsTrunk 16s infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+    .growth-svg .gs-canopy { animation: gsBreathe 16s infinite; transform-box: fill-box; transform-origin: 50% 60%; }
+    .growth-svg .gs-cloud  { transform-box: fill-box; transform-origin: 50% 80%; }
+    .growth-svg .gs-cloud-l { animation: gsCloudA 16s infinite; }
+    .growth-svg .gs-cloud-r { animation: gsCloudB 16s infinite; }
+    .growth-svg .gs-cloud-c { animation: gsCloudC 16s infinite; }
+    .growth-svg .gs-coin { transform-box: fill-box; transform-origin: 50% 0%; }
+    .growth-svg .gs-coin-1 { animation: gsCoin1 16s infinite; }
+    .growth-svg .gs-coin-2 { animation: gsCoin2 16s infinite; }
+    .growth-svg .gs-coin-3 { animation: gsCoin3 16s infinite; }
+    .growth-svg .gs-coin-4 { animation: gsCoin4 16s infinite; }
+
+    /* Seed: drop (0–8%), land squash, sink & fade (by 16%) */
+    @keyframes gsSeed {
+      0%        { opacity: 0; transform: translateY(-320px); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6); }
+      2%        { opacity: 1; }
+      8%        { transform: translateY(0); animation-timing-function: ease-out; }
+      10%       { transform: translateY(4px) scale(1.08, 0.9); }
+      12%       { opacity: 1; transform: translateY(6px) scale(1, 1); }
+      16%, 100% { opacity: 0; transform: translateY(12px); }
+    }
+    /* Sprout: emerge (12–20%), yield to the tree (26–32%) */
+    @keyframes gsSprout {
+      0%, 12%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      14%       { opacity: 1; }
+      20%, 26%  { opacity: 1; transform: scale(1); }
+      32%, 100% { opacity: 0; transform: scale(1.1); }
+    }
+    /* Trunk: grow 26–46% */
+    @keyframes gsTrunk {
+      0%, 26%   { transform: scaleY(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      46%, 100% { transform: scaleY(1); }
+    }
+    /* Whole tree: gentle fade-out at cycle end (never a hard cut) */
+    @keyframes gsTreeFade {
+      0%, 92%   { opacity: 1; }
+      98%, 100% { opacity: 0; }
+    }
+    /* Canopy clouds: billow in, staggered 40–56% */
+    @keyframes gsCloudA {
+      0%, 40%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      48%, 100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes gsCloudB {
+      0%, 44%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      52%, 100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes gsCloudC {
+      0%, 48%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      56%, 100% { opacity: 1; transform: scale(1); }
+    }
+    /* Slow breathe through the fruiting hold */
+    @keyframes gsBreathe {
+      0%, 62%   { transform: scale(1); }
+      78%       { transform: scale(1.014); }
+      92%, 100% { transform: scale(1); }
+    }
+    /* Coins: pop in 56–70%, then sway gently through the hold */
+    @keyframes gsCoin1 {
+      0%, 56%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      62%      { opacity: 1; transform: scale(1) rotate(0deg); }
+      72%      { transform: rotate(4deg); }  80% { transform: rotate(-3deg); }
+      88%      { transform: rotate(2deg); }  96%, 100% { opacity: 1; transform: rotate(0deg); }
+    }
+    @keyframes gsCoin2 {
+      0%, 60%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      66%      { opacity: 1; transform: scale(1) rotate(0deg); }
+      75%      { transform: rotate(-4deg); } 84% { transform: rotate(3deg); }
+      92%      { transform: rotate(-1deg); } 98%, 100% { opacity: 1; transform: rotate(0deg); }
+    }
+    @keyframes gsCoin3 {
+      0%, 64%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      70%      { opacity: 1; transform: scale(1) rotate(0deg); }
+      79%      { transform: rotate(3deg); }  87% { transform: rotate(-3deg); }
+      94%, 100%{ opacity: 1; transform: rotate(0deg); }
+    }
+    @keyframes gsCoin4 {
+      0%, 68%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+      74%      { opacity: 1; transform: scale(1) rotate(0deg); }
+      83%      { transform: rotate(-3deg); } 91% { transform: rotate(2deg); }
+      97%, 100%{ opacity: 1; transform: rotate(0deg); }
+    }
+
     /* ===== TRUST BAR ===== */
-    .trust { background: var(--forest); padding: 1.125rem 2.5rem; }
+    .trust { background: var(--ground-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.125rem 2.5rem; }
     .trust ul {
       max-width: 1200px; margin: 0 auto; list-style: none;
       display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
     }
-    .trust li {
-      display: flex; align-items: center; gap: 0.6rem;
-      font-size: 0.875rem; color: rgba(245,241,230,0.8);
-    }
-    .trust li strong { color: var(--cream); font-weight: 600; }
-    .trust-icon { width: 16px; height: 16px; fill: var(--emerald); flex-shrink: 0; }
-
-    /* ===== SHARED SECTION CHROME ===== */
-    .section-inner { max-width: 1200px; margin: 0 auto; }
-    .eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.75rem; }
-    .section-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem); line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 1rem; }
-    .section-heading .accent { font-style: italic; }
-    .section-body { font-size: 1.0625rem; color: var(--muted); line-height: 1.75; max-width: 560px; margin-bottom: 3rem; }
-    section { scroll-margin-top: 5rem; }
+    .trust li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.875rem; color: var(--ink-soft); }
+    .trust li strong { color: var(--ink); font-weight: 600; }
+    .trust-icon { width: 16px; height: 16px; fill: var(--accent-text); flex-shrink: 0; }
 
     /* ===== WHO IT'S FOR ===== */
-    .who { background: var(--cream); padding: 6rem 2.5rem 5rem; }
+    .who { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
     .who-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
     .who-prose p { font-size: 1.125rem; color: #3F4A50; line-height: 1.85; margin-bottom: 1.25rem; }
-    .who-replaces {
-      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
-      padding: 2rem 2.25rem;
-    }
+    .who-replaces { padding: 2rem 2.25rem; }
     .who-replaces h3 { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; font-weight: 500; }
     .who-replaces ul { list-style: none; }
-    .who-replaces li {
-      padding: 0.875rem 0; border-bottom: 1px solid rgba(15,61,46,0.07);
-      font-size: 0.9375rem; color: #414B54; line-height: 1.6;
-    }
+    .who-replaces li { padding: 0.875rem 0; border-bottom: 1px solid var(--line-soft); font-size: 0.9375rem; color: #414B54; line-height: 1.6; }
     .who-replaces li:last-of-type { border-bottom: 0; }
-    .who-replaces li strong { color: var(--forest); display: block; margin-bottom: 0.15rem; }
+    .who-replaces li strong { color: var(--ink); display: block; margin-bottom: 0.15rem; }
     .who-replaces .who-replaces-result {
       margin-top: 1rem; padding: 0.875rem 1.125rem; border-radius: 12px;
-      background: rgba(16,185,129,0.08); color: var(--forest); font-size: 0.9375rem;
+      background: rgba(16,185,129,0.09); color: var(--ink); font-size: 0.9375rem;
     }
-    .who-replaces .who-replaces-result strong { color: var(--emerald); }
+    .who-replaces .who-replaces-result strong { color: var(--accent-text); }
 
     /* ===== HOW IT WORKS ===== */
-    .how { background: #EAE6DB; padding: 6rem 2.5rem; }
+    .how { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
     .how-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: step; }
     .how-step {
-      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
       padding: 1.875rem; counter-increment: step; position: relative;
+      background: var(--card); border: 1px solid var(--line-soft); border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
     }
+    .how-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
     .how-step::before {
       content: "0" counter(step);
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--emerald);
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent-text);
       display: block; margin-bottom: 0.875rem;
     }
-    .how-step h3 { font-family: var(--serif); font-size: 1.3125rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .how-step h3 { font-family: var(--serif); font-size: 1.3125rem; color: var(--ink); margin-bottom: 0.5rem; }
     .how-step p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; }
     .how-split { display: flex; gap: 0.375rem; margin-top: 1rem; }
     .how-split span {
@@ -129,196 +218,216 @@
     }
     .how-split .b-needs { background: rgba(194,112,28,0.12); color: var(--amber); }
     .how-split .b-wants { background: rgba(124,58,237,0.1); color: var(--violet); }
-    .how-split .b-savings { background: rgba(16,185,129,0.12); color: #0B8A61; }
+    .how-split .b-savings { background: rgba(16,185,129,0.14); color: var(--accent-text); }
     .how-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
-    .how-more a { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-    .how-more a:hover { color: var(--emerald); }
+    .how-more a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .how-more a:hover { color: var(--accent-text); }
 
-    /* ===== FEATURES ===== */
-    .features { background: var(--cream); padding: 6rem 2.5rem; }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .feature-card {
-      background: #fff; border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(15,61,46,0.07); margin: 0;
-      transition: transform 0.25s, box-shadow 0.25s;
-      display: flex; flex-direction: column;
+    /* ===== FEATURES — alternating video rows ===== */
+    .features { background: var(--ground-1); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
+    .feature-rows { display: flex; flex-direction: column; gap: 5.5rem; margin-top: 1rem; }
+    .feature-row {
+      display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 4rem; align-items: center; margin: 0;
     }
-    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(15,61,46,0.1); }
-    .card-media { height: 310px; overflow: hidden; background: var(--dark); position: relative; flex-shrink: 0; }
-    .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-    .card-media video { cursor: pointer; }
-    .feature-card figcaption { padding: 1.5rem; }
-    .card-tag {
-      display: inline-block; font-family: var(--mono); font-size: 0.63rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.25rem 0.7rem; border-radius: 999px; margin-bottom: 0.75rem;
+    .feature-row:nth-child(even) .feature-media { order: 2; }
+    .feature-row:nth-child(even) .feature-text { order: 1; }
+    .feature-media { display: flex; justify-content: center; }
+    .feature-screen {
+      width: min(300px, 100%); border-radius: 28px; overflow: hidden; position: relative;
+      background: #0d0d0d; border: 3px solid rgba(15,61,46,0.15);
+      box-shadow: var(--shadow-lift); line-height: 0;
     }
-    .tag-green  { background: rgba(16,185,129,0.12); color: #0B8A61; }
-    .tag-violet { background: rgba(124,58,237,0.1);  color: var(--violet); }
-    .tag-amber  { background: rgba(194,112,28,0.1);  color: var(--amber); }
-    .tag-gold   { background: rgba(244,211,94,0.25); color: #9A6B00; }
-    .card-title { font-family: var(--serif); font-size: 1.3125rem; color: var(--forest); margin-bottom: 0.4rem; }
-    .card-desc  { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
-    .feature-card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: 340px 1fr; }
-    .feature-card--wide .card-media { height: 100%; max-height: 360px; }
-    .feature-card--wide figcaption { padding: 2.25rem; align-self: center; }
-    .feature-card--wide .card-desc { max-width: 560px; font-size: 0.9375rem; }
+    .feature-screen video { width: 100%; height: auto; display: block; cursor: pointer; }
+    .video-toggle {
+      position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+      background: rgba(250,247,238,0.92); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 999px;
+      font-family: var(--sans); font-size: 0.8125rem; font-weight: 600;
+      padding: 0.45rem 1.1rem; cursor: pointer;
+    }
+    .feature-text .feature-eyebrow {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent-text); margin-bottom: 0.75rem;
+    }
+    .feature-text h3 {
+      font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem);
+      color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 0.875rem;
+    }
+    .feature-text p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; max-width: 54ch; margin-bottom: 0.875rem; }
+    .feature-text p:last-child { margin-bottom: 0; }
+    .feature-text a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
 
-    /* ===== BUDGETING TYPES ===== */
-    .types { background: var(--dark); padding: 6rem 2.5rem; position: relative; overflow: hidden; }
-    .types-glow {
-      position: absolute; width: 700px; height: 700px; background: var(--emerald);
-      border-radius: 50%; filter: blur(140px); opacity: 0.05;
-      left: -200px; top: -150px; pointer-events: none;
+    /* ===== BUDGETING TYPES — live demo ===== */
+    .types { background: var(--ground-2); padding: 7rem 2.5rem; border-top: 1px solid var(--line-soft); }
+    .demo-card { padding: 2.5rem 2.75rem 2.75rem; border-radius: 24px; }
+    .type-tabs { display: flex; gap: 0.625rem; flex-wrap: wrap; margin-bottom: 2.25rem; }
+    .type-tabs button {
+      font-family: var(--sans); font-size: 0.9375rem; font-weight: 600;
+      color: var(--ink-soft); background: var(--ground-1);
+      border: 1px solid var(--line); border-radius: 999px;
+      padding: 0.625rem 1.375rem; cursor: pointer;
+      transition: background-color var(--dur-fast) var(--ease-out),
+                  color var(--dur-fast) var(--ease-out),
+                  transform var(--dur-fast) var(--ease-out),
+                  box-shadow var(--dur-fast) var(--ease-out);
     }
-    .types .section-inner { position: relative; z-index: 1; }
-    .types .eyebrow { color: var(--harvest); }
-    .types .section-heading { color: var(--cream); }
-    .types .section-body { color: rgba(245,241,230,0.55); }
-    .types-compare { margin-bottom: 3rem; overflow-x: auto; }
-    .types-compare table { width: 100%; max-width: 720px; border-collapse: collapse; }
-    .types-compare caption {
-      caption-side: top; text-align: left; font-family: var(--serif); font-style: italic;
-      font-size: 1.125rem; color: var(--harvest); padding-bottom: 0.875rem;
+    .type-tabs button:hover { transform: translateY(-1px); }
+    .type-tabs button[aria-selected="true"] {
+      background: var(--forest); color: var(--cream); border-color: var(--forest);
+      box-shadow: 0 14px 30px -14px rgba(15,61,46,0.5);
     }
-    .types-compare th, .types-compare td {
-      padding: 0.75rem 1rem; text-align: left; font-size: 0.9375rem;
-      border-bottom: 1px solid rgba(245,241,230,0.1);
+    .demo-income { margin-bottom: 2rem; }
+    .demo-income > label {
+      display: block; font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
     }
-    .types-compare thead th { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,241,230,0.5); }
-    .types-compare thead th a { color: var(--emerald); text-decoration: none; }
-    .types-compare thead th a:hover { text-decoration: underline; }
-    .types-compare tbody th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
-    .types-compare tbody tr:nth-child(1) th { color: var(--amber); }
-    .types-compare tbody tr:nth-child(2) th { color: #A78BFA; }
-    .types-compare tbody tr:nth-child(3) th { color: var(--emerald); }
-    .types-compare td { color: var(--cream); font-weight: 600; }
+    .demo-income-controls { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .demo-income-value {
+      font-family: var(--serif); font-size: 2rem; color: var(--ink);
+      display: inline-flex; align-items: baseline;
+      font-variant-numeric: tabular-nums;
+    }
+    .demo-income-value input {
+      font-family: var(--serif); font-size: 2rem; color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      background: transparent; border: 0; border-bottom: 2px solid var(--line);
+      width: 7ch; padding: 0 0 0.1rem 0.1rem; outline: none;
+      transition: border-color var(--dur-fast) var(--ease-out);
+      -moz-appearance: textfield; appearance: textfield;
+    }
+    .demo-income-value input::-webkit-outer-spin-button,
+    .demo-income-value input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .demo-income-value input:focus { border-bottom-color: var(--emerald); }
+    .demo-income-controls input[type="range"] {
+      flex: 1; min-width: 200px; accent-color: var(--emerald); height: 6px; cursor: pointer;
+    }
+    .demo-type-name {
+      font-family: var(--serif); font-style: italic; font-size: 1.1875rem;
+      color: var(--ink); margin-bottom: 1.5rem; min-height: 1.6em;
+    }
+    .demo-rows { display: flex; flex-direction: column; gap: 1rem; }
+    .demo-row {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "head amt" "bar amt";
+      column-gap: 2rem; row-gap: 0.6rem; align-items: center;
+      padding: 1.125rem 1.375rem; min-height: 92px;
+      background: var(--ground-0); border: 1px solid var(--line-soft); border-radius: 16px;
+    }
+    .demo-row-head { grid-area: head; display: flex; align-items: baseline; gap: 0.75rem; }
+    .demo-cat { font-family: var(--sans); font-weight: 600; font-size: 1rem; color: var(--ink); }
+    .demo-cat-note { font-size: 0.8125rem; color: var(--muted); }
+    .demo-pct {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+      color: var(--muted); font-variant-numeric: tabular-nums; margin-left: auto;
+    }
+    .demo-bar { grid-area: bar; height: 8px; border-radius: 999px; background: rgba(15,61,46,0.08); overflow: hidden; }
+    .demo-bar-fill {
+      display: block; height: 100%; width: 100%; border-radius: 999px;
+      transform-origin: left center; transform: scaleX(0.5);
+      transition: transform 450ms var(--ease-out);
+    }
+    .demo-row--needs   .demo-bar-fill { background: var(--amber); }
+    .demo-row--wants   .demo-bar-fill { background: #A78BFA; }
+    .demo-row--savings .demo-bar-fill { background: var(--emerald); }
+    .demo-amt {
+      grid-area: amt; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      color: var(--ink); font-variant-numeric: tabular-nums;
+      min-width: 7ch; text-align: right;
+    }
+    .demo-note { margin-top: 1.375rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
+    .types-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
+    .types-more a { color: var(--accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
-    .type-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .type-card {
-      background: rgba(245,241,230,0.04); border: 1px solid rgba(245,241,230,0.09);
-      border-radius: 20px; padding: 1.875rem; scroll-margin-top: 6rem;
-      display: flex; flex-direction: column;
-    }
-    .type-card h3 { font-family: var(--serif); font-size: 1.5rem; color: var(--cream); margin-bottom: 0.25rem; }
-    .type-split-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--harvest); margin-bottom: 1rem; }
-    .type-bar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; margin-bottom: 1.25rem; }
-    .type-bar .seg-needs { background: var(--amber); }
-    .type-bar .seg-wants { background: #A78BFA; }
-    .type-bar .seg-savings { background: var(--emerald); }
-    .type-card p { font-size: 0.9375rem; color: rgba(245,241,230,0.6); line-height: 1.75; margin-bottom: 1rem; }
-    .type-fit {
-      margin-top: auto; padding: 0.875rem 1.125rem; border-radius: 12px;
-      background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.15);
-      font-size: 0.875rem; color: rgba(245,241,230,0.75); line-height: 1.6;
-    }
-    .type-fit strong { color: var(--emerald); font-weight: 600; }
-    .types-more { margin-top: 2.25rem; font-size: 1rem; color: rgba(245,241,230,0.6); }
-    .types-more a { color: var(--emerald); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ===== FAITH ===== */
-    .faith { background: var(--forest); padding: 6rem 2.5rem; position: relative; overflow: hidden; }
-    .faith-glow {
-      position: absolute; width: 700px; height: 700px; background: var(--emerald);
-      border-radius: 50%; filter: blur(140px); opacity: 0.05;
-      right: -200px; top: -150px; pointer-events: none;
-    }
-    .faith .section-inner { position: relative; z-index: 1; }
-    .faith .eyebrow { color: var(--harvest); }
-    .faith .section-heading { color: var(--cream); }
+    /* ===== FAITH + LESSONS ===== */
+    .faith { background: var(--ground-3); padding: 7rem 2.5rem; border-top: 1px solid var(--line-soft); }
     .faith-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
-    .faith-text p { font-size: 1.0625rem; color: rgba(245,241,230,0.68); line-height: 1.82; margin-bottom: 1.25rem; }
+    .faith-text p { font-size: 1.0625rem; color: #3F4A50; line-height: 1.82; margin-bottom: 1.25rem; }
     .faith-verse {
       border-left: 3px solid var(--emerald);
       padding: 1.25rem 1.5rem;
-      background: rgba(16,185,129,0.05);
-      border-radius: 0 14px 14px 0;
+      background: var(--card); border-radius: 0 14px 14px 0;
+      box-shadow: var(--shadow-soft);
       margin-top: 1.75rem;
     }
-    .faith-verse blockquote { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; color: var(--cream); margin-bottom: 0.5rem; }
-    .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--emerald); letter-spacing: 0.08em; font-style: normal; }
-    .faith-lessons {
-      background: rgba(245,241,230,0.04); border: 1px solid rgba(245,241,230,0.08);
-      border-radius: 20px; padding: 1.875rem;
+    .faith-verse blockquote { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-text); letter-spacing: 0.08em; font-style: normal; }
+    .faith-lessons { overflow: hidden; border-radius: 20px; }
+    .faith-lessons-screen { height: 190px; overflow: hidden; background: var(--ground-4); }
+    .faith-lessons-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .faith-lessons-body { padding: 1.75rem 1.875rem 1.875rem; }
+    .faith-lessons h3 {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; font-weight: 500;
     }
-    .faith-lessons h3 { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,241,230,0.4); margin-bottom: 1.25rem; font-weight: 500; }
     .faith-lessons ul { list-style: none; }
-    .faith-lessons li { border-bottom: 1px solid rgba(245,241,230,0.07); }
+    .faith-lessons li { border-bottom: 1px solid var(--line-soft); }
     .faith-lessons li:last-child { border-bottom: 0; }
     .faith-lessons a {
-      display: block; padding: 1rem 0.25rem; text-decoration: none;
-      transition: background 0.2s; border-radius: 8px;
+      display: block; padding: 1rem 0.25rem; text-decoration: none; border-radius: 8px;
+      transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
     }
-    .faith-lessons a:hover { background: rgba(245,241,230,0.05); }
-    .faith-lessons .lesson-name { font-family: var(--serif); font-size: 1.1875rem; color: var(--cream); display: block; margin-bottom: 0.2rem; }
-    .faith-lessons .lesson-note { font-size: 0.8125rem; color: rgba(245,241,230,0.45); line-height: 1.5; }
+    .faith-lessons a:hover { background: var(--ground-0); transform: translateX(3px); }
+    .faith-lessons .lesson-name { font-family: var(--serif); font-size: 1.1875rem; color: var(--ink); display: block; margin-bottom: 0.2rem; }
+    .faith-lessons .lesson-note { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
 
     /* ===== REVIEWS ===== */
-    .reviews { background: var(--cream); padding: 6rem 2.5rem; }
+    .reviews { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
     .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .review {
-      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
       padding: 1.75rem; display: flex; flex-direction: column;
+      background: var(--card); border: 1px solid var(--line-soft); border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
     }
+    .review:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
     .review .stars { margin-bottom: 0.875rem; }
-    .review h3 { font-family: var(--serif); font-size: 1.1875rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .review h3 { font-family: var(--serif); font-size: 1.1875rem; color: var(--ink); margin-bottom: 0.5rem; }
     .review blockquote p { font-size: 0.9375rem; color: #414B54; line-height: 1.7; }
     .review footer { margin-top: auto; padding-top: 1.125rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
-    .review cite { font-style: normal; color: var(--forest); }
+    .review cite { font-style: normal; color: var(--ink); }
     .reviews-source { margin-top: 2rem; font-size: 0.875rem; color: var(--muted); }
-    .reviews-source a { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ===== LESSONS PREVIEW ===== */
-    .lessons { background: #EAE6DB; padding: 6rem 2.5rem; }
-    .lessons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .lesson-card {
-      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
-      padding: 1.875rem; text-decoration: none; display: block;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .lesson-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,61,46,0.1); }
-    .lesson-card .card-tag { margin-bottom: 1rem; }
-    .lesson-card h3 { font-family: var(--serif); font-size: 1.375rem; color: var(--forest); margin-bottom: 0.5rem; }
-    .lesson-card p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.125rem; }
-    .lesson-card .lesson-cta { font-size: 0.875rem; font-weight: 600; color: var(--forest); }
-    .lesson-card:hover .lesson-cta { color: #0B8A61; }
-    .lessons-index-link { margin-top: 2rem; font-size: 1rem; color: #414B54; }
-    .lessons-index-link a { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .reviews-source a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
     /* ===== FAQ ===== */
-    .faq { background: var(--cream); padding: 6rem 2.5rem; }
+    .faq { background: var(--ground-1); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
     .faq-list { max-width: 760px; }
     .faq-list details {
-      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 16px;
-      margin-bottom: 0.75rem; overflow: hidden;
+      background: var(--card); border: 1px solid var(--line-soft); border-radius: 16px;
+      margin-bottom: 0.75rem; overflow: hidden; box-shadow: var(--shadow-soft);
     }
     .faq-list summary {
       cursor: pointer; list-style: none; position: relative;
       padding: 1.25rem 3.25rem 1.25rem 1.5rem;
-      font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--forest);
+      font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--ink);
     }
     .faq-list summary::-webkit-details-marker { display: none; }
     .faq-list summary::after {
       content: "+"; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
-      font-family: var(--mono); font-size: 1.25rem; color: var(--emerald); font-weight: 400;
+      font-family: var(--mono); font-size: 1.25rem; color: var(--accent-text); font-weight: 400;
+      transition: transform var(--dur-fast) var(--ease-out);
     }
     .faq-list details[open] summary::after { content: "−"; }
     .faq-answer { padding: 0 1.5rem 1.375rem; }
     .faq-answer p { font-size: 0.9375rem; color: #414B54; line-height: 1.75; margin-bottom: 0.75rem; }
     .faq-answer p:last-child { margin-bottom: 0; }
-    .faq-answer a { color: #0B8A61; text-decoration: underline; text-underline-offset: 2px; }
+    .faq-answer a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
 
     /* ===== FINAL CTA ===== */
-    .download { background: var(--dark); padding: 6.5rem 2.5rem; position: relative; overflow: hidden; }
+    .download {
+      background: linear-gradient(to bottom, var(--ground-2), var(--ground-4));
+      padding: 7rem 2.5rem; position: relative; overflow: hidden;
+      border-top: 1px solid var(--line-soft);
+    }
     .download-glow {
-      position: absolute; width: 500px; height: 500px; background: var(--emerald);
-      border-radius: 50%; filter: blur(120px); opacity: 0.07;
+      position: absolute; width: 520px; height: 520px; background: var(--emerald);
+      border-radius: 50%; filter: blur(130px); opacity: 0.09;
       left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none;
     }
     .download-inner { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
-    .download .eyebrow { color: var(--harvest); }
-    .download h2 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); color: var(--cream); line-height: 1.2; margin-bottom: 0.875rem; }
-    .download p  { color: rgba(245,241,230,0.5); line-height: 1.75; margin-bottom: 2.25rem; }
+    .download .eyebrow { color: var(--amber); }
+    .download h2 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); color: var(--ink); line-height: 1.2; margin-bottom: 0.875rem; }
+    .download p  { color: var(--ink-soft); line-height: 1.75; margin-bottom: 2.25rem; }
     .download .hero-note { display: block; margin-top: 1.25rem; }
 
     /* ===== RESPONSIVE ===== */
@@ -328,20 +437,30 @@
       .hero-desc { margin-left: auto; margin-right: auto; }
       .hero-cta { justify-content: center; }
       .phone-frame { width: 200px; }
+      .growth { width: 150px; }
       .trust ul { justify-content: center; }
       .who-grid, .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
       .how-steps { grid-template-columns: 1fr; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .feature-card--wide { grid-column: 1 / -1; grid-template-columns: 1fr; }
-      .feature-card--wide .card-media { height: 310px; }
-      .type-cards { grid-template-columns: 1fr; }
-      .reviews-grid, .lessons-grid { grid-template-columns: 1fr 1fr; }
+      .feature-rows { gap: 4rem; }
+      .feature-row { grid-template-columns: 1fr; gap: 2rem; }
+      .feature-row:nth-child(even) .feature-media { order: 1; }
+      .feature-row:nth-child(even) .feature-text { order: 2; }
+      .feature-screen { width: min(260px, 80vw); }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .demo-card { padding: 1.75rem 1.5rem 2rem; }
+      .demo-amt { min-width: 6ch; }
     }
     @media (max-width: 580px) {
-      .who, .how, .features, .types, .faith, .reviews, .lessons, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .who, .how, .features, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
       .trust { padding: 1rem 1.25rem; }
       .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
-      .features-grid, .reviews-grid, .lessons-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .hero-visual { gap: 1rem; }
+      .phone-frame { width: 185px; }
+      .growth { width: 118px; }
+      .demo-row { grid-template-columns: 1fr; grid-template-areas: "head" "amt" "bar"; row-gap: 0.5rem; min-height: 118px; }
+      .demo-amt { text-align: left; }
+      .demo-income-controls input[type="range"] { min-width: 100%; }
     }
   </style>
 </head>
@@ -370,33 +489,125 @@
 
 <main>
 
-  <!-- 2. HERO -->
+  <!-- HERO -->
   <section class="hero" id="hero" aria-labelledby="hero-heading">
     <div class="hero-blob blob-1"></div>
     <div class="hero-blob blob-2"></div>
     <div class="hero-inner">
-      <div>
-        <p class="hero-eyebrow">Now on the App Store · iOS</p>
-        <h1 class="hero-heading" id="hero-heading">The Christian Budgeting App for <span class="accent">Real Financial Freedom</span></h1>
-        <p class="hero-tagline">Make your dollar seeds sprout into blessings.</p>
-        <p class="hero-desc">DollarSeeds splits every dollar you earn across Needs, Wants, and Savings automatically, tracks your spending against each target, and grounds it all in biblical stewardship — no bank login required.</p>
-        <div class="hero-cta">
+      <div data-reveal-group>
+        <p class="hero-eyebrow" data-reveal>Now on the App Store · iOS</p>
+        <h1 class="hero-heading" id="hero-heading" data-reveal>The Christian Budgeting App for <span class="accent">Real Financial Freedom</span></h1>
+        <p class="hero-tagline" data-reveal>Make your dollar seeds sprout into blessings.</p>
+        <p class="hero-desc" data-reveal>DollarSeeds splits every dollar you earn across Needs, Wants, and Savings automatically, tracks your spending against each target, and grounds it all in biblical stewardship — no bank login required.</p>
+        <div class="hero-cta" data-reveal>
           <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
             <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
           </a>
           <span class="hero-note">Free to download · iPhone</span>
         </div>
       </div>
-      <div class="phone-wrap">
+      <div class="hero-visual">
         <div class="phone-frame">
           <div class="phone-notch"></div>
-          <img src="/assets/images/screen-dashboard.png" width="739" height="1600" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score of 8.7 out of 10, a Bible verse card, and Needs, Wants, and Savings progress bars" />
+          <img src="/assets/images/dashboard-screen.jpeg" width="739" height="1600" fetchpriority="high" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score, a Bible verse card, and Needs, Wants, and Savings progress bars" />
+        </div>
+        <div class="growth">
+          <svg class="growth-svg" id="growth-svg" viewBox="0 0 300 520" width="300" height="520" role="img"
+               aria-label="Animated illustration in the style of the DollarSeeds logo: a seed drops into soil, sprouts, grows into a cartoon tree, and bears coins as fruit">
+            <!-- Soil -->
+            <g class="gs-soil">
+              <path d="M14 488 C74 450 226 450 286 488 L286 520 L14 520 Z" fill="#DBDBDB" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
+              <ellipse cx="150" cy="466" rx="26" ry="7" fill="#BFBFBF" stroke="#1A1A1A" stroke-width="4"/>
+              <path d="M56 472 q9 -13 21 -4" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+              <path d="M231 470 q9 -13 20 -4" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+            </g>
+
+            <!-- Seed (drops, lands, sinks) -->
+            <g class="gs-seed">
+              <ellipse cx="150" cy="452" rx="11" ry="14" fill="#EDEDED" stroke="#1A1A1A" stroke-width="5"/>
+              <path d="M150 444 q6 8 0 16" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+            </g>
+
+            <!-- Sprout -->
+            <g class="gs-sprout">
+              <path d="M150 464 C151 446 148 434 150 416" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
+              <path d="M149 432 C134 431 123 419 125 406 C140 408 151 418 149 432 Z" fill="#F2F2F2" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M151 420 C166 419 177 407 175 394 C160 396 149 406 151 420 Z" fill="#E3E3E3" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
+            </g>
+
+            <!-- Tree: trunk grows, canopy billows, coins fruit -->
+            <g class="gs-tree">
+              <g class="gs-trunk">
+                <path d="M131 470 C129 424 148 398 139 352 C134 320 150 302 146 264 L168 262 C164 300 178 322 169 362 C162 398 179 426 177 470 Z"
+                      fill="#EDEDED" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M147 428 q9 -6 13 -17" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+                <path d="M141 344 C120 336 110 322 108 302" fill="none" stroke="#1A1A1A" stroke-width="9" stroke-linecap="round"/>
+                <path d="M167 322 C188 314 199 302 203 284" fill="none" stroke="#1A1A1A" stroke-width="9" stroke-linecap="round"/>
+              </g>
+              <g class="gs-canopy">
+                <!-- Left cloud -->
+                <g class="gs-cloud gs-cloud-l">
+                  <g stroke="#1A1A1A" stroke-width="10" fill="#1A1A1A">
+                    <circle cx="88" cy="252" r="30"/><circle cx="120" cy="238" r="34"/><circle cx="146" cy="258" r="28"/>
+                  </g>
+                  <g fill="#ECECEC">
+                    <circle cx="88" cy="252" r="30"/><circle cx="120" cy="238" r="34"/><circle cx="146" cy="258" r="28"/>
+                  </g>
+                </g>
+                <!-- Right cloud -->
+                <g class="gs-cloud gs-cloud-r">
+                  <g stroke="#1A1A1A" stroke-width="10" fill="#1A1A1A">
+                    <circle cx="196" cy="234" r="32"/><circle cx="226" cy="250" r="27"/>
+                  </g>
+                  <g fill="#E0E0E0">
+                    <circle cx="196" cy="234" r="32"/><circle cx="226" cy="250" r="27"/>
+                  </g>
+                </g>
+                <!-- Center crown -->
+                <g class="gs-cloud gs-cloud-c">
+                  <g stroke="#1A1A1A" stroke-width="10" fill="#1A1A1A">
+                    <circle cx="112" cy="172" r="42"/><circle cx="158" cy="140" r="50"/><circle cx="204" cy="170" r="38"/><circle cx="152" cy="188" r="42"/>
+                  </g>
+                  <g fill="#F4F4F4">
+                    <circle cx="112" cy="172" r="42"/><circle cx="158" cy="140" r="50"/><circle cx="204" cy="170" r="38"/><circle cx="152" cy="188" r="42"/>
+                  </g>
+                </g>
+              </g>
+
+              <!-- Coin fruit -->
+              <g class="gs-coin gs-coin-1">
+                <line x1="92" y1="276" x2="92" y2="286" stroke="#1A1A1A" stroke-width="4"/>
+                <circle cx="92" cy="302" r="17" fill="#F4F4F4" stroke="#1A1A1A" stroke-width="5"/>
+                <circle cx="92" cy="302" r="11" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+                <text x="92" y="308" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-weight="bold" fill="#1A1A1A">$</text>
+              </g>
+              <g class="gs-coin gs-coin-2">
+                <line x1="208" y1="272" x2="208" y2="282" stroke="#1A1A1A" stroke-width="4"/>
+                <circle cx="208" cy="298" r="16" fill="#ECECEC" stroke="#1A1A1A" stroke-width="5"/>
+                <circle cx="208" cy="298" r="10.5" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+                <text x="208" y="304" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#1A1A1A">$</text>
+              </g>
+              <g class="gs-coin gs-coin-3">
+                <line x1="152" y1="226" x2="152" y2="236" stroke="#1A1A1A" stroke-width="4"/>
+                <circle cx="152" cy="252" r="15" fill="#F4F4F4" stroke="#1A1A1A" stroke-width="5"/>
+                <circle cx="152" cy="252" r="10" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+                <text x="152" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="bold" fill="#1A1A1A">$</text>
+              </g>
+              <g class="gs-coin gs-coin-4">
+                <line x1="238" y1="270" x2="238" y2="278" stroke="#1A1A1A" stroke-width="4"/>
+                <circle cx="238" cy="292" r="13" fill="#E0E0E0" stroke="#1A1A1A" stroke-width="5"/>
+                <circle cx="238" cy="292" r="8.5" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+                <text x="238" y="297" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1A1A1A">$</text>
+              </g>
+            </g>
+
+          </svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. TRUST BAR -->
+  <!-- TRUST BAR -->
   <section class="trust" id="trust" aria-label="App Store highlights">
     <ul>
       <li>
@@ -424,17 +635,17 @@
     </ul>
   </section>
 
-  <!-- 4. WHO IT'S FOR -->
+  <!-- WHO IT'S FOR -->
   <section class="who" id="who-its-for" aria-labelledby="who-heading">
     <div class="section-inner">
-      <p class="eyebrow">Who It's For</p>
-      <h2 class="section-heading" id="who-heading">Built for people chasing <span class="accent">financial freedom</span></h2>
-      <div class="who-grid">
-        <div class="who-prose">
+      <p class="eyebrow" data-reveal>Who It's For · Every Season</p>
+      <h2 class="section-heading" id="who-heading" data-reveal>Built for people chasing <span class="accent">financial freedom</span></h2>
+      <div class="who-grid" data-reveal-group>
+        <div class="who-prose" data-reveal>
           <p>DollarSeeds is for anyone chasing financial freedom — people getting out of debt, people multiplying what they already have, and people aiming at goals bigger than next month's bills.</p>
           <p>It's also for people who don't want money just to fill their pockets, but to use it in a way that pleases God and blesses the people around them. If that's you, this app was built with you in mind. If it isn't, the budgeting still works — the discipline doesn't check your beliefs at the door.</p>
         </div>
-        <div class="who-replaces">
+        <div class="who-replaces surface-card" data-reveal>
           <h3>What DollarSeeds replaces</h3>
           <ul>
             <li><strong>Lack of control</strong> Money leaves the account faster than you decided it should.</li>
@@ -448,124 +659,127 @@
     </div>
   </section>
 
-  <!-- 5. HOW IT WORKS -->
+  <!-- HOW IT WORKS -->
   <section class="how" id="how-it-works" aria-labelledby="how-heading">
     <div class="section-inner">
-      <p class="eyebrow">How It Works</p>
-      <h2 class="section-heading" id="how-heading">Three steps, every month</h2>
-      <ol class="how-steps">
-        <li class="how-step">
+      <p class="eyebrow" data-reveal>How It Works · Three Steps</p>
+      <h2 class="section-heading" id="how-heading" data-reveal>Three steps, every month</h2>
+      <ol class="how-steps" data-reveal-group>
+        <li class="how-step" data-reveal>
           <h3>Log your income</h3>
           <p>Paycheck, side gig, gift, refund — log it in seconds when it arrives. Every harvest counts.</p>
         </li>
-        <li class="how-step">
+        <li class="how-step" data-reveal>
           <h3>It splits automatically</h3>
           <p>DollarSeeds divides each amount across your three buckets the moment you log it — no math, no spreadsheet.</p>
           <div class="how-split" aria-hidden="true">
             <span class="b-needs">Needs</span><span class="b-wants">Wants</span><span class="b-savings">Savings</span>
           </div>
         </li>
-        <li class="how-step">
+        <li class="how-step" data-reveal>
           <h3>Track and adjust</h3>
           <p>Every expense lands in a category with a target. See what's left, catch overspending early, and adjust before the month gets away from you.</p>
         </li>
       </ol>
-      <p class="how-more">The split isn't one-size-fits-all. DollarSeeds ships <a href="#budgeting-types">three budgeting types</a> — pick the one that matches your season of life.</p>
+      <p class="how-more" data-reveal>The split isn't one-size-fits-all. DollarSeeds ships <a href="#budgeting-types">three budgeting types</a> — try them live below.</p>
     </div>
   </section>
 
-  <!-- 6. FEATURES -->
+  <!-- FEATURES — five video rows -->
   <section class="features" id="features" aria-labelledby="features-heading">
     <div class="section-inner">
-      <p class="eyebrow">What's Inside</p>
-      <h2 class="section-heading" id="features-heading">Everything you need to <span class="accent">grow</span> your finances</h2>
-      <p class="section-body">Every dollar has a purpose, every decision reflects your values — and every screen below is the real app.</p>
-      <div class="features-grid">
+      <p class="eyebrow" data-reveal>What's Inside · Real Screens</p>
+      <h2 class="section-heading" id="features-heading" data-reveal>Everything you need to <span class="accent">grow</span> your finances</h2>
+      <p class="section-body" data-reveal>Every recording below is the real app, unedited. Hover or scroll — they play on their own.</p>
+      <div class="feature-rows">
 
-        <figure class="feature-card">
-          <div class="card-media">
-            <img src="/assets/images/screen-dashboard.png" width="739" height="1600" loading="lazy" alt="DollarSeeds budget dashboard showing total income, money left this month, a Budget Health score, and progress bars for Needs, Wants, and Savings" />
+        <figure class="feature-row" data-reveal-group>
+          <div class="feature-media" data-reveal>
+            <div class="feature-screen">
+              <video muted loop playsinline preload="none" width="720" height="1434" poster="/assets/images/posters/log-income.jpg" aria-label="Screen recording of logging income in DollarSeeds and watching it split across Needs, Wants, and Savings">
+                <source src="/assets/video/log-income.webm" type="video/webm" />
+                <source src="/assets/video/log-income.mp4" type="video/mp4" />
+              </video>
+              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
+            </div>
           </div>
-          <figcaption>
-            <span class="card-tag tag-green">Dashboard</span>
-            <h3 class="card-title">A budget dashboard for the whole month</h3>
-            <p class="card-desc">Budget health score, monthly income, what's left, and your Needs / Wants / Savings progress — the full picture in one view.</p>
+          <figcaption class="feature-text" data-reveal>
+            <p class="feature-eyebrow">Income · Automatic Split</p>
+            <h3>Income tracking that splits itself</h3>
+            <p>Every dollar that comes in gets divided across Needs, Wants, and Savings the instant you log it — using whichever <a href="#budgeting-types">budgeting type</a> you've picked. No math, no spreadsheet, no deciding under pressure.</p>
+            <p>Tap <strong>Income</strong>, enter the amount, pick a source — paycheck, side gig, gift, bonus — and watch the split bar divide it before your eyes. Every good gift accounted for.</p>
           </figcaption>
         </figure>
 
-        <figure class="feature-card">
-          <div class="card-media">
-            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-income.png" aria-label="Screen recording of logging income in DollarSeeds and watching it split across Needs, Wants, and Savings">
-              <source src="/assets/video/log-income.mp4" type="video/mp4" />
-            </video>
+        <figure class="feature-row" data-reveal-group>
+          <div class="feature-media" data-reveal>
+            <div class="feature-screen">
+              <video muted loop playsinline preload="none" width="720" height="1420" poster="/assets/images/posters/log-expense.jpg" aria-label="Screen recording of logging an expense in DollarSeeds with a category and subcategory">
+                <source src="/assets/video/log-expense.webm" type="video/webm" />
+                <source src="/assets/video/log-expense.mp4" type="video/mp4" />
+              </video>
+              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
+            </div>
           </div>
-          <figcaption>
-            <span class="card-tag tag-green">Income</span>
-            <h3 class="card-title">Income tracking that splits itself</h3>
-            <p class="card-desc">Log a paycheck, side gig, or gift and watch it divide across Needs, Wants, and Savings on its own. Every good gift accounted for.</p>
+          <figcaption class="feature-text" data-reveal>
+            <p class="feature-eyebrow">Expenses · Know Where It Goes</p>
+            <h3>An expense tracker with real categories</h3>
+            <p>Every spend lands in a category and subcategory — dining, groceries, streaming, travel — and counts against that bucket's target, so you always know what's left before you buy, not after.</p>
+            <p>Tap <strong>Expense</strong>, enter the amount, choose the category, give it a name if you want one. Ten seconds, logged, done. Plant where it counts.</p>
           </figcaption>
         </figure>
 
-        <figure class="feature-card">
-          <div class="card-media">
-            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-expense.png" aria-label="Screen recording of logging an expense in DollarSeeds with a category and subcategory">
-              <source src="/assets/video/log-expense.mp4" type="video/mp4" />
-            </video>
+        <figure class="feature-row" data-reveal-group>
+          <div class="feature-media" data-reveal>
+            <div class="feature-screen">
+              <video muted loop playsinline preload="none" width="720" height="1444" poster="/assets/images/posters/create-goal.jpg" aria-label="Screen recording of creating a savings goal in DollarSeeds with a target amount and timeline">
+                <source src="/assets/video/create-goal.webm" type="video/webm" />
+                <source src="/assets/video/create-goal.mp4" type="video/mp4" />
+              </video>
+              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
+            </div>
           </div>
-          <figcaption>
-            <span class="card-tag tag-violet">Expenses</span>
-            <h3 class="card-title">An expense tracker with real categories</h3>
-            <p class="card-desc">Log spending by category and subcategory — dining, groceries, streaming, travel — so you always know where the money went. Plant where it counts.</p>
+          <figcaption class="feature-text" data-reveal>
+            <p class="feature-eyebrow">Savings · Named Goals</p>
+            <h3>Savings goals with targets and timelines</h3>
+            <p>A goal with a name, a number, and a date gets funded; vague intentions don't. DollarSeeds turns "we should save for that trip" into a target you can watch fill up.</p>
+            <p>Open <strong>Savings</strong>, create a goal, set the amount and the deadline — the app paces you from there. Little by little, it grows.</p>
           </figcaption>
         </figure>
 
-        <figure class="feature-card">
-          <div class="card-media">
-            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-savings.png" aria-label="Screen recording of creating a savings goal in DollarSeeds with a target amount and timeline">
-              <source src="/assets/video/create-goal.mp4" type="video/mp4" />
-            </video>
+        <figure class="feature-row" data-reveal-group>
+          <div class="feature-media" data-reveal>
+            <div class="feature-screen">
+              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/posters/fund-goal.jpg" aria-label="Screen recording of setting money aside toward a savings goal in DollarSeeds">
+                <source src="/assets/video/fund-goal.webm" type="video/webm" />
+                <source src="/assets/video/fund-goal.mp4" type="video/mp4" />
+              </video>
+              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
+            </div>
           </div>
-          <figcaption>
-            <span class="card-tag tag-gold">Savings</span>
-            <h3 class="card-title">Savings goals with targets and timelines</h3>
-            <p class="card-desc">Name the goal, set the amount and the date, and DollarSeeds tells you what to set aside each week. Little by little, it grows.</p>
+          <figcaption class="feature-text" data-reveal>
+            <p class="feature-eyebrow">Savings · Set Aside</p>
+            <h3>Set money aside, goal by goal</h3>
+            <p>Your Savings bucket fills automatically every time income splits — funding a goal is how you decide what that money is <em>for</em>. Each set-aside moves real dollars from general savings into the goal you choose.</p>
+            <p>Open the goal, tap <strong>Set aside</strong>, enter the amount — and when the seed finally becomes the thing you were saving for, tap <strong>I bought it</strong>.</p>
           </figcaption>
         </figure>
 
-        <figure class="feature-card">
-          <div class="card-media">
-            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/video/create-debt-goal-poster.svg" aria-label="Screen recording of creating a debt payoff goal in DollarSeeds">
-              <source src="/assets/video/create-debt-goal.mp4" type="video/mp4" />
-            </video>
+        <figure class="feature-row" data-reveal-group>
+          <div class="feature-media" data-reveal>
+            <div class="feature-screen">
+              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/posters/pay-debt.jpg" aria-label="Screen recording of paying off debt from general savings in DollarSeeds">
+                <source src="/assets/video/pay-debt.webm" type="video/webm" />
+                <source src="/assets/video/pay-debt.mp4" type="video/mp4" />
+              </video>
+              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
+            </div>
           </div>
-          <figcaption>
-            <span class="card-tag tag-amber">New · Debt</span>
-            <h3 class="card-title">Debt payoff goals</h3>
-            <p class="card-desc">Point a goal at a balance instead of a purchase. Chip away at what you owe on the same schedule you save — getting free is a goal too.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="feature-card">
-          <div class="card-media">
-            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-savings.png" aria-label="Screen recording of setting money aside for a savings goal in DollarSeeds">
-              <source src="/assets/video/fund-goal.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <figcaption>
-            <span class="card-tag tag-gold">Savings Goals</span>
-            <h3 class="card-title">Set savings aside, goal by goal</h3>
-            <p class="card-desc">Tap "Set aside" to move money into a goal, and "I bought it" when the seed becomes the thing you were saving for.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="feature-card feature-card--wide">
-          <div class="card-media">
-            <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
-          </div>
-          <figcaption>
-            <span class="card-tag tag-amber">Lessons</span>
-            <h3 class="card-title">Money lessons on Tithing, Entrepreneurship, and more</h3>
-            <p class="card-desc">Short Scripture-rooted lessons inside the app — Tithing, Entrepreneurship, saving for the unexpected, giving. The features reviewers call out by name, because nobody else pairs a budget with them. <a href="/lessons">Preview the lessons →</a></p>
+          <figcaption class="feature-text" data-reveal>
+            <p class="feature-eyebrow">Debt · Pay It Down</p>
+            <h3>Pay off debt straight from savings</h3>
+            <p>Debt payoff lives on the same screen as your goals, because getting free is one. Money you've built up in general savings can go straight at a balance you owe — and you watch it shrink the same way you watch a goal fill.</p>
+            <p>From <strong>Savings</strong>, choose the debt, enter the payment, and it's applied — no juggling a separate tracker. Freedom, funded a little at a time.</p>
           </figcaption>
         </figure>
 
@@ -573,73 +787,73 @@
     </div>
   </section>
 
-  <!-- 7. BUDGETING TYPES -->
+  <!-- BUDGETING TYPES — live demo -->
   <section class="types" id="budgeting-types" aria-labelledby="types-heading">
-    <div class="types-glow"></div>
     <div class="section-inner">
-      <p class="eyebrow">Budgeting Types</p>
-      <h2 class="section-heading" id="types-heading">Three budgeting types. One philosophy.</h2>
-      <p class="section-body">Every track saves at least 20% of what you earn. What changes is how much of the rest goes to needs versus wants. Read the three profiles — you'll recognize yours in about five seconds.</p>
+      <p class="eyebrow" data-reveal>Budgeting Types · One Philosophy</p>
+      <h2 class="section-heading" id="types-heading" data-reveal>Three budgeting types. One philosophy.</h2>
+      <p class="section-body" data-reveal>Switch between the 3 different budgeting types to see how each of them splits your income into expenses. Every track saves at least 20% of what you earn.</p>
 
-      <div class="types-compare">
-        <table>
-          <caption>Every track saves at least 20%</caption>
-          <thead>
-            <tr>
-              <th scope="col"><span class="sr-only">Bucket</span></th>
-              <th scope="col"><a href="#type-50-30-20">50/30/20</a></th>
-              <th scope="col"><a href="#type-wealth-builder">Wealth Builder</a></th>
-              <th scope="col"><a href="#type-firm-foundation">Firm Foundation</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Needs</th><td>50%</td><td>30%</td><td>70%</td></tr>
-            <tr><th scope="row">Wants</th><td>30%</td><td>20%</td><td>10%</td></tr>
-            <tr><th scope="row">Savings</th><td>20%</td><td>50%</td><td>20%</td></tr>
-          </tbody>
-        </table>
+      <div class="demo-card surface-card" data-reveal>
+        <div class="type-tabs" role="tablist" aria-label="Budgeting type">
+          <button type="button" role="tab" id="tab-503020" aria-selected="true" data-type="503020">50/30/20</button>
+          <button type="button" role="tab" id="tab-wealth" aria-selected="false" tabindex="-1" data-type="wealth">Wealth Builder</button>
+          <button type="button" role="tab" id="tab-firm" aria-selected="false" tabindex="-1" data-type="firm">Firm Foundation</button>
+        </div>
+
+        <div class="demo-income">
+          <label for="demo-income-input">Monthly income</label>
+          <div class="demo-income-controls">
+            <span class="demo-income-value" aria-hidden="false">$<input id="demo-income-input" type="number" inputmode="numeric" min="100" max="50000" step="50" value="1000" /></span>
+            <input id="demo-income-slider" type="range" min="100" max="50000" step="50" value="1000" aria-label="Monthly income" aria-valuetext="$1,000" />
+          </div>
+        </div>
+
+        <p class="demo-type-name" id="demo-type-name" aria-live="polite">50/30/20 — the balanced track</p>
+
+        <div class="demo-rows">
+          <div class="demo-row demo-row--needs">
+            <div class="demo-row-head">
+              <span class="demo-cat">Needs</span>
+              <span class="demo-cat-note">rent, groceries, bills</span>
+              <span class="demo-pct" data-pct="needs">50%</span>
+            </div>
+            <div class="demo-bar" aria-hidden="true"><span class="demo-bar-fill" data-bar="needs" style="transform:scaleX(0.5)"></span></div>
+            <div class="demo-amt" data-amt="needs">$500</div>
+          </div>
+          <div class="demo-row demo-row--wants">
+            <div class="demo-row-head">
+              <span class="demo-cat">Wants</span>
+              <span class="demo-cat-note">dining, travel, lifestyle</span>
+              <span class="demo-pct" data-pct="wants">30%</span>
+            </div>
+            <div class="demo-bar" aria-hidden="true"><span class="demo-bar-fill" data-bar="wants" style="transform:scaleX(0.3)"></span></div>
+            <div class="demo-amt" data-amt="wants">$300</div>
+          </div>
+          <div class="demo-row demo-row--savings">
+            <div class="demo-row-head">
+              <span class="demo-cat">Savings</span>
+              <span class="demo-cat-note">goals, investing, generosity</span>
+              <span class="demo-pct" data-pct="savings">20%</span>
+            </div>
+            <div class="demo-bar" aria-hidden="true"><span class="demo-bar-fill" data-bar="savings" style="transform:scaleX(0.2)"></span></div>
+            <div class="demo-amt" data-amt="savings">$200</div>
+          </div>
+        </div>
+        <p class="demo-note">Whole dollars, always summing to your income — the same math the app runs.</p>
       </div>
 
-      <div class="type-cards">
-        <article class="type-card" id="type-50-30-20">
-          <h3>50/30/20</h3>
-          <p class="type-split-label">50 Needs · 30 Wants · 20 Savings</p>
-          <div class="type-bar" aria-hidden="true"><span class="seg-needs" style="width:50%"></span><span class="seg-wants" style="width:30%"></span><span class="seg-savings" style="width:20%"></span></div>
-          <p>The balanced track. Half of every dollar covers the essentials — rent, groceries, bills, the things you need to live and serve faithfully where you are. Thirty percent goes to the joys: dining, travel, lifestyle, enjoying God's gifts without letting them consume you. Twenty percent gets planted for the future.</p>
-          <p class="type-fit"><strong>Fits you if:</strong> your income is steady and comfortably covers your needs with room to spare. <a href="/50-30-20-rule" style="color:var(--emerald)">Read the full 50/30/20 guide →</a></p>
-        </article>
-
-        <article class="type-card" id="type-wealth-builder">
-          <h3>Wealth Builder</h3>
-          <p class="type-split-label">30 Needs · 20 Wants · 50 Savings</p>
-          <div class="type-bar" aria-hidden="true"><span class="seg-needs" style="width:30%"></span><span class="seg-wants" style="width:20%"></span><span class="seg-savings" style="width:50%"></span></div>
-          <p>Half of everything you earn goes to savings. This is the track for people who earn well above what their needs cost and want that surplus working — invested into future income streams, aimed at goals most budgets never get to.</p>
-          <p>It's also the right fit for college students living with their parents: few fixed needs, and years for every invested dollar to compound.</p>
-          <p class="type-fit"><strong>Fits you if:</strong> your needs take a small share of your income and you want the rest building something.</p>
-        </article>
-
-        <article class="type-card" id="type-firm-foundation">
-          <h3>Firm Foundation</h3>
-          <p class="type-split-label">70 Needs · 10 Wants · 20 Savings</p>
-          <div class="type-bar" aria-hidden="true"><span class="seg-needs" style="width:70%"></span><span class="seg-wants" style="width:10%"></span><span class="seg-savings" style="width:20%"></span></div>
-          <p>For the season when needs eat most of the paycheck. Firm Foundation makes room for that honestly — 70% to needs — but it refuses to give up the 20% savings target. That 20% is held on purpose: it's the margin that builds enough cushion to grow your finances and find income that comfortably covers your costs.</p>
-          <p>This track is transitional by design. The goal is to graduate out of it — into 50/30/20, and one day maybe Wealth Builder.</p>
-          <p class="type-fit"><strong>Fits you if:</strong> your salary barely covers your needs right now — and you're building your way out.</p>
-        </article>
-      </div>
-
-      <p class="types-more">Want the deeper version, with worked examples? See the full <a href="/budgeting-types">budgeting types guide</a> or start with the <a href="/50-30-20-rule">50/30/20 rule</a>.</p>
+      <p class="types-more" data-reveal>Want the deeper version, with worked examples? See the full <a href="/budgeting-types">budgeting types guide</a> or start with the <a href="/50-30-20-rule">50/30/20 rule</a>.</p>
     </div>
   </section>
 
-  <!-- 8. FAITH & STEWARDSHIP -->
+  <!-- FAITH & STEWARDSHIP + LESSONS -->
   <section class="faith" id="faith" aria-labelledby="faith-heading">
-    <div class="faith-glow"></div>
     <div class="section-inner">
-      <p class="eyebrow">Why DollarSeeds</p>
-      <h2 class="section-heading" id="faith-heading" style="margin-bottom:3rem;">The name behind the mission</h2>
-      <div class="faith-grid">
-        <div class="faith-text">
+      <p class="eyebrow" data-reveal>Why DollarSeeds · Lessons</p>
+      <h2 class="section-heading" id="faith-heading" data-reveal style="margin-bottom:3rem;">The name behind the mission</h2>
+      <div class="faith-grid" data-reveal-group>
+        <div class="faith-text" data-reveal>
           <p>A seed is small. It requires patience, intention, and care before it ever becomes something visible. That's exactly how finances work — not through sudden windfalls, but through faithful, daily decisions that compound over time.</p>
           <p>The name DollarSeeds comes from that idea. Every dollar you earn is a seed. Where you plant it — how you tend it — determines what grows. Spend carelessly and nothing takes root. Steward it well, and it becomes provision, security, and generosity.</p>
           <p>The Bible speaks about money more than almost any other topic. Yet for many Christians, faith and finances remain in separate rooms. DollarSeeds was built to open the door between them — not just to budget better, but to steward faithfully. And if you don't share the faith, the discipline still holds: the app never asks you to believe anything to budget well. It reads as conviction, not a gate.</p>
@@ -648,42 +862,47 @@
             <cite>Proverbs 13:11</cite>
           </div>
         </div>
-        <div class="faith-lessons">
-          <h3>Go deeper — Lessons inside the app</h3>
-          <ul>
-            <li>
-              <a href="/lessons/tithing">
-                <span class="lesson-name">Tithing</span>
-                <span class="lesson-note">What the tithe is, where it comes from, and how to practice it without legalism or guilt.</span>
-              </a>
-            </li>
-            <li>
-              <a href="/lessons/entrepreneurship">
-                <span class="lesson-name">Entrepreneurship</span>
-                <span class="lesson-note">Multiplying what you've been given — work, risk, and building something that blesses people.</span>
-              </a>
-            </li>
-            <li>
-              <a href="/lessons">
-                <span class="lesson-name">All lessons</span>
-                <span class="lesson-note">Saving for the unexpected, giving it all to God, and every new lesson as it ships.</span>
-              </a>
-            </li>
-          </ul>
+        <div class="faith-lessons surface-card" id="lessons" data-reveal>
+          <div class="faith-lessons-screen">
+            <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
+          </div>
+          <div class="faith-lessons-body">
+            <h3>Go deeper · Lessons inside the app</h3>
+            <ul>
+              <li>
+                <a href="/lessons/tithing">
+                  <span class="lesson-name">Tithing</span>
+                  <span class="lesson-note">What the tithe is, where it comes from, and how to practice it without legalism or guilt.</span>
+                </a>
+              </li>
+              <li>
+                <a href="/lessons/entrepreneurship">
+                  <span class="lesson-name">Entrepreneurship</span>
+                  <span class="lesson-note">Multiplying what you've been given — work, risk, and building something that blesses people.</span>
+                </a>
+              </li>
+              <li>
+                <a href="/lessons#in-the-app">
+                  <span class="lesson-name">Saving for the Unexpected</span>
+                  <span class="lesson-note">What the ants teach about having enough for each season — in the app, with every new lesson as it ships.</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 9. REVIEWS -->
+  <!-- REVIEWS -->
   <section class="reviews" id="reviews" aria-labelledby="reviews-heading">
     <div class="section-inner">
-      <p class="eyebrow">Reviews</p>
-      <h2 class="section-heading" id="reviews-heading">What people say on the App Store</h2>
-      <p class="section-body">Every review below is a real 5-star App Store review, quoted in full.</p>
-      <div class="reviews-grid">
+      <p class="eyebrow" data-reveal>Reviews · App Store</p>
+      <h2 class="section-heading" id="reviews-heading" data-reveal>What people say on the App Store</h2>
+      <p class="section-body" data-reveal>Every review below is a real 5-star App Store review, quoted in full.</p>
+      <div class="reviews-grid" data-reveal-group>
 
-        <article class="review">
+        <article class="review" data-reveal>
           <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
@@ -698,7 +917,7 @@
           <footer><cite>Cláudio93</cite> · <time datetime="2026-08-08">Aug 8, 2026</time></footer>
         </article>
 
-        <article class="review">
+        <article class="review" data-reveal>
           <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
@@ -713,7 +932,7 @@
           <footer><cite>XLUC4O</cite> · <time datetime="2026-08-07">Aug 7, 2026</time></footer>
         </article>
 
-        <article class="review">
+        <article class="review" data-reveal>
           <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
@@ -728,7 +947,7 @@
           <footer><cite>OlayBrian</cite> · <time datetime="2026-08-08">Aug 8, 2026</time></footer>
         </article>
 
-        <article class="review">
+        <article class="review" data-reveal>
           <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
@@ -743,7 +962,7 @@
           <footer><cite>gangagratidao</cite> · <time datetime="2026-08-09">Aug 9, 2026</time></footer>
         </article>
 
-        <article class="review">
+        <article class="review" data-reveal>
           <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
@@ -759,48 +978,18 @@
         </article>
 
       </div>
-      <p class="reviews-source">Read them all on the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">App Store listing</a>.</p>
+      <p class="reviews-source" data-reveal>Read them all on the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">App Store listing</a>.</p>
     </div>
   </section>
 
-  <!-- 10. LESSONS PREVIEW -->
-  <section class="lessons" id="lessons" aria-labelledby="lessons-heading">
-    <div class="section-inner">
-      <p class="eyebrow">Lessons</p>
-      <h2 class="section-heading" id="lessons-heading">Lessons from the field</h2>
-      <p class="section-body">Short, Scripture-rooted money lessons built into the app — the feature reviewers name first. Start with the two they call out.</p>
-      <div class="lessons-grid">
-        <a class="lesson-card" href="/lessons/tithing">
-          <span class="card-tag tag-green">Lesson</span>
-          <h3>Tithing</h3>
-          <p>What the tithe actually is, what the Bible says about it, and how to practice it with joy instead of guilt — with a budget that already sets it aside.</p>
-          <span class="lesson-cta">Read the lesson →</span>
-        </a>
-        <a class="lesson-card" href="/lessons/entrepreneurship">
-          <span class="card-tag tag-violet">Lesson</span>
-          <h3>Entrepreneurship</h3>
-          <p>The parable of the talents is a business story. What it means to multiply what you've been given — and how a budget funds the first step.</p>
-          <span class="lesson-cta">Read the lesson →</span>
-        </a>
-        <a class="lesson-card" href="/lessons#in-the-app">
-          <span class="card-tag tag-amber">Lesson</span>
-          <h3>Saving for the Unexpected</h3>
-          <p>What the ants can teach us about hard work and having enough for each season. In the app now — Proverbs 6:7–8, six minutes.</p>
-          <span class="lesson-cta">See all lessons →</span>
-        </a>
-      </div>
-      <p class="lessons-index-link">Browse the full <a href="/lessons">lessons index</a> — new lessons ship with the app.</p>
-    </div>
-  </section>
-
-  <!-- 11. FAQ -->
+  <!-- FAQ -->
   <section class="faq" id="faq" aria-labelledby="faq-heading">
     <div class="section-inner">
-      <p class="eyebrow">FAQ</p>
-      <h2 class="section-heading" id="faq-heading">Questions people actually ask</h2>
-      <div class="faq-list">
+      <p class="eyebrow" data-reveal>FAQ · Straight Answers</p>
+      <h2 class="section-heading" id="faq-heading" data-reveal>Questions people actually ask</h2>
+      <div class="faq-list" data-reveal-group>
 
-        <details id="faq-free">
+        <details id="faq-free" data-reveal>
           <summary>Is DollarSeeds free?</summary>
           <div class="faq-answer">
             <p>Yes — DollarSeeds is free to download on the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">App Store</a>.</p>
@@ -808,7 +997,7 @@
           </div>
         </details>
 
-        <details id="faq-bank">
+        <details id="faq-bank" data-reveal>
           <summary>Does DollarSeeds connect to my bank account?</summary>
           <div class="faq-answer">
             <p>No — DollarSeeds never asks for your bank login, and it can't see your accounts.</p>
@@ -816,7 +1005,7 @@
           </div>
         </details>
 
-        <details id="faq-christian">
+        <details id="faq-christian" data-reveal>
           <summary>Is DollarSeeds only for Christians?</summary>
           <div class="faq-answer">
             <p>No — anyone can use DollarSeeds; the budgeting system works the same regardless of what you believe.</p>
@@ -824,15 +1013,15 @@
           </div>
         </details>
 
-        <details id="faq-types">
+        <details id="faq-types" data-reveal>
           <summary>What are the three budgeting types in DollarSeeds?</summary>
           <div class="faq-answer">
             <p>DollarSeeds ships three budgeting types: 50/30/20 (balanced), Wealth Builder (30/20/50, for aggressive savers), and Firm Foundation (70/10/20, for tight seasons).</p>
-            <p>Every one of them saves at least 20% of your income — what changes is the balance between needs and wants. See the <a href="/#budgeting-types">comparison above</a> or the full <a href="/budgeting-types">budgeting types guide</a>.</p>
+            <p>Every one of them saves at least 20% of your income — what changes is the balance between needs and wants. Try them in the <a href="/#budgeting-types">live demo above</a> or read the full <a href="/budgeting-types">budgeting types guide</a>.</p>
           </div>
         </details>
 
-        <details id="faq-503020">
+        <details id="faq-503020" data-reveal>
           <summary>What is the 50/30/20 budget rule?</summary>
           <div class="faq-answer">
             <p>The 50/30/20 rule splits your after-tax income into 50% for needs, 30% for wants, and 20% for savings.</p>
@@ -840,15 +1029,15 @@
           </div>
         </details>
 
-        <details id="faq-debt">
+        <details id="faq-debt" data-reveal>
           <summary>Can I track debt payoff with DollarSeeds?</summary>
           <div class="faq-answer">
-            <p>Yes — DollarSeeds lets you create debt payoff goals and chip away at a balance the same way you'd fund a savings goal.</p>
-            <p>Point a goal at what you owe, set the pace, and watch the balance shrink from the same Savings screen where your other goals grow.</p>
+            <p>Yes — DollarSeeds lets you pay down debt using the money you've built up in general savings, right from the Savings screen.</p>
+            <p>Choose the debt, enter the payment, and watch the balance shrink the same way you watch a savings goal fill.</p>
           </div>
         </details>
 
-        <details id="faq-privacy">
+        <details id="faq-privacy" data-reveal>
           <summary>Is my financial data private?</summary>
           <div class="faq-answer">
             <p>Yes — your financial data belongs to you, is never sold, and the app holds no bank credentials that could be exposed.</p>
@@ -856,7 +1045,7 @@
           </div>
         </details>
 
-        <details id="faq-android">
+        <details id="faq-android" data-reveal>
           <summary>Is there an Android version of DollarSeeds?</summary>
           <div class="faq-answer">
             <p>Not yet — DollarSeeds is currently iPhone-only.</p>
@@ -864,7 +1053,7 @@
           </div>
         </details>
 
-        <details id="faq-delete">
+        <details id="faq-delete" data-reveal>
           <summary>How do I delete my DollarSeeds account?</summary>
           <div class="faq-answer">
             <p>Open the app, go to Settings, tap Delete Account, and type DELETE to confirm — deletion is immediate and permanent.</p>
@@ -876,23 +1065,24 @@
     </div>
   </section>
 
-  <!-- 12. FINAL CTA -->
+  <!-- FINAL CTA -->
   <section class="download" id="download" aria-labelledby="download-heading">
     <div class="download-glow"></div>
-    <div class="download-inner">
-      <p class="eyebrow">Plant the First Seed</p>
-      <h2 id="download-heading">Ready to be a faithful steward?</h2>
-      <p>DollarSeeds is free on the App Store. Pick your budgeting type, log your first income, and watch it split — little by little, it grows.</p>
-      <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
-        <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
-      </a>
-      <span class="hero-note">Free to download · iPhone · No bank login required</span>
+    <div class="download-inner" data-reveal-group>
+      <p class="eyebrow" data-reveal>Plant the First Seed · Free</p>
+      <h2 id="download-heading" data-reveal>Ready to be a faithful steward?</h2>
+      <p data-reveal>DollarSeeds is free on the App Store. Pick your budgeting type, log your first income, and watch it split — little by little, it grows.</p>
+      <div data-reveal>
+        <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
+          <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
+        </a>
+        <span class="hero-note">Free to download · iPhone · No bank login required</span>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- 13. FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-grid">
@@ -947,24 +1137,8 @@
   </div>
 </footer>
 
+<script src="/assets/js/site.js"></script>
 <script>
-  // Mobile nav toggle
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    menu.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
-        menu.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  })();
-
   // Trust bar: live rating from app-stats.json.
   // The HTML already contains the current values as static fallback text,
   // so the bar renders correctly with JS disabled or if the fetch fails.
@@ -990,12 +1164,23 @@
       .catch(function () { /* keep static fallback */ });
   })();
 
-  // Feature videos: play on hover (desktop) or on entering the viewport / tap
-  // (mobile). One video at a time; anything scrolled out of view is paused.
+  // Growth illustration: pause the loop while it's off screen.
   (function () {
-    var videos = Array.prototype.slice.call(document.querySelectorAll('.card-media video'));
+    var svg = document.getElementById('growth-svg');
+    if (!svg || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        svg.classList.toggle('is-paused', !entry.isIntersecting);
+      });
+    }, { threshold: 0 }).observe(svg);
+  })();
+
+  // Feature videos: play the row in view, pause everything else.
+  // With reduced motion: no autoplay — a manual play control appears instead.
+  (function () {
+    var videos = Array.prototype.slice.call(document.querySelectorAll('.feature-screen video'));
     if (!videos.length) return;
-    var hoverable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function pauseOthers(current) {
       videos.forEach(function (v) { if (v !== current && !v.paused) v.pause(); });
@@ -1003,29 +1188,141 @@
     function play(v) { pauseOthers(v); v.play().catch(function () {}); }
 
     videos.forEach(function (v) {
-      v.addEventListener('click', function () { v.paused ? play(v) : v.pause(); });
-      if (hoverable) {
-        var card = v.closest('.feature-card') || v;
-        card.addEventListener('mouseenter', function () { play(v); });
-        card.addEventListener('mouseleave', function () { v.pause(); });
+      var btn = v.parentElement.querySelector('.video-toggle');
+      if (reduceMotion && btn) {
+        btn.hidden = false;
+        btn.addEventListener('click', function () {
+          if (v.paused) { play(v); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause video'); }
+          else { v.pause(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Play video'); }
+        });
+      } else {
+        v.addEventListener('click', function () { v.paused ? play(v) : v.pause(); });
       }
     });
 
-    if ('IntersectionObserver' in window) {
+    if (!reduceMotion && 'IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           var v = entry.target;
-          if (hoverable) {
-            if (!entry.isIntersecting && !v.paused) v.pause();
-          } else if (entry.intersectionRatio >= 0.6) {
-            play(v);
-          } else if (!v.paused) {
-            v.pause();
-          }
+          if (entry.intersectionRatio >= 0.5) play(v);
+          else if (!v.paused) v.pause();
         });
-      }, { threshold: hoverable ? [0] : [0, 0.6] });
+      }, { threshold: [0, 0.5] });
       videos.forEach(function (v) { io.observe(v); });
     }
+  })();
+
+  // Budgeting-types demo: tabs + income slider/field driving a tweened split.
+  (function () {
+    var SPLITS = {
+      '503020': { label: '50/30/20 — the balanced track',            needs: 0.5, wants: 0.3, savings: 0.2 },
+      'wealth': { label: 'Wealth Builder — save half of everything', needs: 0.3, wants: 0.2, savings: 0.5 },
+      'firm':   { label: 'Firm Foundation — steady through a tight season', needs: 0.7, wants: 0.1, savings: 0.2 }
+    };
+    var MIN = 100, MAX = 50000, DUR = 450;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.type-tabs [role="tab"]'));
+    var slider = document.getElementById('demo-income-slider');
+    var field = document.getElementById('demo-income-input');
+    var typeName = document.getElementById('demo-type-name');
+    if (!tabs.length || !slider || !field) return;
+
+    var els = { needs: {}, wants: {}, savings: {} };
+    ['needs', 'wants', 'savings'].forEach(function (k) {
+      els[k].amt = document.querySelector('[data-amt="' + k + '"]');
+      els[k].pct = document.querySelector('[data-pct="' + k + '"]');
+      els[k].bar = document.querySelector('[data-bar="' + k + '"]');
+    });
+
+    var income = 1000;
+    var typeKey = '503020';
+    var shown = { needs: 500, wants: 300, savings: 200 }; // currently displayed values
+    var anim = null;
+
+    function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function clamp(n) { return Math.min(MAX, Math.max(MIN, n)); }
+    function targets() {
+      var s = SPLITS[typeKey];
+      var needs = Math.round(income * s.needs);
+      var wants = Math.round(income * s.wants);
+      // Remainder to savings so the three always sum to exactly the income.
+      return { needs: needs, wants: wants, savings: income - needs - wants };
+    }
+    function paint(vals) {
+      ['needs', 'wants', 'savings'].forEach(function (k) {
+        els[k].amt.textContent = fmt(vals[k]);
+      });
+    }
+    function paintStatic() {
+      var s = SPLITS[typeKey];
+      ['needs', 'wants', 'savings'].forEach(function (k) {
+        els[k].pct.textContent = Math.round(s[k] * 100) + '%';
+        els[k].bar.style.transform = 'scaleX(' + s[k] + ')';
+      });
+      typeName.textContent = s.label;
+    }
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function update() {
+      var to = targets();
+      paintStatic();
+      if (reduceMotion) { shown = to; paint(to); return; }
+      var from = { needs: shown.needs, wants: shown.wants, savings: shown.savings };
+      if (anim) cancelAnimationFrame(anim);
+      var t0 = null;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / DUR);
+        var e = easeOutCubic(p);
+        ['needs', 'wants', 'savings'].forEach(function (k) {
+          shown[k] = from[k] + (to[k] - from[k]) * e;
+        });
+        paint(shown);
+        if (p < 1) anim = requestAnimationFrame(step);
+        else { shown = to; paint(to); anim = null; }
+      }
+      anim = requestAnimationFrame(step);
+    }
+
+    function setIncome(n, source) {
+      income = clamp(Math.round(n));
+      if (source !== 'slider') slider.value = income;
+      if (source !== 'field') field.value = income;
+      slider.setAttribute('aria-valuetext', fmt(income));
+      update();
+    }
+    function selectTab(tab) {
+      tabs.forEach(function (t) {
+        var active = t === tab;
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+        t.tabIndex = active ? 0 : -1;
+      });
+      typeKey = tab.getAttribute('data-type');
+      update();
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { selectTab(tab); });
+    });
+    tabs[0].parentElement.addEventListener('keydown', function (e) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i === -1) return;
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); next.focus(); selectTab(next); }
+    });
+
+    slider.addEventListener('input', function () { setIncome(Number(slider.value), 'slider'); });
+    field.addEventListener('input', function () {
+      var n = Number(field.value);
+      if (!isNaN(n) && field.value !== '') { income = Math.round(n); slider.value = clamp(income); slider.setAttribute('aria-valuetext', fmt(clamp(income))); income = clamp(income); update(); }
+    });
+    field.addEventListener('change', function () { setIncome(Number(field.value) || MIN, 'none'); });
+
+    setIncome(1000, 'init');
   })();
 </script>
 

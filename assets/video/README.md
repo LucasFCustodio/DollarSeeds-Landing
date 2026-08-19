@@ -1,45 +1,24 @@
-# Feature videos — drop-in spec
+# Feature videos
 
-The homepage (`index.html`, `#features`) references five screen-recording videos
-that **do not exist yet**. Drop the real files in this directory with exactly
-these names and the page picks them up with no markup changes:
+All five homepage feature videos are transcoded and live. Sources were
+re-encoded (H.264 MP4 + VP9 WebM, audio stripped, 30fps, faststart) and the
+original recordings deleted.
 
-| File | Shows |
-|---|---|
-| `log-income.mp4` | Logging income and watching it split across Needs / Wants / Savings |
-| `log-expense.mp4` | Logging an expense with category + subcategory |
-| `create-goal.mp4` | Creating a savings goal (target amount + timeline) |
-| `create-debt-goal.mp4` | Creating a debt payoff goal |
-| `fund-goal.mp4` | Setting money aside for a goal ("Set aside" flow) |
+| File | Dimensions | Shows |
+|---|---|---|
+| `log-income.mp4` / `.webm` | 720×1434 | Logging income and watching it split |
+| `log-expense.mp4` / `.webm` | 720×1420 | Logging an expense with category + subcategory |
+| `create-goal.mp4` / `.webm` | 720×1444 | Creating a savings goal with target and timeline |
+| `fund-goal.mp4` / `.webm` | 720×1558 | Setting money aside toward a goal |
+| `pay-debt.mp4` / `.webm` | 720×1558 | Paying off debt using general savings |
 
-## Target format
+Poster frames (first frame, JPG) live in `assets/images/posters/<name>.jpg`.
 
-- **Aspect ratio:** 9:19.5 portrait (iPhone screen). The markup declares
-  `width="720" height="1560"` — encode at 720×1560, or any same-ratio size
-  (e.g. 886×1920 straight off an iPhone recording, re-encoded down).
-- **Container/codec:** MP4, H.264, no audio track (videos play muted).
-- **Max file size designed for:** **2.5 MB per video.** Keep clips to
-  10–20 seconds and 24–30 fps; that fits comfortably at this size.
-- `preload="none"` is set, so file size affects only playback start, not page
-  load — but stay under the cap anyway for mobile viewers.
+## Replacing a video later
 
-## Posters
-
-Each `<video>` has a `poster` attribute:
-
-- `log-income.mp4` → `/assets/images/screen-income.png` (real screenshot)
-- `log-expense.mp4` → `/assets/images/screen-expense.png` (real screenshot)
-- `create-goal.mp4` → `/assets/images/screen-savings.png` (real screenshot)
-- `fund-goal.mp4` → `/assets/images/screen-savings.png` (real screenshot, reused)
-- `create-debt-goal.mp4` → `/assets/video/create-debt-goal-poster.svg`
-  (**placeholder** — no debt-goal screenshot exists yet)
-
-When you capture the real videos, ideally export a first-frame JPG for each
-(720×1560) and update the `poster` attributes to match, especially for the
-debt-goal card and the reused savings screenshot.
-
-## Also pending
-
-`#features` uses `/assets/images/screen-lessons.png` for the Lessons card and
-`/assets/images/screen-dashboard.png` for the Dashboard card. Replace those
-PNGs in place whenever newer screens are available (739×1600).
+1. Re-encode to H.264 MP4, audio stripped, ≤2.5 MB:
+   `ffmpeg -i SOURCE -vf "scale=720:-2,fps=30" -c:v libx264 -profile:v main -crf 28 -preset slow -movflags +faststart -an -y NEW.mp4`
+2. WebM alternate: `ffmpeg -i NEW.mp4 -c:v libvpx-vp9 -crf 36 -b:v 0 -an -y NEW.webm`
+3. Poster: `ffmpeg -i NEW.mp4 -frames:v 1 -q:v 3 -y ../images/posters/NEW.jpg`
+4. `ffprobe` the output and update the matching `<video>` `width`/`height`
+   attributes in `index.html` — heights vary per recording, do not assume.

@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>DollarSeeds Press Kit — Boilerplate, Facts, and Assets</title>
   <meta name="description" content="Media kit for DollarSeeds: one-line description, boilerplate, key facts, logo and screenshot downloads, and press contact." />
@@ -42,33 +43,33 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Press</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Press Kit</p>
-      <h1 class="page-title">DollarSeeds press kit</h1>
+      <p class="page-eyebrow" data-reveal>Press Kit</p>
+      <h1 class="page-title" data-reveal>DollarSeeds press kit</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">Everything a writer, directory, or review site needs to cover DollarSeeds. Quote anything on this page freely; for anything else, <a href="#press-contact">get in touch</a>.</p>
+      <p class="prose-intro" data-reveal>Everything a writer, directory, or review site needs to cover DollarSeeds. Quote anything on this page freely; for anything else, <a href="#press-contact">get in touch</a>.</p>
 
-      <section class="prose-section" id="one-liner">
+      <section class="prose-section" data-reveal id="one-liner">
         <h2>One-line description</h2>
         <p><strong>DollarSeeds is a free Christian budgeting app for iPhone that splits income automatically across Needs, Wants, and Savings — no bank login required — and teaches biblical stewardship through built-in lessons.</strong></p>
       </section>
 
-      <section class="prose-section" id="boilerplate">
+      <section class="prose-section" data-reveal id="boilerplate">
         <h2>Boilerplate</h2>
         <p>DollarSeeds is a personal budgeting app for iPhone built on a simple conviction: every dollar is a seed, and where you plant it determines what grows. The app divides income automatically across Needs, Wants, and Savings using one of three budgeting types — the balanced 50/30/20, the aggressive Wealth Builder (50% savings rate), and the transitional Firm Foundation for tight seasons — all sharing a minimum 20% savings target. Alongside the budget, DollarSeeds ships Scripture-rooted lessons on tithing, entrepreneurship, saving, and giving. The app never connects to bank accounts; users log income and expenses themselves. DollarSeeds launched on the App Store on August 7, 2026, and is built by Lucas Custodio, a developer with a background in financial-services automation and web development. It is free to download at <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">apps.apple.com</a>.</p>
       </section>
 
-      <section class="prose-section" id="facts">
+      <section class="prose-section" data-reveal id="facts">
         <h2>Key facts</h2>
         <div class="table-scroll">
           <table>
@@ -88,7 +89,7 @@
         </div>
       </section>
 
-      <section class="prose-section" id="assets">
+      <section class="prose-section" data-reveal id="assets">
         <h2>Brand assets</h2>
         <h3>Badge logo</h3>
         <p style="background:#0A1612;border-radius:16px;padding:2rem;text-align:center;">
@@ -107,7 +108,7 @@
         <p>Need the app icon or additional screens? <a href="#press-contact">Email</a> and they'll be sent over same-day.</p>
       </section>
 
-      <section class="prose-section" id="press-contact">
+      <section class="prose-section" data-reveal id="press-contact">
         <h2>Press contact</h2>
         <p>Lucas Custodio &middot; <a href="mailto:lucasquality555@gmail.com">lucasquality555@gmail.com</a></p>
         <p>Interviews, review builds, and background on the <a href="/about">story behind the app</a> are all available on request.</p>
@@ -171,16 +172,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

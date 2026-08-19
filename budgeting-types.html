@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>Budgeting Types: 50/30/20, Wealth Builder, Firm Foundation</title>
   <meta name="description" content="DollarSeeds ships three budgeting types that all save at least 20%: the balanced 50/30/20, the aggressive Wealth Builder, and the transitional Firm Foundation." />
@@ -42,23 +43,23 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Budgeting Types</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Budgeting Guide</p>
-      <h1 class="page-title">Three budgeting types, one philosophy</h1>
+      <p class="page-eyebrow" data-reveal>Budgeting Guide</p>
+      <h1 class="page-title" data-reveal>Three budgeting types, one philosophy</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro"><a href="/">DollarSeeds</a> ships three budgeting types instead of one, because a college student, a mid-career professional, and someone whose rent eats most of a paycheck should not be handed the same percentages. The unifying idea: <strong>every track saves at least 20% of what you earn.</strong> What changes between them is how much of the rest goes to needs versus wants.</p>
+      <p class="prose-intro" data-reveal><a href="/">DollarSeeds</a> ships three budgeting types instead of one, because a college student, a mid-career professional, and someone whose rent eats most of a paycheck should not be handed the same percentages. The unifying idea: <strong>every track saves at least 20% of what you earn.</strong> What changes between them is how much of the rest goes to needs versus wants.</p>
 
-      <section class="prose-section" id="comparison">
+      <section class="prose-section" data-reveal id="comparison">
         <h2>How do the three types compare?</h2>
         <p>All three keep the same three buckets — Needs, Wants, Savings — and change only the percentages.</p>
         <div class="table-scroll">
@@ -77,7 +78,7 @@
         <p>The examples below all use the same $3,200 after-tax monthly income, so you can feel the difference directly.</p>
       </section>
 
-      <section class="prose-section" id="50-30-20">
+      <section class="prose-section" data-reveal id="50-30-20">
         <h2>50/30/20 — the balanced track</h2>
         <p>50/30/20 is the default for a reason: half to essentials, a generous third to enjoying life, and a fifth planted for the future.</p>
         <p>On $3,200 a month, that's <strong>$1,600 needs / $960 wants / $640 savings</strong>. It leaves real room for the joys — dining, travel, lifestyle — without letting them consume the future, and it builds a five-figure savings habit within two years on an ordinary income.</p>
@@ -85,7 +86,7 @@
         <p>Want the deep dive, edge cases and all? Read the full <a href="/50-30-20-rule">50/30/20 rule guide</a>.</p>
       </section>
 
-      <section class="prose-section" id="wealth-builder">
+      <section class="prose-section" data-reveal id="wealth-builder">
         <h2>Wealth Builder — 30/20/50, for aggressive savers</h2>
         <p>Wealth Builder sends <strong>half of everything you earn to savings</strong> — a 50% savings rate that most people never see, made possible when your needs cost far less than you make.</p>
         <p>On $3,200 a month, that's <strong>$960 needs / $640 wants / $1,600 savings</strong>. Nineteen thousand dollars a year moving toward investments, future income streams, and goals bigger than next month — the track for people who don't just want to keep money, but to multiply it.</p>
@@ -93,7 +94,7 @@
         <p><strong>Who it fits:</strong> you earn well above what your needs cost, or your needs are unusually small. If the parable of the talents fires you up, so will the <a href="/lessons/entrepreneurship">Entrepreneurship lesson</a>.</p>
       </section>
 
-      <section class="prose-section" id="firm-foundation">
+      <section class="prose-section" data-reveal id="firm-foundation">
         <h2>Firm Foundation — 70/10/20, for tight seasons</h2>
         <p>Firm Foundation is for the season when your salary barely covers your needs — and it's built on a promise: <strong>this is temporary, and you're still saving.</strong></p>
         <p>On $3,200 a month, that's <strong>$2,240 needs / $320 wants / $640 savings</strong>. Yes, 70% to needs — because pretending rent costs less than it does is how budgets die. And yes, 10% to wants — not because joy doesn't matter, but because this track holds the same 20% savings target as every other one, on purpose.</p>
@@ -101,13 +102,13 @@
         <p><strong>Who it fits:</strong> needs eat most of your paycheck right now. Not forever. The <a href="/lessons">Saving for the Unexpected lesson</a> in the app pairs well with this season.</p>
       </section>
 
-      <section class="prose-section" id="choosing">
+      <section class="prose-section" data-reveal id="choosing">
         <h2>How do I pick — and can I change later?</h2>
         <p>Pick the one that describes your life today, not the one you aspire to; you can switch types in the app as your season changes.</p>
         <p>The honest test is one question: <em>how much of your income do your needs actually take?</em> Around half — 50/30/20. Much less — Wealth Builder. Much more — Firm Foundation, with your eyes on the exit. The app applies whichever split you choose every time you <a href="/#how-it-works">log income</a>.</p>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -174,16 +175,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

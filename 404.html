@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>Page Not Found — DollarSeeds</title>
   <meta name="description" content="That page doesn't exist. Head back to DollarSeeds — the Christian budgeting app for iPhone." />
@@ -42,23 +43,23 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Page not found</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">404</p>
-      <h1 class="page-title">This seed didn't sprout</h1>
+      <p class="page-eyebrow" data-reveal>404</p>
+      <h1 class="page-title" data-reveal>This seed didn't sprout</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">The page you're looking for doesn't exist — it may have moved, or the link had a typo. Nothing planted here.</p>
+      <p class="prose-intro" data-reveal>The page you're looking for doesn't exist — it may have moved, or the link had a typo. Nothing planted here.</p>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Try one of these instead</h2>
         <ul>
           <li><a href="/">Home</a> — what DollarSeeds is and how it works</li>
@@ -69,7 +70,7 @@
         </ul>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -136,16 +137,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

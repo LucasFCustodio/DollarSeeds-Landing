@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>50/30/20 Budget Rule Explained with Real Numbers — DollarSeeds</title>
   <meta name="description" content="What the 50/30/20 rule is, how needs, wants, and savings work, a worked example on a $3,200 paycheck, and how DollarSeeds applies the split automatically." />
@@ -42,29 +43,29 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">50/30/20 Rule</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Budgeting Guide</p>
-      <h1 class="page-title">The 50/30/20 rule, explained with real numbers</h1>
+      <p class="page-eyebrow" data-reveal>Budgeting Guide</p>
+      <h1 class="page-title" data-reveal>The 50/30/20 rule, explained with real numbers</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">The 50/30/20 rule is the most popular budgeting framework in the world because it's the simplest one that still works. This page explains the rule from scratch, walks through a real paycheck, and shows how <a href="/">DollarSeeds</a> runs the whole thing automatically.</p>
+      <p class="prose-intro" data-reveal>The 50/30/20 rule is the most popular budgeting framework in the world because it's the simplest one that still works. This page explains the rule from scratch, walks through a real paycheck, and shows how <a href="/">DollarSeeds</a> runs the whole thing automatically.</p>
 
-      <section class="prose-section" id="what-is-it">
+      <section class="prose-section" data-reveal id="what-is-it">
         <h2>What is the 50/30/20 rule?</h2>
         <p>The 50/30/20 rule splits your after-tax income into three buckets: <strong>50% for needs, 30% for wants, and 20% for savings</strong>. Every dollar you earn lands in exactly one bucket, so there's never money floating around without a job.</p>
         <p>The rule was popularized by Elizabeth Warren and Amelia Warren Tyagi in their book <em>All Your Worth</em> (2005), and it has stuck around for twenty years because it answers the question every budget beginner actually has — "how much is normal to spend?" — with three numbers you can remember.</p>
       </section>
 
-      <section class="prose-section" id="buckets">
+      <section class="prose-section" data-reveal id="buckets">
         <h2>What counts as a need, a want, and savings?</h2>
         <p>A need is anything you'd have to pay even in a hard month; a want is anything you could pause without your life breaking; savings is everything aimed at the future.</p>
         <ul>
@@ -75,7 +76,7 @@
         <p>The honest edge cases go to needs. Groceries are a need; DoorDash is a want. A car payment is a need; the upgrade you didn't need is a want wearing a need's jacket.</p>
       </section>
 
-      <section class="prose-section" id="worked-example">
+      <section class="prose-section" data-reveal id="worked-example">
         <h2>What does 50/30/20 look like on a real paycheck?</h2>
         <p>Take $3,200 a month after tax — the split gives you $1,600 for needs, $960 for wants, and $640 for savings.</p>
         <div class="table-scroll">
@@ -94,7 +95,7 @@
         <p>Do that for twelve months and the savings bucket alone is <strong>$7,680</strong> — an emergency fund most Americans don't have, built on a completely ordinary income.</p>
       </section>
 
-      <section class="prose-section" id="in-dollarseeds">
+      <section class="prose-section" data-reveal id="in-dollarseeds">
         <h2>How does DollarSeeds implement the rule?</h2>
         <p>DollarSeeds applies the split the moment you log income — you never do the math.</p>
         <ol>
@@ -105,14 +106,14 @@
         <p>No spreadsheet, no formulas, and <a href="/security">no bank login</a> — you stay the one holding the numbers.</p>
       </section>
 
-      <section class="prose-section" id="other-types">
+      <section class="prose-section" data-reveal id="other-types">
         <h2>What if 50/30/20 doesn't fit my situation?</h2>
         <p>Then don't force it — DollarSeeds ships two other budgeting types built on the same 20% savings floor.</p>
         <p>If your needs are small and your income is strong, <a href="/budgeting-types#wealth-builder">Wealth Builder</a> flips the script: 30% needs, 20% wants, and a full 50% to savings. If your needs eat most of your paycheck right now, <a href="/budgeting-types#firm-foundation">Firm Foundation</a> makes honest room for that — 70% needs, 10% wants — while deliberately protecting the same 20% savings rate, because that margin is what gets you out.</p>
         <p>All three are compared side-by-side in the <a href="/budgeting-types">budgeting types guide</a>.</p>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -179,16 +180,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

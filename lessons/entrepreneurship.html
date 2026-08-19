@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>Entrepreneurship as Stewardship: a Biblical View — DollarSeeds</title>
   <meta name="description" content="Is entrepreneurship biblical? What the parable of the talents teaches about work, risk, and multiplying what you're given — and how a budget funds the first step." />
@@ -42,37 +43,37 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li><a href="/lessons">Lessons</a></li>
           <li aria-current="page">Entrepreneurship</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Lesson</p>
-      <h1 class="page-title">Entrepreneurship: multiplying what you've been given</h1>
+      <p class="page-eyebrow" data-reveal>Lesson</p>
+      <h1 class="page-title" data-reveal>Entrepreneurship: multiplying what you've been given</h1>
       <p class="page-meta">By <a href="/about" style="color:var(--emerald);text-decoration:none;">Lucas Custodio</a> &middot; Published <time datetime="2026-08-18">August 18, 2026</time></p>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">Somewhere along the way, ambition got a bad reputation in church. But the Bible is full of builders, traders, and founders — and one of Jesus' most famous parables is, on its face, a story about capital and return. This lesson is about entrepreneurship as stewardship: multiplying what you've been given, for reasons bigger than yourself.</p>
+      <p class="prose-intro" data-reveal>Somewhere along the way, ambition got a bad reputation in church. But the Bible is full of builders, traders, and founders — and one of Jesus' most famous parables is, on its face, a story about capital and return. This lesson is about entrepreneurship as stewardship: multiplying what you've been given, for reasons bigger than yourself.</p>
 
-      <section class="prose-section" id="is-it-biblical">
+      <section class="prose-section" data-reveal id="is-it-biblical">
         <h2>Is entrepreneurship biblical?</h2>
         <p>Yes — Scripture consistently honors work, initiative, and building, from the very first chapters. Humanity's first assignment is to cultivate and multiply what God planted (Genesis 1:28, 2:15). The Proverbs 31 woman evaluates a field, buys it, and plants a vineyard from her earnings — a real-estate deal and an agricultural startup in two verses (Proverbs 31:16). Lydia, one of the first European converts, was a dealer in purple cloth — a merchant whose business hosted a church (Acts 16:14&ndash;15). Paul funded his missionary work making tents.</p>
         <p>What Scripture condemns is never enterprise itself — it's enterprise with no one but yourself at the end of it.</p>
       </section>
 
-      <section class="prose-section" id="parable-of-talents">
+      <section class="prose-section" data-reveal id="parable-of-talents">
         <h2>What does the parable of the talents teach about money?</h2>
         <p>In Matthew 25:14&ndash;30, a master entrusts three servants with his wealth, and the two who put it to work — doubling it — are praised, while the one who buried it in the ground to keep it safe is condemned. A talent was money: years of wages. The parable's uncomfortable math is that <strong>preserving what you were given, untouched, was the failing strategy.</strong></p>
         <p>Three things follow. God gives different amounts to different people, and the reward for faithfulness is identical for the five-talent and two-talent servants — you're measured against what <em>you</em> received. Multiplying it requires risk; burying it was the safe play and the wrong one. And the servants never stop being stewards: it was the master's wealth on day one and on settlement day. That's the frame for every side gig, investment, and business idea you'll ever have.</p>
       </section>
 
-      <section class="prose-section" id="start-small">
+      <section class="prose-section" data-reveal id="start-small">
         <h2>How do I start with what I have?</h2>
         <p>Start smaller than feels impressive, and fund it from margin you already control — "whoever is faithful with very little will also be faithful with much" (Luke 16:10).</p>
         <ol>
@@ -82,18 +83,18 @@
         </ol>
       </section>
 
-      <section class="prose-section" id="ambition-vs-greed">
+      <section class="prose-section" data-reveal id="ambition-vs-greed">
         <h2>What separates ambition from greed?</h2>
         <p>The direction the money points when it arrives. Greed multiplies to accumulate; stewardship multiplies to bless — employees paid well, a family provided for, a church supported, generosity that scales with the business.</p>
         <p>That's the DollarSeeds conviction in one line: we don't want money just to fill our pockets, but to use it in a way that pleases God and blesses the people around us. Ambition inside that frame isn't a temptation to manage. It's a calling to fund.</p>
       </section>
 
-      <section class="prose-section" id="related">
+      <section class="prose-section" data-reveal id="related">
         <h2>Keep going</h2>
         <p>Previous lesson: <a href="/lessons/tithing">Tithing — the first tenth</a>. Or browse <a href="/lessons">all lessons</a>, including the ones inside the app.</p>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -160,16 +161,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

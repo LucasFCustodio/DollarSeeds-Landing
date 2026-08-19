@@ -135,7 +135,8 @@ Report Lighthouse mobile scores before and after, all four categories.
 
 ## G. Indexing
 
-- Add a **Google Search Console** verification meta tag and a **Bing Webmaster Tools** verification meta tag — I'll give you both values, or leave clearly-labeled placeholders and tell me where they are.
+- **Do not add a Google Search Console verification meta tag.** The domain is already verified as a GSC **Domain property** via a DNS TXT record, which covers every subdomain and both protocols. A meta tag would be redundant.
+- **Bing Webmaster Tools** is verified by importing the GSC property, so no Bing meta tag either. If you find one in the repo, remove it.
 - Add an **IndexNow** key file at the site root and a build-step ping so Bing and Yandex learn about changes on deploy.
 - Confirm no page carries `noindex`, and that the legal pages remain indexable (they're trust signals).
 

@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>How DollarSeeds Handles Your Financial Data — Security</title>
   <meta name="description" content="The plain-language version: no bank logins ever, only the data you type in, encrypted in transit, never sold, and deletable in one tap. Here's how DollarSeeds treats your financial data." />
@@ -42,29 +43,29 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Security</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Security</p>
-      <h1 class="page-title">How your financial data is handled</h1>
+      <p class="page-eyebrow" data-reveal>Security</p>
+      <h1 class="page-title" data-reveal>How your financial data is handled</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">This is the plain-language version of how DollarSeeds treats your data — the thing you actually want to know before putting your finances in an app. The formal version is the <a href="/privacy">Privacy Policy</a>; nothing here contradicts it.</p>
+      <p class="prose-intro" data-reveal>This is the plain-language version of how DollarSeeds treats your data — the thing you actually want to know before putting your finances in an app. The formal version is the <a href="/privacy">Privacy Policy</a>; nothing here contradicts it.</p>
 
-      <section class="prose-section" id="no-bank-login">
+      <section class="prose-section" data-reveal id="no-bank-login">
         <h2>DollarSeeds never touches your bank</h2>
         <p>The app has no bank connection feature at all. It never asks for your bank username or password, it holds no credentials that could leak, and it cannot see, move, or freeze a cent of your actual money. There is no third-party account aggregator in the middle.</p>
         <p>Everything in DollarSeeds is there because you typed it — which also happens to be the point: logging a purchase by hand is the moment you actually feel where the money goes.</p>
       </section>
 
-      <section class="prose-section" id="what-we-store">
+      <section class="prose-section" data-reveal id="what-we-store">
         <h2>What we store</h2>
         <ul>
           <li><strong>Your account:</strong> the email address you sign up with.</li>
@@ -74,12 +75,12 @@
         <p>That's the whole list. No contact list, no location tracking, no browsing history.</p>
       </section>
 
-      <section class="prose-section" id="how-its-protected">
+      <section class="prose-section" data-reveal id="how-its-protected">
         <h2>How it's protected</h2>
         <p>Your data travels between your phone and our servers over encrypted connections (HTTPS/TLS) and lives in a managed cloud database with access restricted to your authenticated account. Nobody else's app session can read your records.</p>
       </section>
 
-      <section class="prose-section" id="what-we-never-do">
+      <section class="prose-section" data-reveal id="what-we-never-do">
         <h2>What we never do</h2>
         <ul>
           <li>We never sell your data. To anyone. Ever.</li>
@@ -88,12 +89,12 @@
         </ul>
       </section>
 
-      <section class="prose-section" id="deletion">
+      <section class="prose-section" data-reveal id="deletion">
         <h2>You can walk away completely</h2>
         <p>Deleting your account removes your profile and every financial record tied to it — immediately and permanently, right from Settings in the app. No emails to write, no waiting period, no "deactivation" that secretly keeps things. Full steps on the <a href="/delete-account">delete account page</a>.</p>
       </section>
 
-      <section class="prose-section" id="questions">
+      <section class="prose-section" data-reveal id="questions">
         <h2>Questions?</h2>
         <p>Ask directly — <a href="/support">support</a> goes straight to the <a href="/about">builder</a>, and security questions get answered plainly. For the formal detail, read the <a href="/privacy">Privacy Policy</a> and <a href="/cookie-policy">Cookie Policy</a>.</p>
       </section>
@@ -156,16 +157,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>Tithing: What It Is and How to Budget for It — DollarSeeds</title>
   <meta name="description" content="What the tithe is, where it comes from in the Bible, whether Christians must tithe, and how to build the first tenth into a real budget without guilt." />
@@ -42,43 +43,43 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li><a href="/lessons">Lessons</a></li>
           <li aria-current="page">Tithing</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Lesson</p>
-      <h1 class="page-title">Tithing: the first tenth</h1>
+      <p class="page-eyebrow" data-reveal>Lesson</p>
+      <h1 class="page-title" data-reveal>Tithing: the first tenth</h1>
       <p class="page-meta">By <a href="/about" style="color:var(--emerald);text-decoration:none;">Lucas Custodio</a> &middot; Published <time datetime="2026-08-18">August 18, 2026</time></p>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">Tithing is the oldest financial practice in the Bible and still the most argued about. This lesson covers what it actually is, where it comes from, and how to practice it in a modern budget — with conviction instead of guilt.</p>
+      <p class="prose-intro" data-reveal>Tithing is the oldest financial practice in the Bible and still the most argued about. This lesson covers what it actually is, where it comes from, and how to practice it in a modern budget — with conviction instead of guilt.</p>
 
-      <section class="prose-section" id="what-is-tithing">
+      <section class="prose-section" data-reveal id="what-is-tithing">
         <h2>What is tithing?</h2>
         <p>Tithing is giving the first tenth of your income back to God, historically through the local church. The word itself just means "a tenth" — the Hebrew <em>ma'aser</em> — and the practice predates the law of Moses.</p>
         <p>Two things make the tithe different from ordinary generosity: it comes <strong>first</strong>, before spending, not from whatever's left over; and it's <strong>proportional</strong> — a tenth of a small paycheck and a tenth of a large one are the same act of trust.</p>
       </section>
 
-      <section class="prose-section" id="where-in-the-bible">
+      <section class="prose-section" data-reveal id="where-in-the-bible">
         <h2>Where does tithing come from in the Bible?</h2>
         <p>The tithe first appears with Abraham, centuries before any commandment required it. Abraham gives a tenth of everything to Melchizedek, the priest-king of Salem (Genesis 14:18&ndash;20), and his grandson Jacob later vows a tenth to God unprompted (Genesis 28:20&ndash;22).</p>
         <p>The law of Moses then makes it explicit — "a tithe of everything from the land&hellip; belongs to the LORD; it is holy to the LORD" (Leviticus 27:30) — and Malachi frames withholding it as robbing God, with an extraordinary invitation attached: "Test me in this&hellip; and see if I will not throw open the floodgates of heaven" (Malachi 3:10). Jesus affirms the practice while aiming at the heart behind it: tithing spices from the garden means nothing if justice, mercy, and faithfulness are neglected (Matthew 23:23).</p>
       </section>
 
-      <section class="prose-section" id="do-christians-have-to">
+      <section class="prose-section" data-reveal id="do-christians-have-to">
         <h2>Do Christians have to tithe?</h2>
         <p>The New Testament never commands Christians to give a fixed percentage — it raises the bar instead of lowering it. "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver" (2 Corinthians 9:7).</p>
         <p>That's why many Christians treat the tithe as a <strong>starting line, not a ceiling</strong> — a trellis that trains the habit of giving until generosity grows past it. The tenth is a practical answer to a practical question: "where do I begin?" Begin there, and let cheerfulness, not compulsion, decide where it goes from there.</p>
       </section>
 
-      <section class="prose-section" id="how-to-budget">
+      <section class="prose-section" data-reveal id="how-to-budget">
         <h2>How do I budget for a tithe?</h2>
         <p>Give it first, automatically, the same way the split works: decide the percentage once, and let the budget do the remembering.</p>
         <ol>
@@ -88,18 +89,18 @@
         </ol>
       </section>
 
-      <section class="prose-section" id="cant-afford">
+      <section class="prose-section" data-reveal id="cant-afford">
         <h2>What if I can't afford to tithe right now?</h2>
         <p>Start with something — proportional giving means the amount was never the point. Jesus watched a widow drop two small coins in the temple offering and called it more than everyone else gave, because it cost her more (Mark 12:41&ndash;44).</p>
         <p>If you're in a season where needs eat most of your paycheck, the <a href="/budgeting-types#firm-foundation">Firm Foundation budgeting type</a> was built for you — it makes honest room for tight months while still building the margin that gets you out. Give what you've decided in your heart, keep planting, and revisit the number as the season changes. Little by little, it grows.</p>
       </section>
 
-      <section class="prose-section" id="related">
+      <section class="prose-section" data-reveal id="related">
         <h2>Keep going</h2>
         <p>Next lesson: <a href="/lessons/entrepreneurship">Entrepreneurship — multiplying what you've been given</a>. Or browse <a href="/lessons">all lessons</a>, including the ones inside the app.</p>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -166,16 +167,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

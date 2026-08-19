@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>Money Lessons Rooted in Scripture — DollarSeeds</title>
   <meta name="description" content="Short Scripture-rooted lessons on tithing, entrepreneurship, saving, and giving — read two of them here, and get the rest inside the DollarSeeds app." />
@@ -42,23 +43,23 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Lessons</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Lessons</p>
-      <h1 class="page-title">Lessons from the field</h1>
+      <p class="page-eyebrow" data-reveal>Lessons</p>
+      <h1 class="page-title" data-reveal>Lessons from the field</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">DollarSeeds pairs a budget with something no other budgeting app carries: short, Scripture-rooted lessons on money — the feature App Store reviewers name first. Two lessons are published here in full; the rest live inside the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">app</a>, where your progress is tracked.</p>
+      <p class="prose-intro" data-reveal>DollarSeeds pairs a budget with something no other budgeting app carries: short, Scripture-rooted lessons on money — the feature App Store reviewers name first. Two lessons are published here in full; the rest live inside the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">app</a>, where your progress is tracked.</p>
 
-      <section class="prose-section" id="on-the-site">
+      <section class="prose-section" data-reveal id="on-the-site">
         <h2>Read here</h2>
         <h3><a href="/lessons/tithing">Tithing</a></h3>
         <p>What the tithe actually is, where it comes from in the Bible, and how to practice it with joy instead of guilt — including how a budget makes it automatic. <a href="/lessons/tithing">Read the lesson &rarr;</a></p>
@@ -66,7 +67,7 @@
         <p>The parable of the talents is a business story. What it means to multiply what you've been given, and how a budget funds the first faithful step. <a href="/lessons/entrepreneurship">Read the lesson &rarr;</a></p>
       </section>
 
-      <section class="prose-section" id="in-the-app">
+      <section class="prose-section" data-reveal id="in-the-app">
         <h2>In the app</h2>
         <h3>Saving for the Unexpected <span style="font-family:var(--mono);font-size:0.72rem;color:var(--muted);">· Proverbs 6:7&ndash;8 · 6 min</span></h3>
         <p>Discover how the ants can teach us a valuable lesson about hard work and having enough for each season.</p>
@@ -77,7 +78,7 @@
         </div>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -144,16 +145,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

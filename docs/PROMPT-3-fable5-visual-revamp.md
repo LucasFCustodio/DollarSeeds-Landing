@@ -145,7 +145,7 @@ Five real recordings are already in `assets/video/`. Rename to consistent kebab-
 | Current file | New name | Row content |
 |---|---|---|
 | `logging-income.mov` | `log-income.mp4` | Logging income and watching it split |
-| `loggin-expense.mov` *(note the typo)* | `log-expense.mp4` | Logging an expense with category + subcategory |
+| `logging-expense.mov` *(was loggin-expense.mov before, but the typo was fixed)* | `log-expense.mp4` | Logging an expense with category + subcategory |
 | `adding-goal.mov` | `create-goal.mp4` | Creating a savings goal with target and timeline |
 | `saving-for-goal.MP4` | `fund-goal.mp4` | Setting money aside toward a goal |
 | `saving-for-debt-general-savings.MP4` | `pay-debt.mp4` | Paying off debt using general savings |

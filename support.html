@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>DollarSeeds Support — Contact and Common Questions</title>
   <meta name="description" content="Get help with the DollarSeeds app: contact email, answers to common issues, account deletion, and how to report bugs or request features." />
@@ -42,23 +43,23 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Support</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Support</p>
-      <h1 class="page-title">How can we help?</h1>
+      <p class="page-eyebrow" data-reveal>Support</p>
+      <h1 class="page-title" data-reveal>How can we help?</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">Questions, bugs, ideas, or anything in between — DollarSeeds is built by <a href="/about">one person</a> who reads every message.</p>
+      <p class="prose-intro" data-reveal>Questions, bugs, ideas, or anything in between — DollarSeeds is built by <a href="/about">one person</a> who reads every message.</p>
 
-      <section class="prose-section" id="contact">
+      <section class="prose-section" data-reveal id="contact">
         <h2>Contact</h2>
         <p>Email <a href="mailto:lucasquality555@gmail.com"><strong>lucasquality555@gmail.com</strong></a> from any address — or from your account email if the question is about your account.</p>
         <div class="callout">
@@ -66,7 +67,7 @@
         </div>
       </section>
 
-      <section class="prose-section" id="common-questions">
+      <section class="prose-section" data-reveal id="common-questions">
         <h2>Common questions</h2>
 
         <h3>Does DollarSeeds connect to my bank?</h3>
@@ -85,7 +86,7 @@
         <p>Email it. Feature ideas from real users have already shaped the app — debt payoff goals among them. See what's shipped in the <a href="/changelog">changelog</a>.</p>
       </section>
 
-      <section class="prose-section" id="policies">
+      <section class="prose-section" data-reveal id="policies">
         <h2>Policies</h2>
         <p>The formal documents live here: <a href="/privacy">Privacy Policy</a>, <a href="/terms">Terms of Service</a>, <a href="/cookie-policy">Cookie Policy</a>, and <a href="/delete-account">Account Deletion</a>. The plain-language version of how your data is handled is on the <a href="/security">security page</a>.</p>
       </section>
@@ -148,16 +149,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

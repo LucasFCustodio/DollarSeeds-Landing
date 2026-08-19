@@ -6,9 +6,12 @@ Working documents for the post-launch site revamp (Aug 2026).
 
 | Step | File | Model | Status |
 |---|---|---|---|
-| 1 | `PROMPT-1-fable5-design.md` | Fable 5 | Design & structure revamp. Run first. |
-| 2 | — | — | Review locally, drop in real video/screenshot media, deploy on its own. |
-| 3 | `PROMPT-2-opus5-seo.md` | Opus 5 | Technical SEO & performance. Run only after step 2 is merged and deployed. |
+| 1 | `PROMPT-1-fable5-design.md` | Fable 5 | Structural revamp — sections, new pages, content. **Done.** |
+| 2 | `PROMPT-3-fable5-visual-revamp.md` | Fable 5 | Visual revamp — cream ground, motion, hero tree animation, live budgeting demo, video rows. Also transcodes the HEVC videos. |
+| 3 | — | — | Review locally, deploy the redesign on its own. |
+| 4 | `PROMPT-2-opus5-seo.md` | Opus 5 | Technical SEO & performance. **Run last**, after both design passes are merged — it optimizes markup that step 2 would otherwise churn. |
+
+> Prompt 2 is numbered before Prompt 3 by filename only. **Run order is 1 → 3 → 2.**
 
 Manual (non-Claude Code) steps live in the Google Doc: **DollarSeeds Site Revamp — Manual Steps Checklist**.
 
@@ -32,6 +35,8 @@ Manual (non-Claude Code) steps live in the Google Doc: **DollarSeeds Site Revamp
 - `{{BUNDLE_ID}}`
 
 Both are needed for `apple-app-site-association` (universal links). Get them from App Store Connect / Xcode.
+
+Search Console and Bing no longer need placeholder values — the domain is verified as a GSC **Domain property** via DNS TXT, and Bing is verified by importing that property.
 
 ## Out of scope
 

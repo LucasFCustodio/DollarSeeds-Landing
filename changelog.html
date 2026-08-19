@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>DollarSeeds Changelog — Release Notes</title>
   <meta name="description" content="What's new in DollarSeeds, release by release: debt payoff goals, budgeting types, lessons, and the v1.0 App Store launch." />
@@ -42,23 +43,23 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">Changelog</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">Changelog</p>
-      <h1 class="page-title">What's new in DollarSeeds</h1>
+      <p class="page-eyebrow" data-reveal>Changelog</p>
+      <h1 class="page-title" data-reveal>What's new in DollarSeeds</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">Release notes, newest first. For what's coming next, <a href="/support">tell us what you want</a> — real requests drive the roadmap.</p>
+      <p class="prose-intro" data-reveal>Release notes, newest first. For what's coming next, <a href="/support">tell us what you want</a> — real requests drive the roadmap.</p>
 
-      <section class="prose-section" id="v1-1">
+      <section class="prose-section" data-reveal id="v1-1">
         <h2>Debt payoff goals <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);font-weight:400;">· <time datetime="2026-08">August 2026</time></span></h2>
         <ul>
           <li><strong>New: debt payoff goals.</strong> Point a goal at a balance instead of a purchase and chip away at what you owe on the same screen where your savings goals grow.</li>
@@ -66,7 +67,7 @@
         </ul>
       </section>
 
-      <section class="prose-section" id="v1-0">
+      <section class="prose-section" data-reveal id="v1-0">
         <h2>v1.0 — App Store launch <span style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);font-weight:400;">· <time datetime="2026-08-07">August 7, 2026</time></span></h2>
         <p>DollarSeeds ships on the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">App Store</a>. The launch feature set:</p>
         <ul>
@@ -138,16 +139,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
        Must stay the FIRST script tag on the page, and ahead of the font/resource
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
+  <script>document.documentElement.classList.add('js');</script>
 
   <title>About Lucas Custodio, Builder of DollarSeeds</title>
   <meta name="description" content="Who builds DollarSeeds and why: the story of a faith-driven developer with a background in financial software, SEO, and accounting automation." />
@@ -42,29 +43,29 @@
 <main>
   <div class="page-header">
     <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="page-header-inner" data-reveal-group>
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
         <ol>
           <li><a href="/">Home</a></li>
           <li aria-current="page">About</li>
         </ol>
       </nav>
-      <p class="page-eyebrow">About the Builder</p>
-      <h1 class="page-title">The story behind DollarSeeds</h1>
+      <p class="page-eyebrow" data-reveal>About the Builder</p>
+      <h1 class="page-title" data-reveal>The story behind DollarSeeds</h1>
     </div>
   </div>
 
   <div class="page-body">
     <div class="page-inner">
-      <p class="prose-intro">DollarSeeds is built by <strong>Lucas Custodio</strong>, a developer convinced that faith and finances were never meant to live in separate rooms. This page is the short version of why the app exists and why he's the one building it.</p>
+      <p class="prose-intro" data-reveal>DollarSeeds is built by <strong>Lucas Custodio</strong>, a developer convinced that faith and finances were never meant to live in separate rooms. This page is the short version of why the app exists and why he's the one building it.</p>
 
-      <section class="prose-section" id="faith-and-finances">
+      <section class="prose-section" data-reveal id="faith-and-finances">
         <h2>Why a budgeting app rooted in faith?</h2>
         <p>Finances are one of the most talked-about subjects in the Bible, yet so many Christians either have no idea how to be financially capable, or get lost in greed. DollarSeeds exists to offer a third way: seeing money through the lens God wants us to see it. Faith and finances shouldn't stay disconnected — and the connection should go beyond tithing. It's something worth exploring far more deeply.</p>
         <p>That conviction shapes every screen of the app: Scripture on the dashboard, <a href="/lessons">lessons</a> on tithing and entrepreneurship, and a budgeting system that treats saving and generosity as the point, not the leftovers.</p>
       </section>
 
-      <section class="prose-section" id="experience">
+      <section class="prose-section" data-reveal id="experience">
         <h2>Where the money experience comes from</h2>
         <p>DollarSeeds isn't Lucas's first time building software around money.</p>
         <ul>
@@ -75,13 +76,13 @@
         <p>The pattern across all of it: taking a process people find tedious — accounting, budgeting, tracking — and making it something they'll actually keep doing.</p>
       </section>
 
-      <section class="prose-section" id="dollarseeds">
+      <section class="prose-section" data-reveal id="dollarseeds">
         <h2>What DollarSeeds is</h2>
         <p>A <a href="/">Christian budgeting app for iPhone</a> built on a simple idea: every dollar you earn is a seed, and where you plant it determines what grows. The app splits income across Needs, Wants, and Savings automatically, offers <a href="/budgeting-types">three budgeting types</a> for three seasons of life, and teaches stewardship through built-in <a href="/lessons">lessons</a>.</p>
         <p>Questions, feedback, or just want to say the app helped? <a href="/support">Reach out</a> — every message gets read.</p>
       </section>
 
-      <section class="prose-section">
+      <section class="prose-section" data-reveal>
         <h2>Get DollarSeeds</h2>
         <p>DollarSeeds is free on the App Store. Pick a budgeting type, log your first income, and watch it split.</p>
         <p>
@@ -148,16 +149,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('site-menu');
-    if (!toggle || !menu) return;
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  })();
-</script>
+<script src="/assets/js/site.js"></script>
 </body>
 </html>

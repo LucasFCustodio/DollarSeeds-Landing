@@ -1,13 +1,17 @@
 /* ============================================================
-   DollarSeeds — shared base styles
-   Loaded by every page. Page-specific styles stay inline in a
-   <style> block on each page. Brand tokens live here and must
-   match the original :root set — do not invent new colors.
+   DollarSeeds — shared base styles (visual pass 2)
+   The whole site sits on a warm cream ground. Sections separate
+   by stepping the tonal ramp (--ground-*), never by inverting to
+   dark blocks. --forest is the primary text color; --emerald the
+   accent; --dark is reserved for high-contrast type and solid
+   button fills only.
+   Page-specific styles stay inline in a <style> block per page.
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  /* Original brand tokens — unchanged */
   --cream: #F5F1E6;
   --forest: #0F3D2E;
   --dark: #0A1612;
@@ -19,10 +23,40 @@
   --serif: 'Instrument Serif', Georgia, serif;
   --sans: 'Inter', system-ui, sans-serif;
   --mono: 'JetBrains Mono', monospace;
+
+  /* Tonal ramp off the cream — light to deep warm greige */
+  --ground-0: #FAF7EE;
+  --ground-1: #F5F1E6;
+  --ground-2: #EFEADA;
+  --ground-3: #E9E2CD;
+  --ground-4: #E0D8C0;
+  --ground-5: #D7CEB2;
+
+  /* Surfaces, lines, depth */
+  --card: #FFFDF6;
+  --line: rgba(15, 61, 46, 0.10);
+  --line-soft: rgba(15, 61, 46, 0.065);
+  --shadow-soft: 0 24px 60px -28px rgba(15, 61, 46, 0.22);
+  --shadow-lift: 0 34px 70px -30px rgba(15, 61, 46, 0.28);
+
+  /* Text derivatives (tints of the brand tokens, not new hues) */
+  --ink: var(--forest);
+  --ink-soft: #41564C;
+  --accent-text: #0B8A61; /* emerald darkened for small text on cream */
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 220ms;
+  --dur: 320ms;
 }
 
 html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--cream); color: var(--forest); overflow-x: hidden; }
+body {
+  font-family: var(--sans);
+  background: var(--ground-1);
+  color: var(--ink);
+  overflow-x: hidden;
+}
 
 img, video { max-width: 100%; height: auto; }
 
@@ -32,44 +66,78 @@ img, video { max-width: 100%; height: auto; }
 }
 
 /* ------------------------------------------------------------
-   HEADER / NAV
+   SCROLL REVEALS
+   Hidden state only applies when JS is running (html.js) and the
+   user allows motion — content is always visible otherwise.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.65s var(--ease-out),
+      transform 0.65s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+/* ------------------------------------------------------------
+   HEADER / NAV — transparent over the hero, gains a translucent
+   cream ground and hairline once the page scrolls.
    ------------------------------------------------------------ */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(10,22,18,0.92);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur) var(--ease-out),
+              border-color var(--dur) var(--ease-out),
+              box-shadow var(--dur) var(--ease-out);
+}
+.site-header.is-scrolled,
+.site-header.menu-open {
+  background: rgba(250, 247, 238, 0.86);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(16,185,129,0.12);
+  border-bottom-color: var(--line-soft);
 }
 .site-nav {
-  max-width: 1200px; margin: 0 auto; padding: 0.75rem 2.5rem;
+  max-width: 1200px; margin: 0 auto; padding: 0.875rem 2.5rem;
   display: flex; align-items: center; gap: 1.5rem;
 }
 .nav-logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { width: 38px; height: 37px; border-radius: 50%; }
-.nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); letter-spacing: -0.01em; }
+.nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); letter-spacing: -0.01em; }
 
 .nav-menu { display: flex; align-items: center; gap: 1.5rem; list-style: none; margin-left: auto; }
 .nav-menu a {
-  font-size: 0.875rem; color: rgba(245,241,230,0.75); text-decoration: none;
-  transition: color 0.2s; white-space: nowrap;
+  font-size: 0.875rem; color: var(--ink-soft); text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out); white-space: nowrap;
 }
-.nav-menu a:hover { color: var(--emerald); }
+.nav-menu a:hover { color: var(--accent-text); }
 
 .nav-cta {
   background: var(--emerald); color: var(--dark); flex-shrink: 0;
   font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
   padding: 0.5rem 1.25rem; border-radius: 999px; text-decoration: none;
-  transition: opacity 0.2s, transform 0.15s; white-space: nowrap;
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
 }
-.nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(16,185,129,0.55); }
 
 .nav-toggle {
   display: none; background: none; border: 0; cursor: pointer;
   padding: 0.5rem; margin-left: auto;
 }
 .nav-toggle-bar {
-  display: block; width: 22px; height: 2px; background: var(--cream);
-  border-radius: 2px; margin: 5px 0; transition: transform 0.2s, opacity 0.2s;
+  display: block; width: 22px; height: 2px; background: var(--ink);
+  border-radius: 2px; margin: 5px 0;
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
 }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
@@ -92,9 +160,12 @@ img, video { max-width: 100%; height: auto; }
 /* ------------------------------------------------------------
    APP STORE BADGE
    ------------------------------------------------------------ */
-.appstore-badge { display: inline-block; line-height: 0; }
+.appstore-badge {
+  display: inline-block; line-height: 0; border-radius: 12px;
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
 .appstore-badge img { width: 180px; height: 60px; }
-.appstore-badge:hover { opacity: 0.85; }
+.appstore-badge:hover { opacity: 0.88; transform: translateY(-2px); }
 
 /* ------------------------------------------------------------
    STAR RATING (inline SVG)
@@ -103,98 +174,111 @@ img, video { max-width: 100%; height: auto; }
 .stars svg { width: 16px; height: 16px; fill: var(--harvest); }
 
 /* ------------------------------------------------------------
-   PAGE HEADER (dark band used on all interior pages)
+   PAGE HEADER (interior pages) — lightest step of the ramp,
+   fading into the page ground.
    ------------------------------------------------------------ */
 .page-header {
-  background: var(--dark); padding: 8rem 2.5rem 3.5rem;
+  background: linear-gradient(to bottom, var(--ground-0), var(--ground-1));
+  padding: 9rem 2.5rem 3.5rem;
   position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--line-soft);
 }
 .page-header-blob {
   position: absolute; width: 460px; height: 460px; background: var(--emerald);
-  border-radius: 50%; filter: blur(100px); opacity: 0.09; top: -140px; right: -120px; pointer-events: none;
+  border-radius: 50%; filter: blur(110px); opacity: 0.07; top: -160px; right: -120px; pointer-events: none;
 }
 .page-header-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
 .breadcrumb { margin-bottom: 1.25rem; }
 .breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.breadcrumb li { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(245,241,230,0.4); }
-.breadcrumb li + li::before { content: "/"; margin-right: 0.5rem; color: rgba(245,241,230,0.25); }
-.breadcrumb a { color: var(--emerald); text-decoration: none; }
+.breadcrumb li { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+.breadcrumb li + li::before { content: "/"; margin-right: 0.5rem; color: var(--line); }
+.breadcrumb a { color: var(--accent-text); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .page-eyebrow {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--emerald); margin-bottom: 1rem;
+  text-transform: uppercase; color: var(--accent-text); margin-bottom: 1rem;
 }
 .page-title {
   font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.25rem);
-  color: var(--cream); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem;
+  color: var(--ink); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 0.75rem;
 }
-.page-meta { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: rgba(245,241,230,0.4); }
-.page-lede { font-size: 1.0625rem; color: rgba(245,241,230,0.6); line-height: 1.75; max-width: 640px; margin-top: 0.75rem; }
+.page-meta { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted); }
+.page-meta a { color: var(--accent-text); text-decoration: none; }
+.page-lede { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 640px; margin-top: 0.75rem; }
 
 /* ------------------------------------------------------------
    ARTICLE / PROSE (interior page body)
    ------------------------------------------------------------ */
-.page-body { padding: 4rem 2.5rem 5rem; }
+.page-body { padding: 4rem 2.5rem 5.5rem; }
 .page-inner { max-width: 760px; margin: 0 auto; }
 .page-inner-wide { max-width: 980px; margin: 0 auto; }
 
-.prose-intro { font-size: 1.0625rem; color: #4B5563; line-height: 1.8; margin-bottom: 2.5rem; }
+.prose-intro { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 2.5rem; }
 
 .prose-section { margin-bottom: 2.75rem; scroll-margin-top: 6rem; }
 .prose-section h2 {
-  font-family: var(--serif); font-size: 1.65rem; color: var(--forest);
+  font-family: var(--serif); font-size: 1.65rem; color: var(--ink);
   letter-spacing: -0.01em; margin-bottom: 1rem; padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(15,61,46,0.1);
+  border-bottom: 1px solid var(--line-soft);
 }
-.prose-section h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--forest); margin: 1.5rem 0 0.6rem; }
+.prose-section h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.6rem; }
 .prose-section p { font-size: 1rem; color: #414B54; line-height: 1.8; margin-bottom: 1rem; }
 .prose-section ol, .prose-section ul { margin: 0 0 1rem 1.25rem; }
 .prose-section li { font-size: 1rem; color: #414B54; line-height: 1.75; margin-bottom: 0.5rem; }
-.prose-section a { color: var(--emerald); text-decoration: underline; text-underline-offset: 2px; }
-.prose-section strong { color: var(--forest); }
+.prose-section a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+.prose-section strong { color: var(--ink); }
 .prose-section code {
   font-family: var(--mono); font-size: 0.9em; background: rgba(15,61,46,0.06);
-  padding: 0.1rem 0.4rem; border-radius: 5px; color: var(--forest);
+  padding: 0.1rem 0.4rem; border-radius: 5px; color: var(--ink);
 }
 .prose-section table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; }
 .prose-section th, .prose-section td {
-  border: 1px solid rgba(15,61,46,0.12); padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line); padding: 0.6rem 0.75rem;
   text-align: left; font-size: 0.9375rem; color: #414B54;
 }
-.prose-section th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest); background: rgba(15,61,46,0.04); }
+.prose-section th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: var(--ground-2); }
 .table-scroll { overflow-x: auto; }
 
 .callout {
-  background: rgba(16,185,129,0.06); border-left: 3px solid var(--emerald);
-  border-radius: 0 12px 12px 0; padding: 1.125rem 1.375rem; margin: 1.25rem 0;
+  background: var(--card); border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--emerald);
+  border-radius: 0 14px 14px 0; padding: 1.125rem 1.375rem; margin: 1.25rem 0;
+  box-shadow: var(--shadow-soft);
 }
 .callout p { margin-bottom: 0; font-size: 0.95rem; }
 
 /* ------------------------------------------------------------
-   SITE FOOTER (shared)
+   SITE FOOTER — the deepest step of the ramp, still cream.
    ------------------------------------------------------------ */
-.site-footer { background: var(--dark); padding: 4.5rem 2.5rem 2.5rem; }
+.site-footer {
+  background: var(--ground-5);
+  border-top: 1px solid var(--line-soft);
+  padding: 4.5rem 2.5rem 2.5rem;
+}
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-grid {
   display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem;
-  padding-bottom: 3rem; border-bottom: 1px solid rgba(245,241,230,0.07);
+  padding-bottom: 3rem; border-bottom: 1px solid var(--line);
 }
 .footer-brand img { width: 72px; height: 71px; margin-bottom: 1rem; }
-.footer-brand p { font-size: 0.875rem; color: rgba(245,241,230,0.45); line-height: 1.7; max-width: 280px; }
-.footer-brand .footer-wordmark { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); display: block; margin-bottom: 0.5rem; }
+.footer-brand p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.7; max-width: 280px; }
+.footer-brand .footer-wordmark { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); display: block; margin-bottom: 0.5rem; }
 .footer-col h2 {
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--emerald); margin-bottom: 1rem; font-weight: 500;
+  text-transform: uppercase; color: var(--accent-text); margin-bottom: 1rem; font-weight: 500;
 }
 .footer-col ul { list-style: none; }
 .footer-col li { margin-bottom: 0.625rem; }
-.footer-col a { font-size: 0.875rem; color: rgba(245,241,230,0.55); text-decoration: none; transition: color 0.2s; }
-.footer-col a:hover { color: var(--emerald); }
+.footer-col a {
+  font-size: 0.875rem; color: var(--ink-soft); text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.footer-col a:hover { color: var(--accent-text); }
 .footer-bottom {
   padding-top: 2rem;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
 }
-.footer-copy { font-size: 0.775rem; color: rgba(245,241,230,0.25); font-family: var(--mono); letter-spacing: 0.04em; }
+.footer-copy { font-size: 0.775rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.04em; }
 
 @media (max-width: 900px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
@@ -202,6 +286,18 @@ img, video { max-width: 100%; height: auto; }
 @media (max-width: 580px) {
   .site-footer { padding: 3.5rem 1.25rem 2rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .page-header { padding: 7.5rem 1.25rem 3rem; }
+  .page-header { padding: 8rem 1.25rem 3rem; }
   .page-body { padding: 3rem 1.25rem 4rem; }
+}
+
+/* ------------------------------------------------------------
+   REDUCED MOTION — kill transforms and smooth scrolling globally.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
