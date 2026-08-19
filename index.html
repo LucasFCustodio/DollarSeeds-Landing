@@ -14,7 +14,7 @@
   <meta name="description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/base.css" />
   <style>
     section { scroll-margin-top: 5rem; }
@@ -24,8 +24,9 @@
       text-transform: uppercase; color: var(--accent-text); margin-bottom: 0.875rem;
     }
     .section-heading {
-      font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem);
-      line-height: 1.14; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem;
+      font-family: var(--display); font-size: clamp(1.5rem, 2.7vw, 2.2rem);
+      font-weight: 580;
+      line-height: 1.14; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 1rem;
     }
     .section-heading .accent { font-style: italic; color: var(--accent-text); }
     .section-body { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 62ch; margin-bottom: 3rem; }
@@ -46,7 +47,7 @@
     .blob-2 { width: 340px; height: 340px; background: var(--harvest); opacity: 0.10; bottom: -80px; left: -80px; }
     .hero-inner {
       max-width: 1200px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
       gap: 3.5rem; align-items: center; position: relative; z-index: 1;
     }
     .hero-eyebrow {
@@ -54,18 +55,19 @@
       text-transform: uppercase; color: var(--accent-text); margin-bottom: 1.25rem;
     }
     .hero-heading {
-      font-family: var(--serif); font-size: clamp(2.3rem, 4.2vw, 3.6rem);
-      color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem;
+      font-family: var(--display); font-size: clamp(1.875rem, 3.2vw, 2.75rem);
+      font-weight: 580;
+      color: var(--ink); line-height: 1.12; letter-spacing: -0.005em; margin-bottom: 1rem;
     }
     .hero-heading .accent { color: var(--accent-text); font-style: italic; }
-    .hero-tagline { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--ink-soft); margin-bottom: 1.25rem; }
+    .hero-tagline { font-family: var(--display); font-style: italic; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); margin-bottom: 1.25rem; }
     .hero-desc { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 56ch; margin-bottom: 2.25rem; }
     .hero-cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
     .hero-note { font-size: 0.775rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.04em; }
 
-    .hero-visual { display: flex; justify-content: center; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap; }
+    .hero-visual { position: relative; display: flex; justify-content: flex-start; align-items: flex-end; }
     .phone-frame {
-      width: 250px; flex-shrink: 0; background: #0d0d0d;
+      width: 250px; flex-shrink: 0; background: #0d0d0d; z-index: 1;
       border-radius: 42px; border: 3px solid rgba(15,61,46,0.15);
       overflow: hidden; position: relative;
       box-shadow: var(--shadow-lift);
@@ -77,96 +79,13 @@
     }
     .phone-frame img { width: 100%; height: auto; display: block; }
 
-    /* ===== GROWTH ANIMATION ===== */
-    .growth { width: 262px; max-width: 42%; }
-    .growth-svg { display: block; width: 100%; height: auto; overflow: hidden; }
-    .growth-svg.is-paused * { animation-play-state: paused !important; }
-    .growth-svg .gs-seed, .growth-svg .gs-sprout { opacity: 0; }
-    .growth-svg .gs-seed   { animation: gsSeed 16s infinite; }
-    .growth-svg .gs-sprout { animation: gsSprout 16s infinite; transform-box: fill-box; transform-origin: 50% 100%; }
-    .growth-svg .gs-tree   { animation: gsTreeFade 16s infinite; }
-    .growth-svg .gs-trunk  { animation: gsTrunk 16s infinite; transform-box: fill-box; transform-origin: 50% 100%; }
-    .growth-svg .gs-canopy { animation: gsBreathe 16s infinite; transform-box: fill-box; transform-origin: 50% 60%; }
-    .growth-svg .gs-cloud  { transform-box: fill-box; transform-origin: 50% 80%; }
-    .growth-svg .gs-cloud-l { animation: gsCloudA 16s infinite; }
-    .growth-svg .gs-cloud-r { animation: gsCloudB 16s infinite; }
-    .growth-svg .gs-cloud-c { animation: gsCloudC 16s infinite; }
-    .growth-svg .gs-coin { transform-box: fill-box; transform-origin: 50% 0%; }
-    .growth-svg .gs-coin-1 { animation: gsCoin1 16s infinite; }
-    .growth-svg .gs-coin-2 { animation: gsCoin2 16s infinite; }
-    .growth-svg .gs-coin-3 { animation: gsCoin3 16s infinite; }
-    .growth-svg .gs-coin-4 { animation: gsCoin4 16s infinite; }
-
-    /* Seed: drop (0–8%), land squash, sink & fade (by 16%) */
-    @keyframes gsSeed {
-      0%        { opacity: 0; transform: translateY(-320px); animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6); }
-      2%        { opacity: 1; }
-      8%        { transform: translateY(0); animation-timing-function: ease-out; }
-      10%       { transform: translateY(4px) scale(1.08, 0.9); }
-      12%       { opacity: 1; transform: translateY(6px) scale(1, 1); }
-      16%, 100% { opacity: 0; transform: translateY(12px); }
-    }
-    /* Sprout: emerge (12–20%), yield to the tree (26–32%) */
-    @keyframes gsSprout {
-      0%, 12%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      14%       { opacity: 1; }
-      20%, 26%  { opacity: 1; transform: scale(1); }
-      32%, 100% { opacity: 0; transform: scale(1.1); }
-    }
-    /* Trunk: grow 26–46% */
-    @keyframes gsTrunk {
-      0%, 26%   { transform: scaleY(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      46%, 100% { transform: scaleY(1); }
-    }
-    /* Whole tree: gentle fade-out at cycle end (never a hard cut) */
-    @keyframes gsTreeFade {
-      0%, 92%   { opacity: 1; }
-      98%, 100% { opacity: 0; }
-    }
-    /* Canopy clouds: billow in, staggered 40–56% */
-    @keyframes gsCloudA {
-      0%, 40%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      48%, 100% { opacity: 1; transform: scale(1); }
-    }
-    @keyframes gsCloudB {
-      0%, 44%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      52%, 100% { opacity: 1; transform: scale(1); }
-    }
-    @keyframes gsCloudC {
-      0%, 48%   { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      56%, 100% { opacity: 1; transform: scale(1); }
-    }
-    /* Slow breathe through the fruiting hold */
-    @keyframes gsBreathe {
-      0%, 62%   { transform: scale(1); }
-      78%       { transform: scale(1.014); }
-      92%, 100% { transform: scale(1); }
-    }
-    /* Coins: pop in 56–70%, then sway gently through the hold */
-    @keyframes gsCoin1 {
-      0%, 56%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      62%      { opacity: 1; transform: scale(1) rotate(0deg); }
-      72%      { transform: rotate(4deg); }  80% { transform: rotate(-3deg); }
-      88%      { transform: rotate(2deg); }  96%, 100% { opacity: 1; transform: rotate(0deg); }
-    }
-    @keyframes gsCoin2 {
-      0%, 60%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      66%      { opacity: 1; transform: scale(1) rotate(0deg); }
-      75%      { transform: rotate(-4deg); } 84% { transform: rotate(3deg); }
-      92%      { transform: rotate(-1deg); } 98%, 100% { opacity: 1; transform: rotate(0deg); }
-    }
-    @keyframes gsCoin3 {
-      0%, 64%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      70%      { opacity: 1; transform: scale(1) rotate(0deg); }
-      79%      { transform: rotate(3deg); }  87% { transform: rotate(-3deg); }
-      94%, 100%{ opacity: 1; transform: rotate(0deg); }
-    }
-    @keyframes gsCoin4 {
-      0%, 68%  { opacity: 0; transform: scale(0); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
-      74%      { opacity: 1; transform: scale(1) rotate(0deg); }
-      83%      { transform: rotate(-3deg); } 91% { transform: rotate(2deg); }
-      97%, 100%{ opacity: 1; transform: rotate(0deg); }
-    }
+    /* ===== TREE ILLUSTRATION =====
+       Sits to the RIGHT of the phone with a 4rem gap — no overlap. The group is
+       anchored to the start of the visual column (it is wider than the column,
+       so centring it would pull the phone off-centre); the tree bleeds off the
+       right and .hero's overflow:hidden clips it. */
+    .growth { margin-left: 4rem; flex-shrink: 0; }
+    .growth img { display: block; height: 540px; width: auto; max-width: none; }
 
     /* ===== TRUST BAR ===== */
     .trust { background: var(--ground-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.125rem 2.5rem; }
@@ -209,7 +128,7 @@
       font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent-text);
       display: block; margin-bottom: 0.875rem;
     }
-    .how-step h3 { font-family: var(--serif); font-size: 1.3125rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .how-step h3 { font-family: var(--display); font-size: 1.3125rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
     .how-step p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; }
     .how-split { display: flex; gap: 0.375rem; margin-top: 1rem; }
     .how-split span {
@@ -251,8 +170,9 @@
       text-transform: uppercase; color: var(--accent-text); margin-bottom: 0.75rem;
     }
     .feature-text h3 {
-      font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem);
-      color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 0.875rem;
+      font-family: var(--display); font-size: clamp(1.25rem, 2vw, 1.625rem);
+      font-weight: 580;
+      color: var(--ink); line-height: 1.15; letter-spacing: -0.005em; margin-bottom: 0.875rem;
     }
     .feature-text p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; max-width: 54ch; margin-bottom: 0.875rem; }
     .feature-text p:last-child { margin-bottom: 0; }
@@ -284,12 +204,12 @@
     }
     .demo-income-controls { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
     .demo-income-value {
-      font-family: var(--serif); font-size: 2rem; color: var(--ink);
+      font-family: var(--mono); font-size: 1.75rem; color: var(--ink);
       display: inline-flex; align-items: baseline;
       font-variant-numeric: tabular-nums;
     }
     .demo-income-value input {
-      font-family: var(--serif); font-size: 2rem; color: var(--ink);
+      font-family: var(--mono); font-size: 1.75rem; color: var(--ink);
       font-variant-numeric: tabular-nums;
       background: transparent; border: 0; border-bottom: 2px solid var(--line);
       width: 7ch; padding: 0 0 0.1rem 0.1rem; outline: none;
@@ -303,7 +223,7 @@
       flex: 1; min-width: 200px; accent-color: var(--emerald); height: 6px; cursor: pointer;
     }
     .demo-type-name {
-      font-family: var(--serif); font-style: italic; font-size: 1.1875rem;
+      font-family: var(--display); font-style: italic; font-size: 1.1875rem; font-weight: 400; letter-spacing: 0;
       color: var(--ink); margin-bottom: 1.5rem; min-height: 1.6em;
     }
     .demo-rows { display: flex; flex-direction: column; gap: 1rem; }
@@ -331,7 +251,7 @@
     .demo-row--wants   .demo-bar-fill { background: #A78BFA; }
     .demo-row--savings .demo-bar-fill { background: var(--emerald); }
     .demo-amt {
-      grid-area: amt; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      grid-area: amt; font-family: var(--mono); font-size: clamp(1.3rem, 2.2vw, 1.8rem);
       color: var(--ink); font-variant-numeric: tabular-nums;
       min-width: 7ch; text-align: right;
     }
@@ -350,7 +270,7 @@
       box-shadow: var(--shadow-soft);
       margin-top: 1.75rem;
     }
-    .faith-verse blockquote { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .faith-verse blockquote { font-family: var(--display); font-style: italic; font-size: 1.3125rem; font-weight: 400; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
     .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-text); letter-spacing: 0.08em; font-style: normal; }
     .faith-lessons { overflow: hidden; border-radius: 20px; }
     .faith-lessons-screen { height: 190px; overflow: hidden; background: var(--ground-4); }
@@ -368,7 +288,7 @@
       transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
     }
     .faith-lessons a:hover { background: var(--ground-0); transform: translateX(3px); }
-    .faith-lessons .lesson-name { font-family: var(--serif); font-size: 1.1875rem; color: var(--ink); display: block; margin-bottom: 0.2rem; }
+    .faith-lessons .lesson-name { font-family: var(--display); font-size: 1.1875rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 0.2rem; }
     .faith-lessons .lesson-note { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
 
     /* ===== REVIEWS ===== */
@@ -382,7 +302,7 @@
     }
     .review:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
     .review .stars { margin-bottom: 0.875rem; }
-    .review h3 { font-family: var(--serif); font-size: 1.1875rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .review h3 { font-family: var(--display); font-size: 1.1875rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
     .review blockquote p { font-size: 0.9375rem; color: #414B54; line-height: 1.7; }
     .review footer { margin-top: auto; padding-top: 1.125rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
     .review cite { font-style: normal; color: var(--ink); }
@@ -426,18 +346,29 @@
     }
     .download-inner { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
     .download .eyebrow { color: var(--amber); }
-    .download h2 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); color: var(--ink); line-height: 1.2; margin-bottom: 0.875rem; }
+    .download h2 { font-family: var(--display); font-size: clamp(1.6rem,3vw,2.3rem); font-weight: 580; color: var(--ink); line-height: 1.15; letter-spacing: -0.005em; margin-bottom: 0.875rem; }
     .download p  { color: var(--ink-soft); line-height: 1.75; margin-bottom: 2.25rem; }
     .download .hero-note { display: block; margin-top: 1.25rem; }
 
     /* ===== RESPONSIVE ===== */
+    /* Below ~1440px the visual column is too narrow to hold phone + gap + a
+       540px tree, so the tree scales with the viewport instead of being chopped
+       off by .hero's overflow:hidden. The calc keeps its right edge just inside
+       the viewport all the way down to the 900px breakpoint. */
+    @media (max-width: 1440px) {
+      .growth { margin-left: 2.5rem; }
+      .growth img { height: clamp(230px, calc(53vw - 265px), 500px); }
+    }
     @media (max-width: 900px) {
       .hero { padding: 7.5rem 1.25rem 3.5rem; }
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
       .hero-desc { margin-left: auto; margin-right: auto; }
       .hero-cta { justify-content: center; }
       .phone-frame { width: 200px; }
-      .growth { width: 150px; }
+      /* stacked, centred layout — the tree tucks back behind the phone here */
+      .hero-visual { justify-content: center; }
+      .growth { margin-left: -110px; }
+      .growth img { height: 432px; }
       .trust ul { justify-content: center; }
       .who-grid, .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
       .how-steps { grid-template-columns: 1fr; }
@@ -455,9 +386,10 @@
       .trust { padding: 1rem 1.25rem; }
       .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
       .reviews-grid { grid-template-columns: 1fr; }
-      .hero-visual { gap: 1rem; }
       .phone-frame { width: 185px; }
-      .growth { width: 118px; }
+      .growth { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); margin-left: 0; }
+      .demo-amt { font-size: 1.375rem; }
+      .growth img { height: 398px; }
       .demo-row { grid-template-columns: 1fr; grid-template-areas: "head" "amt" "bar"; row-gap: 0.5rem; min-height: 118px; }
       .demo-amt { text-align: left; }
       .demo-income-controls input[type="range"] { min-width: 100%; }
@@ -512,96 +444,8 @@
           <img src="/assets/images/dashboard-screen.jpeg" width="739" height="1600" fetchpriority="high" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score, a Bible verse card, and Needs, Wants, and Savings progress bars" />
         </div>
         <div class="growth">
-          <svg class="growth-svg" id="growth-svg" viewBox="0 0 300 520" width="300" height="520" role="img"
-               aria-label="Animated illustration in the style of the DollarSeeds logo: a seed drops into soil, sprouts, grows into a cartoon tree, and bears coins as fruit">
-            <!-- Soil -->
-            <g class="gs-soil">
-              <path d="M14 488 C74 450 226 450 286 488 L286 520 L14 520 Z" fill="#DBDBDB" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
-              <ellipse cx="150" cy="466" rx="26" ry="7" fill="#BFBFBF" stroke="#1A1A1A" stroke-width="4"/>
-              <path d="M56 472 q9 -13 21 -4" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
-              <path d="M231 470 q9 -13 20 -4" fill="none" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
-            </g>
-
-            <!-- Seed (drops, lands, sinks) -->
-            <g class="gs-seed">
-              <ellipse cx="150" cy="452" rx="11" ry="14" fill="#EDEDED" stroke="#1A1A1A" stroke-width="5"/>
-              <path d="M150 444 q6 8 0 16" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
-            </g>
-
-            <!-- Sprout -->
-            <g class="gs-sprout">
-              <path d="M150 464 C151 446 148 434 150 416" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-linecap="round"/>
-              <path d="M149 432 C134 431 123 419 125 406 C140 408 151 418 149 432 Z" fill="#F2F2F2" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
-              <path d="M151 420 C166 419 177 407 175 394 C160 396 149 406 151 420 Z" fill="#E3E3E3" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
-            </g>
-
-            <!-- Tree: trunk grows, canopy billows, coins fruit -->
-            <g class="gs-tree">
-              <g class="gs-trunk">
-                <path d="M131 470 C129 424 148 398 139 352 C134 320 150 302 146 264 L168 262 C164 300 178 322 169 362 C162 398 179 426 177 470 Z"
-                      fill="#EDEDED" stroke="#1A1A1A" stroke-width="5" stroke-linejoin="round"/>
-                <path d="M147 428 q9 -6 13 -17" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
-                <path d="M141 344 C120 336 110 322 108 302" fill="none" stroke="#1A1A1A" stroke-width="9" stroke-linecap="round"/>
-                <path d="M167 322 C188 314 199 302 203 284" fill="none" stroke="#1A1A1A" stroke-width="9" stroke-linecap="round"/>
-              </g>
-              <g class="gs-canopy">
-                <!-- Left cloud -->
-                <g class="gs-cloud gs-cloud-l">
-                  <g stroke="#1A1A1A" stroke-width="10" fill="#1A1A1A">
-                    <circle cx="88" cy="252" r="30"/><circle cx="120" cy="238" r="34"/><circle cx="146" cy="258" r="28"/>
-                  </g>
-                  <g fill="#ECECEC">
-                    <circle cx="88" cy="252" r="30"/><circle cx="120" cy="238" r="34"/><circle cx="146" cy="258" r="28"/>
-                  </g>
-                </g>
-                <!-- Right cloud -->
-                <g class="gs-cloud gs-cloud-r">
-                  <g stroke="#1A1A1A" stroke-width="10" fill="#1A1A1A">
-                    <circle cx="196" cy="234" r="32"/><circle cx="226" cy="250" r="27"/>
-                  </g>
-                  <g fill="#E0E0E0">
-                    <circle cx="196" cy="234" r="32"/><circle cx="226" cy="250" r="27"/>
-                  </g>
-                </g>
-                <!-- Center crown -->
-                <g class="gs-cloud gs-cloud-c">
-                  <g stroke="#1A1A1A" stroke-width="10" fill="#1A1A1A">
-                    <circle cx="112" cy="172" r="42"/><circle cx="158" cy="140" r="50"/><circle cx="204" cy="170" r="38"/><circle cx="152" cy="188" r="42"/>
-                  </g>
-                  <g fill="#F4F4F4">
-                    <circle cx="112" cy="172" r="42"/><circle cx="158" cy="140" r="50"/><circle cx="204" cy="170" r="38"/><circle cx="152" cy="188" r="42"/>
-                  </g>
-                </g>
-              </g>
-
-              <!-- Coin fruit -->
-              <g class="gs-coin gs-coin-1">
-                <line x1="92" y1="276" x2="92" y2="286" stroke="#1A1A1A" stroke-width="4"/>
-                <circle cx="92" cy="302" r="17" fill="#F4F4F4" stroke="#1A1A1A" stroke-width="5"/>
-                <circle cx="92" cy="302" r="11" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-                <text x="92" y="308" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-weight="bold" fill="#1A1A1A">$</text>
-              </g>
-              <g class="gs-coin gs-coin-2">
-                <line x1="208" y1="272" x2="208" y2="282" stroke="#1A1A1A" stroke-width="4"/>
-                <circle cx="208" cy="298" r="16" fill="#ECECEC" stroke="#1A1A1A" stroke-width="5"/>
-                <circle cx="208" cy="298" r="10.5" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-                <text x="208" y="304" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#1A1A1A">$</text>
-              </g>
-              <g class="gs-coin gs-coin-3">
-                <line x1="152" y1="226" x2="152" y2="236" stroke="#1A1A1A" stroke-width="4"/>
-                <circle cx="152" cy="252" r="15" fill="#F4F4F4" stroke="#1A1A1A" stroke-width="5"/>
-                <circle cx="152" cy="252" r="10" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-                <text x="152" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="bold" fill="#1A1A1A">$</text>
-              </g>
-              <g class="gs-coin gs-coin-4">
-                <line x1="238" y1="270" x2="238" y2="278" stroke="#1A1A1A" stroke-width="4"/>
-                <circle cx="238" cy="292" r="13" fill="#E0E0E0" stroke="#1A1A1A" stroke-width="5"/>
-                <circle cx="238" cy="292" r="8.5" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-                <text x="238" y="297" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1A1A1A">$</text>
-              </g>
-            </g>
-
-          </svg>
+          <img src="/assets/images/dollarseeds-tree.png" width="1349" height="1349" fetchpriority="low"
+               alt="Black-and-white cartoon money tree in the DollarSeeds logo style: a cloud-like canopy bearing dollar-coin fruit, growing from a mound of soil" />
         </div>
       </div>
     </div>
@@ -1164,16 +1008,6 @@
       .catch(function () { /* keep static fallback */ });
   })();
 
-  // Growth illustration: pause the loop while it's off screen.
-  (function () {
-    var svg = document.getElementById('growth-svg');
-    if (!svg || !('IntersectionObserver' in window)) return;
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        svg.classList.toggle('is-paused', !entry.isIntersecting);
-      });
-    }, { threshold: 0 }).observe(svg);
-  })();
 
   // Feature videos: play the row in view, pause everything else.
   // With reduced motion: no autoplay — a manual play control appears instead.

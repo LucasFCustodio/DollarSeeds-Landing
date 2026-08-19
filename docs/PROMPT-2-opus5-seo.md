@@ -16,8 +16,8 @@ You are doing the technical SEO and performance pass on the DollarSeeds marketin
 - `.app` is an HSTS-preloaded TLD — the entire TLD is HTTPS-only at the browser level. Confirm Netlify's "Force HTTPS" is on and that nothing in the repo emits an `http://` URL, including inside JSON-LD.
 - App Store URL: `https://apps.apple.com/us/app/dollarseeds/id6780037284`
 - App Store ID: `6780037284`
-- Apple Team ID: `{{APPLE_TEAM_ID}}` — needed for universal links. Stop and ask if unfilled.
-- Bundle ID: `{{BUNDLE_ID}}` — same.
+- Apple Team ID: `YBSBHHBC5R` — needed for universal links. Stop and ask if unfilled.
+- Bundle ID: `com.lucasfcustodio.dollarseeds` — same.
 - App released 2026-08-07. iOS only. Free. Categories: Finance, Education.
 - Author/publisher: Lucas Custodio.
 - Static site on Netlify. No framework, no bundler. Adding a small Node build step is acceptable; adding a framework is not.

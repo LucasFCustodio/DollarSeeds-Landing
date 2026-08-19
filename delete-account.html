@@ -13,7 +13,7 @@
   <meta name="description" content="How to delete your DollarSeeds account and associated data, what is removed, and what may be retained." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,13 +26,13 @@
       --violet: #7C3AED;
       --harvest: #F4D35E;
       --muted: #6B7280;
-      --serif: 'Instrument Serif', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
+      --display: 'Urbanist', system-ui, sans-serif;
+      --sans: 'Figtree', system-ui, sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--cream); color: var(--forest); overflow-x: hidden; }
+    body { font-family: var(--sans); font-weight: 400; background: var(--cream); color: var(--forest); overflow-x: hidden; }
 
     /* NAV */
     nav {
@@ -49,7 +49,7 @@
       display: flex; align-items: center; justify-content: center;
       border: 1px solid rgba(16,185,129,0.3);
     }
-    .nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--forest); letter-spacing: -0.01em; }
+    .nav-logo-name { font-family: var(--display); font-size: 1.125rem; font-weight: 580; color: var(--forest); letter-spacing: 0; }
     .nav-cta {
       background: var(--emerald); color: var(--dark);
       font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
@@ -74,8 +74,9 @@
       text-transform: uppercase; color: #0B8A61; margin-bottom: 1rem;
     }
     .legal-title {
-      font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.25rem);
-      color: var(--forest); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem;
+      font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 580;
+      color: var(--forest); line-height: 1.13; letter-spacing: -0.005em; margin-bottom: 0.75rem;
     }
     .legal-meta { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted); }
 
@@ -87,11 +88,11 @@
 
     .legal-section { margin-bottom: 2.75rem; scroll-margin-top: 6rem; }
     .legal-section h2 {
-      font-family: var(--serif); font-size: 1.65rem; color: var(--forest);
-      letter-spacing: -0.01em; margin-bottom: 1rem; padding-bottom: 0.5rem;
+      font-family: var(--display); font-size: 1.65rem; font-weight: 580; color: var(--forest);
+      line-height: 1.15; letter-spacing: -0.005em; margin-bottom: 1rem; padding-bottom: 0.5rem;
       border-bottom: 1px solid rgba(15,61,46,0.1);
     }
-    .legal-section h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--forest); margin: 1.5rem 0 0.6rem; }
+    .legal-section h3 { font-family: var(--display); font-size: 1.0625rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--forest); margin: 1.5rem 0 0.6rem; }
     .legal-section p { font-size: 1rem; color: #414B54; line-height: 1.8; margin-bottom: 1rem; }
     .legal-section ol, .legal-section ul { margin: 0 0 1rem 1.25rem; }
     .legal-section li { font-size: 1rem; color: #414B54; line-height: 1.75; margin-bottom: 0.5rem; }

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://app.termly.io" />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&family=Figtree:wght@300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,13 +28,13 @@
       --violet: #7C3AED;
       --harvest: #F4D35E;
       --muted: #6B7280;
-      --serif: 'Instrument Serif', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
+      --display: 'Urbanist', system-ui, sans-serif;
+      --sans: 'Figtree', system-ui, sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--cream); color: var(--forest); overflow-x: hidden; }
+    body { font-family: var(--sans); font-weight: 400; background: var(--cream); color: var(--forest); overflow-x: hidden; }
 
     /* NAV */
     nav {
@@ -51,7 +51,7 @@
       display: flex; align-items: center; justify-content: center;
       border: 1px solid rgba(16,185,129,0.3);
     }
-    .nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--forest); letter-spacing: -0.01em; }
+    .nav-logo-name { font-family: var(--display); font-size: 1.125rem; font-weight: 580; color: var(--forest); letter-spacing: 0; }
     .nav-cta {
       background: var(--emerald); color: var(--dark);
       font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
@@ -76,8 +76,9 @@
       text-transform: uppercase; color: #0B8A61; margin-bottom: 1rem;
     }
     .legal-title {
-      font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.25rem);
-      color: var(--forest); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem;
+      font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 580;
+      color: var(--forest); line-height: 1.13; letter-spacing: -0.005em; margin-bottom: 0.75rem;
     }
     .legal-meta { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted); }
 
@@ -91,19 +92,21 @@
        specificity. min-height reserves space so the page doesn't jump while loading. */
     .termly-doc { overflow-wrap: break-word; min-height: 60vh; }
     .termly-doc [data-custom-class='title'], .termly-doc [data-custom-class='title'] * {
-      font-family: var(--serif) !important; font-size: 2rem !important;
-      color: var(--forest) !important; line-height: 1.2 !important;
+      font-family: var(--display) !important; font-size: 2rem !important; font-weight: 580 !important;
+      color: var(--forest) !important; line-height: 1.15 !important; letter-spacing: -0.005em !important;
     }
     .termly-doc [data-custom-class='subtitle'], .termly-doc [data-custom-class='subtitle'] * {
       font-family: var(--mono) !important; font-size: 0.75rem !important;
       color: var(--muted) !important; letter-spacing: 0.05em !important;
     }
     .termly-doc [data-custom-class='heading_1'], .termly-doc [data-custom-class='heading_1'] * {
-      font-family: var(--serif) !important; font-size: 1.5rem !important; color: var(--forest) !important;
+      font-family: var(--display) !important; font-size: 1.5rem !important; font-weight: 580 !important;
+      line-height: 1.15 !important; letter-spacing: -0.005em !important; color: var(--forest) !important;
     }
     .termly-doc [data-custom-class='heading_2'], .termly-doc [data-custom-class='heading_2'] * {
-      font-family: var(--sans) !important; font-size: 1.0625rem !important;
-      font-weight: 600 !important; color: var(--forest) !important;
+      font-family: var(--display) !important; font-size: 1.0625rem !important;
+      font-weight: 580 !important; line-height: 1.15 !important; letter-spacing: 0 !important;
+      color: var(--forest) !important;
     }
     .termly-doc [data-custom-class='body_text'], .termly-doc [data-custom-class='body_text'] * {
       font-family: var(--sans) !important; font-size: 1rem !important; color: #414B54 !important;

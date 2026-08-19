@@ -20,8 +20,8 @@
   --violet: #7C3AED;
   --harvest: #F4D35E;
   --muted: #6B7280;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'Inter', system-ui, sans-serif;
+  --display: 'Urbanist', system-ui, sans-serif;
+  --sans: 'Figtree', system-ui, sans-serif;
   --mono: 'JetBrains Mono', monospace;
 
   /* Tonal ramp off the cream — light to deep warm greige */
@@ -53,6 +53,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
+  font-weight: 400;
   background: var(--ground-1);
   color: var(--ink);
   overflow-x: hidden;
@@ -111,7 +112,7 @@ img, video { max-width: 100%; height: auto; }
 }
 .nav-logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { width: 38px; height: 37px; border-radius: 50%; }
-.nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); letter-spacing: -0.01em; }
+.nav-logo-name { font-family: var(--display); font-size: 1.125rem; font-weight: 580; color: var(--ink); letter-spacing: 0; }
 
 .nav-menu { display: flex; align-items: center; gap: 1.5rem; list-style: none; margin-left: auto; }
 .nav-menu a {
@@ -199,8 +200,9 @@ img, video { max-width: 100%; height: auto; }
   text-transform: uppercase; color: var(--accent-text); margin-bottom: 1rem;
 }
 .page-title {
-  font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.25rem);
-  color: var(--ink); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 0.75rem;
+  font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 580;
+  color: var(--ink); line-height: 1.12; letter-spacing: -0.005em; margin-bottom: 0.75rem;
 }
 .page-meta { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted); }
 .page-meta a { color: var(--accent-text); text-decoration: none; }
@@ -217,11 +219,11 @@ img, video { max-width: 100%; height: auto; }
 
 .prose-section { margin-bottom: 2.75rem; scroll-margin-top: 6rem; }
 .prose-section h2 {
-  font-family: var(--serif); font-size: 1.65rem; color: var(--ink);
-  letter-spacing: -0.01em; margin-bottom: 1rem; padding-bottom: 0.5rem;
+  font-family: var(--display); font-size: 1.65rem; font-weight: 580; color: var(--ink);
+  line-height: 1.15; letter-spacing: -0.005em; margin-bottom: 1rem; padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--line-soft);
 }
-.prose-section h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--ink); margin: 1.5rem 0 0.6rem; }
+.prose-section h3 { font-family: var(--display); font-size: 1.0625rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); margin: 1.5rem 0 0.6rem; }
 .prose-section p { font-size: 1rem; color: #414B54; line-height: 1.8; margin-bottom: 1rem; }
 .prose-section ol, .prose-section ul { margin: 0 0 1rem 1.25rem; }
 .prose-section li { font-size: 1rem; color: #414B54; line-height: 1.75; margin-bottom: 0.5rem; }
@@ -262,7 +264,7 @@ img, video { max-width: 100%; height: auto; }
 }
 .footer-brand img { width: 72px; height: 71px; margin-bottom: 1rem; }
 .footer-brand p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.7; max-width: 280px; }
-.footer-brand .footer-wordmark { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); display: block; margin-bottom: 0.5rem; }
+.footer-brand .footer-wordmark { font-family: var(--display); font-size: 1.25rem; font-weight: 580; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 0.5rem; }
 .footer-col h2 {
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--accent-text); margin-bottom: 1rem; font-weight: 500;
