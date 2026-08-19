@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1560" viewBox="0 0 720 1560" role="img" aria-label="Placeholder poster for the debt payoff goal video">
+  <rect width="720" height="1560" fill="#0A1612"/>
+  <circle cx="600" cy="180" r="320" fill="#10B981" opacity="0.07"/>
+  <circle cx="80" cy="1400" r="240" fill="#F4D35E" opacity="0.06"/>
+  <g transform="translate(316,660)">
+    <path d="M44 8C20 36 10 58 10 78a34 34 0 0068 0C78 58 68 36 44 8z" fill="#10B981"/>
+    <path d="M44 56v46" stroke="#0F3D2E" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <text x="360" y="810" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#F5F1E6">Debt payoff goals</text>
+  <text x="360" y="856" text-anchor="middle" font-family="monospace" font-size="19" letter-spacing="3" fill="#10B981">VIDEO COMING SOON</text>
+</svg>

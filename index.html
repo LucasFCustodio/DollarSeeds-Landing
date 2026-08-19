@@ -9,61 +9,18 @@
        link tags below so Auto Blocker can gate them before they load. -->
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
 
-  <title>DollarSeeds — Make Your Dollar Seeds Sprout into Blessings</title>
-  <meta name="description" content="A faith-rooted budgeting app built on the 50/30/20 rule. Track your income, expenses, and goals through the lens of biblical stewardship." />
+  <title>Christian Budgeting App for Financial Freedom — DollarSeeds</title>
+  <meta name="description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --cream: #F5F1E6;
-      --forest: #0F3D2E;
-      --dark: #0A1612;
-      --emerald: #10B981;
-      --amber: #C2701C;
-      --violet: #7C3AED;
-      --harvest: #F4D35E;
-      --muted: #6B7280;
-      --serif: 'Instrument Serif', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
-      --mono: 'JetBrains Mono', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--cream); color: var(--forest); overflow-x: hidden; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(10,22,18,0.88);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(16,185,129,0.12);
-    }
-    .nav-logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; }
-    .nav-logo-icon {
-      width: 36px; height: 36px; background: var(--forest); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(16,185,129,0.3);
-    }
-    .nav-logo-name { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); letter-spacing: -0.01em; }
-    .nav-cta {
-      background: var(--emerald); color: var(--dark);
-      font-family: var(--sans); font-size: 0.875rem; font-weight: 600;
-      padding: 0.5rem 1.375rem; border-radius: 999px; text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    /* HERO */
+    /* ===== HERO ===== */
     .hero {
-      background: var(--dark); min-height: 100vh;
-      padding: 8rem 2.5rem 5rem;
+      background: var(--dark);
+      padding: 8.5rem 2.5rem 4.5rem;
       position: relative; overflow: hidden;
-      display: flex; align-items: center;
     }
     .hero-blob { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
     .blob-1 { width: 560px; height: 560px; background: var(--emerald); opacity: 0.1; top: -120px; right: -120px; }
@@ -71,48 +28,32 @@
 
     .hero-inner {
       max-width: 1200px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; align-items: center;
+      position: relative; z-index: 1;
     }
     .hero-eyebrow {
       font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
       text-transform: uppercase; color: var(--emerald); margin-bottom: 1.25rem;
     }
     .hero-heading {
-      font-family: var(--serif); font-size: clamp(2.4rem, 4.5vw, 3.75rem);
-      color: var(--cream); line-height: 1.14; letter-spacing: -0.02em; margin-bottom: 1rem;
+      font-family: var(--serif); font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+      color: var(--cream); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 1rem;
     }
-    .hero-heading em { color: var(--emerald); font-style: italic; }
-    .hero-sub {
-      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(245,241,230,0.4); margin-bottom: 2.5rem;
+    .hero-heading .accent { color: var(--emerald); font-style: italic; }
+    .hero-tagline {
+      font-family: var(--serif); font-style: italic; font-size: 1.25rem;
+      color: rgba(245,241,230,0.65); margin-bottom: 1.25rem;
     }
-
-    .waitlist-form { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .waitlist-form input[type="email"] {
-      flex: 1; min-width: 210px;
-      padding: 0.875rem 1.375rem;
-      background: rgba(245,241,230,0.07);
-      border: 1px solid rgba(245,241,230,0.18);
-      border-radius: 999px; color: var(--cream);
-      font-family: var(--sans); font-size: 0.9375rem;
-      outline: none; transition: border-color 0.2s;
+    .hero-desc {
+      font-size: 1.0625rem; color: rgba(245,241,230,0.7); line-height: 1.75;
+      max-width: 540px; margin-bottom: 2.25rem;
     }
-    .waitlist-form input[type="email"]::placeholder { color: rgba(245,241,230,0.3); }
-    .waitlist-form input[type="email"]:focus { border-color: var(--emerald); }
-    .waitlist-form button {
-      background: var(--emerald); color: var(--dark);
-      font-family: var(--sans); font-weight: 600; font-size: 0.9375rem;
-      padding: 0.875rem 1.875rem; border: none; border-radius: 999px;
-      cursor: pointer; white-space: nowrap;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .waitlist-form button:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .hero-note { margin-top: 0.875rem; font-size: 0.775rem; color: rgba(245,241,230,0.3); font-family: var(--mono); letter-spacing: 0.04em; }
+    .hero-cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .hero-note { font-size: 0.775rem; color: rgba(245,241,230,0.35); font-family: var(--mono); letter-spacing: 0.04em; }
 
     .phone-wrap { display: flex; justify-content: center; align-items: center; }
     .phone-frame {
-      width: 255px; height: 530px; background: #0d0d0d;
+      width: 255px; background: #0d0d0d;
       border-radius: 42px; border: 3px solid rgba(255,255,255,0.1);
       overflow: hidden; position: relative;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.55), 0 0 60px rgba(16,185,129,0.08);
@@ -122,417 +63,970 @@
       width: 95px; height: 26px; background: #0d0d0d;
       border-radius: 0 0 18px 18px; z-index: 2;
     }
-    .phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .phone-frame img { width: 100%; height: auto; display: block; }
 
-    /* SHARED */
+    /* ===== TRUST BAR ===== */
+    .trust { background: var(--forest); padding: 1.125rem 2.5rem; }
+    .trust ul {
+      max-width: 1200px; margin: 0 auto; list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .trust li {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.875rem; color: rgba(245,241,230,0.8);
+    }
+    .trust li strong { color: var(--cream); font-weight: 600; }
+    .trust-icon { width: 16px; height: 16px; fill: var(--emerald); flex-shrink: 0; }
+
+    /* ===== SHARED SECTION CHROME ===== */
     .section-inner { max-width: 1200px; margin: 0 auto; }
     .eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.75rem; }
     .section-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.9rem); line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 1rem; }
-    .section-body { font-size: 1.0625rem; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 3.5rem; }
+    .section-heading .accent { font-style: italic; }
+    .section-body { font-size: 1.0625rem; color: var(--muted); line-height: 1.75; max-width: 560px; margin-bottom: 3rem; }
+    section { scroll-margin-top: 5rem; }
 
-    /* FEATURES */
-    .features { background: var(--cream); padding: 7rem 2.5rem; }
+    /* ===== WHO IT'S FOR ===== */
+    .who { background: var(--cream); padding: 6rem 2.5rem 5rem; }
+    .who-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+    .who-prose p { font-size: 1.125rem; color: #3F4A50; line-height: 1.85; margin-bottom: 1.25rem; }
+    .who-replaces {
+      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
+      padding: 2rem 2.25rem;
+    }
+    .who-replaces h3 { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; font-weight: 500; }
+    .who-replaces ul { list-style: none; }
+    .who-replaces li {
+      padding: 0.875rem 0; border-bottom: 1px solid rgba(15,61,46,0.07);
+      font-size: 0.9375rem; color: #414B54; line-height: 1.6;
+    }
+    .who-replaces li:last-of-type { border-bottom: 0; }
+    .who-replaces li strong { color: var(--forest); display: block; margin-bottom: 0.15rem; }
+    .who-replaces .who-replaces-result {
+      margin-top: 1rem; padding: 0.875rem 1.125rem; border-radius: 12px;
+      background: rgba(16,185,129,0.08); color: var(--forest); font-size: 0.9375rem;
+    }
+    .who-replaces .who-replaces-result strong { color: var(--emerald); }
+
+    /* ===== HOW IT WORKS ===== */
+    .how { background: #EAE6DB; padding: 6rem 2.5rem; }
+    .how-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: step; }
+    .how-step {
+      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
+      padding: 1.875rem; counter-increment: step; position: relative;
+    }
+    .how-step::before {
+      content: "0" counter(step);
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--emerald);
+      display: block; margin-bottom: 0.875rem;
+    }
+    .how-step h3 { font-family: var(--serif); font-size: 1.3125rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .how-step p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; }
+    .how-split { display: flex; gap: 0.375rem; margin-top: 1rem; }
+    .how-split span {
+      font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.3rem 0.65rem; border-radius: 999px;
+    }
+    .how-split .b-needs { background: rgba(194,112,28,0.12); color: var(--amber); }
+    .how-split .b-wants { background: rgba(124,58,237,0.1); color: var(--violet); }
+    .how-split .b-savings { background: rgba(16,185,129,0.12); color: #0B8A61; }
+    .how-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
+    .how-more a { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .how-more a:hover { color: var(--emerald); }
+
+    /* ===== FEATURES ===== */
+    .features { background: var(--cream); padding: 6rem 2.5rem; }
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .feature-card:nth-child(4) { grid-column: 1 / 2; }
-    .feature-card:nth-child(5) { grid-column: 2 / 4; }
-
     .feature-card {
       background: #fff; border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(15,61,46,0.07);
+      border: 1px solid rgba(15,61,46,0.07); margin: 0;
       transition: transform 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column;
     }
     .feature-card:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(15,61,46,0.1); }
-
-    .card-screen { height: 310px; overflow: hidden; background: var(--dark); }
-    .card-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-    .card-body { padding: 1.5rem; }
+    .card-media { height: 310px; overflow: hidden; background: var(--dark); position: relative; flex-shrink: 0; }
+    .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .card-media video { cursor: pointer; }
+    .feature-card figcaption { padding: 1.5rem; }
     .card-tag {
       display: inline-block; font-family: var(--mono); font-size: 0.63rem;
       letter-spacing: 0.12em; text-transform: uppercase;
       padding: 0.25rem 0.7rem; border-radius: 999px; margin-bottom: 0.75rem;
     }
-    .tag-green  { background: rgba(16,185,129,0.12); color: var(--emerald); }
+    .tag-green  { background: rgba(16,185,129,0.12); color: #0B8A61; }
     .tag-violet { background: rgba(124,58,237,0.1);  color: var(--violet); }
     .tag-amber  { background: rgba(194,112,28,0.1);  color: var(--amber); }
-    .tag-gold   { background: rgba(244,211,94,0.2);  color: #9A6B00; }
+    .tag-gold   { background: rgba(244,211,94,0.25); color: #9A6B00; }
     .card-title { font-family: var(--serif); font-size: 1.3125rem; color: var(--forest); margin-bottom: 0.4rem; }
     .card-desc  { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+    .feature-card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: 340px 1fr; }
+    .feature-card--wide .card-media { height: 100%; max-height: 360px; }
+    .feature-card--wide figcaption { padding: 2.25rem; align-self: center; }
+    .feature-card--wide .card-desc { max-width: 560px; font-size: 0.9375rem; }
 
-    /* WHY */
-    .why { background: var(--forest); padding: 7rem 2.5rem; position: relative; overflow: hidden; }
-    .why-glow {
+    /* ===== BUDGETING TYPES ===== */
+    .types { background: var(--dark); padding: 6rem 2.5rem; position: relative; overflow: hidden; }
+    .types-glow {
+      position: absolute; width: 700px; height: 700px; background: var(--emerald);
+      border-radius: 50%; filter: blur(140px); opacity: 0.05;
+      left: -200px; top: -150px; pointer-events: none;
+    }
+    .types .section-inner { position: relative; z-index: 1; }
+    .types .eyebrow { color: var(--harvest); }
+    .types .section-heading { color: var(--cream); }
+    .types .section-body { color: rgba(245,241,230,0.55); }
+    .types-compare { margin-bottom: 3rem; overflow-x: auto; }
+    .types-compare table { width: 100%; max-width: 720px; border-collapse: collapse; }
+    .types-compare caption {
+      caption-side: top; text-align: left; font-family: var(--serif); font-style: italic;
+      font-size: 1.125rem; color: var(--harvest); padding-bottom: 0.875rem;
+    }
+    .types-compare th, .types-compare td {
+      padding: 0.75rem 1rem; text-align: left; font-size: 0.9375rem;
+      border-bottom: 1px solid rgba(245,241,230,0.1);
+    }
+    .types-compare thead th { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,241,230,0.5); }
+    .types-compare thead th a { color: var(--emerald); text-decoration: none; }
+    .types-compare thead th a:hover { text-decoration: underline; }
+    .types-compare tbody th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+    .types-compare tbody tr:nth-child(1) th { color: var(--amber); }
+    .types-compare tbody tr:nth-child(2) th { color: #A78BFA; }
+    .types-compare tbody tr:nth-child(3) th { color: var(--emerald); }
+    .types-compare td { color: var(--cream); font-weight: 600; }
+
+    .type-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .type-card {
+      background: rgba(245,241,230,0.04); border: 1px solid rgba(245,241,230,0.09);
+      border-radius: 20px; padding: 1.875rem; scroll-margin-top: 6rem;
+      display: flex; flex-direction: column;
+    }
+    .type-card h3 { font-family: var(--serif); font-size: 1.5rem; color: var(--cream); margin-bottom: 0.25rem; }
+    .type-split-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--harvest); margin-bottom: 1rem; }
+    .type-bar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; margin-bottom: 1.25rem; }
+    .type-bar .seg-needs { background: var(--amber); }
+    .type-bar .seg-wants { background: #A78BFA; }
+    .type-bar .seg-savings { background: var(--emerald); }
+    .type-card p { font-size: 0.9375rem; color: rgba(245,241,230,0.6); line-height: 1.75; margin-bottom: 1rem; }
+    .type-fit {
+      margin-top: auto; padding: 0.875rem 1.125rem; border-radius: 12px;
+      background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.15);
+      font-size: 0.875rem; color: rgba(245,241,230,0.75); line-height: 1.6;
+    }
+    .type-fit strong { color: var(--emerald); font-weight: 600; }
+    .types-more { margin-top: 2.25rem; font-size: 1rem; color: rgba(245,241,230,0.6); }
+    .types-more a { color: var(--emerald); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ===== FAITH ===== */
+    .faith { background: var(--forest); padding: 6rem 2.5rem; position: relative; overflow: hidden; }
+    .faith-glow {
       position: absolute; width: 700px; height: 700px; background: var(--emerald);
       border-radius: 50%; filter: blur(140px); opacity: 0.05;
       right: -200px; top: -150px; pointer-events: none;
     }
-    .why .eyebrow { color: var(--harvest); }
-    .why .section-heading { color: var(--cream); }
-
-    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .why-text p { font-size: 1.0625rem; color: rgba(245,241,230,0.68); line-height: 1.82; margin-bottom: 1.25rem; }
-    .why-verse {
+    .faith .section-inner { position: relative; z-index: 1; }
+    .faith .eyebrow { color: var(--harvest); }
+    .faith .section-heading { color: var(--cream); }
+    .faith-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+    .faith-text p { font-size: 1.0625rem; color: rgba(245,241,230,0.68); line-height: 1.82; margin-bottom: 1.25rem; }
+    .faith-verse {
       border-left: 3px solid var(--emerald);
       padding: 1.25rem 1.5rem;
       background: rgba(16,185,129,0.05);
       border-radius: 0 14px 14px 0;
       margin-top: 1.75rem;
     }
-    .why-verse blockquote { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; color: var(--cream); margin-bottom: 0.5rem; }
-    .why-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--emerald); letter-spacing: 0.08em; font-style: normal; }
-
-    .pillars { display: flex; flex-direction: column; gap: 1.125rem; }
-    .pillars-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,241,230,0.28); margin-bottom: 0.25rem; }
-    .pillar {
+    .faith-verse blockquote { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; color: var(--cream); margin-bottom: 0.5rem; }
+    .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--emerald); letter-spacing: 0.08em; font-style: normal; }
+    .faith-lessons {
       background: rgba(245,241,230,0.04); border: 1px solid rgba(245,241,230,0.08);
-      border-radius: 16px; padding: 1.375rem 1.5rem;
-      transition: background 0.2s;
+      border-radius: 20px; padding: 1.875rem;
     }
-    .pillar:hover { background: rgba(245,241,230,0.07); }
-    .pillar-cat { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.375rem; }
-    .pillar-cat.needs { color: var(--amber); }
-    .pillar-cat.wants { color: #A78BFA; }
-    .pillar-cat.goals { color: var(--emerald); }
-    .pillar h4 { font-family: var(--serif); font-size: 1.25rem; color: var(--cream); margin-bottom: 0.375rem; }
-    .pillar p  { font-size: 0.875rem; color: rgba(245,241,230,0.5); line-height: 1.6; }
-
-    /* ABOUT */
-    .about { background: #EAE6DB; padding: 7rem 2.5rem; }
-    .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 5rem; align-items: start; }
-    .about-card { background: var(--forest); border-radius: 24px; padding: 2.5rem; position: sticky; top: 5.5rem; }
-    .about-name { font-family: var(--serif); font-size: 2rem; color: var(--cream); margin-bottom: 0.2rem; }
-    .about-role { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--emerald); margin-bottom: 1.75rem; }
-    .about-facts { display: flex; flex-direction: column; gap: 0.75rem; }
-    .fact { display: flex; gap: 0.75rem; font-size: 0.875rem; align-items: flex-start; }
-    .fact-key { font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--emerald); min-width: 60px; padding-top: 2px; }
-    .fact-val { color: rgba(245,241,230,0.65); line-height: 1.5; }
-
-    .about-content .eyebrow { margin-bottom: 0.5rem; }
-    .about-content .section-heading { color: var(--forest); margin-bottom: 2rem; }
-    .about-blocks { display: flex; flex-direction: column; gap: 2rem; }
-    .about-block h3 { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--emerald); margin-bottom: 0.625rem; }
-    .about-block p  { font-size: 1rem; color: #4B5563; line-height: 1.8; }
-
-    /* ACCOUNT DELETION */
-    .data-control { background: var(--cream); padding: 5.5rem 2.5rem; }
-    .data-control-card {
-      max-width: 1200px; margin: 0 auto;
-      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 24px;
-      padding: 2.75rem 3rem;
-      display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center;
+    .faith-lessons h3 { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,241,230,0.4); margin-bottom: 1.25rem; font-weight: 500; }
+    .faith-lessons ul { list-style: none; }
+    .faith-lessons li { border-bottom: 1px solid rgba(245,241,230,0.07); }
+    .faith-lessons li:last-child { border-bottom: 0; }
+    .faith-lessons a {
+      display: block; padding: 1rem 0.25rem; text-decoration: none;
+      transition: background 0.2s; border-radius: 8px;
     }
-    .data-control .eyebrow { margin-bottom: 0.75rem; }
-    .data-control h2 {
-      font-family: var(--serif); font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-      color: var(--forest); letter-spacing: -0.01em; margin-bottom: 0.75rem;
-    }
-    .data-control p { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 620px; }
-    .data-control-link {
-      display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
-      background: var(--forest); color: var(--cream);
-      font-family: var(--sans); font-size: 0.9375rem; font-weight: 600;
-      padding: 0.875rem 1.75rem; border-radius: 999px; text-decoration: none;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .data-control-link:hover { opacity: 0.9; transform: translateY(-1px); }
+    .faith-lessons a:hover { background: rgba(245,241,230,0.05); }
+    .faith-lessons .lesson-name { font-family: var(--serif); font-size: 1.1875rem; color: var(--cream); display: block; margin-bottom: 0.2rem; }
+    .faith-lessons .lesson-note { font-size: 0.8125rem; color: rgba(245,241,230,0.45); line-height: 1.5; }
 
-    /* FOOTER CTA */
-    .footer-cta { background: var(--dark); padding: 7rem 2.5rem 3.5rem; position: relative; overflow: hidden; }
-    .footer-glow {
+    /* ===== REVIEWS ===== */
+    .reviews { background: var(--cream); padding: 6rem 2.5rem; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .review {
+      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
+      padding: 1.75rem; display: flex; flex-direction: column;
+    }
+    .review .stars { margin-bottom: 0.875rem; }
+    .review h3 { font-family: var(--serif); font-size: 1.1875rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .review blockquote p { font-size: 0.9375rem; color: #414B54; line-height: 1.7; }
+    .review footer { margin-top: auto; padding-top: 1.125rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
+    .review cite { font-style: normal; color: var(--forest); }
+    .reviews-source { margin-top: 2rem; font-size: 0.875rem; color: var(--muted); }
+    .reviews-source a { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ===== LESSONS PREVIEW ===== */
+    .lessons { background: #EAE6DB; padding: 6rem 2.5rem; }
+    .lessons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .lesson-card {
+      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 20px;
+      padding: 1.875rem; text-decoration: none; display: block;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .lesson-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,61,46,0.1); }
+    .lesson-card .card-tag { margin-bottom: 1rem; }
+    .lesson-card h3 { font-family: var(--serif); font-size: 1.375rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .lesson-card p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.125rem; }
+    .lesson-card .lesson-cta { font-size: 0.875rem; font-weight: 600; color: var(--forest); }
+    .lesson-card:hover .lesson-cta { color: #0B8A61; }
+    .lessons-index-link { margin-top: 2rem; font-size: 1rem; color: #414B54; }
+    .lessons-index-link a { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ===== FAQ ===== */
+    .faq { background: var(--cream); padding: 6rem 2.5rem; }
+    .faq-list { max-width: 760px; }
+    .faq-list details {
+      background: #fff; border: 1px solid rgba(15,61,46,0.07); border-radius: 16px;
+      margin-bottom: 0.75rem; overflow: hidden;
+    }
+    .faq-list summary {
+      cursor: pointer; list-style: none; position: relative;
+      padding: 1.25rem 3.25rem 1.25rem 1.5rem;
+      font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; color: var(--forest);
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: "+"; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+      font-family: var(--mono); font-size: 1.25rem; color: var(--emerald); font-weight: 400;
+    }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-answer { padding: 0 1.5rem 1.375rem; }
+    .faq-answer p { font-size: 0.9375rem; color: #414B54; line-height: 1.75; margin-bottom: 0.75rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer a { color: #0B8A61; text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ===== FINAL CTA ===== */
+    .download { background: var(--dark); padding: 6.5rem 2.5rem; position: relative; overflow: hidden; }
+    .download-glow {
       position: absolute; width: 500px; height: 500px; background: var(--emerald);
       border-radius: 50%; filter: blur(120px); opacity: 0.07;
       left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none;
     }
-    .footer-cta-inner { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
-    .footer-cta-inner .eyebrow { color: var(--harvest); display: block; }
-    .footer-cta h2 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); color: var(--cream); line-height: 1.2; margin-bottom: 0.875rem; }
-    .footer-cta p  { color: rgba(245,241,230,0.45); line-height: 1.75; margin-bottom: 2.5rem; }
-    .footer-cta .waitlist-form { justify-content: center; }
+    .download-inner { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .download .eyebrow { color: var(--harvest); }
+    .download h2 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); color: var(--cream); line-height: 1.2; margin-bottom: 0.875rem; }
+    .download p  { color: rgba(245,241,230,0.5); line-height: 1.75; margin-bottom: 2.25rem; }
+    .download .hero-note { display: block; margin-top: 1.25rem; }
 
-    .footer-bottom {
-      max-width: 1200px; margin: 4rem auto 0; padding-top: 2rem;
-      border-top: 1px solid rgba(245,241,230,0.07);
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-    }
-    .footer-logo { font-family: var(--serif); font-size: 1.125rem; color: rgba(245,241,230,0.35); }
-    .footer-legal-links { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
-    .footer-legal-links a { font-size: 0.8rem; color: rgba(245,241,230,0.45); text-decoration: none; font-family: var(--sans); transition: color 0.2s; }
-    .footer-legal-links a:hover { color: var(--emerald); }
-    .footer-copy { font-size: 0.775rem; color: rgba(245,241,230,0.22); font-family: var(--mono); letter-spacing: 0.04em; }
-
-    /* RESPONSIVE */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .phone-wrap { display: none; }
+      .hero { padding: 7.5rem 1.25rem 3.5rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-cta { justify-content: center; }
+      .phone-frame { width: 200px; }
+      .trust ul { justify-content: center; }
+      .who-grid, .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .how-steps { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .feature-card:nth-child(4), .feature-card:nth-child(5) { grid-column: auto; }
-      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-card { position: static; }
-      .data-control-card { grid-template-columns: 1fr; gap: 1.75rem; }
+      .feature-card--wide { grid-column: 1 / -1; grid-template-columns: 1fr; }
+      .feature-card--wide .card-media { height: 310px; }
+      .type-cards { grid-template-columns: 1fr; }
+      .reviews-grid, .lessons-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 580px) {
-      .features-grid { grid-template-columns: 1fr; }
-      nav { padding: 0.875rem 1.25rem; }
-      .hero { padding: 7rem 1.25rem 4rem; }
-      .features, .why, .about, .data-control, .footer-cta { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .data-control-card { padding: 2rem 1.5rem; }
-      .data-control-link { width: 100%; justify-content: center; }
+      .who, .how, .features, .types, .faith, .reviews, .lessons, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .trust { padding: 1rem 1.25rem; }
+      .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
+      .features-grid, .reviews-grid, .lessons-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">
-      <svg width="18" height="21" viewBox="0 0 18 22" fill="none">
-        <path d="M9 1C4 7 2 11.5 2 15.5a7 7 0 0014 0C16 11.5 14 7 9 1z" fill="#10B981"/>
-        <path d="M9 11v9" stroke="#0F3D2E" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <span class="nav-logo-name">DollarSeeds</span>
-  </a>
-  <a href="#waitlist" class="nav-cta">Join Waitlist</a>
-</nav>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" class="nav-logo">
+      <img src="/assets/brand/logo.png" alt="DollarSeeds logo: a cartoon coin walking beside a money tree" width="38" height="37" />
+      <span class="nav-logo-name">DollarSeeds</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+    <ul class="nav-menu" id="site-menu">
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#how-it-works">How It Works</a></li>
+      <li><a href="/#budgeting-types">Budgeting Types</a></li>
+      <li><a href="/#faith">Faith</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+    </ul>
+    <a class="nav-cta" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">Download on the App&nbsp;Store</a>
+  </nav>
+</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-blob blob-1"></div>
-  <div class="hero-blob blob-2"></div>
-  <div class="hero-inner">
-    <div>
-      <p class="hero-eyebrow">Coming Soon &nbsp;·&nbsp; iOS</p>
-      <h1 class="hero-heading">Make Your Dollar Seeds <em>Sprout into Blessings</em></h1>
-      <p class="hero-sub">Called to be Faithful Stewards</p>
-      <form class="waitlist-form js-waitlist" id="waitlist" method="POST" action="https://formspree.io/f/mbdvgvaq">
-        <input type="hidden" name="_subject" value="New DollarSeeds waitlist signup" />
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-        <input type="email" name="email" placeholder="Enter your email address" required />
-        <button type="submit">Join the Waitlist</button>
-      </form>
-      <p class="hero-note js-waitlist-note">No spam. We'll let you know the moment it launches.</p>
-    </div>
-    <div class="phone-wrap">
-      <div class="phone-frame">
-        <div class="phone-notch"></div>
-        <img src="assets/images/screen-dashboard.png" alt="DollarSeeds Dashboard" />
-      </div>
-    </div>
-  </div>
-</section>
+<main>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-  <div class="section-inner">
-    <p class="eyebrow">What's Inside</p>
-    <h2 class="section-heading">Everything you need to <em style="font-style:italic;">grow</em> your finances</h2>
-    <p class="section-body">Built on the 50/30/20 rule — every dollar has a purpose, every decision reflects your values.</p>
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="card-screen"><img src="assets/images/screen-dashboard.png" alt="Dashboard" /></div>
-        <div class="card-body">
-          <span class="card-tag tag-green">Dashboard</span>
-          <h3 class="card-title">See the full picture at a glance</h3>
-          <p class="card-desc">Budget health score, monthly income, and your Needs / Wants / Goals progress — all in one view.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="card-screen"><img src="assets/images/screen-expense.png" alt="Expenses" /></div>
-        <div class="card-body">
-          <span class="card-tag tag-violet">Expenses</span>
-          <h3 class="card-title">Plant where it counts</h3>
-          <p class="card-desc">Log expenses by category and subcategory. Every spend assigned, nothing lost.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="card-screen"><img src="assets/images/screen-income.png" alt="Income" /></div>
-        <div class="card-body">
-          <span class="card-tag tag-green">Income</span>
-          <h3 class="card-title">Every harvest counts</h3>
-          <p class="card-desc">Log income and watch it split across your budget automatically. Every good gift accounted for.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="card-screen"><img src="assets/images/screen-savings.png" alt="Goals & Savings" /></div>
-        <div class="card-body">
-          <span class="card-tag tag-gold">Goals &amp; Savings</span>
-          <h3 class="card-title">Watch your seeds grow</h3>
-          <p class="card-desc">Set savings goals with target amounts and timelines. Little by little, it grows.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="card-screen"><img src="assets/images/screen-lessons.png" alt="Lessons" /></div>
-        <div class="card-body">
-          <span class="card-tag tag-amber">Lessons</span>
-          <h3 class="card-title">Lessons from the field</h3>
-          <p class="card-desc">Scripture-rooted reflections on money, generosity, and stewardship. Finance and faith, finally together.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- WHY DOLLARSEEDS -->
-<section class="why" id="why">
-  <div class="why-glow"></div>
-  <div class="section-inner">
-    <p class="eyebrow">Why DollarSeeds</p>
-    <h2 class="section-heading" style="margin-bottom:3rem;">The name behind the mission</h2>
-    <div class="why-grid">
-      <div class="why-text">
-        <p>A seed is small. It requires patience, intention, and care before it ever becomes something visible. That's exactly how finances work — not through sudden windfalls, but through faithful, daily decisions that compound over time.</p>
-        <p>The name DollarSeeds comes from that idea. Every dollar you earn is a seed. Where you plant it — how you tend it — determines what grows. Spend carelessly and nothing takes root. Steward it well, and it becomes provision, security, and generosity.</p>
-        <p>The Bible speaks about money more than almost any other topic. Yet for many Christians, faith and finances remain in separate rooms. DollarSeeds was built to open the door between them — not just to budget better, but to steward faithfully.</p>
-        <div class="why-verse">
-          <blockquote>"Little by little, it grows."</blockquote>
-          <cite>Proverbs 13:11</cite>
-        </div>
-      </div>
-      <div class="pillars">
-        <p class="pillars-label">Built on the 50/30/20 rule</p>
-        <div class="pillar">
-          <div class="pillar-cat needs">50% · Needs</div>
-          <h4>The Essentials</h4>
-          <p>Rent, groceries, bills — the things you need to live and serve faithfully where you are.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-cat wants">30% · Wants</div>
-          <h4>The Joys</h4>
-          <p>Dining, travel, lifestyle — enjoying God's gifts without letting them consume you.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-cat goals">20% · Goals</div>
-          <h4>The Future</h4>
-          <p>Savings, investments, generosity — planting seeds today for a harvest that blesses tomorrow.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT ME -->
-<section class="about" id="about">
-  <div class="section-inner">
-    <div class="about-grid">
+  <!-- 2. HERO -->
+  <section class="hero" id="hero" aria-labelledby="hero-heading">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-inner">
       <div>
-        <div class="about-card">
-          <h2 class="about-name">Lucas Custodio</h2>
-          <p class="about-role">Builder · Steward · Developer</p>
-          <div class="about-facts">
-            <div class="fact"><span class="fact-key">Age</span><span class="fact-val">21 years old</span></div>
-            <div class="fact"><span class="fact-key">From</span><span class="fact-val">Born in Brazil · 10 years in the U.S.</span></div>
-            <div class="fact"><span class="fact-key">School</span><span class="fact-val">FAU, Senior Year</span></div>
-            <div class="fact"><span class="fact-key">Stack</span><span class="fact-val">React · TypeScript · Python · PostgreSQL</span></div>
-          </div>
+        <p class="hero-eyebrow">Now on the App Store · iOS</p>
+        <h1 class="hero-heading" id="hero-heading">The Christian Budgeting App for <span class="accent">Real Financial Freedom</span></h1>
+        <p class="hero-tagline">Make your dollar seeds sprout into blessings.</p>
+        <p class="hero-desc">DollarSeeds splits every dollar you earn across Needs, Wants, and Savings automatically, tracks your spending against each target, and grounds it all in biblical stewardship — no bank login required.</p>
+        <div class="hero-cta">
+          <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
+            <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
+          </a>
+          <span class="hero-note">Free to download · iPhone</span>
         </div>
       </div>
-      <div class="about-content">
-        <p class="eyebrow">About the Builder</p>
-        <h2 class="section-heading">The story behind the app</h2>
-        <div class="about-blocks">
-          <div class="about-block">
-            <h3>Faith &amp; Finances</h3>
-            <p>I wanted to create this app because finances is something that is heavily talked about in the Bible, but so many Christians either have no idea how to be financially capable, or they get lost in greed. With this application, I wanted to provide a way that helps users see finances through the lens that God wants us to see it. Finances should not remain disconnected from our faith life — it should go beyond tithing. It's something that should really be explored more.</p>
-          </div>
-          <div class="about-block">
-            <h3>Background</h3>
-            <p>I'm a senior at FAU, born in Brazil and living in the U.S. for the past 10 years. My programming background is rooted in web development — HTML, CSS, JavaScript, React, TypeScript, and PostgreSQL. I also know Java, C, C++, and Python.</p>
-          </div>
-          <div class="about-block">
-            <h3>Experience</h3>
-            <p>I've worked as an AfterSchool Counselor, a web developer at OneHope on frontend and SEO projects, a contractor at TB Financial Services building RPA tools for accounting workflows, and I'm currently a developer at Treevah and UTS Consult — two startups where I get to build meaningful products from the ground up.</p>
-          </div>
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <img src="/assets/images/screen-dashboard.png" width="739" height="1600" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score of 8.7 out of 10, a Bible verse card, and Needs, Wants, and Savings progress bars" />
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ACCOUNT DELETION -->
-<section class="data-control" id="account-deletion">
-  <div class="data-control-card">
-    <div>
-      <p class="eyebrow">Your Data, Your Control</p>
-      <h2>Delete your account anytime</h2>
-      <p>Your finances are yours alone. You can permanently delete your DollarSeeds account — along with every income, expense, savings, and goal record tied to it — right from Settings in the app, or by email if you can't sign in.</p>
-    </div>
-    <a href="/delete-account" class="data-control-link">How to delete your account &rarr;</a>
-  </div>
-</section>
+  <!-- 3. TRUST BAR -->
+  <section class="trust" id="trust" aria-label="App Store highlights">
+    <ul>
+      <li>
+        <span class="stars" role="img" data-stat-label="rating" aria-label="Rated 5.0 out of 5 stars">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+        </span>
+        <span><strong data-stat="rating">5.0</strong> from <span data-stat="ratingCount">11</span> ratings on the App&nbsp;Store</span>
+      </li>
+      <li>
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 5a3 3 0 016 0v3H9V6z"/></svg>
+        <span>No bank login required</span>
+      </li>
+      <li>
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 14.4l-4.2-4.2 1.7-1.7 2.5 2.5 5.7-5.7 1.7 1.7-7.4 7.4z"/></svg>
+        <span>Free to download</span>
+      </li>
+      <li>
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 1h10a2 2 0 012 2v18a2 2 0 01-2 2H7a2 2 0 01-2-2V3a2 2 0 012-2zm0 3v14h10V4H7zm5 16.2a1.1 1.1 0 100-2.2 1.1 1.1 0 000 2.2z"/></svg>
+        <span>iPhone · iOS</span>
+      </li>
+    </ul>
+  </section>
 
-<!-- FOOTER CTA -->
-<footer class="footer-cta" id="footer">
-  <div class="footer-glow"></div>
-  <div class="footer-cta-inner">
-    <p class="eyebrow">Achieve Your Goals</p>
-    <h2>Ready to be a faithful steward?</h2>
-    <p>Join the waitlist and be the first to know when DollarSeeds launches on the App Store.</p>
-    <form class="waitlist-form js-waitlist" method="POST" action="https://formspree.io/f/mbdvgvaq">
-      <input type="hidden" name="_subject" value="New DollarSeeds waitlist signup" />
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-      <input type="email" name="email" placeholder="Enter your email address" required />
-      <button type="submit">Join the Waitlist</button>
-    </form>
-    <p class="hero-note js-waitlist-note" style="margin-top:0.875rem; text-align:center;">No spam. We'll let you know the moment it launches.</p>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-logo">🌱 DollarSeeds</span>
-    <div class="footer-legal-links">
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
-      <a href="/cookie-policy">Cookie Policy</a>
-      <a href="/delete-account">Delete Account</a>
-      <a href="#" class="termly-display-preferences">Consent Preferences</a>
+  <!-- 4. WHO IT'S FOR -->
+  <section class="who" id="who-its-for" aria-labelledby="who-heading">
+    <div class="section-inner">
+      <p class="eyebrow">Who It's For</p>
+      <h2 class="section-heading" id="who-heading">Built for people chasing <span class="accent">financial freedom</span></h2>
+      <div class="who-grid">
+        <div class="who-prose">
+          <p>DollarSeeds is for anyone chasing financial freedom — people getting out of debt, people multiplying what they already have, and people aiming at goals bigger than next month's bills.</p>
+          <p>It's also for people who don't want money just to fill their pockets, but to use it in a way that pleases God and blesses the people around them. If that's you, this app was built with you in mind. If it isn't, the budgeting still works — the discipline doesn't check your beliefs at the door.</p>
+        </div>
+        <div class="who-replaces">
+          <h3>What DollarSeeds replaces</h3>
+          <ul>
+            <li><strong>Lack of control</strong> Money leaves the account faster than you decided it should.</li>
+            <li><strong>Lack of direction</strong> No answer to "what is this money actually for?"</li>
+            <li><strong>Lack of planning</strong> Every month starts from zero, and ends by accident.</li>
+            <li><strong>Lack of self-knowledge</strong> No real idea where the money actually goes.</li>
+          </ul>
+          <p class="who-replaces-result">All four replaced with the same thing: <strong>financial control</strong>.</p>
+        </div>
+      </div>
     </div>
-    <p class="footer-copy">© 2026 Lucas Custodio · Built with faith &amp; purpose</p>
+  </section>
+
+  <!-- 5. HOW IT WORKS -->
+  <section class="how" id="how-it-works" aria-labelledby="how-heading">
+    <div class="section-inner">
+      <p class="eyebrow">How It Works</p>
+      <h2 class="section-heading" id="how-heading">Three steps, every month</h2>
+      <ol class="how-steps">
+        <li class="how-step">
+          <h3>Log your income</h3>
+          <p>Paycheck, side gig, gift, refund — log it in seconds when it arrives. Every harvest counts.</p>
+        </li>
+        <li class="how-step">
+          <h3>It splits automatically</h3>
+          <p>DollarSeeds divides each amount across your three buckets the moment you log it — no math, no spreadsheet.</p>
+          <div class="how-split" aria-hidden="true">
+            <span class="b-needs">Needs</span><span class="b-wants">Wants</span><span class="b-savings">Savings</span>
+          </div>
+        </li>
+        <li class="how-step">
+          <h3>Track and adjust</h3>
+          <p>Every expense lands in a category with a target. See what's left, catch overspending early, and adjust before the month gets away from you.</p>
+        </li>
+      </ol>
+      <p class="how-more">The split isn't one-size-fits-all. DollarSeeds ships <a href="#budgeting-types">three budgeting types</a> — pick the one that matches your season of life.</p>
+    </div>
+  </section>
+
+  <!-- 6. FEATURES -->
+  <section class="features" id="features" aria-labelledby="features-heading">
+    <div class="section-inner">
+      <p class="eyebrow">What's Inside</p>
+      <h2 class="section-heading" id="features-heading">Everything you need to <span class="accent">grow</span> your finances</h2>
+      <p class="section-body">Every dollar has a purpose, every decision reflects your values — and every screen below is the real app.</p>
+      <div class="features-grid">
+
+        <figure class="feature-card">
+          <div class="card-media">
+            <img src="/assets/images/screen-dashboard.png" width="739" height="1600" loading="lazy" alt="DollarSeeds budget dashboard showing total income, money left this month, a Budget Health score, and progress bars for Needs, Wants, and Savings" />
+          </div>
+          <figcaption>
+            <span class="card-tag tag-green">Dashboard</span>
+            <h3 class="card-title">A budget dashboard for the whole month</h3>
+            <p class="card-desc">Budget health score, monthly income, what's left, and your Needs / Wants / Savings progress — the full picture in one view.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="feature-card">
+          <div class="card-media">
+            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-income.png" aria-label="Screen recording of logging income in DollarSeeds and watching it split across Needs, Wants, and Savings">
+              <source src="/assets/video/log-income.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption>
+            <span class="card-tag tag-green">Income</span>
+            <h3 class="card-title">Income tracking that splits itself</h3>
+            <p class="card-desc">Log a paycheck, side gig, or gift and watch it divide across Needs, Wants, and Savings on its own. Every good gift accounted for.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="feature-card">
+          <div class="card-media">
+            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-expense.png" aria-label="Screen recording of logging an expense in DollarSeeds with a category and subcategory">
+              <source src="/assets/video/log-expense.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption>
+            <span class="card-tag tag-violet">Expenses</span>
+            <h3 class="card-title">An expense tracker with real categories</h3>
+            <p class="card-desc">Log spending by category and subcategory — dining, groceries, streaming, travel — so you always know where the money went. Plant where it counts.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="feature-card">
+          <div class="card-media">
+            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-savings.png" aria-label="Screen recording of creating a savings goal in DollarSeeds with a target amount and timeline">
+              <source src="/assets/video/create-goal.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption>
+            <span class="card-tag tag-gold">Savings</span>
+            <h3 class="card-title">Savings goals with targets and timelines</h3>
+            <p class="card-desc">Name the goal, set the amount and the date, and DollarSeeds tells you what to set aside each week. Little by little, it grows.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="feature-card">
+          <div class="card-media">
+            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/video/create-debt-goal-poster.svg" aria-label="Screen recording of creating a debt payoff goal in DollarSeeds">
+              <source src="/assets/video/create-debt-goal.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption>
+            <span class="card-tag tag-amber">New · Debt</span>
+            <h3 class="card-title">Debt payoff goals</h3>
+            <p class="card-desc">Point a goal at a balance instead of a purchase. Chip away at what you owe on the same schedule you save — getting free is a goal too.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="feature-card">
+          <div class="card-media">
+            <video muted loop playsinline preload="none" width="720" height="1560" poster="/assets/images/screen-savings.png" aria-label="Screen recording of setting money aside for a savings goal in DollarSeeds">
+              <source src="/assets/video/fund-goal.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption>
+            <span class="card-tag tag-gold">Savings Goals</span>
+            <h3 class="card-title">Set savings aside, goal by goal</h3>
+            <p class="card-desc">Tap "Set aside" to move money into a goal, and "I bought it" when the seed becomes the thing you were saving for.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="feature-card feature-card--wide">
+          <div class="card-media">
+            <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
+          </div>
+          <figcaption>
+            <span class="card-tag tag-amber">Lessons</span>
+            <h3 class="card-title">Money lessons on Tithing, Entrepreneurship, and more</h3>
+            <p class="card-desc">Short Scripture-rooted lessons inside the app — Tithing, Entrepreneurship, saving for the unexpected, giving. The features reviewers call out by name, because nobody else pairs a budget with them. <a href="/lessons">Preview the lessons →</a></p>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BUDGETING TYPES -->
+  <section class="types" id="budgeting-types" aria-labelledby="types-heading">
+    <div class="types-glow"></div>
+    <div class="section-inner">
+      <p class="eyebrow">Budgeting Types</p>
+      <h2 class="section-heading" id="types-heading">Three budgeting types. One philosophy.</h2>
+      <p class="section-body">Every track saves at least 20% of what you earn. What changes is how much of the rest goes to needs versus wants. Read the three profiles — you'll recognize yours in about five seconds.</p>
+
+      <div class="types-compare">
+        <table>
+          <caption>Every track saves at least 20%</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr-only">Bucket</span></th>
+              <th scope="col"><a href="#type-50-30-20">50/30/20</a></th>
+              <th scope="col"><a href="#type-wealth-builder">Wealth Builder</a></th>
+              <th scope="col"><a href="#type-firm-foundation">Firm Foundation</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Needs</th><td>50%</td><td>30%</td><td>70%</td></tr>
+            <tr><th scope="row">Wants</th><td>30%</td><td>20%</td><td>10%</td></tr>
+            <tr><th scope="row">Savings</th><td>20%</td><td>50%</td><td>20%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="type-cards">
+        <article class="type-card" id="type-50-30-20">
+          <h3>50/30/20</h3>
+          <p class="type-split-label">50 Needs · 30 Wants · 20 Savings</p>
+          <div class="type-bar" aria-hidden="true"><span class="seg-needs" style="width:50%"></span><span class="seg-wants" style="width:30%"></span><span class="seg-savings" style="width:20%"></span></div>
+          <p>The balanced track. Half of every dollar covers the essentials — rent, groceries, bills, the things you need to live and serve faithfully where you are. Thirty percent goes to the joys: dining, travel, lifestyle, enjoying God's gifts without letting them consume you. Twenty percent gets planted for the future.</p>
+          <p class="type-fit"><strong>Fits you if:</strong> your income is steady and comfortably covers your needs with room to spare. <a href="/50-30-20-rule" style="color:var(--emerald)">Read the full 50/30/20 guide →</a></p>
+        </article>
+
+        <article class="type-card" id="type-wealth-builder">
+          <h3>Wealth Builder</h3>
+          <p class="type-split-label">30 Needs · 20 Wants · 50 Savings</p>
+          <div class="type-bar" aria-hidden="true"><span class="seg-needs" style="width:30%"></span><span class="seg-wants" style="width:20%"></span><span class="seg-savings" style="width:50%"></span></div>
+          <p>Half of everything you earn goes to savings. This is the track for people who earn well above what their needs cost and want that surplus working — invested into future income streams, aimed at goals most budgets never get to.</p>
+          <p>It's also the right fit for college students living with their parents: few fixed needs, and years for every invested dollar to compound.</p>
+          <p class="type-fit"><strong>Fits you if:</strong> your needs take a small share of your income and you want the rest building something.</p>
+        </article>
+
+        <article class="type-card" id="type-firm-foundation">
+          <h3>Firm Foundation</h3>
+          <p class="type-split-label">70 Needs · 10 Wants · 20 Savings</p>
+          <div class="type-bar" aria-hidden="true"><span class="seg-needs" style="width:70%"></span><span class="seg-wants" style="width:10%"></span><span class="seg-savings" style="width:20%"></span></div>
+          <p>For the season when needs eat most of the paycheck. Firm Foundation makes room for that honestly — 70% to needs — but it refuses to give up the 20% savings target. That 20% is held on purpose: it's the margin that builds enough cushion to grow your finances and find income that comfortably covers your costs.</p>
+          <p>This track is transitional by design. The goal is to graduate out of it — into 50/30/20, and one day maybe Wealth Builder.</p>
+          <p class="type-fit"><strong>Fits you if:</strong> your salary barely covers your needs right now — and you're building your way out.</p>
+        </article>
+      </div>
+
+      <p class="types-more">Want the deeper version, with worked examples? See the full <a href="/budgeting-types">budgeting types guide</a> or start with the <a href="/50-30-20-rule">50/30/20 rule</a>.</p>
+    </div>
+  </section>
+
+  <!-- 8. FAITH & STEWARDSHIP -->
+  <section class="faith" id="faith" aria-labelledby="faith-heading">
+    <div class="faith-glow"></div>
+    <div class="section-inner">
+      <p class="eyebrow">Why DollarSeeds</p>
+      <h2 class="section-heading" id="faith-heading" style="margin-bottom:3rem;">The name behind the mission</h2>
+      <div class="faith-grid">
+        <div class="faith-text">
+          <p>A seed is small. It requires patience, intention, and care before it ever becomes something visible. That's exactly how finances work — not through sudden windfalls, but through faithful, daily decisions that compound over time.</p>
+          <p>The name DollarSeeds comes from that idea. Every dollar you earn is a seed. Where you plant it — how you tend it — determines what grows. Spend carelessly and nothing takes root. Steward it well, and it becomes provision, security, and generosity.</p>
+          <p>The Bible speaks about money more than almost any other topic. Yet for many Christians, faith and finances remain in separate rooms. DollarSeeds was built to open the door between them — not just to budget better, but to steward faithfully. And if you don't share the faith, the discipline still holds: the app never asks you to believe anything to budget well. It reads as conviction, not a gate.</p>
+          <div class="faith-verse">
+            <blockquote>"Little by little, it grows."</blockquote>
+            <cite>Proverbs 13:11</cite>
+          </div>
+        </div>
+        <div class="faith-lessons">
+          <h3>Go deeper — Lessons inside the app</h3>
+          <ul>
+            <li>
+              <a href="/lessons/tithing">
+                <span class="lesson-name">Tithing</span>
+                <span class="lesson-note">What the tithe is, where it comes from, and how to practice it without legalism or guilt.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/lessons/entrepreneurship">
+                <span class="lesson-name">Entrepreneurship</span>
+                <span class="lesson-note">Multiplying what you've been given — work, risk, and building something that blesses people.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/lessons">
+                <span class="lesson-name">All lessons</span>
+                <span class="lesson-note">Saving for the unexpected, giving it all to God, and every new lesson as it ships.</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. REVIEWS -->
+  <section class="reviews" id="reviews" aria-labelledby="reviews-heading">
+    <div class="section-inner">
+      <p class="eyebrow">Reviews</p>
+      <h2 class="section-heading" id="reviews-heading">What people say on the App Store</h2>
+      <p class="section-body">Every review below is a real 5-star App Store review, quoted in full.</p>
+      <div class="reviews-grid">
+
+        <article class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          </span>
+          <h3>Excellent</h3>
+          <blockquote>
+            <p>"Great app! DollarSeeds is easy to use, simple to navigate, and very convenient. Everything is well organized, and the app makes the whole experience quick and hassle-free. I've really enjoyed using it and would definitely recommend it to others."</p>
+          </blockquote>
+          <footer><cite>Cláudio93</cite> · <time datetime="2026-08-08">Aug 8, 2026</time></footer>
+        </article>
+
+        <article class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          </span>
+          <h3>Awesome Features</h3>
+          <blockquote>
+            <p>"The unique features for Tithing and Entrepreneurship lessons are awesome! The app works great for tracking all my income and expenses!"</p>
+          </blockquote>
+          <footer><cite>XLUC4O</cite> · <time datetime="2026-08-07">Aug 7, 2026</time></footer>
+        </article>
+
+        <article class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          </span>
+          <h3>Nice App</h3>
+          <blockquote>
+            <p>"Pretty nice money management app, clean design and works well, 5/5."</p>
+          </blockquote>
+          <footer><cite>OlayBrian</cite> · <time datetime="2026-08-08">Aug 8, 2026</time></footer>
+        </article>
+
+        <article class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          </span>
+          <h3>Amazing App!</h3>
+          <blockquote>
+            <p>"Amazing App to control your finances ! I loved it!"</p>
+          </blockquote>
+          <footer><cite>gangagratidao</cite> · <time datetime="2026-08-09">Aug 9, 2026</time></footer>
+        </article>
+
+        <article class="review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          </span>
+          <h3>Best budgeting app on the AppStore</h3>
+          <blockquote>
+            <p>"Very helpful and unique app to work with"</p>
+          </blockquote>
+          <footer><cite>Fofinho203</cite> · <time datetime="2026-08-08">Aug 8, 2026</time></footer>
+        </article>
+
+      </div>
+      <p class="reviews-source">Read them all on the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">App Store listing</a>.</p>
+    </div>
+  </section>
+
+  <!-- 10. LESSONS PREVIEW -->
+  <section class="lessons" id="lessons" aria-labelledby="lessons-heading">
+    <div class="section-inner">
+      <p class="eyebrow">Lessons</p>
+      <h2 class="section-heading" id="lessons-heading">Lessons from the field</h2>
+      <p class="section-body">Short, Scripture-rooted money lessons built into the app — the feature reviewers name first. Start with the two they call out.</p>
+      <div class="lessons-grid">
+        <a class="lesson-card" href="/lessons/tithing">
+          <span class="card-tag tag-green">Lesson</span>
+          <h3>Tithing</h3>
+          <p>What the tithe actually is, what the Bible says about it, and how to practice it with joy instead of guilt — with a budget that already sets it aside.</p>
+          <span class="lesson-cta">Read the lesson →</span>
+        </a>
+        <a class="lesson-card" href="/lessons/entrepreneurship">
+          <span class="card-tag tag-violet">Lesson</span>
+          <h3>Entrepreneurship</h3>
+          <p>The parable of the talents is a business story. What it means to multiply what you've been given — and how a budget funds the first step.</p>
+          <span class="lesson-cta">Read the lesson →</span>
+        </a>
+        <a class="lesson-card" href="/lessons#in-the-app">
+          <span class="card-tag tag-amber">Lesson</span>
+          <h3>Saving for the Unexpected</h3>
+          <p>What the ants can teach us about hard work and having enough for each season. In the app now — Proverbs 6:7–8, six minutes.</p>
+          <span class="lesson-cta">See all lessons →</span>
+        </a>
+      </div>
+      <p class="lessons-index-link">Browse the full <a href="/lessons">lessons index</a> — new lessons ship with the app.</p>
+    </div>
+  </section>
+
+  <!-- 11. FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-heading" id="faq-heading">Questions people actually ask</h2>
+      <div class="faq-list">
+
+        <details id="faq-free">
+          <summary>Is DollarSeeds free?</summary>
+          <div class="faq-answer">
+            <p>Yes — DollarSeeds is free to download on the <a href="https://apps.apple.com/us/app/dollarseeds/id6780037284">App Store</a>.</p>
+            <p>Download it, pick a budgeting type, and start logging income the same day.</p>
+          </div>
+        </details>
+
+        <details id="faq-bank">
+          <summary>Does DollarSeeds connect to my bank account?</summary>
+          <div class="faq-answer">
+            <p>No — DollarSeeds never asks for your bank login, and it can't see your accounts.</p>
+            <p>You log income and expenses yourself, in a few seconds each. That's a deliberate choice: logging a purchase by hand is the moment you actually feel where your money goes, and it means your credentials are never shared with anyone. Read more on our <a href="/security">security page</a>.</p>
+          </div>
+        </details>
+
+        <details id="faq-christian">
+          <summary>Is DollarSeeds only for Christians?</summary>
+          <div class="faq-answer">
+            <p>No — anyone can use DollarSeeds; the budgeting system works the same regardless of what you believe.</p>
+            <p>The app is unapologetically rooted in biblical stewardship — you'll see Scripture on the dashboard and faith-based lessons inside. But nothing is gated behind belief, and the Needs / Wants / Savings discipline stands on its own.</p>
+          </div>
+        </details>
+
+        <details id="faq-types">
+          <summary>What are the three budgeting types in DollarSeeds?</summary>
+          <div class="faq-answer">
+            <p>DollarSeeds ships three budgeting types: 50/30/20 (balanced), Wealth Builder (30/20/50, for aggressive savers), and Firm Foundation (70/10/20, for tight seasons).</p>
+            <p>Every one of them saves at least 20% of your income — what changes is the balance between needs and wants. See the <a href="/#budgeting-types">comparison above</a> or the full <a href="/budgeting-types">budgeting types guide</a>.</p>
+          </div>
+        </details>
+
+        <details id="faq-503020">
+          <summary>What is the 50/30/20 budget rule?</summary>
+          <div class="faq-answer">
+            <p>The 50/30/20 rule splits your after-tax income into 50% for needs, 30% for wants, and 20% for savings.</p>
+            <p>Needs are the essentials — rent, groceries, bills. Wants are the joys — dining out, travel, hobbies. Savings is the future — emergency fund, goals, investing, generosity. DollarSeeds applies the split automatically every time you log income. Full worked example on our <a href="/50-30-20-rule">50/30/20 rule page</a>.</p>
+          </div>
+        </details>
+
+        <details id="faq-debt">
+          <summary>Can I track debt payoff with DollarSeeds?</summary>
+          <div class="faq-answer">
+            <p>Yes — DollarSeeds lets you create debt payoff goals and chip away at a balance the same way you'd fund a savings goal.</p>
+            <p>Point a goal at what you owe, set the pace, and watch the balance shrink from the same Savings screen where your other goals grow.</p>
+          </div>
+        </details>
+
+        <details id="faq-privacy">
+          <summary>Is my financial data private?</summary>
+          <div class="faq-answer">
+            <p>Yes — your financial data belongs to you, is never sold, and the app holds no bank credentials that could be exposed.</p>
+            <p>Only what you type in is stored, and you can permanently delete your account and every record with it at any time. The plain-language version is on our <a href="/security">security page</a>; the legal version is the <a href="/privacy">privacy policy</a>.</p>
+          </div>
+        </details>
+
+        <details id="faq-android">
+          <summary>Is there an Android version of DollarSeeds?</summary>
+          <div class="faq-answer">
+            <p>Not yet — DollarSeeds is currently iPhone-only.</p>
+            <p>An Android version depends on how the iOS app grows. If you want it, <a href="/support">tell us</a> — real requests are how it gets prioritized.</p>
+          </div>
+        </details>
+
+        <details id="faq-delete">
+          <summary>How do I delete my DollarSeeds account?</summary>
+          <div class="faq-answer">
+            <p>Open the app, go to Settings, tap Delete Account, and type DELETE to confirm — deletion is immediate and permanent.</p>
+            <p>Every income, expense, savings, and goal record tied to the account is removed. If you can't sign in, you can request deletion by email instead — full steps on the <a href="/delete-account">delete account page</a>.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FINAL CTA -->
+  <section class="download" id="download" aria-labelledby="download-heading">
+    <div class="download-glow"></div>
+    <div class="download-inner">
+      <p class="eyebrow">Plant the First Seed</p>
+      <h2 id="download-heading">Ready to be a faithful steward?</h2>
+      <p>DollarSeeds is free on the App Store. Pick your budgeting type, log your first income, and watch it split — little by little, it grows.</p>
+      <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
+        <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
+      </a>
+      <span class="hero-note">Free to download · iPhone · No bank login required</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- 13. FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/assets/brand/logo.png" alt="DollarSeeds badge logo: a cartoon coin walking beside a money tree over the words Financial Growth" width="72" height="71" loading="lazy" />
+        <span class="footer-wordmark">DollarSeeds</span>
+        <p>A Christian budgeting app for iPhone. Every dollar is a seed — plant it with purpose.</p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#budgeting-types">Budgeting Types</a></li>
+          <li><a href="/#reviews">Reviews</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/changelog">Changelog</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Learn">
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/50-30-20-rule">The 50/30/20 Rule</a></li>
+          <li><a href="/budgeting-types">Budgeting Types Guide</a></li>
+          <li><a href="/lessons">Lessons</a></li>
+          <li><a href="/lessons/tithing">Tithing</a></li>
+          <li><a href="/lessons/entrepreneurship">Entrepreneurship</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Company and legal">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">About the Builder</a></li>
+          <li><a href="/press">Press Kit</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/security">Security</a></li>
+          <li><a href="mailto:lucasquality555@gmail.com">Email Us</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/cookie-policy">Cookie Policy</a></li>
+          <li><a href="/delete-account">Delete Account</a></li>
+          <li><a href="#" class="termly-display-preferences">Consent Preferences</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
+        <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="150" height="50" style="width:150px;height:50px;" loading="lazy" />
+      </a>
+      <p class="footer-copy">© 2026 Lucas Custodio · Built with faith &amp; purpose</p>
+    </div>
   </div>
 </footer>
 
 <script>
-  document.querySelectorAll('.js-waitlist').forEach(function (form) {
-    var note = form.parentElement.querySelector('.js-waitlist-note');
-    var button = form.querySelector('button');
-    var defaultNote = note ? note.textContent : '';
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (note) { note.textContent = defaultNote; note.style.color = ''; }
-      button.disabled = true;
-      var originalLabel = button.textContent;
-      button.textContent = 'Joining…';
-
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' }
-      })
-        .then(function (res) {
-          if (res.ok) {
-            form.reset();
-            if (note) { note.textContent = "You're on the list! We'll be in touch. 🌱"; note.style.color = 'var(--emerald)'; }
-          } else {
-            return res.json().then(function (data) {
-              var msg = data && data.errors ? data.errors.map(function (err) { return err.message; }).join(', ') : 'Something went wrong. Please try again.';
-              throw new Error(msg);
-            });
-          }
-        })
-        .catch(function (err) {
-          if (note) { note.textContent = err.message || 'Network error. Please try again.'; note.style.color = '#F4D35E'; }
-        })
-        .finally(function () {
-          button.disabled = false;
-          button.textContent = originalLabel;
-        });
+  // Mobile nav toggle
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('site-menu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-  });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // Trust bar: live rating from app-stats.json.
+  // The HTML already contains the current values as static fallback text,
+  // so the bar renders correctly with JS disabled or if the fetch fails.
+  (function () {
+    if (!window.fetch) return;
+    fetch('/assets/data/app-stats.json')
+      .then(function (res) { return res.json(); })
+      .then(function (stats) {
+        if (typeof stats.rating === 'number') {
+          document.querySelectorAll('[data-stat="rating"]').forEach(function (el) {
+            el.textContent = stats.rating.toFixed(1);
+          });
+          document.querySelectorAll('[data-stat-label="rating"]').forEach(function (el) {
+            el.setAttribute('aria-label', 'Rated ' + stats.rating.toFixed(1) + ' out of 5 stars');
+          });
+        }
+        if (typeof stats.ratingCount === 'number') {
+          document.querySelectorAll('[data-stat="ratingCount"]').forEach(function (el) {
+            el.textContent = stats.ratingCount;
+          });
+        }
+      })
+      .catch(function () { /* keep static fallback */ });
+  })();
+
+  // Feature videos: play on hover (desktop) or on entering the viewport / tap
+  // (mobile). One video at a time; anything scrolled out of view is paused.
+  (function () {
+    var videos = Array.prototype.slice.call(document.querySelectorAll('.card-media video'));
+    if (!videos.length) return;
+    var hoverable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    function pauseOthers(current) {
+      videos.forEach(function (v) { if (v !== current && !v.paused) v.pause(); });
+    }
+    function play(v) { pauseOthers(v); v.play().catch(function () {}); }
+
+    videos.forEach(function (v) {
+      v.addEventListener('click', function () { v.paused ? play(v) : v.pause(); });
+      if (hoverable) {
+        var card = v.closest('.feature-card') || v;
+        card.addEventListener('mouseenter', function () { play(v); });
+        card.addEventListener('mouseleave', function () { v.pause(); });
+      }
+    });
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (hoverable) {
+            if (!entry.isIntersecting && !v.paused) v.pause();
+          } else if (entry.intersectionRatio >= 0.6) {
+            play(v);
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }, { threshold: hoverable ? [0] : [0, 0.6] });
+      videos.forEach(function (v) { io.observe(v); });
+    }
+  })();
 </script>
 
 </body>
