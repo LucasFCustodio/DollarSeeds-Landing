@@ -2,7 +2,7 @@
 
 /**
  * Generate responsive AVIF / WebP (and resized JPEG poster) derivatives for
- * every raster asset the site renders, driven by build/images.config.js.
+ * every raster asset the site renders, driven by scripts/images.config.js.
  *
  * Runs as part of the Netlify build, but it is a no-op on an unchanged tree:
  * a derivative is only rebuilt when its source is newer. That keeps deploys

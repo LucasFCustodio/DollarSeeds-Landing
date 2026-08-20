@@ -19,7 +19,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { ROOT } = require('../build/site.config.js');
+const { ROOT } = require('../scripts/site.config.js');
 const { tableTags } = require('./woff2-tables.js');
 
 // A modern-browser UA is required, or Google serves legacy TTF.

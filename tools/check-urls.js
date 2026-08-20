@@ -12,7 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { ROOT, ORIGIN, PAGES, APP, url } = require('../build/site.config.js');
+const { ROOT, ORIGIN, PAGES, APP, url } = require('../scripts/site.config.js');
 const { startServer } = require('./serve.js');
 
 const PORT = 8171;

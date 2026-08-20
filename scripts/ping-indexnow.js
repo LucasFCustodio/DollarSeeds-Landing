@@ -26,7 +26,7 @@ const { ROOT, ORIGIN, PAGES, url } = require('./site.config.js');
 const ENDPOINT = 'https://api.indexnow.org/IndexNow';
 const TIMEOUT_MS = 10000;
 
-/** Same derivation as build/gen-static.js — stable for a given origin. */
+/** Same derivation as scripts/gen-static.js — stable for a given origin. */
 function indexNowKey() {
   return crypto.createHash('sha256').update('indexnow:' + ORIGIN).digest('hex').slice(0, 32);
 }
@@ -37,7 +37,7 @@ async function main() {
 
   const keyFile = path.join(ROOT, key + '.txt');
   if (!fs.existsSync(keyFile)) {
-    console.warn('indexnow: key file ' + key + '.txt is missing — run `node build/gen-static.js`. Skipping.');
+    console.warn('indexnow: key file ' + key + '.txt is missing — run `node scripts/gen-static.js`. Skipping.');
     return;
   }
 

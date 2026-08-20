@@ -30,7 +30,7 @@ Manual (non-Claude Code) steps live in the Google Doc: **DollarSeeds Site Revamp
 ## Placeholders — resolved
 
 `PROMPT-2`'s two placeholders were supplied during the run and now live in
-`build/site.config.js` (`APP.appleTeamId`, `APP.bundleId`), which is the only
+`scripts/site.config.js` (`APP.appleTeamId`, `APP.bundleId`), which is the only
 place either value appears:
 
 - `APPLE_TEAM_ID` → `YBSBHHBC5R`

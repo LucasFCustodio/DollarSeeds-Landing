@@ -18,7 +18,7 @@
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
-const { ROOT, APP, ORIGIN } = require('../build/site.config.js');
+const { ROOT, APP, ORIGIN } = require('../scripts/site.config.js');
 const { buildIco } = require('./ico.js');
 
 // Brand tokens, mirrored from assets/css/base.css :root

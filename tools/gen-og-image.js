@@ -22,7 +22,7 @@ const os = require('os');
 const path = require('path');
 const { spawn } = require('child_process');
 const sharp = require('sharp');
-const { ROOT } = require('../build/site.config.js');
+const { ROOT } = require('../scripts/site.config.js');
 const { startServer } = require('./serve.js');
 
 const WIDTH = 1200;

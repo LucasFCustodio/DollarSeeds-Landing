@@ -13,7 +13,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { ROOT, APP } = require('../build/site.config.js');
+const { ROOT, APP } = require('../scripts/site.config.js');
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',

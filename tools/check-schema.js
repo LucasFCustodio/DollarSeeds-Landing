@@ -19,7 +19,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { ROOT, PAGES, ORIGIN } = require('../build/site.config.js');
+const { ROOT, PAGES, ORIGIN } = require('../scripts/site.config.js');
 
 const ENDPOINT = 'https://validator.schema.org/validate';
 

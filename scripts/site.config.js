@@ -2,7 +2,7 @@
 
 /**
  * Single source of truth for everything the build scripts need to know about
- * the site. Nothing else in build/ or tools/ may hard-code the origin, the
+ * the site. Nothing else in scripts/ or tools/ may hard-code the origin, the
  * App Store URL, or the page list — import from here instead.
  *
  * The apex is the canonical host. `www.` and the legacy `dollarseeds.netlify.app`

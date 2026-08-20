@@ -5,12 +5,30 @@ This directory holds a small Node build step that keeps the things a human
 should not have to maintain by hand in sync: image derivatives, the sitemap,
 `robots.txt`, and the App Store rating.
 
-Netlify runs `npm run build` (see `netlify.toml`), which is `node build`.
+Netlify runs `npm run build` (see `netlify.toml`), which is `node scripts/index.js`.
+
+## Why this directory is not called `build`
+
+It was, and Netlify deploys failed with `Cannot find module
+'/opt/build/repo/build'`: the directory never arrived on the build machine even
+though it was committed and pushed. `build` is the conventional name for
+*generated output*, and the deploy pipeline treats a top-level `build/` as
+something it owns rather than source to upload.
+
+Two rules follow from that, and both matter:
+
+- **Keep source directories out of names that mean "output"** — `build`, `dist`,
+  `out`. This is source, so it lives in `scripts/`.
+- **Name the entry file, never the directory.** `node scripts/index.js`, not
+  `node scripts`. Node resolves a bare directory to its `index.js` happily, but
+  when the directory is missing it reports `Cannot find module '<repo>/scripts'`,
+  which reads like a broken script path rather than an absent directory. Naming
+  the file makes the failure say what actually went wrong.
 
 ## The one constant
 
-`build/site.config.js` holds the production origin, the App Store identifiers,
-and the page list. **Nothing else in `build/` or `tools/` hard-codes the
+`scripts/site.config.js` holds the production origin, the App Store identifiers,
+and the page list. **Nothing else in `scripts/` or `tools/` hard-codes the
 origin** — import `ORIGIN` or `url()` from there.
 
 The literal `https://dollarseeds.app` does appear in the HTML (canonical tags,

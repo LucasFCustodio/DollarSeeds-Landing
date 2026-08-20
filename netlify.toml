@@ -80,7 +80,7 @@
   force = true
 
 [[redirects]]
-  from = "/build/*"
+  from = "/scripts/*"
   to = "/404.html"
   status = 404
   force = true
@@ -151,7 +151,7 @@
 #
 # Everything under /assets is either a source master or a width-suffixed
 # derivative, and neither is edited in place without a filename change.
-# See the caching note at the top of build/images.config.js.
+# See the caching note at the top of scripts/images.config.js.
 [[headers]]
   for = "/assets/*"
   [headers.values]
