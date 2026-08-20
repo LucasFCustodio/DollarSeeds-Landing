@@ -113,7 +113,7 @@ async function main() {
     'about:blank'
   ], { stdio: ['ignore', 'ignore', 'ignore'] });
 
-  const findings = { csp: [], console: [], failed: [] };
+  const findings = { csp: [], console: [], failed: [], exceptions: [] };
 
   try {
     const client = connect(await debuggerUrl(), (method, params) => {
@@ -127,6 +127,18 @@ async function main() {
       }
       if (method === 'Runtime.consoleAPICalled' && params.type === 'error') {
         findings.console.push(params.args.map(a => a.value || a.description || '').join(' '));
+      }
+      // Uncaught exceptions. A CSP that blocks eval() surfaces ONLY here — as an
+      // EvalError thrown inside a third-party bundle, with no Log entry and no
+      // failed request. That is exactly how a strict script-src silently blanked
+      // the Termly policy pages, so this stream is not optional.
+      if (method === 'Runtime.exceptionThrown') {
+        const d = params.exceptionDetails;
+        const text = (d.exception && (d.exception.description || d.exception.value)) || d.text;
+        findings.exceptions.push(String(text).split('\n')[0]);
+        if (/Content Security Policy|unsafe-eval|EvalError/i.test(String(text))) {
+          findings.csp.push('uncaught: ' + String(text).split('\n')[0]);
+        }
       }
       if (method === 'Network.loadingFailed' && !params.canceled) {
         findings.failed.push(params.errorText + '  ' + (params.blockedReason || ''));
@@ -179,6 +191,18 @@ async function main() {
     checks['hero image resolved to'] = await evaluate(
       "(document.querySelector('.phone-frame img')||{}).currentSrc || null");
 
+    // Shared shell: these were bespoke on the legal pages until they were unified.
+    checks['site header present'] = await evaluate("!!document.querySelector('header.site-header .nav-logo img')");
+    checks['site footer columns'] = await evaluate("document.querySelectorAll('footer.site-footer .footer-col').length");
+
+    // Termly policy embed: present only on /privacy, /terms and /cookie-policy.
+    // A blank policy page is a compliance problem, so assert the iframe is real.
+    checks['policy embed children'] = await evaluate(
+      "document.querySelector('[name=termly-embed]') ? " +
+      "document.querySelector('[name=termly-embed]').children.length : 'n/a'");
+    checks['policy iframe height'] = await evaluate(
+      "(document.querySelector('[data-testid=policy-iframe]')||{}).offsetHeight ?? 'n/a'");
+
     console.log('\n=== ' + target + (noJs ? '  [JavaScript disabled]' : '') + ' ===\n');
     for (const [k, v] of Object.entries(checks)) {
       console.log('  ' + k.padEnd(30) + ' : ' + (v === null ? '(absent)' : v));
@@ -189,10 +213,14 @@ async function main() {
       [...new Set(items)].slice(0, 12).forEach(i => console.log('    - ' + String(i).slice(0, 190)));
     };
     section('CSP violations', findings.csp);
+    section('uncaught exceptions', findings.exceptions);
     section('console errors', findings.console);
     section('failed requests', findings.failed);
 
-    process.exitCode = findings.csp.length ? 1 : 0;
+    // A policy page that renders nothing is a compliance failure, not a nit.
+    const blankPolicy = checks['policy embed children'] === 0;
+    if (blankPolicy) console.log('\n  FAIL: the Termly policy embed rendered nothing.');
+    process.exitCode = (findings.csp.length || blankPolicy) ? 1 : 0;
   } finally {
     child.kill();
     server.close();

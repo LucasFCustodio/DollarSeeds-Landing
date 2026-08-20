@@ -143,9 +143,23 @@
     # inline styles of its own. Nonces would mean generating HTML per request,
     # which a static site on a CDN does not do.
     #
+    # 'unsafe-eval' is required by Termly's embed-policy.min.js, which renders
+    # the privacy / terms / cookie documents. Without it that script throws
+    #   Uncaught EvalError: Evaluating a string as JavaScript violates ...
+    # on load and the three legal pages render completely blank — no error a
+    # visitor can see, just an empty page where the policy should be. Those
+    # documents have to be readable, so this stays until Termly stops needing it.
+    #
+    # It would be better to scope 'unsafe-eval' to just those three pages, but
+    # Netlify merges the headers of every matching rule, and two CSP headers on
+    # one response are enforced as their intersection — the strict one would win
+    # and the pages would stay blank. So it is global, deliberately.
+    #
     # img-src includes the Apple CDN because the App Store badge and any
     # artwork pulled from an itunes lookup are served from mzstatic.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; style-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; img-src 'self' data: blob: https://app.termly.io https://*.termly.io https://*.mzstatic.com; font-src 'self' data:; connect-src 'self' https://app.termly.io https://*.termly.io https://itunes.apple.com; frame-src https://app.termly.io https://*.termly.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    # frame-src covers the policy iframe the embed injects
+    # (app.termly.io/policy-viewer/iframe-content.html).
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.termly.io https://*.termly.io; style-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; img-src 'self' data: blob: https://app.termly.io https://*.termly.io https://*.mzstatic.com; font-src 'self' data:; connect-src 'self' https://app.termly.io https://*.termly.io https://itunes.apple.com; frame-src https://app.termly.io https://*.termly.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
 
 # --- Fingerprint-stable assets: cache hard ----------------------------------
 #
