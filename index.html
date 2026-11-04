@@ -128,13 +128,15 @@
     .trust li strong { color: var(--ink); font-weight: 600; }
     .trust-icon { width: 16px; height: 16px; fill: var(--accent-text); flex-shrink: 0; }
 
-    /* ===== SLIDER DEMOS — how logging works, how goals work =====
+    /* ===== SLIDER DEMOS — tithing, expenses, goals, debts =====
        Each .logdemo stacks its screens inside one phone and crossfades them.
        Without JS the slider is hidden, step 1's screen shows, and all captions
-       read as a plain list. */
+       read as a plain list. Backgrounds alternate down the page; the first demo
+       (tithing) follows the trust bar, which already has a bottom border. */
     .logdemo { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
-    .logdemo--goals { background: var(--ground-2); border-top: 1px solid var(--line-soft); }
-    .logdemo--debts { background: var(--ground-1); border-top: 1px solid var(--line-soft); }
+    .logdemo--expenses { background: var(--ground-2); border-top: 1px solid var(--line-soft); }
+    .logdemo--goals { background: var(--ground-1); border-top: 1px solid var(--line-soft); }
+    .logdemo--debts { background: var(--ground-2); border-top: 1px solid var(--line-soft); }
     .logdemo-grid {
       display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 0.8fr);
       gap: 3.5rem; align-items: center;
@@ -143,6 +145,7 @@
     .logdemo-intro p:last-child { margin-bottom: 0; }
     .logdemo-intro p.logdemo-note { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-top: 1.25rem; }
     .logdemo-nowrap { white-space: nowrap; }
+    .logdemo-intro a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
     .logdemo .phone-frame { width: 300px; justify-self: center; }
     .logdemo-screen { aspect-ratio: 739 / 1600; position: relative; overflow: hidden; }
     .logdemo-screen img {
@@ -348,38 +351,6 @@
     .types-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
     .types-more a { color: var(--accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
-    /* ===== FAITH + LESSONS ===== */
-    .faith { background: var(--ground-3); padding: 7rem 2.5rem; border-top: 1px solid var(--line-soft); }
-    .faith-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
-    .faith-text p { font-size: 1.0625rem; color: #3F4A50; line-height: 1.82; margin-bottom: 1.25rem; }
-    .faith-verse {
-      border-left: 3px solid var(--emerald);
-      padding: 1.25rem 1.5rem;
-      background: var(--card); border-radius: 0 14px 14px 0;
-      box-shadow: var(--shadow-soft);
-      margin-top: 1.75rem;
-    }
-    .faith-verse blockquote { font-family: var(--display); font-style: normal; font-size: 1.3125rem; font-weight: 400; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
-    .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-text); letter-spacing: 0.08em; font-style: normal; }
-    .faith-lessons { overflow: hidden; border-radius: 20px; }
-    .faith-lessons-screen { height: 190px; overflow: hidden; background: var(--ground-4); }
-    .faith-lessons-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-    .faith-lessons-body { padding: 1.75rem 1.875rem 1.875rem; }
-    .faith-lessons h3 {
-      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; font-weight: 500;
-    }
-    .faith-lessons ul { list-style: none; }
-    .faith-lessons li { border-bottom: 1px solid var(--line-soft); }
-    .faith-lessons li:last-child { border-bottom: 0; }
-    .faith-lessons a {
-      display: block; padding: 1rem 0.25rem; text-decoration: none; border-radius: 8px;
-      transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
-    }
-    .faith-lessons a:hover { background: var(--ground-0); transform: translateX(3px); }
-    .faith-lessons .lesson-name { font-family: var(--display); font-size: 1.1875rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 0.2rem; }
-    .faith-lessons .lesson-note { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
-
     /* ===== REVIEWS ===== */
     .reviews { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
     .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
@@ -450,13 +421,12 @@
       .logdemo-grid { grid-template-columns: 1fr; gap: 2.75rem; }
       .logdemo-steps { text-align: center; max-width: 34rem; margin: 0 auto; }
       .logdemo-slider { margin-top: 2.25rem; }
-      .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
       .reviews-grid { grid-template-columns: 1fr 1fr; }
       .demo-card { padding: 1.75rem 1.5rem 2rem; }
       .demo-amt { min-width: 6ch; }
     }
     @media (max-width: 580px) {
-      .logdemo, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .logdemo, .types, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
       .trust { padding: 1rem 1.25rem; }
       .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
       .reviews-grid { grid-template-columns: 1fr; }
@@ -820,11 +790,11 @@
       <span class="sr-only">Menu</span>
     </button>
     <ul class="nav-menu" id="site-menu">
+      <li><a href="/#how-tithing-works">Tithing</a></li>
       <li><a href="/#how-logging-works">Expenses</a></li>
       <li><a href="/#how-goals-work">Goals</a></li>
       <li><a href="/#how-debts-work">Debts</a></li>
       <li><a href="/#budgeting-types">Budgeting Types</a></li>
-      <li><a href="/#faith">Faith</a></li>
       <li><a href="/#faq">FAQ</a></li>
     </ul>
     <a class="nav-cta" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">Download on the App&nbsp;Store</a>
@@ -891,8 +861,78 @@
     </ul>
   </section>
 
+  <!-- HOW TITHING WORKS — slider demo -->
+  <section class="logdemo logdemo--tithe" id="how-tithing-works" aria-labelledby="tithedemo-heading">
+    <div class="section-inner">
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Tithing · Step by Step</p>
+          <h2 class="section-heading" id="tithedemo-heading" data-reveal>Honor God by putting him first in your <span class="accent">finances</span></h2>
+          <p data-reveal>God is pleased when we give our first and best fruit to him. It is a sign of gratitude and respect, and something that DollarSeeds encourages. When activated, 10% of your income will be separated into the tithing container, before performing the needs/wants/goals split.</p>
+          <p data-reveal>DollarSeeds is a Christian budgeting app with tithing built in. Your tithe comes off the top of the income you log, following the firstfruits principle of Proverbs 3:9, so your budget is planned on what's left. Want to give more than a tenth? Raise your tithe rate in settings at any time. New to tithing? Read our guide on <a href="/lessons/tithing">what tithing is and how to budget for it</a>.</p>
+          <p data-reveal>Slide through the steps to see how your tithe is set aside, adjusted and marked as given.</p>
+        </div>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-1-home-tithe-300.avif 1x, /assets/images/gen/tithing-step-1-home-tithe-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-1-home-tithe-300.webp 1x, /assets/images/gen/tithing-step-1-home-tithe-600.webp 2x" />
+              <img class="is-active" src="/assets/images/tithe-demo/tithing-step-1-home-tithe.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds home screen with everything darkened except the tithe card, which shows a $100 tithe on $1,000 of income" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-2-open-settings-300.avif 1x, /assets/images/gen/tithing-step-2-open-settings-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-2-open-settings-300.webp 1x, /assets/images/gen/tithing-step-2-open-settings-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-2-open-settings.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The DollarSeeds home screen with everything darkened except the settings button in the top corner, and an arrow pointing to it" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-3-tithe-settings-300.avif 1x, /assets/images/gen/tithing-step-3-tithe-settings-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-3-tithe-settings-300.webp 1x, /assets/images/gen/tithing-step-3-tithe-settings-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-3-tithe-settings.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The Tithing settings in focus: tithing switched on, a 10% tithe rate, and a note that 10% of new income goes into a Tithe envelope before the budget split" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-4-tithe-20-percent-300.avif 1x, /assets/images/gen/tithing-step-4-tithe-20-percent-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-4-tithe-20-percent-300.webp 1x, /assets/images/gen/tithing-step-4-tithe-20-percent-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-4-tithe-20-percent.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The Tithing settings in focus with the tithe rate changed to 20%, so 20% of new income goes into the Tithe envelope first" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-5-tithe-toggle-300.avif 1x, /assets/images/gen/tithing-step-5-tithe-toggle-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-5-tithe-toggle-300.webp 1x, /assets/images/gen/tithing-step-5-tithe-toggle-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-5-tithe-toggle.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The green top of the home screen in focus with the tithe now $200, and an arrow pointing to the tithe toggle" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-6-tithe-given-300.avif 1x, /assets/images/gen/tithing-step-6-tithe-given-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-6-tithe-given-300.webp 1x, /assets/images/gen/tithing-step-6-tithe-given-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-6-tithe-given.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The green top of the home screen in focus with the tithe toggle switched on and the money left this month lowered from $1,000 to $800" />
+            </picture>
+          </div>
+        </div>
+        <ol class="logdemo-steps" id="tithedemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 6</span><p>In the home page, you see how much your tithe is based on your income.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 6</span><p>Tap the settings to look at your tithe settings.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 6</span><p>Here you can toggle tithing on or off, and you can change your tithe amount to more than 10% if desired.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 6</span><p>A change to 20% means that 20% of your income will be reserved to the tithing envelope before making the needs/wants/goals split.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 6</span><p>Back in the home page, the tithing amount is updated. Clicking the toggle will count the tithe as given, and deduct from your total income left for the month.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 6</span><p>The tithe toggle now shows green, and your income left for the month is adjusted.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="tithedemo-range">Choose a step in setting up your tithe</label>
+        <input type="range" class="logdemo-range" id="tithedemo-range" min="1" max="6" step="1" value="1" aria-valuetext="Step 1 of 6: Home" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Home"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Home</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="Settings"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">Settings</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Tithe settings"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Tithe settings</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="20%"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">20%</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Mark as given"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Mark as given</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Given"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Given</span></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW LOGGING WORKS — slider demo -->
-  <section class="logdemo" id="how-logging-works" aria-labelledby="logdemo-heading">
+  <section class="logdemo logdemo--expenses" id="how-logging-works" aria-labelledby="logdemo-heading">
     <div class="section-inner">
       <div class="logdemo-grid">
         <div class="logdemo-intro" data-reveal-group>
@@ -1053,7 +1093,7 @@
             <picture>
               <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-1-empty-garden-300.avif 1x, /assets/images/gen/debt-snowball-step-1-empty-garden-600.avif 2x" />
               <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-1-empty-garden-300.webp 1x, /assets/images/gen/debt-snowball-step-1-empty-garden-600.webp 2x" />
-              <img class="is-active" src="/assets/images/debt-demo/debt-snowball-step-1-empty-garden.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds debts page with an empty pot and the message Your garden is empty, and an arrow pointing to the Plant your first debt button" />
+              <img class="is-active" src="/assets/images/debt-demo/debt-snowball-step-1-empty-garden.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds debts page with everything darkened except the Plant your first debt button, and an arrow pointing to it" />
             </picture>
             <picture>
               <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-2-new-debt-form-300.avif 1x, /assets/images/gen/debt-snowball-step-2-new-debt-form-600.avif 2x" />
@@ -1073,12 +1113,12 @@
             <picture>
               <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-5-min-payment-toggle-300.avif 1x, /assets/images/gen/debt-snowball-step-5-min-payment-toggle-600.avif 2x" />
               <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-5-min-payment-toggle-300.webp 1x, /assets/images/gen/debt-snowball-step-5-min-payment-toggle-600.webp 2x" />
-              <img src="/assets/images/debt-demo/debt-snowball-step-5-min-payment-toggle.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The new BofA Credit Card debt as a sprout in a pot, with $1,465 left, free by April 2031 and 2% paid, and an arrow pointing to the Min payment logged toggle" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-5-min-payment-toggle.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The new BofA Credit Card debt in focus as a sprout in a pot, 2% paid, with its Min payment logged toggle and Extra button, and an arrow pointing to the toggle" />
             </picture>
             <picture>
               <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-6-extra-payment-300.avif 1x, /assets/images/gen/debt-snowball-step-6-extra-payment-600.avif 2x" />
               <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-6-extra-payment-300.webp 1x, /assets/images/gen/debt-snowball-step-6-extra-payment-600.webp 2x" />
-              <img src="/assets/images/debt-demo/debt-snowball-step-6-extra-payment.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the Extra button under the BofA Credit Card plant" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-6-extra-payment.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The BofA Credit Card plant and its payment buttons in focus, with an arrow pointing to the Extra button" />
             </picture>
             <picture>
               <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-7-plant-half-grown-300.avif 1x, /assets/images/gen/debt-snowball-step-7-plant-half-grown-600.avif 2x" />
@@ -1177,57 +1217,6 @@
       </div>
 
       <p class="types-more" data-reveal>Want the deeper version, with worked examples? See the full <a href="/budgeting-types">budgeting types guide</a> or start with the <a href="/50-30-20-rule">50/30/20 rule</a>.</p>
-    </div>
-  </section>
-
-  <!-- FAITH & STEWARDSHIP + LESSONS -->
-  <section class="faith" id="faith" aria-labelledby="faith-heading">
-    <div class="section-inner">
-      <p class="eyebrow" data-reveal>Why DollarSeeds · Lessons</p>
-      <h2 class="section-heading" id="faith-heading" data-reveal style="margin-bottom:3rem;">The name behind the mission</h2>
-      <div class="faith-grid" data-reveal-group>
-        <div class="faith-text" data-reveal>
-          <p>A seed is small. It requires patience, intention, and care before it ever becomes something visible. That's exactly how finances work — not through sudden windfalls, but through faithful, daily decisions that compound over time.</p>
-          <p>The name DollarSeeds comes from that idea. Every dollar you earn is a seed. Where you plant it — how you tend it — determines what grows. Spend carelessly and nothing takes root. Steward it well, and it becomes provision, security, and generosity.</p>
-          <p>The Bible speaks about money more than almost any other topic. Yet for many Christians, faith and finances remain in separate rooms. DollarSeeds was built to open the door between them — not just to budget better, but to steward faithfully. And if you don't share the faith, the discipline still holds: the app never asks you to believe anything to budget well. It reads as conviction, not a gate.</p>
-          <div class="faith-verse">
-            <blockquote>"Little by little, it grows."</blockquote>
-            <cite>Proverbs 13:11</cite>
-          </div>
-        </div>
-        <div class="faith-lessons surface-card" id="lessons" data-reveal>
-          <div class="faith-lessons-screen">
-            <picture>
-              <source type="image/avif" srcset="/assets/images/gen/screen-lessons-480.avif 480w, /assets/images/gen/screen-lessons-739.avif 739w" sizes="(max-width: 900px) 100vw, 430px" />
-              <source type="image/webp" srcset="/assets/images/gen/screen-lessons-480.webp 480w, /assets/images/gen/screen-lessons-739.webp 739w" sizes="(max-width: 900px) 100vw, 430px" />
-              <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
-            </picture>
-          </div>
-          <div class="faith-lessons-body">
-            <h3>Go deeper · Lessons inside the app</h3>
-            <ul>
-              <li>
-                <a href="/lessons/tithing">
-                  <span class="lesson-name">Tithing</span>
-                  <span class="lesson-note">What the tithe is, where it comes from, and how to practice it without legalism or guilt.</span>
-                </a>
-              </li>
-              <li>
-                <a href="/lessons/entrepreneurship">
-                  <span class="lesson-name">Entrepreneurship</span>
-                  <span class="lesson-note">Multiplying what you've been given — work, risk, and building something that blesses people.</span>
-                </a>
-              </li>
-              <li>
-                <a href="/lessons#in-the-app">
-                  <span class="lesson-name">Saving for the Unexpected</span>
-                  <span class="lesson-note">What the ants teach about having enough for each season — in the app, with every new lesson as it ships.</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1435,6 +1424,7 @@
       <nav class="footer-col" aria-label="Product">
         <h2>Product</h2>
         <ul>
+          <li><a href="/#how-tithing-works">Tithing</a></li>
           <li><a href="/#how-logging-works">Expenses</a></li>
           <li><a href="/#how-goals-work">Goals</a></li>
           <li><a href="/#how-debts-work">Debts</a></li>

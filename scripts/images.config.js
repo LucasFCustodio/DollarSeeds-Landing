@@ -26,6 +26,14 @@ module.exports = [
     note: 'hero / LCP'
   },
   {
+    // "How tithing works" demo: six 739x1600 screens in the same 300px phone
+    // frame (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/tithe-demo/*.jpeg',
+    widths: [300, 600],
+    formats: ['avif', 'webp'],
+    note: 'tithe demo'
+  },
+  {
     // "How logging works" demo: six 739x1600 screens in a 300px phone frame
     // (260 under 580px), so 300/600 covers 1x/2x.
     src: 'assets/images/log-demo/*.jpeg',
@@ -48,13 +56,6 @@ module.exports = [
     widths: [300, 600],
     formats: ['avif', 'webp'],
     note: 'debt demo'
-  },
-  {
-    // Lessons card screenshot, cropped to a 190px-tall band by object-fit.
-    src: 'assets/images/screen-lessons.png',
-    widths: [480, 739],
-    formats: ['avif', 'webp'],
-    note: 'faith section card'
   },
   {
     // Logo: 38px in the nav, 72px in the footer, 240px on the press page.
