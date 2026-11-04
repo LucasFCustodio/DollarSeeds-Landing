@@ -128,10 +128,12 @@
     .trust li strong { color: var(--ink); font-weight: 600; }
     .trust-icon { width: 16px; height: 16px; fill: var(--accent-text); flex-shrink: 0; }
 
-    /* ===== HOW LOGGING WORKS — slider demo =====
-       Six stacked screens crossfade inside one phone. Without JS the slider is
-       hidden, step 1's screen shows, and all six captions read as a plain list. */
+    /* ===== SLIDER DEMOS — how logging works, how goals work =====
+       Each .logdemo stacks its screens inside one phone and crossfades them.
+       Without JS the slider is hidden, step 1's screen shows, and all captions
+       read as a plain list. */
     .logdemo { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
+    .logdemo--goals { background: var(--ground-2); border-top: 1px solid var(--line-soft); }
     .logdemo-grid {
       display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 0.8fr);
       gap: 3.5rem; align-items: center;
@@ -156,7 +158,7 @@
       font-family: var(--display); font-size: 1.3rem; font-weight: 500;
       line-height: 1.4; color: var(--ink);
     }
-    /* With JS: all six captions share one grid cell, so the list is always as
+    /* With JS: all captions share one grid cell, so the list is always as
        tall as the longest caption and nothing below it jumps between steps. */
     html.js .logdemo-steps { display: grid; }
     html.js .logdemo-step {
@@ -210,6 +212,12 @@
     .logdemo-ticks li:nth-child(3) { --pos: 0.4; }
     .logdemo-ticks li:nth-child(4) { --pos: 0.6; }
     .logdemo-ticks li:nth-child(5) { --pos: 0.8; }
+    /* The goals demo has seven steps, so its labels sit at sixths. */
+    .logdemo--goals .logdemo-ticks li:nth-child(2) { --pos: calc(1 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(3) { --pos: calc(2 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(4) { --pos: calc(3 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(5) { --pos: calc(4 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(6) { --pos: calc(5 / 6); }
     .logdemo-ticks li:first-child { left: 0; transform: none; }
     .logdemo-ticks li:last-child { left: auto; right: 0; transform: none; }
     .logdemo-tick {
@@ -223,40 +231,21 @@
     .logdemo-tick-num { font-family: var(--mono); font-size: 0.75rem; }
     .logdemo-tick.is-active { color: var(--ink); font-weight: 700; }
     .logdemo-tick.is-active .logdemo-tick-num { color: var(--accent-text); }
+    /* Seven labels side by side only fit comfortably above ~1100px. Between that
+       and the numbers-only layout under 580px, each goals label stacks under its
+       number and wraps to two lines, so it takes about 60px instead of 100. */
+    @media (min-width: 581px) and (max-width: 1100px) {
+      .logdemo--goals .logdemo-ticks { height: 4.5rem; }
+      .logdemo--goals .logdemo-tick { flex-direction: column; align-items: center; gap: 0.15rem; text-align: center; }
+      .logdemo--goals .logdemo-tick-label { white-space: normal; max-width: 4.25em; line-height: 1.3; }
+      .logdemo--goals .logdemo-ticks li:first-child .logdemo-tick { align-items: flex-start; text-align: left; }
+      .logdemo--goals .logdemo-ticks li:last-child .logdemo-tick { align-items: flex-end; text-align: right; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .logdemo-screen img, html.js .logdemo-step, html.js .logdemo-step.is-active { transition: none; }
       html.js .logdemo-step { transform: none; }
     }
-
-    /* ===== HOW IT WORKS ===== */
-    .how { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
-    .how-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: step; }
-    .how-step {
-      padding: 1.875rem; counter-increment: step; position: relative;
-      background: var(--card); border: 1px solid var(--line-soft); border-radius: 20px;
-      box-shadow: var(--shadow-soft);
-      transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
-    }
-    .how-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
-    .how-step::before {
-      content: "0" counter(step);
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent-text);
-      display: block; margin-bottom: 0.875rem;
-    }
-    .how-step h3 { font-family: var(--display); font-size: 1.3125rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
-    .how-step p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; }
-    .how-split { display: flex; gap: 0.375rem; margin-top: 1rem; }
-    .how-split span {
-      font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 0.3rem 0.65rem; border-radius: 999px;
-    }
-    .how-split .b-needs { background: rgba(194,112,28,0.12); color: var(--amber); }
-    .how-split .b-wants { background: rgba(124,58,237,0.1); color: var(--violet); }
-    .how-split .b-savings { background: rgba(16,185,129,0.14); color: var(--accent-text); }
-    .how-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
-    .how-more a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-    .how-more a:hover { color: var(--accent-text); }
 
     /* ===== FEATURES — alternating video rows ===== */
     .features { background: var(--ground-1); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
@@ -478,7 +467,6 @@
       .logdemo-steps { text-align: center; max-width: 34rem; margin: 0 auto; }
       .logdemo-slider { margin-top: 2.25rem; }
       .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .how-steps { grid-template-columns: 1fr; }
       .feature-rows { gap: 4rem; }
       .feature-row { grid-template-columns: 1fr; gap: 2rem; }
       .feature-row:nth-child(even) .feature-media { order: 1; }
@@ -489,7 +477,7 @@
       .demo-amt { min-width: 6ch; }
     }
     @media (max-width: 580px) {
-      .logdemo, .how, .features, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .logdemo, .features, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
       .trust { padding: 1rem 1.25rem; }
       .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
       .reviews-grid { grid-template-columns: 1fr; }
@@ -854,7 +842,7 @@
     </button>
     <ul class="nav-menu" id="site-menu">
       <li><a href="/#features">Features</a></li>
-      <li><a href="/#how-it-works">How It Works</a></li>
+      <li><a href="/#how-logging-works">How It Works</a></li>
       <li><a href="/#budgeting-types">Budgeting Types</a></li>
       <li><a href="/#faith">Faith</a></li>
       <li><a href="/#faq">FAQ</a></li>
@@ -968,7 +956,7 @@
             </picture>
           </div>
         </div>
-        <ol class="logdemo-steps" aria-live="polite">
+        <ol class="logdemo-steps" id="logdemo-steps" aria-live="polite">
           <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 6</span><p>In the home page, you see how much you have left for each category for the month, and you can log new expenses.</p></li>
           <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 6</span><p>To log new expenses, click the + sign.</p></li>
           <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 6</span><p>This is the needs page. It's where you provide details for your needs expenses.</p></li>
@@ -992,29 +980,79 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how" id="how-it-works" aria-labelledby="how-heading">
+  <!-- HOW GOALS WORK — slider demo -->
+  <section class="logdemo logdemo--goals" id="how-goals-work" aria-labelledby="goaldemo-heading">
     <div class="section-inner">
-      <p class="eyebrow" data-reveal>How It Works · Three Steps</p>
-      <h2 class="section-heading" id="how-heading" data-reveal>Three steps, every month</h2>
-      <ol class="how-steps" data-reveal-group>
-        <li class="how-step" data-reveal>
-          <h3>Log your income</h3>
-          <p>Paycheck, side gig, gift, refund — log it in seconds when it arrives. Every harvest counts.</p>
-        </li>
-        <li class="how-step" data-reveal>
-          <h3>It splits automatically</h3>
-          <p>DollarSeeds divides each amount across your three buckets the moment you log it — no math, no spreadsheet.</p>
-          <div class="how-split" aria-hidden="true">
-            <span class="b-needs">Needs</span><span class="b-wants">Wants</span><span class="b-savings">Savings</span>
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Savings Goals · Step by Step</p>
+          <h2 class="section-heading" id="goaldemo-heading" data-reveal>Add your long term goals, and save them <span class="accent">month by month</span></h2>
+          <p data-reveal>DollarSeeds is a savings goal tracker built into your budget. Set a goal for what matters, like an emergency fund, a new laptop or a trip, pick a target month, and the app works out how much to save each month and shows whether you're on track.</p>
+          <p data-reveal>Slide through the steps to watch a $2,000 laptop goal get planted, saved for month by month, and topped up with an extra payment.</p>
+        </div>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-1-goals-page-300.avif 1x, /assets/images/gen/goal-tracking-step-1-goals-page-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-1-goals-page-300.webp 1x, /assets/images/gen/goal-tracking-step-1-goals-page-600.webp 2x" />
+              <img class="is-active" src="/assets/images/goal-demo/goal-tracking-step-1-goals-page.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds goals page with everything darkened except the Plant a new goal button, and an arrow pointing to it" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-2-new-goal-form-300.avif 1x, /assets/images/gen/goal-tracking-step-2-new-goal-form-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-2-new-goal-form-300.webp 1x, /assets/images/gen/goal-tracking-step-2-new-goal-form-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-2-new-goal-form.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Empty Plant a new goal form with fields for the goal name, target amount, amount already saved, target month and year, and a switch to add the monthly amount automatically" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-3-goal-filled-300.avif 1x, /assets/images/gen/goal-tracking-step-3-goal-filled-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-3-goal-filled-300.webp 1x, /assets/images/gen/goal-tracking-step-3-goal-filled-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-3-goal-filled.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Plant a new goal form filled in for a New Laptop goal: a $2,000 target, $0 saved, a target of August 2027 that works out to $200 a month, and automatic monthly adding switched on" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-4-plant-my-goal-300.avif 1x, /assets/images/gen/goal-tracking-step-4-plant-my-goal-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-4-plant-my-goal-300.webp 1x, /assets/images/gen/goal-tracking-step-4-plant-my-goal-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-4-plant-my-goal.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the Plant my goal button on the filled-in goal form" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-5-goal-created-300.avif 1x, /assets/images/gen/goal-tracking-step-5-goal-created-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-5-goal-created-300.webp 1x, /assets/images/gen/goal-tracking-step-5-goal-created-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-5-goal-created.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The new New Laptop goal card in focus: on track for August, right on time, saving $200 a month, with $200 of $2,000 saved and $200 added for November" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-6-tap-extra-300.avif 1x, /assets/images/gen/goal-tracking-step-6-tap-extra-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-6-tap-extra-300.webp 1x, /assets/images/gen/goal-tracking-step-6-tap-extra-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-6-tap-extra.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the + Extra button on the New Laptop goal card" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-7-add-extra-payment-300.avif 1x, /assets/images/gen/goal-tracking-step-7-add-extra-payment-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-7-add-extra-payment-300.webp 1x, /assets/images/gen/goal-tracking-step-7-add-extra-payment-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-7-add-extra-payment.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Add an extra payment sheet for the New Laptop goal, with an amount field and a choice between this month's budget and money already saved" />
+            </picture>
           </div>
-        </li>
-        <li class="how-step" data-reveal>
-          <h3>Track and adjust</h3>
-          <p>Every expense lands in a category with a target. See what's left, catch overspending early, and adjust before the month gets away from you.</p>
-        </li>
-      </ol>
-      <p class="how-more" data-reveal>The split isn't one-size-fits-all. DollarSeeds ships <a href="#budgeting-types">three budgeting types</a> — try them live below.</p>
+        </div>
+        <ol class="logdemo-steps" id="goaldemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 7</span><p>In the goals page, you see all your goals and their details. To create a new goal, click the "Plant a new goal" button.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 7</span><p>To create a new goal, you'll provide information on it.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 7</span><p>It will look something like this once it's filled out.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 7</span><p>Clicking the button will save your goal along with its information, giving you useful details for it.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 7</span><p>With the goal created, you can see useful details to help you accomplish your goal on schedule.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 7</span><p>Besides the minimum monthly amount, you can also add extra money to complete the goal faster.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 7 of 7</span><p>In this page, you can specify the amount, and whether it's coming from this month's budget or from money you'd already saved.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="goaldemo-range">Choose a step in creating a savings goal</label>
+        <input type="range" class="logdemo-range" id="goaldemo-range" min="1" max="7" step="1" value="1" aria-valuetext="Step 1 of 7: Goals page" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Goals page"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Goals page</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="New goal"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">New goal</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Fill it in"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Fill it in</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="Plant my goal"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">Plant my goal</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Goal created"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Goal created</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Tap + Extra"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Tap + Extra</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="7" data-label="Extra payment"><span class="logdemo-tick-num">7</span> <span class="logdemo-tick-label">Extra payment</span></button></li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -1436,7 +1474,7 @@
         <h2>Product</h2>
         <ul>
           <li><a href="/#features">Features</a></li>
-          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#how-logging-works">How It Works</a></li>
           <li><a href="/#budgeting-types">Budgeting Types</a></li>
           <li><a href="/#reviews">Reviews</a></li>
           <li><a href="/#faq">FAQ</a></li>
@@ -1505,58 +1543,63 @@
       .catch(function () { /* keep static fallback */ });
   })();
 
-  // Logging demo: the slider and the step labels pick which phone screen and
-  // caption show. No autoplay. Without JS the CSS shows step 1 and all captions.
+  // Slider demos (how logging works, how goals work): in each .logdemo, the
+  // slider and the step labels pick which phone screen and caption show. Every
+  // demo is set up from its own markup, so they never affect each other. No
+  // autoplay. Without JS the CSS shows step 1 and all captions.
   (function () {
-    var section = document.getElementById('how-logging-works');
-    var range = document.getElementById('logdemo-range');
-    if (!section || !range) return;
-    var screen = section.querySelector('.logdemo-screen');
-    var imgs = Array.prototype.slice.call(screen.querySelectorAll('img'));
-    var captions = Array.prototype.slice.call(section.querySelectorAll('.logdemo-step'));
-    var ticks = Array.prototype.slice.call(section.querySelectorAll('.logdemo-tick'));
-    var total = imgs.length;
-    if (!total) return;
+    function setupDemo(section) {
+      var range = section.querySelector('.logdemo-range');
+      var screen = section.querySelector('.logdemo-screen');
+      if (!range || !screen) return;
+      var imgs = Array.prototype.slice.call(screen.querySelectorAll('img'));
+      var captions = Array.prototype.slice.call(section.querySelectorAll('.logdemo-step'));
+      var ticks = Array.prototype.slice.call(section.querySelectorAll('.logdemo-tick'));
+      var total = Number(range.max) || imgs.length;
+      if (!total || !imgs.length) return;
 
-    function show(n) {
-      n = Math.min(total, Math.max(1, Math.round(Number(n)) || 1));
-      var i = n - 1;
-      screen.setAttribute('data-step', String(n));
-      imgs.forEach(function (img, k) {
-        img.classList.toggle('is-active', k === i);
-        if (k === i) img.removeAttribute('aria-hidden');
-        else img.setAttribute('aria-hidden', 'true');
+      function show(n) {
+        n = Math.min(total, Math.max(1, Math.round(Number(n)) || 1));
+        var i = n - 1;
+        screen.setAttribute('data-step', String(n));
+        imgs.forEach(function (img, k) {
+          img.classList.toggle('is-active', k === i);
+          if (k === i) img.removeAttribute('aria-hidden');
+          else img.setAttribute('aria-hidden', 'true');
+        });
+        captions.forEach(function (li, k) { li.classList.toggle('is-active', k === i); });
+        ticks.forEach(function (btn, k) {
+          btn.classList.toggle('is-active', k === i);
+          if (k === i) btn.setAttribute('aria-current', 'step');
+          else btn.removeAttribute('aria-current');
+        });
+        if (Number(range.value) !== n) range.value = String(n);
+        range.style.setProperty('--fill', (total > 1 ? (n - 1) / (total - 1) * 100 : 0) + '%');
+        var label = ticks[i] ? ticks[i].getAttribute('data-label') : '';
+        range.setAttribute('aria-valuetext', 'Step ' + n + ' of ' + total + (label ? ': ' + label : ''));
+      }
+
+      range.addEventListener('input', function () { show(range.value); });
+      ticks.forEach(function (btn) {
+        btn.addEventListener('click', function () { show(btn.getAttribute('data-step')); });
       });
-      captions.forEach(function (li, k) { li.classList.toggle('is-active', k === i); });
-      ticks.forEach(function (btn, k) {
-        btn.classList.toggle('is-active', k === i);
-        if (k === i) btn.setAttribute('aria-current', 'step');
-        else btn.removeAttribute('aria-current');
-      });
-      if (Number(range.value) !== n) range.value = String(n);
-      range.style.setProperty('--fill', ((n - 1) / (total - 1) * 100) + '%');
-      var label = ticks[i] ? ticks[i].getAttribute('data-label') : '';
-      range.setAttribute('aria-valuetext', 'Step ' + n + ' of ' + total + (label ? ': ' + label : ''));
+
+      // Fetch all of this demo's screens once it is ~400px away, so dragging
+      // the slider never waits on the network.
+      function loadAll() { imgs.forEach(function (img) { img.loading = 'eager'; }); }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          if (entries.some(function (e) { return e.isIntersecting; })) { loadAll(); io.disconnect(); }
+        }, { rootMargin: '400px 0px' });
+        io.observe(section);
+      } else {
+        loadAll();
+      }
+
+      show(range.value);
     }
 
-    range.addEventListener('input', function () { show(range.value); });
-    ticks.forEach(function (btn) {
-      btn.addEventListener('click', function () { show(btn.getAttribute('data-step')); });
-    });
-
-    // Fetch all six screens once the section is ~400px away, so dragging the
-    // slider never waits on the network.
-    function loadAll() { imgs.forEach(function (img) { img.loading = 'eager'; }); }
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        if (entries.some(function (e) { return e.isIntersecting; })) { loadAll(); io.disconnect(); }
-      }, { rootMargin: '400px 0px' });
-      io.observe(section);
-    } else {
-      loadAll();
-    }
-
-    show(range.value);
+    document.querySelectorAll('.logdemo').forEach(setupDemo);
   })();
 
 

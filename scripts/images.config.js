@@ -34,6 +34,14 @@ module.exports = [
     note: 'logging demo'
   },
   {
+    // "How goals work" demo: seven 739x1600 screens in the same 300px phone
+    // frame (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/goal-demo/*.jpeg',
+    widths: [300, 600],
+    formats: ['avif', 'webp'],
+    note: 'goal demo'
+  },
+  {
     // Lessons card screenshot, cropped to a 190px-tall band by object-fit.
     src: 'assets/images/screen-lessons.png',
     widths: [480, 739],
