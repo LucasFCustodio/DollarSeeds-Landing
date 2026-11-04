@@ -9,29 +9,54 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   FONTS — self-hosted, Latin subset, VARIABLE (wght axis intact).
-   Headings use font-weight: 580; that only resolves on a variable
-   face, so these files must never be replaced with static instances.
-   Regenerate with `npm run fonts` (tools/fetch-fonts.js asserts fvar).
+   FONTS — self-hosted, Latin subset.
+   Montserrat (headings) and JetBrains Mono (eyebrows) are VARIABLE,
+   wght axis intact. Headings use font-weight: 580; that only resolves
+   on a variable face, so those files must never be replaced with
+   static instances.
+   Lato (body) has no variable cut, so it ships as three static
+   weights: 300, 400, 700. Body text asking for 500 renders at 400,
+   and 600 at 700 — expected.
+   Regenerate with `npm run fonts` (tools/fetch-fonts.js asserts fvar
+   on the variable faces).
    ------------------------------------------------------------ */
 @font-face {
-  font-family: 'Urbanist';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('/assets/fonts/urbanist-latin-var.woff2') format('woff2-variations'),
-       url('/assets/fonts/urbanist-latin-var.woff2') format('woff2');
+  src: url('/assets/fonts/montserrat-latin-var.woff2') format('woff2-variations'),
+       url('/assets/fonts/montserrat-latin-var.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
                  U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
                  U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Figtree';
+  font-family: 'Lato';
   font-style: normal;
-  font-weight: 300 900;
+  font-weight: 300;
   font-display: swap;
-  src: url('/assets/fonts/figtree-latin-var.woff2') format('woff2-variations'),
-       url('/assets/fonts/figtree-latin-var.woff2') format('woff2');
+  src: url('/assets/fonts/lato-latin-300.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/lato-latin-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/lato-latin-700.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
                  U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
                  U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -59,19 +84,19 @@
    costs roughly 0.1 CLS on mobile.
    ------------------------------------------------------------ */
 @font-face {
-  font-family: 'Urbanist Fallback';
+  font-family: 'Montserrat Fallback';
   src: local('Arial'), local('Helvetica');
-  size-adjust: 93.37%;
-  ascent-override: 101.74%;
-  descent-override: 26.77%;
+  size-adjust: 107.41%;
+  ascent-override: 90.12%;
+  descent-override: 23.37%;
   line-gap-override: 0%;
 }
 @font-face {
-  font-family: 'Figtree Fallback';
+  font-family: 'Lato Fallback';
   src: local('Arial'), local('Helvetica');
-  size-adjust: 100.00%;
-  ascent-override: 95.00%;
-  descent-override: 25.00%;
+  size-adjust: 98.44%;
+  ascent-override: 100.27%;
+  descent-override: 21.64%;
   line-gap-override: 0%;
 }
 @font-face {
@@ -85,6 +110,10 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* No italic type anywhere on the site. Emphasis stays in the markup for
+   meaning; color and weight carry it visually. */
+em, i, cite, address, blockquote { font-style: normal; }
+
 :root {
   /* Original brand tokens — unchanged */
   --cream: #F5F1E6;
@@ -95,8 +124,8 @@
   --violet: #7C3AED;
   --harvest: #F4D35E;
   --muted: #6B7280;
-  --display: 'Urbanist', 'Urbanist Fallback', system-ui, sans-serif;
-  --sans: 'Figtree', 'Figtree Fallback', system-ui, sans-serif;
+  --display: 'Montserrat', 'Montserrat Fallback', system-ui, sans-serif;
+  --sans: 'Lato', 'Lato Fallback', system-ui, sans-serif;
   --mono: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
 
   /* Tonal ramp off the cream — light to deep warm greige */

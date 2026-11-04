@@ -40,8 +40,8 @@ const FALLBACK = 'Arial';
 const FALLBACK_LOCALS = ['Arial', 'Helvetica'];
 
 const FACES = [
-  { family: 'Urbanist', weight: 580, varName: 'display' },   // headings
-  { family: 'Figtree', weight: 400, varName: 'sans' },       // body
+  { family: 'Montserrat', weight: 580, varName: 'display' }, // headings
+  { family: 'Lato', weight: 400, varName: 'sans' },           // body
   { family: 'JetBrains Mono', weight: 400, varName: 'mono' } // eyebrows
 ];
 

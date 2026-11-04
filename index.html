@@ -10,20 +10,20 @@
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
   <script>document.documentElement.classList.add('js');</script>
 
-  <title>Christian Budgeting App for Financial Freedom — DollarSeeds</title>
-  <meta name="description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <title>Christian Budgeting App to Achieve Goals and Get Out of Debt</title>
+  <meta name="description" content="Find peace and purpose with your money. DollarSeeds is a Christian budgeting app that helps you pay off debt with the snowball method and grow toward financial freedom." />
 
   <!-- === head: canonical, social, icons === -->
   <link rel="canonical" href="https://dollarseeds.app/" />
 
-  <!-- Self-hosted variable fonts. Preload only the face the h1 uses
-       (Urbanist); the other two are discovered from the stylesheet. -->
-  <link rel="preload" href="/assets/fonts/urbanist-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Self-hosted fonts. Preload only the face the h1 uses
+       (Montserrat); the others are discovered from the stylesheet. -->
+  <link rel="preload" href="/assets/fonts/montserrat-latin-var.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Hero phone screen: the LCP element. Preloaded as AVIF; browsers without
        AVIF skip this (type filter) and pick WebP from the <picture> normally. -->
   <link rel="preload" as="image" fetchpriority="high" type="image/avif"
-        imagesrcset="/assets/images/gen/dashboard-screen-250.avif 1x, /assets/images/gen/dashboard-screen-500.avif 2x" />
+        imagesrcset="/assets/images/gen/home-screen-2026-11-280.avif 1x, /assets/images/gen/home-screen-2026-11-560.avif 2x" />
 
   <!-- Icons, manifest, browser chrome -->
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -35,8 +35,8 @@
   <meta name="apple-itunes-app" content="app-id=6780037284" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="DollarSeeds — the Christian budgeting app for real financial freedom" />
-  <meta property="og:description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <meta property="og:title" content="DollarSeeds: Christian Budgeting App to Achieve Goals and Get Out of Debt" />
+  <meta property="og:description" content="Find peace and purpose with your money. DollarSeeds is a Christian budgeting app that helps you pay off debt with the snowball method and grow toward financial freedom." />
   <meta property="og:url" content="https://dollarseeds.app/" />
   <meta property="og:site_name" content="DollarSeeds" />
   <meta property="og:type" content="website" />
@@ -49,8 +49,8 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DollarSeeds — the Christian budgeting app for real financial freedom" />
-  <meta name="twitter:description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <meta name="twitter:title" content="DollarSeeds: Christian Budgeting App to Achieve Goals and Get Out of Debt" />
+  <meta name="twitter:description" content="Find peace and purpose with your money. DollarSeeds is a Christian budgeting app that helps you pay off debt with the snowball method and grow toward financial freedom." />
   <meta name="twitter:image" content="https://dollarseeds.app/assets/images/og-default.png" />
   <meta name="twitter:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
 
@@ -67,7 +67,7 @@
       font-weight: 580;
       line-height: 1.14; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 1rem;
     }
-    .section-heading .accent { font-style: italic; color: var(--accent-text); }
+    .section-heading .accent { font-style: normal; color: var(--accent-text); }
     .section-body { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 62ch; margin-bottom: 3rem; }
 
     .surface-card {
@@ -98,15 +98,15 @@
       font-weight: 580;
       color: var(--ink); line-height: 1.12; letter-spacing: -0.005em; margin-bottom: 1rem;
     }
-    .hero-heading .accent { color: var(--accent-text); font-style: italic; }
-    .hero-tagline { font-family: var(--display); font-style: italic; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); margin-bottom: 1.25rem; }
+    .hero-heading .accent { color: var(--accent-text); font-style: normal; }
+    .hero-tagline { font-family: var(--display); font-style: normal; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); margin-bottom: 1.25rem; }
     .hero-desc { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 56ch; margin-bottom: 2.25rem; }
     .hero-cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
     .hero-note { font-size: 0.775rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.04em; }
 
-    .hero-visual { position: relative; display: flex; justify-content: flex-start; align-items: flex-end; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
     .phone-frame {
-      width: 250px; flex-shrink: 0; background: #0d0d0d; z-index: 1;
+      width: 280px; flex-shrink: 0; background: #0d0d0d; z-index: 1;
       border-radius: 42px; border: 3px solid rgba(15,61,46,0.15);
       overflow: hidden; position: relative;
       box-shadow: var(--shadow-lift);
@@ -118,14 +118,6 @@
     }
     .phone-frame img { width: 100%; height: auto; display: block; }
 
-    /* ===== TREE ILLUSTRATION =====
-       Sits to the RIGHT of the phone with a 4rem gap — no overlap. The group is
-       anchored to the start of the visual column (it is wider than the column,
-       so centring it would pull the phone off-centre); the tree bleeds off the
-       right and .hero's overflow:hidden clips it. */
-    .growth { margin-left: 4rem; flex-shrink: 0; }
-    .growth img { display: block; height: 540px; width: auto; max-width: none; }
-
     /* ===== TRUST BAR ===== */
     .trust { background: var(--ground-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.125rem 2.5rem; }
     .trust ul {
@@ -136,21 +128,106 @@
     .trust li strong { color: var(--ink); font-weight: 600; }
     .trust-icon { width: 16px; height: 16px; fill: var(--accent-text); flex-shrink: 0; }
 
-    /* ===== WHO IT'S FOR ===== */
-    .who { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
-    .who-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
-    .who-prose p { font-size: 1.125rem; color: #3F4A50; line-height: 1.85; margin-bottom: 1.25rem; }
-    .who-replaces { padding: 2rem 2.25rem; }
-    .who-replaces h3 { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; font-weight: 500; }
-    .who-replaces ul { list-style: none; }
-    .who-replaces li { padding: 0.875rem 0; border-bottom: 1px solid var(--line-soft); font-size: 0.9375rem; color: #414B54; line-height: 1.6; }
-    .who-replaces li:last-of-type { border-bottom: 0; }
-    .who-replaces li strong { color: var(--ink); display: block; margin-bottom: 0.15rem; }
-    .who-replaces .who-replaces-result {
-      margin-top: 1rem; padding: 0.875rem 1.125rem; border-radius: 12px;
-      background: rgba(16,185,129,0.09); color: var(--ink); font-size: 0.9375rem;
+    /* ===== HOW LOGGING WORKS — slider demo =====
+       Six stacked screens crossfade inside one phone. Without JS the slider is
+       hidden, step 1's screen shows, and all six captions read as a plain list. */
+    .logdemo { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
+    .logdemo-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 0.8fr);
+      gap: 3.5rem; align-items: center;
     }
-    .who-replaces .who-replaces-result strong { color: var(--accent-text); }
+    .logdemo-intro p:not(.eyebrow) { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1rem; }
+    .logdemo-intro p:last-child { margin-bottom: 0; }
+    .logdemo .phone-frame { width: 300px; justify-self: center; }
+    .logdemo-screen { aspect-ratio: 739 / 1600; position: relative; overflow: hidden; }
+    .logdemo-screen img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity var(--dur) var(--ease-out);
+    }
+    .logdemo-screen img.is-active { opacity: 1; }
+
+    .logdemo-steps { list-style: none; }
+    .logdemo-step + .logdemo-step { margin-top: 1.5rem; }
+    .logdemo-step-num {
+      display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 0.625rem;
+    }
+    .logdemo-step p {
+      font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+      line-height: 1.4; color: var(--ink);
+    }
+    /* With JS: all six captions share one grid cell, so the list is always as
+       tall as the longest caption and nothing below it jumps between steps. */
+    html.js .logdemo-steps { display: grid; }
+    html.js .logdemo-step {
+      grid-area: 1 / 1; margin-top: 0;
+      opacity: 0; visibility: hidden; transform: translateY(6px);
+      transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+                  visibility 0s linear var(--dur);
+    }
+    html.js .logdemo-step.is-active {
+      opacity: 1; visibility: visible; transform: none;
+      transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+    }
+
+    .logdemo-slider { display: none; margin-top: 3.5rem; }
+    html.js .logdemo-slider { display: block; }
+    .logdemo-range {
+      --fill: 0%;
+      display: block; width: 100%; height: 26px; margin: 0;
+      -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer;
+    }
+    .logdemo-range::-webkit-slider-runnable-track {
+      height: 8px; border-radius: 999px;
+      background: linear-gradient(to right, var(--emerald) var(--fill), var(--ground-3) var(--fill));
+    }
+    .logdemo-range::-moz-range-track {
+      height: 8px; border-radius: 999px;
+      background: linear-gradient(to right, var(--emerald) var(--fill), var(--ground-3) var(--fill));
+    }
+    .logdemo-range::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 26px; height: 26px; margin-top: -9px; border-radius: 50%;
+      background: var(--card); border: 3px solid var(--emerald);
+      box-shadow: 0 4px 12px -3px rgba(15, 61, 46, 0.35);
+    }
+    .logdemo-range::-moz-range-thumb {
+      width: 26px; height: 26px; border-radius: 50%; box-sizing: border-box;
+      background: var(--card); border: 3px solid var(--emerald);
+      box-shadow: 0 4px 12px -3px rgba(15, 61, 46, 0.35);
+    }
+    .logdemo-range:focus { outline: none; }
+    .logdemo-range:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 6px; border-radius: 999px; }
+
+    /* Step labels sit under the thumb positions: the thumb centre travels from
+       13px to (100% - 13px), so each middle label is centred on that line. */
+    .logdemo-ticks { list-style: none; position: relative; height: 2.75rem; margin-top: 0.5rem; }
+    .logdemo-ticks li {
+      position: absolute; top: 0;
+      left: calc(13px + (100% - 26px) * var(--pos)); transform: translateX(-50%);
+    }
+    .logdemo-ticks li:nth-child(2) { --pos: 0.2; }
+    .logdemo-ticks li:nth-child(3) { --pos: 0.4; }
+    .logdemo-ticks li:nth-child(4) { --pos: 0.6; }
+    .logdemo-ticks li:nth-child(5) { --pos: 0.8; }
+    .logdemo-ticks li:first-child { left: 0; transform: none; }
+    .logdemo-ticks li:last-child { left: auto; right: 0; transform: none; }
+    .logdemo-tick {
+      background: none; border: 0; cursor: pointer; padding: 0.5rem 0.25rem;
+      font-family: var(--sans); font-size: 0.875rem; color: var(--muted); white-space: nowrap;
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .logdemo-tick:hover { color: var(--ink); }
+    .logdemo-tick:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; border-radius: 6px; }
+    .logdemo-tick-num { font-family: var(--mono); font-size: 0.75rem; }
+    .logdemo-tick.is-active { color: var(--ink); font-weight: 700; }
+    .logdemo-tick.is-active .logdemo-tick-num { color: var(--accent-text); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logdemo-screen img, html.js .logdemo-step, html.js .logdemo-step.is-active { transition: none; }
+      html.js .logdemo-step { transform: none; }
+    }
 
     /* ===== HOW IT WORKS ===== */
     .how { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
@@ -262,7 +339,7 @@
       flex: 1; min-width: 200px; accent-color: var(--emerald); height: 6px; cursor: pointer;
     }
     .demo-type-name {
-      font-family: var(--display); font-style: italic; font-size: 1.1875rem; font-weight: 400; letter-spacing: 0;
+      font-family: var(--display); font-style: normal; font-size: 1.1875rem; font-weight: 400; letter-spacing: 0;
       color: var(--ink); margin-bottom: 1.5rem; min-height: 1.6em;
     }
     .demo-rows { display: flex; flex-direction: column; gap: 1rem; }
@@ -309,7 +386,7 @@
       box-shadow: var(--shadow-soft);
       margin-top: 1.75rem;
     }
-    .faith-verse blockquote { font-family: var(--display); font-style: italic; font-size: 1.3125rem; font-weight: 400; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
+    .faith-verse blockquote { font-family: var(--display); font-style: normal; font-size: 1.3125rem; font-weight: 400; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
     .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-text); letter-spacing: 0.08em; font-style: normal; }
     .faith-lessons { overflow: hidden; border-radius: 20px; }
     .faith-lessons-screen { height: 190px; overflow: hidden; background: var(--ground-4); }
@@ -390,26 +467,17 @@
     .download .hero-note { display: block; margin-top: 1.25rem; }
 
     /* ===== RESPONSIVE ===== */
-    /* Below ~1440px the visual column is too narrow to hold phone + gap + a
-       540px tree, so the tree scales with the viewport instead of being chopped
-       off by .hero's overflow:hidden. The calc keeps its right edge just inside
-       the viewport all the way down to the 900px breakpoint. */
-    @media (max-width: 1440px) {
-      .growth { margin-left: 2.5rem; }
-      .growth img { height: clamp(230px, calc(53vw - 265px), 500px); }
-    }
     @media (max-width: 900px) {
       .hero { padding: 7.5rem 1.25rem 3.5rem; }
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
       .hero-desc { margin-left: auto; margin-right: auto; }
       .hero-cta { justify-content: center; }
       .phone-frame { width: 200px; }
-      /* stacked, centred layout — the tree tucks back behind the phone here */
-      .hero-visual { justify-content: center; }
-      .growth { margin-left: -110px; }
-      .growth img { height: 432px; }
       .trust ul { justify-content: center; }
-      .who-grid, .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .logdemo-grid { grid-template-columns: 1fr; gap: 2.75rem; }
+      .logdemo-steps { text-align: center; max-width: 34rem; margin: 0 auto; }
+      .logdemo-slider { margin-top: 2.25rem; }
+      .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
       .how-steps { grid-template-columns: 1fr; }
       .feature-rows { gap: 4rem; }
       .feature-row { grid-template-columns: 1fr; gap: 2rem; }
@@ -421,14 +489,23 @@
       .demo-amt { min-width: 6ch; }
     }
     @media (max-width: 580px) {
-      .who, .how, .features, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .logdemo, .how, .features, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
       .trust { padding: 1rem 1.25rem; }
       .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
       .reviews-grid { grid-template-columns: 1fr; }
       .phone-frame { width: 185px; }
-      .growth { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); margin-left: 0; }
+      .logdemo .phone-frame { width: 260px; }
+      .logdemo-step p { font-size: 1.2rem; }
+      /* Numbers only; the word stays in the accessible name. */
+      .logdemo-tick { min-width: 44px; min-height: 44px; justify-content: center; align-items: center; font-size: 1rem; }
+      .logdemo-tick-num { font-size: 0.875rem; }
+      .logdemo-ticks li:first-child .logdemo-tick { justify-content: flex-start; }
+      .logdemo-ticks li:last-child .logdemo-tick { justify-content: flex-end; }
+      .logdemo-tick-label {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+      }
       .demo-amt { font-size: 1.375rem; }
-      .growth img { height: 398px; }
       .demo-row { grid-template-columns: 1fr; grid-template-areas: "head" "amt" "bar"; row-gap: 0.5rem; min-height: 118px; }
       .demo-amt { text-align: left; }
       .demo-income-controls input[type="range"] { min-width: 100%; }
@@ -797,7 +874,7 @@
         <p class="hero-eyebrow" data-reveal>Now on the App Store · iOS</p>
         <h1 class="hero-heading" id="hero-heading" data-reveal>The Christian Budgeting App for <span class="accent">Real Financial Freedom</span></h1>
         <p class="hero-tagline" data-reveal>Make your dollar seeds sprout into blessings.</p>
-        <p class="hero-desc" data-reveal>DollarSeeds splits every dollar you earn across Needs, Wants, and Savings automatically, tracks your spending against each target, and grounds it all in biblical stewardship — no bank login required.</p>
+        <p class="hero-desc" data-reveal>DollarSeeds is a budgeting app built for those who want to steward their finances in the way God wants. Split your budget into needs, wants, and goals; create goals and see them all the way through completion; follow the Snowball Debt Payment plan to become debt free quicker; and watch exclusive video series from Christian entrepreneurs who are serious about work and God.</p>
         <div class="hero-cta" data-reveal>
           <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
             <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
@@ -809,17 +886,9 @@
         <div class="phone-frame">
           <div class="phone-notch"></div>
           <picture>
-            <source type="image/avif" srcset="/assets/images/gen/dashboard-screen-250.avif 1x, /assets/images/gen/dashboard-screen-500.avif 2x" />
-            <source type="image/webp" srcset="/assets/images/gen/dashboard-screen-250.webp 1x, /assets/images/gen/dashboard-screen-500.webp 2x" />
-            <img src="/assets/images/dashboard-screen.jpeg" width="739" height="1600" fetchpriority="high" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score, a Bible verse card, and Needs, Wants, and Savings progress bars" />
-          </picture>
-        </div>
-        <div class="growth">
-          <picture>
-            <source type="image/avif" srcset="/assets/images/gen/dollarseeds-tree-400.avif 400w, /assets/images/gen/dollarseeds-tree-540.avif 540w, /assets/images/gen/dollarseeds-tree-1080.avif 1080w" sizes="(max-width: 900px) 432px, 540px" />
-            <source type="image/webp" srcset="/assets/images/gen/dollarseeds-tree-400.webp 400w, /assets/images/gen/dollarseeds-tree-540.webp 540w, /assets/images/gen/dollarseeds-tree-1080.webp 1080w" sizes="(max-width: 900px) 432px, 540px" />
-            <img src="/assets/images/dollarseeds-tree.png" width="1349" height="1349" fetchpriority="low"
-                   alt="Black-and-white cartoon money tree in the DollarSeeds logo style: a cloud-like canopy bearing dollar-coin fruit, growing from a mound of soil" />
+            <source type="image/avif" srcset="/assets/images/gen/home-screen-2026-11-280.avif 1x, /assets/images/gen/home-screen-2026-11-560.avif 2x" />
+            <source type="image/webp" srcset="/assets/images/gen/home-screen-2026-11-280.webp 1x, /assets/images/gen/home-screen-2026-11-560.webp 2x" />
+            <img src="/assets/images/home-screen-2026-11.jpeg" width="739" height="1606" fetchpriority="high" alt="DollarSeeds home screen on iPhone showing $588 left this month, an upcoming medical bill to prune, a tithe toggle, and how much is left in the Needs, Wants, and Goals plus debt paydown budgets" />
           </picture>
         </div>
       </div>
@@ -854,26 +923,71 @@
     </ul>
   </section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="who" id="who-its-for" aria-labelledby="who-heading">
+  <!-- HOW LOGGING WORKS — slider demo -->
+  <section class="logdemo" id="how-logging-works" aria-labelledby="logdemo-heading">
     <div class="section-inner">
-      <p class="eyebrow" data-reveal>Who It's For · Every Season</p>
-      <h2 class="section-heading" id="who-heading" data-reveal>Built for people chasing <span class="accent">financial freedom</span></h2>
-      <div class="who-grid" data-reveal-group>
-        <div class="who-prose" data-reveal>
-          <p>DollarSeeds is for anyone chasing financial freedom — people getting out of debt, people multiplying what they already have, and people aiming at goals bigger than next month's bills.</p>
-          <p>It's also for people who don't want money just to fill their pockets, but to use it in a way that pleases God and blesses the people around them. If that's you, this app was built with you in mind. If it isn't, the budgeting still works — the discipline doesn't check your beliefs at the door.</p>
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Expense Tracking · Step by Step</p>
+          <h2 class="section-heading" id="logdemo-heading" data-reveal>Log an expense in seconds and see what's <span class="accent">left to spend</span></h2>
+          <p data-reveal>DollarSeeds is an expense tracker built into your budget. Every bill, grocery run or night out goes into Needs, Wants, or Goals, and the app updates how much you have left in that budget for the month the moment you log it.</p>
+          <p data-reveal>Slide through the steps to watch a $165 energy bill get logged as a need, from the home screen to the updated balance.</p>
         </div>
-        <div class="who-replaces surface-card" data-reveal>
-          <h3>What DollarSeeds replaces</h3>
-          <ul>
-            <li><strong>Lack of control</strong> Money leaves the account faster than you decided it should.</li>
-            <li><strong>Lack of direction</strong> No answer to "what is this money actually for?"</li>
-            <li><strong>Lack of planning</strong> Every month starts from zero, and ends by accident.</li>
-            <li><strong>Lack of self-knowledge</strong> No real idea where the money actually goes.</li>
-          </ul>
-          <p class="who-replaces-result">All four replaced with the same thing: <strong>financial control</strong>.</p>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-1-home-300.avif 1x, /assets/images/gen/log-expense-step-1-home-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-1-home-300.webp 1x, /assets/images/gen/log-expense-step-1-home-600.webp 2x" />
+              <img class="is-active" src="/assets/images/log-demo/log-expense-step-1-home.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds home screen with everything darkened except the budget cards: $135 left in Needs, $93 left in Wants and $434 left in Goals plus debt paydown" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-2-tap-plus-300.avif 1x, /assets/images/gen/log-expense-step-2-tap-plus-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-2-tap-plus-300.webp 1x, /assets/images/gen/log-expense-step-2-tap-plus-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-2-tap-plus.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the plus button on the Needs card of the DollarSeeds home screen" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-3-needs-page-300.avif 1x, /assets/images/gen/log-expense-step-3-needs-page-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-3-needs-page-300.webp 1x, /assets/images/gen/log-expense-step-3-needs-page-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-3-needs-page.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Empty Log Need form in DollarSeeds with a title field, an amount of $0, sub-category chips such as Rent, Groceries and Utilities, the month and day, and a Plant Need button" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-4-needs-filled-300.avif 1x, /assets/images/gen/log-expense-step-4-needs-filled-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-4-needs-filled-300.webp 1x, /assets/images/gen/log-expense-step-4-needs-filled-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-4-needs-filled.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Log Need form filled in with the title Energy Bill, an amount of $165, the Utilities sub-category selected and the date November 4" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-5-plant-need-300.avif 1x, /assets/images/gen/log-expense-step-5-plant-need-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-5-plant-need-300.webp 1x, /assets/images/gen/log-expense-step-5-plant-need-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-5-plant-need.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the Plant Need button on the filled-in Log Need form" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-6-home-updated-300.avif 1x, /assets/images/gen/log-expense-step-6-home-updated-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-6-home-updated-300.webp 1x, /assets/images/gen/log-expense-step-6-home-updated-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-6-home-updated.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="DollarSeeds home screen after logging the energy bill, with focus on the Needs card, which now shows $30 over budget and is outlined in red" />
+            </picture>
+          </div>
         </div>
+        <ol class="logdemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 6</span><p>In the home page, you see how much you have left for each category for the month, and you can log new expenses.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 6</span><p>To log new expenses, click the + sign.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 6</span><p>This is the needs page. It's where you provide details for your needs expenses.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 6</span><p>It will look something like this once it's filled out.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 6</span><p>Hitting the button logs the expense, and will automatically update the money available for that category in the home page.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 6</span><p>Back in the home page, you can see the updated number. If over budget, it will get outlined in red.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="logdemo-range">Choose a step in logging an expense</label>
+        <input type="range" class="logdemo-range" id="logdemo-range" min="1" max="6" step="1" value="1" aria-valuetext="Step 1 of 6: Home" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Home"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Home</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="Tap +"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">Tap +</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Needs page"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Needs page</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="Fill it in"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">Fill it in</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Plant Need"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Plant Need</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Updated"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Updated</span></button></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -1389,6 +1503,60 @@
         }
       })
       .catch(function () { /* keep static fallback */ });
+  })();
+
+  // Logging demo: the slider and the step labels pick which phone screen and
+  // caption show. No autoplay. Without JS the CSS shows step 1 and all captions.
+  (function () {
+    var section = document.getElementById('how-logging-works');
+    var range = document.getElementById('logdemo-range');
+    if (!section || !range) return;
+    var screen = section.querySelector('.logdemo-screen');
+    var imgs = Array.prototype.slice.call(screen.querySelectorAll('img'));
+    var captions = Array.prototype.slice.call(section.querySelectorAll('.logdemo-step'));
+    var ticks = Array.prototype.slice.call(section.querySelectorAll('.logdemo-tick'));
+    var total = imgs.length;
+    if (!total) return;
+
+    function show(n) {
+      n = Math.min(total, Math.max(1, Math.round(Number(n)) || 1));
+      var i = n - 1;
+      screen.setAttribute('data-step', String(n));
+      imgs.forEach(function (img, k) {
+        img.classList.toggle('is-active', k === i);
+        if (k === i) img.removeAttribute('aria-hidden');
+        else img.setAttribute('aria-hidden', 'true');
+      });
+      captions.forEach(function (li, k) { li.classList.toggle('is-active', k === i); });
+      ticks.forEach(function (btn, k) {
+        btn.classList.toggle('is-active', k === i);
+        if (k === i) btn.setAttribute('aria-current', 'step');
+        else btn.removeAttribute('aria-current');
+      });
+      if (Number(range.value) !== n) range.value = String(n);
+      range.style.setProperty('--fill', ((n - 1) / (total - 1) * 100) + '%');
+      var label = ticks[i] ? ticks[i].getAttribute('data-label') : '';
+      range.setAttribute('aria-valuetext', 'Step ' + n + ' of ' + total + (label ? ': ' + label : ''));
+    }
+
+    range.addEventListener('input', function () { show(range.value); });
+    ticks.forEach(function (btn) {
+      btn.addEventListener('click', function () { show(btn.getAttribute('data-step')); });
+    });
+
+    // Fetch all six screens once the section is ~400px away, so dragging the
+    // slider never waits on the network.
+    function loadAll() { imgs.forEach(function (img) { img.loading = 'eager'; }); }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { loadAll(); io.disconnect(); }
+      }, { rootMargin: '400px 0px' });
+      io.observe(section);
+    } else {
+      loadAll();
+    }
+
+    show(range.value);
   })();
 
 

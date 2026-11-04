@@ -18,20 +18,20 @@
 
 module.exports = [
   {
-    // Hero phone screen — the LCP element. Frame is 250px wide (200 under
-    // 900px, 185 under 580px), so 250/500 covers 1x/2x.
-    src: 'assets/images/dashboard-screen.jpeg',
-    widths: [250, 500],
+    // Hero phone screen — the LCP element. Frame is 280px wide (200 under
+    // 900px, 185 under 580px), so 280/560 covers 1x/2x.
+    src: 'assets/images/home-screen-2026-11.jpeg',
+    widths: [280, 560],
     formats: ['avif', 'webp'],
     note: 'hero / LCP'
   },
   {
-    // Hero tree illustration — rendered at 540px tall (square source), scaling
-    // down to 230px on small viewports.
-    src: 'assets/images/dollarseeds-tree.png',
-    widths: [400, 540, 1080],
+    // "How logging works" demo: six 739x1600 screens in a 300px phone frame
+    // (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/log-demo/*.jpeg',
+    widths: [300, 600],
     formats: ['avif', 'webp'],
-    note: 'hero decoration'
+    note: 'logging demo'
   },
   {
     // Lessons card screenshot, cropped to a 190px-tall band by object-fit.

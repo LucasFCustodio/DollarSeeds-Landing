@@ -5,7 +5,7 @@
  *
  * The card is composed in tools/og/og-image.html and screenshotted with
  * headless Chrome rather than drawn with sharp, because the type has to be set
- * in the real brand faces — Urbanist at font-weight 580 in particular, which
+ * in the real brand faces — Montserrat at font-weight 580 in particular, which
  * only a variable font resolves. sharp's SVG text renderer would fall back to a
  * system face and the card would not look like the site.
  *

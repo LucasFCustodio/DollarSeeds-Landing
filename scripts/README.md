@@ -74,7 +74,7 @@ them by hand when the input changes.
 
 | Command | What it does |
 |---|---|
-| `npm run fonts` | Download the three variable WOFF2 faces from Google Fonts |
+| `npm run fonts` | Download the WOFF2 faces from Google Fonts (Montserrat and JetBrains Mono variable, Lato as static 300/400/700) |
 | `npm run icons` | Favicon set, app icons, `site.webmanifest` |
 | `npm run og` | Render the 1200×630 Open Graph card in headless Chrome |
 | `node tools/gen-font-fallbacks.js` | Recompute the metric-matched fallback `@font-face` rules |
