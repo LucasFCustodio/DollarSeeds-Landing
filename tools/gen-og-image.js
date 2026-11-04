@@ -55,6 +55,9 @@ function screenshot(chrome, url, out) {
       '--hide-scrollbars',
       '--force-device-scale-factor=2',   // render at 2x, downsample for crisp type
       '--window-size=' + WIDTH + ',' + HEIGHT,
+      // Without this, --screenshot fires before the webfonts swap in and the
+      // card is captured in the Arial-based fallback faces.
+      '--virtual-time-budget=5000',
       '--screenshot=' + out,
       url
     ], { stdio: ['ignore', 'ignore', 'pipe'] });
