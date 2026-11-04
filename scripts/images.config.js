@@ -42,6 +42,14 @@ module.exports = [
     note: 'goal demo'
   },
   {
+    // "How debts work" demo: eight 739x1600 screens in the same 300px phone
+    // frame (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/debt-demo/*.jpeg',
+    widths: [300, 600],
+    formats: ['avif', 'webp'],
+    note: 'debt demo'
+  },
+  {
     // Lessons card screenshot, cropped to a 190px-tall band by object-fit.
     src: 'assets/images/screen-lessons.png',
     widths: [480, 739],
@@ -54,15 +62,5 @@ module.exports = [
     widths: [76, 144, 240, 480],
     formats: ['avif', 'webp'],
     note: 'nav / footer / press'
-  },
-  {
-    // Video poster frames. A poster="" attribute cannot take a <picture>, so
-    // these get one resized JPEG each rather than a format ladder — the win is
-    // dropping 720px sources down to the 600px the 2x layout actually needs.
-    src: 'assets/images/posters/*.jpg',
-    widths: [600],
-    formats: ['jpeg'],
-    replacesPoster: true,
-    note: 'video posters'
   }
 ];
