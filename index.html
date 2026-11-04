@@ -10,20 +10,20 @@
   <script src="https://app.termly.io/resource-blocker/7c89c6bf-1b30-4ac5-801a-a17454fe74f6?autoBlock=on"></script>
   <script>document.documentElement.classList.add('js');</script>
 
-  <title>Christian Budgeting App for Financial Freedom — DollarSeeds</title>
-  <meta name="description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <title>Christian Budgeting App to Achieve Goals and Get Out of Debt</title>
+  <meta name="description" content="Find peace and purpose with your money. DollarSeeds is a Christian budgeting app that helps you pay off debt with the snowball method and grow toward financial freedom." />
 
   <!-- === head: canonical, social, icons === -->
   <link rel="canonical" href="https://dollarseeds.app/" />
 
-  <!-- Self-hosted variable fonts. Preload only the face the h1 uses
-       (Urbanist); the other two are discovered from the stylesheet. -->
-  <link rel="preload" href="/assets/fonts/urbanist-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Self-hosted fonts. Preload only the face the h1 uses
+       (Montserrat); the others are discovered from the stylesheet. -->
+  <link rel="preload" href="/assets/fonts/montserrat-latin-var.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Hero phone screen: the LCP element. Preloaded as AVIF; browsers without
        AVIF skip this (type filter) and pick WebP from the <picture> normally. -->
   <link rel="preload" as="image" fetchpriority="high" type="image/avif"
-        imagesrcset="/assets/images/gen/dashboard-screen-250.avif 1x, /assets/images/gen/dashboard-screen-500.avif 2x" />
+        imagesrcset="/assets/images/gen/home-screen-2026-11-280.avif 1x, /assets/images/gen/home-screen-2026-11-560.avif 2x" />
 
   <!-- Icons, manifest, browser chrome -->
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -35,8 +35,8 @@
   <meta name="apple-itunes-app" content="app-id=6780037284" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="DollarSeeds — the Christian budgeting app for real financial freedom" />
-  <meta property="og:description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <meta property="og:title" content="DollarSeeds: Christian Budgeting App to Achieve Goals and Get Out of Debt" />
+  <meta property="og:description" content="Find peace and purpose with your money. DollarSeeds is a Christian budgeting app that helps you pay off debt with the snowball method and grow toward financial freedom." />
   <meta property="og:url" content="https://dollarseeds.app/" />
   <meta property="og:site_name" content="DollarSeeds" />
   <meta property="og:type" content="website" />
@@ -49,8 +49,8 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DollarSeeds — the Christian budgeting app for real financial freedom" />
-  <meta name="twitter:description" content="DollarSeeds is a Christian budgeting app for iPhone that splits your income across Needs, Wants, and Savings automatically — no bank login required. Free on the App Store." />
+  <meta name="twitter:title" content="DollarSeeds: Christian Budgeting App to Achieve Goals and Get Out of Debt" />
+  <meta name="twitter:description" content="Find peace and purpose with your money. DollarSeeds is a Christian budgeting app that helps you pay off debt with the snowball method and grow toward financial freedom." />
   <meta name="twitter:image" content="https://dollarseeds.app/assets/images/og-default.png" />
   <meta name="twitter:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
 
@@ -67,7 +67,7 @@
       font-weight: 580;
       line-height: 1.14; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 1rem;
     }
-    .section-heading .accent { font-style: italic; color: var(--accent-text); }
+    .section-heading .accent { font-style: normal; color: var(--accent-text); }
     .section-body { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 62ch; margin-bottom: 3rem; }
 
     .surface-card {
@@ -98,15 +98,15 @@
       font-weight: 580;
       color: var(--ink); line-height: 1.12; letter-spacing: -0.005em; margin-bottom: 1rem;
     }
-    .hero-heading .accent { color: var(--accent-text); font-style: italic; }
-    .hero-tagline { font-family: var(--display); font-style: italic; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); margin-bottom: 1.25rem; }
+    .hero-heading .accent { color: var(--accent-text); font-style: normal; }
+    .hero-tagline { font-family: var(--display); font-style: normal; font-size: 1.25rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); margin-bottom: 1.25rem; }
     .hero-desc { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; max-width: 56ch; margin-bottom: 2.25rem; }
     .hero-cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
     .hero-note { font-size: 0.775rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.04em; }
 
-    .hero-visual { position: relative; display: flex; justify-content: flex-start; align-items: flex-end; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
     .phone-frame {
-      width: 250px; flex-shrink: 0; background: #0d0d0d; z-index: 1;
+      width: 280px; flex-shrink: 0; background: #0d0d0d; z-index: 1;
       border-radius: 42px; border: 3px solid rgba(15,61,46,0.15);
       overflow: hidden; position: relative;
       box-shadow: var(--shadow-lift);
@@ -118,14 +118,6 @@
     }
     .phone-frame img { width: 100%; height: auto; display: block; }
 
-    /* ===== TREE ILLUSTRATION =====
-       Sits to the RIGHT of the phone with a 4rem gap — no overlap. The group is
-       anchored to the start of the visual column (it is wider than the column,
-       so centring it would pull the phone off-centre); the tree bleeds off the
-       right and .hero's overflow:hidden clips it. */
-    .growth { margin-left: 4rem; flex-shrink: 0; }
-    .growth img { display: block; height: 540px; width: auto; max-width: none; }
-
     /* ===== TRUST BAR ===== */
     .trust { background: var(--ground-2); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.125rem 2.5rem; }
     .trust ul {
@@ -136,86 +128,147 @@
     .trust li strong { color: var(--ink); font-weight: 600; }
     .trust-icon { width: 16px; height: 16px; fill: var(--accent-text); flex-shrink: 0; }
 
-    /* ===== WHO IT'S FOR ===== */
-    .who { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
-    .who-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
-    .who-prose p { font-size: 1.125rem; color: #3F4A50; line-height: 1.85; margin-bottom: 1.25rem; }
-    .who-replaces { padding: 2rem 2.25rem; }
-    .who-replaces h3 { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; font-weight: 500; }
-    .who-replaces ul { list-style: none; }
-    .who-replaces li { padding: 0.875rem 0; border-bottom: 1px solid var(--line-soft); font-size: 0.9375rem; color: #414B54; line-height: 1.6; }
-    .who-replaces li:last-of-type { border-bottom: 0; }
-    .who-replaces li strong { color: var(--ink); display: block; margin-bottom: 0.15rem; }
-    .who-replaces .who-replaces-result {
-      margin-top: 1rem; padding: 0.875rem 1.125rem; border-radius: 12px;
-      background: rgba(16,185,129,0.09); color: var(--ink); font-size: 0.9375rem;
+    /* ===== SLIDER DEMOS — tithing, expenses, goals, debts =====
+       Each .logdemo stacks its screens inside one phone and crossfades them.
+       Without JS the slider is hidden, step 1's screen shows, and all captions
+       read as a plain list. Backgrounds alternate down the page; the first demo
+       (tithing) follows the trust bar, which already has a bottom border. */
+    .logdemo { background: var(--ground-1); padding: 6.5rem 2.5rem 5.5rem; }
+    .logdemo--expenses { background: var(--ground-2); border-top: 1px solid var(--line-soft); }
+    .logdemo--goals { background: var(--ground-1); border-top: 1px solid var(--line-soft); }
+    .logdemo--debts { background: var(--ground-2); border-top: 1px solid var(--line-soft); }
+    .logdemo-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 0.8fr);
+      gap: 3.5rem; align-items: center;
     }
-    .who-replaces .who-replaces-result strong { color: var(--accent-text); }
+    .logdemo-intro p:not(.eyebrow) { font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1rem; }
+    .logdemo-intro p:last-child { margin-bottom: 0; }
+    .logdemo-intro p.logdemo-note { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-top: 1.25rem; }
+    .logdemo-nowrap { white-space: nowrap; }
+    .logdemo-intro a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+    .logdemo .phone-frame { width: 300px; justify-self: center; }
+    .logdemo-screen { aspect-ratio: 739 / 1600; position: relative; overflow: hidden; }
+    .logdemo-screen img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity var(--dur) var(--ease-out);
+    }
+    .logdemo-screen img.is-active { opacity: 1; }
 
-    /* ===== HOW IT WORKS ===== */
-    .how { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
-    .how-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: step; }
-    .how-step {
-      padding: 1.875rem; counter-increment: step; position: relative;
-      background: var(--card); border: 1px solid var(--line-soft); border-radius: 20px;
-      box-shadow: var(--shadow-soft);
-      transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+    .logdemo-steps { list-style: none; }
+    .logdemo-step + .logdemo-step { margin-top: 1.5rem; }
+    .logdemo-step-num {
+      display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 0.625rem;
     }
-    .how-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
-    .how-step::before {
-      content: "0" counter(step);
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--accent-text);
-      display: block; margin-bottom: 0.875rem;
+    .logdemo-step p {
+      font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+      line-height: 1.4; color: var(--ink);
     }
-    .how-step h3 { font-family: var(--display); font-size: 1.3125rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
-    .how-step p { font-size: 0.9375rem; color: var(--muted); line-height: 1.7; }
-    .how-split { display: flex; gap: 0.375rem; margin-top: 1rem; }
-    .how-split span {
-      font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 0.3rem 0.65rem; border-radius: 999px;
+    /* With JS: all captions share one grid cell, so the list is always as
+       tall as the longest caption and nothing below it jumps between steps. */
+    html.js .logdemo-steps { display: grid; }
+    html.js .logdemo-step {
+      grid-area: 1 / 1; margin-top: 0;
+      opacity: 0; visibility: hidden; transform: translateY(6px);
+      transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+                  visibility 0s linear var(--dur);
     }
-    .how-split .b-needs { background: rgba(194,112,28,0.12); color: var(--amber); }
-    .how-split .b-wants { background: rgba(124,58,237,0.1); color: var(--violet); }
-    .how-split .b-savings { background: rgba(16,185,129,0.14); color: var(--accent-text); }
-    .how-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
-    .how-more a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-    .how-more a:hover { color: var(--accent-text); }
+    html.js .logdemo-step.is-active {
+      opacity: 1; visibility: visible; transform: none;
+      transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+    }
 
-    /* ===== FEATURES — alternating video rows ===== */
-    .features { background: var(--ground-1); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
-    .feature-rows { display: flex; flex-direction: column; gap: 5.5rem; margin-top: 1rem; }
-    .feature-row {
-      display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 4rem; align-items: center; margin: 0;
+    .logdemo-slider { display: none; margin-top: 3.5rem; }
+    html.js .logdemo-slider { display: block; }
+    .logdemo-range {
+      --fill: 0%;
+      display: block; width: 100%; height: 26px; margin: 0;
+      -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer;
     }
-    .feature-row:nth-child(even) .feature-media { order: 2; }
-    .feature-row:nth-child(even) .feature-text { order: 1; }
-    .feature-media { display: flex; justify-content: center; }
-    .feature-screen {
-      width: min(300px, 100%); border-radius: 28px; overflow: hidden; position: relative;
-      background: #0d0d0d; border: 3px solid rgba(15,61,46,0.15);
-      box-shadow: var(--shadow-lift); line-height: 0;
+    .logdemo-range::-webkit-slider-runnable-track {
+      height: 8px; border-radius: 999px;
+      background: linear-gradient(to right, var(--emerald) var(--fill), var(--ground-3) var(--fill));
     }
-    .feature-screen video { width: 100%; height: auto; display: block; cursor: pointer; }
-    .video-toggle {
-      position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
-      background: rgba(250,247,238,0.92); color: var(--ink);
-      border: 1px solid var(--line); border-radius: 999px;
-      font-family: var(--sans); font-size: 0.8125rem; font-weight: 600;
-      padding: 0.45rem 1.1rem; cursor: pointer;
+    .logdemo-range::-moz-range-track {
+      height: 8px; border-radius: 999px;
+      background: linear-gradient(to right, var(--emerald) var(--fill), var(--ground-3) var(--fill));
     }
-    .feature-text .feature-eyebrow {
-      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--accent-text); margin-bottom: 0.75rem;
+    .logdemo-range::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 26px; height: 26px; margin-top: -9px; border-radius: 50%;
+      background: var(--card); border: 3px solid var(--emerald);
+      box-shadow: 0 4px 12px -3px rgba(15, 61, 46, 0.35);
     }
-    .feature-text h3 {
-      font-family: var(--display); font-size: clamp(1.25rem, 2vw, 1.625rem);
-      font-weight: 580;
-      color: var(--ink); line-height: 1.15; letter-spacing: -0.005em; margin-bottom: 0.875rem;
+    .logdemo-range::-moz-range-thumb {
+      width: 26px; height: 26px; border-radius: 50%; box-sizing: border-box;
+      background: var(--card); border: 3px solid var(--emerald);
+      box-shadow: 0 4px 12px -3px rgba(15, 61, 46, 0.35);
     }
-    .feature-text p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; max-width: 54ch; margin-bottom: 0.875rem; }
-    .feature-text p:last-child { margin-bottom: 0; }
-    .feature-text a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+    .logdemo-range:focus { outline: none; }
+    .logdemo-range:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 6px; border-radius: 999px; }
+
+    /* Step labels sit under the thumb positions: the thumb centre travels from
+       13px to (100% - 13px), so each middle label is centred on that line. */
+    .logdemo-ticks { list-style: none; position: relative; height: 2.75rem; margin-top: 0.5rem; }
+    .logdemo-ticks li {
+      position: absolute; top: 0;
+      left: calc(13px + (100% - 26px) * var(--pos)); transform: translateX(-50%);
+    }
+    .logdemo-ticks li:nth-child(2) { --pos: 0.2; }
+    .logdemo-ticks li:nth-child(3) { --pos: 0.4; }
+    .logdemo-ticks li:nth-child(4) { --pos: 0.6; }
+    .logdemo-ticks li:nth-child(5) { --pos: 0.8; }
+    /* The goals demo has seven steps, so its labels sit at sixths. */
+    .logdemo--goals .logdemo-ticks li:nth-child(2) { --pos: calc(1 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(3) { --pos: calc(2 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(4) { --pos: calc(3 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(5) { --pos: calc(4 / 6); }
+    .logdemo--goals .logdemo-ticks li:nth-child(6) { --pos: calc(5 / 6); }
+    /* The debts demo has eight steps, so its labels sit at sevenths. */
+    .logdemo--debts .logdemo-ticks li:nth-child(2) { --pos: calc(1 / 7); }
+    .logdemo--debts .logdemo-ticks li:nth-child(3) { --pos: calc(2 / 7); }
+    .logdemo--debts .logdemo-ticks li:nth-child(4) { --pos: calc(3 / 7); }
+    .logdemo--debts .logdemo-ticks li:nth-child(5) { --pos: calc(4 / 7); }
+    .logdemo--debts .logdemo-ticks li:nth-child(6) { --pos: calc(5 / 7); }
+    .logdemo--debts .logdemo-ticks li:nth-child(7) { --pos: calc(6 / 7); }
+    .logdemo-ticks li:first-child { left: 0; transform: none; }
+    .logdemo-ticks li:last-child { left: auto; right: 0; transform: none; }
+    .logdemo-tick {
+      background: none; border: 0; cursor: pointer; padding: 0.5rem 0.25rem;
+      font-family: var(--sans); font-size: 0.875rem; color: var(--muted); white-space: nowrap;
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+    .logdemo-tick:hover { color: var(--ink); }
+    .logdemo-tick:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; border-radius: 6px; }
+    .logdemo-tick-num { font-family: var(--mono); font-size: 0.75rem; }
+    .logdemo-tick.is-active { color: var(--ink); font-weight: 700; }
+    .logdemo-tick.is-active .logdemo-tick-num { color: var(--accent-text); }
+    /* Seven or eight labels side by side only fit comfortably above ~1100px.
+       Between that and the numbers-only layout under 580px, each goals and
+       debts label stacks under its number and wraps to two lines, so it takes
+       about 60px instead of 100. */
+    @media (min-width: 581px) and (max-width: 1100px) {
+      .logdemo--goals .logdemo-ticks,
+      .logdemo--debts .logdemo-ticks { height: 4.5rem; }
+      .logdemo--goals .logdemo-tick,
+      .logdemo--debts .logdemo-tick { flex-direction: column; align-items: center; gap: 0.15rem; text-align: center; }
+      .logdemo--goals .logdemo-tick-label,
+      .logdemo--debts .logdemo-tick-label { white-space: normal; max-width: 4.25em; line-height: 1.3; }
+      .logdemo--goals .logdemo-ticks li:first-child .logdemo-tick,
+      .logdemo--debts .logdemo-ticks li:first-child .logdemo-tick { align-items: flex-start; text-align: left; }
+      .logdemo--goals .logdemo-ticks li:last-child .logdemo-tick,
+      .logdemo--debts .logdemo-ticks li:last-child .logdemo-tick { align-items: flex-end; text-align: right; }
+    }
+    /* Eight stacked labels are still tight just above 580px. */
+    @media (min-width: 581px) and (max-width: 700px) {
+      .logdemo--debts .logdemo-tick { font-size: 0.8125rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logdemo-screen img, html.js .logdemo-step, html.js .logdemo-step.is-active { transition: none; }
+      html.js .logdemo-step { transform: none; }
+    }
 
     /* ===== BUDGETING TYPES — live demo ===== */
     .types { background: var(--ground-2); padding: 7rem 2.5rem; border-top: 1px solid var(--line-soft); }
@@ -262,7 +315,7 @@
       flex: 1; min-width: 200px; accent-color: var(--emerald); height: 6px; cursor: pointer;
     }
     .demo-type-name {
-      font-family: var(--display); font-style: italic; font-size: 1.1875rem; font-weight: 400; letter-spacing: 0;
+      font-family: var(--display); font-style: normal; font-size: 1.1875rem; font-weight: 400; letter-spacing: 0;
       color: var(--ink); margin-bottom: 1.5rem; min-height: 1.6em;
     }
     .demo-rows { display: flex; flex-direction: column; gap: 1rem; }
@@ -297,38 +350,6 @@
     .demo-note { margin-top: 1.375rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); }
     .types-more { margin-top: 2.25rem; font-size: 1rem; color: #414B54; }
     .types-more a { color: var(--accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ===== FAITH + LESSONS ===== */
-    .faith { background: var(--ground-3); padding: 7rem 2.5rem; border-top: 1px solid var(--line-soft); }
-    .faith-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
-    .faith-text p { font-size: 1.0625rem; color: #3F4A50; line-height: 1.82; margin-bottom: 1.25rem; }
-    .faith-verse {
-      border-left: 3px solid var(--emerald);
-      padding: 1.25rem 1.5rem;
-      background: var(--card); border-radius: 0 14px 14px 0;
-      box-shadow: var(--shadow-soft);
-      margin-top: 1.75rem;
-    }
-    .faith-verse blockquote { font-family: var(--display); font-style: italic; font-size: 1.3125rem; font-weight: 400; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin-bottom: 0.5rem; }
-    .faith-verse cite { font-family: var(--mono); font-size: 0.72rem; color: var(--accent-text); letter-spacing: 0.08em; font-style: normal; }
-    .faith-lessons { overflow: hidden; border-radius: 20px; }
-    .faith-lessons-screen { height: 190px; overflow: hidden; background: var(--ground-4); }
-    .faith-lessons-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-    .faith-lessons-body { padding: 1.75rem 1.875rem 1.875rem; }
-    .faith-lessons h3 {
-      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; font-weight: 500;
-    }
-    .faith-lessons ul { list-style: none; }
-    .faith-lessons li { border-bottom: 1px solid var(--line-soft); }
-    .faith-lessons li:last-child { border-bottom: 0; }
-    .faith-lessons a {
-      display: block; padding: 1rem 0.25rem; text-decoration: none; border-radius: 8px;
-      transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
-    }
-    .faith-lessons a:hover { background: var(--ground-0); transform: translateX(3px); }
-    .faith-lessons .lesson-name { font-family: var(--display); font-size: 1.1875rem; font-weight: 580; line-height: 1.15; letter-spacing: 0; color: var(--ink); display: block; margin-bottom: 0.2rem; }
-    .faith-lessons .lesson-note { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }
 
     /* ===== REVIEWS ===== */
     .reviews { background: var(--ground-2); padding: 6.5rem 2.5rem; border-top: 1px solid var(--line-soft); }
@@ -390,45 +411,38 @@
     .download .hero-note { display: block; margin-top: 1.25rem; }
 
     /* ===== RESPONSIVE ===== */
-    /* Below ~1440px the visual column is too narrow to hold phone + gap + a
-       540px tree, so the tree scales with the viewport instead of being chopped
-       off by .hero's overflow:hidden. The calc keeps its right edge just inside
-       the viewport all the way down to the 900px breakpoint. */
-    @media (max-width: 1440px) {
-      .growth { margin-left: 2.5rem; }
-      .growth img { height: clamp(230px, calc(53vw - 265px), 500px); }
-    }
     @media (max-width: 900px) {
       .hero { padding: 7.5rem 1.25rem 3.5rem; }
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
       .hero-desc { margin-left: auto; margin-right: auto; }
       .hero-cta { justify-content: center; }
       .phone-frame { width: 200px; }
-      /* stacked, centred layout — the tree tucks back behind the phone here */
-      .hero-visual { justify-content: center; }
-      .growth { margin-left: -110px; }
-      .growth img { height: 432px; }
       .trust ul { justify-content: center; }
-      .who-grid, .faith-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .how-steps { grid-template-columns: 1fr; }
-      .feature-rows { gap: 4rem; }
-      .feature-row { grid-template-columns: 1fr; gap: 2rem; }
-      .feature-row:nth-child(even) .feature-media { order: 1; }
-      .feature-row:nth-child(even) .feature-text { order: 2; }
-      .feature-screen { width: min(260px, 80vw); }
+      .logdemo-grid { grid-template-columns: 1fr; gap: 2.75rem; }
+      .logdemo-steps { text-align: center; max-width: 34rem; margin: 0 auto; }
+      .logdemo-slider { margin-top: 2.25rem; }
       .reviews-grid { grid-template-columns: 1fr 1fr; }
       .demo-card { padding: 1.75rem 1.5rem 2rem; }
       .demo-amt { min-width: 6ch; }
     }
     @media (max-width: 580px) {
-      .who, .how, .features, .types, .faith, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .logdemo, .types, .reviews, .faq, .download { padding-left: 1.25rem; padding-right: 1.25rem; }
       .trust { padding: 1rem 1.25rem; }
       .trust ul { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
       .reviews-grid { grid-template-columns: 1fr; }
       .phone-frame { width: 185px; }
-      .growth { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); margin-left: 0; }
+      .logdemo .phone-frame { width: 260px; }
+      .logdemo-step p { font-size: 1.2rem; }
+      /* Numbers only; the word stays in the accessible name. */
+      .logdemo-tick { min-width: 44px; min-height: 44px; justify-content: center; align-items: center; font-size: 1rem; }
+      .logdemo-tick-num { font-size: 0.875rem; }
+      .logdemo-ticks li:first-child .logdemo-tick { justify-content: flex-start; }
+      .logdemo-ticks li:last-child .logdemo-tick { justify-content: flex-end; }
+      .logdemo-tick-label {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+      }
       .demo-amt { font-size: 1.375rem; }
-      .growth img { height: 398px; }
       .demo-row { grid-template-columns: 1fr; grid-template-areas: "head" "amt" "bar"; row-gap: 0.5rem; min-height: 118px; }
       .demo-amt { text-align: left; }
       .demo-income-controls input[type="range"] { min-width: 100%; }
@@ -776,10 +790,11 @@
       <span class="sr-only">Menu</span>
     </button>
     <ul class="nav-menu" id="site-menu">
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/#how-it-works">How It Works</a></li>
+      <li><a href="/#how-tithing-works">Tithing</a></li>
+      <li><a href="/#how-logging-works">Expenses</a></li>
+      <li><a href="/#how-goals-work">Goals</a></li>
+      <li><a href="/#how-debts-work">Debts</a></li>
       <li><a href="/#budgeting-types">Budgeting Types</a></li>
-      <li><a href="/#faith">Faith</a></li>
       <li><a href="/#faq">FAQ</a></li>
     </ul>
     <a class="nav-cta" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">Download on the App&nbsp;Store</a>
@@ -797,7 +812,7 @@
         <p class="hero-eyebrow" data-reveal>Now on the App Store · iOS</p>
         <h1 class="hero-heading" id="hero-heading" data-reveal>The Christian Budgeting App for <span class="accent">Real Financial Freedom</span></h1>
         <p class="hero-tagline" data-reveal>Make your dollar seeds sprout into blessings.</p>
-        <p class="hero-desc" data-reveal>DollarSeeds splits every dollar you earn across Needs, Wants, and Savings automatically, tracks your spending against each target, and grounds it all in biblical stewardship — no bank login required.</p>
+        <p class="hero-desc" data-reveal>DollarSeeds is a budgeting app built for those who want to steward their finances in the way God wants. Split your budget into needs, wants, and goals; create goals and see them all the way through completion; follow the Snowball Debt Payment plan to become debt free quicker; and watch exclusive video series from Christian entrepreneurs who are serious about work and God.</p>
         <div class="hero-cta" data-reveal>
           <a class="appstore-badge" href="https://apps.apple.com/us/app/dollarseeds/id6780037284">
             <img src="/assets/images/app-store-badge.svg" alt="Download DollarSeeds on the App Store" width="180" height="60" />
@@ -809,17 +824,9 @@
         <div class="phone-frame">
           <div class="phone-notch"></div>
           <picture>
-            <source type="image/avif" srcset="/assets/images/gen/dashboard-screen-250.avif 1x, /assets/images/gen/dashboard-screen-500.avif 2x" />
-            <source type="image/webp" srcset="/assets/images/gen/dashboard-screen-250.webp 1x, /assets/images/gen/dashboard-screen-500.webp 2x" />
-            <img src="/assets/images/dashboard-screen.jpeg" width="739" height="1600" fetchpriority="high" alt="DollarSeeds dashboard on iPhone showing money left this month, a Budget Health score, a Bible verse card, and Needs, Wants, and Savings progress bars" />
-          </picture>
-        </div>
-        <div class="growth">
-          <picture>
-            <source type="image/avif" srcset="/assets/images/gen/dollarseeds-tree-400.avif 400w, /assets/images/gen/dollarseeds-tree-540.avif 540w, /assets/images/gen/dollarseeds-tree-1080.avif 1080w" sizes="(max-width: 900px) 432px, 540px" />
-            <source type="image/webp" srcset="/assets/images/gen/dollarseeds-tree-400.webp 400w, /assets/images/gen/dollarseeds-tree-540.webp 540w, /assets/images/gen/dollarseeds-tree-1080.webp 1080w" sizes="(max-width: 900px) 432px, 540px" />
-            <img src="/assets/images/dollarseeds-tree.png" width="1349" height="1349" fetchpriority="low"
-                   alt="Black-and-white cartoon money tree in the DollarSeeds logo style: a cloud-like canopy bearing dollar-coin fruit, growing from a mound of soil" />
+            <source type="image/avif" srcset="/assets/images/gen/home-screen-2026-11-280.avif 1x, /assets/images/gen/home-screen-2026-11-560.avif 2x" />
+            <source type="image/webp" srcset="/assets/images/gen/home-screen-2026-11-280.webp 1x, /assets/images/gen/home-screen-2026-11-560.webp 2x" />
+            <img src="/assets/images/home-screen-2026-11.jpeg" width="739" height="1606" fetchpriority="high" alt="DollarSeeds home screen on iPhone showing $588 left this month, an upcoming medical bill to prune, a tithe toggle, and how much is left in the Needs, Wants, and Goals plus debt paydown budgets" />
           </picture>
         </div>
       </div>
@@ -854,154 +861,301 @@
     </ul>
   </section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="who" id="who-its-for" aria-labelledby="who-heading">
+  <!-- HOW TITHING WORKS — slider demo -->
+  <section class="logdemo logdemo--tithe" id="how-tithing-works" aria-labelledby="tithedemo-heading">
     <div class="section-inner">
-      <p class="eyebrow" data-reveal>Who It's For · Every Season</p>
-      <h2 class="section-heading" id="who-heading" data-reveal>Built for people chasing <span class="accent">financial freedom</span></h2>
-      <div class="who-grid" data-reveal-group>
-        <div class="who-prose" data-reveal>
-          <p>DollarSeeds is for anyone chasing financial freedom — people getting out of debt, people multiplying what they already have, and people aiming at goals bigger than next month's bills.</p>
-          <p>It's also for people who don't want money just to fill their pockets, but to use it in a way that pleases God and blesses the people around them. If that's you, this app was built with you in mind. If it isn't, the budgeting still works — the discipline doesn't check your beliefs at the door.</p>
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Tithing · Step by Step</p>
+          <h2 class="section-heading" id="tithedemo-heading" data-reveal>Honor God by putting him first in your <span class="accent">finances</span></h2>
+          <p data-reveal>God is pleased when we give our first and best fruit to him. It is a sign of gratitude and respect, and something that DollarSeeds encourages. When activated, 10% of your income will be separated into the tithing container, before performing the needs/wants/goals split.</p>
+          <p data-reveal>DollarSeeds is a Christian budgeting app with tithing built in. Your tithe comes off the top of the income you log, following the firstfruits principle of Proverbs 3:9, so your budget is planned on what's left. Want to give more than a tenth? Raise your tithe rate in settings at any time. New to tithing? Read our guide on <a href="/lessons/tithing">what tithing is and how to budget for it</a>.</p>
+          <p data-reveal>Slide through the steps to see how your tithe is set aside, adjusted and marked as given.</p>
         </div>
-        <div class="who-replaces surface-card" data-reveal>
-          <h3>What DollarSeeds replaces</h3>
-          <ul>
-            <li><strong>Lack of control</strong> Money leaves the account faster than you decided it should.</li>
-            <li><strong>Lack of direction</strong> No answer to "what is this money actually for?"</li>
-            <li><strong>Lack of planning</strong> Every month starts from zero, and ends by accident.</li>
-            <li><strong>Lack of self-knowledge</strong> No real idea where the money actually goes.</li>
-          </ul>
-          <p class="who-replaces-result">All four replaced with the same thing: <strong>financial control</strong>.</p>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-1-home-tithe-300.avif 1x, /assets/images/gen/tithing-step-1-home-tithe-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-1-home-tithe-300.webp 1x, /assets/images/gen/tithing-step-1-home-tithe-600.webp 2x" />
+              <img class="is-active" src="/assets/images/tithe-demo/tithing-step-1-home-tithe.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds home screen with everything darkened except the tithe card, which shows a $100 tithe on $1,000 of income" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-2-open-settings-300.avif 1x, /assets/images/gen/tithing-step-2-open-settings-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-2-open-settings-300.webp 1x, /assets/images/gen/tithing-step-2-open-settings-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-2-open-settings.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The DollarSeeds home screen with everything darkened except the settings button in the top corner, and an arrow pointing to it" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-3-tithe-settings-300.avif 1x, /assets/images/gen/tithing-step-3-tithe-settings-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-3-tithe-settings-300.webp 1x, /assets/images/gen/tithing-step-3-tithe-settings-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-3-tithe-settings.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The Tithing settings in focus: tithing switched on, a 10% tithe rate, and a note that 10% of new income goes into a Tithe envelope before the budget split" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-4-tithe-20-percent-300.avif 1x, /assets/images/gen/tithing-step-4-tithe-20-percent-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-4-tithe-20-percent-300.webp 1x, /assets/images/gen/tithing-step-4-tithe-20-percent-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-4-tithe-20-percent.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The Tithing settings in focus with the tithe rate changed to 20%, so 20% of new income goes into the Tithe envelope first" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-5-tithe-toggle-300.avif 1x, /assets/images/gen/tithing-step-5-tithe-toggle-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-5-tithe-toggle-300.webp 1x, /assets/images/gen/tithing-step-5-tithe-toggle-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-5-tithe-toggle.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The green top of the home screen in focus with the tithe now $200, and an arrow pointing to the tithe toggle" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/tithing-step-6-tithe-given-300.avif 1x, /assets/images/gen/tithing-step-6-tithe-given-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/tithing-step-6-tithe-given-300.webp 1x, /assets/images/gen/tithing-step-6-tithe-given-600.webp 2x" />
+              <img src="/assets/images/tithe-demo/tithing-step-6-tithe-given.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The green top of the home screen in focus with the tithe toggle switched on and the money left this month lowered from $1,000 to $800" />
+            </picture>
+          </div>
         </div>
+        <ol class="logdemo-steps" id="tithedemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 6</span><p>In the home page, you see how much your tithe is based on your income.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 6</span><p>Tap the settings to look at your tithe settings.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 6</span><p>Here you can toggle tithing on or off, and you can change your tithe amount to more than 10% if desired.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 6</span><p>A change to 20% means that 20% of your income will be reserved to the tithing envelope before making the needs/wants/goals split.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 6</span><p>Back in the home page, the tithing amount is updated. Clicking the toggle will count the tithe as given, and deduct from your total income left for the month.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 6</span><p>The tithe toggle now shows green, and your income left for the month is adjusted.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="tithedemo-range">Choose a step in setting up your tithe</label>
+        <input type="range" class="logdemo-range" id="tithedemo-range" min="1" max="6" step="1" value="1" aria-valuetext="Step 1 of 6: Home" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Home"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Home</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="Settings"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">Settings</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Tithe settings"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Tithe settings</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="20%"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">20%</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Mark as given"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Mark as given</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Given"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Given</span></button></li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how" id="how-it-works" aria-labelledby="how-heading">
+  <!-- HOW LOGGING WORKS — slider demo -->
+  <section class="logdemo logdemo--expenses" id="how-logging-works" aria-labelledby="logdemo-heading">
     <div class="section-inner">
-      <p class="eyebrow" data-reveal>How It Works · Three Steps</p>
-      <h2 class="section-heading" id="how-heading" data-reveal>Three steps, every month</h2>
-      <ol class="how-steps" data-reveal-group>
-        <li class="how-step" data-reveal>
-          <h3>Log your income</h3>
-          <p>Paycheck, side gig, gift, refund — log it in seconds when it arrives. Every harvest counts.</p>
-        </li>
-        <li class="how-step" data-reveal>
-          <h3>It splits automatically</h3>
-          <p>DollarSeeds divides each amount across your three buckets the moment you log it — no math, no spreadsheet.</p>
-          <div class="how-split" aria-hidden="true">
-            <span class="b-needs">Needs</span><span class="b-wants">Wants</span><span class="b-savings">Savings</span>
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Expense Tracking · Step by Step</p>
+          <h2 class="section-heading" id="logdemo-heading" data-reveal>Log an expense in seconds and see what's <span class="accent">left to spend</span></h2>
+          <p data-reveal>DollarSeeds is an expense tracker built into your budget. Every bill, grocery run or night out goes into Needs, Wants, or Goals, and the app updates how much you have left in that budget for the month the moment you log it.</p>
+          <p data-reveal>Slide through the steps to watch a $165 energy bill get logged as a need, from the home screen to the updated balance.</p>
+        </div>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-1-home-300.avif 1x, /assets/images/gen/log-expense-step-1-home-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-1-home-300.webp 1x, /assets/images/gen/log-expense-step-1-home-600.webp 2x" />
+              <img class="is-active" src="/assets/images/log-demo/log-expense-step-1-home.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds home screen with everything darkened except the budget cards: $135 left in Needs, $93 left in Wants and $434 left in Goals plus debt paydown" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-2-tap-plus-300.avif 1x, /assets/images/gen/log-expense-step-2-tap-plus-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-2-tap-plus-300.webp 1x, /assets/images/gen/log-expense-step-2-tap-plus-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-2-tap-plus.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the plus button on the Needs card of the DollarSeeds home screen" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-3-needs-page-300.avif 1x, /assets/images/gen/log-expense-step-3-needs-page-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-3-needs-page-300.webp 1x, /assets/images/gen/log-expense-step-3-needs-page-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-3-needs-page.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Empty Log Need form in DollarSeeds with a title field, an amount of $0, sub-category chips such as Rent, Groceries and Utilities, the month and day, and a Plant Need button" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-4-needs-filled-300.avif 1x, /assets/images/gen/log-expense-step-4-needs-filled-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-4-needs-filled-300.webp 1x, /assets/images/gen/log-expense-step-4-needs-filled-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-4-needs-filled.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Log Need form filled in with the title Energy Bill, an amount of $165, the Utilities sub-category selected and the date November 4" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-5-plant-need-300.avif 1x, /assets/images/gen/log-expense-step-5-plant-need-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-5-plant-need-300.webp 1x, /assets/images/gen/log-expense-step-5-plant-need-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-5-plant-need.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the Plant Need button on the filled-in Log Need form" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/log-expense-step-6-home-updated-300.avif 1x, /assets/images/gen/log-expense-step-6-home-updated-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/log-expense-step-6-home-updated-300.webp 1x, /assets/images/gen/log-expense-step-6-home-updated-600.webp 2x" />
+              <img src="/assets/images/log-demo/log-expense-step-6-home-updated.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="DollarSeeds home screen after logging the energy bill, with focus on the Needs card, which now shows $30 over budget and is outlined in red" />
+            </picture>
           </div>
-        </li>
-        <li class="how-step" data-reveal>
-          <h3>Track and adjust</h3>
-          <p>Every expense lands in a category with a target. See what's left, catch overspending early, and adjust before the month gets away from you.</p>
-        </li>
-      </ol>
-      <p class="how-more" data-reveal>The split isn't one-size-fits-all. DollarSeeds ships <a href="#budgeting-types">three budgeting types</a> — try them live below.</p>
+        </div>
+        <ol class="logdemo-steps" id="logdemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 6</span><p>In the home page, you see how much you have left for each category for the month, and you can log new expenses.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 6</span><p>To log new expenses, click the + sign.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 6</span><p>This is the needs page. It's where you provide details for your needs expenses.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 6</span><p>It will look something like this once it's filled out.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 6</span><p>Hitting the button logs the expense, and will automatically update the money available for that category in the home page.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 6</span><p>Back in the home page, you can see the updated number. If over budget, it will get outlined in red.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="logdemo-range">Choose a step in logging an expense</label>
+        <input type="range" class="logdemo-range" id="logdemo-range" min="1" max="6" step="1" value="1" aria-valuetext="Step 1 of 6: Home" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Home"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Home</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="Tap +"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">Tap +</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Needs page"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Needs page</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="Fill it in"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">Fill it in</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Plant Need"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Plant Need</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Updated"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Updated</span></button></li>
+        </ol>
+      </div>
     </div>
   </section>
 
-  <!-- FEATURES — five video rows -->
-  <section class="features" id="features" aria-labelledby="features-heading">
+  <!-- HOW GOALS WORK — slider demo -->
+  <section class="logdemo logdemo--goals" id="how-goals-work" aria-labelledby="goaldemo-heading">
     <div class="section-inner">
-      <p class="eyebrow" data-reveal>What's Inside · Real Screens</p>
-      <h2 class="section-heading" id="features-heading" data-reveal>Everything you need to <span class="accent">grow</span> your finances</h2>
-      <p class="section-body" data-reveal>Every recording below is the real app, unedited. Hover or scroll — they play on their own.</p>
-      <div class="feature-rows">
-
-        <figure class="feature-row" data-reveal-group>
-          <div class="feature-media" data-reveal>
-            <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1434" poster="/assets/images/gen/log-income-600.jpg" aria-label="Screen recording of logging income in DollarSeeds and watching it split across Needs, Wants, and Savings">
-                <source src="/assets/video/log-income.webm" type="video/webm" />
-                <source src="/assets/video/log-income.mp4" type="video/mp4" />
-              </video>
-              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
-            </div>
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Savings Goals · Step by Step</p>
+          <h2 class="section-heading" id="goaldemo-heading" data-reveal>Add your long term goals, and save them <span class="accent">month by month</span></h2>
+          <p data-reveal>DollarSeeds is a savings goal tracker built into your budget. Set a goal for what matters, like an emergency fund, a new laptop or a trip, pick a target month, and the app works out how much to save each month and shows whether you're on track.</p>
+          <p data-reveal>Slide through the steps to watch a $2,000 laptop goal get planted, saved for month by month, and topped up with an extra payment.</p>
+        </div>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-1-goals-page-300.avif 1x, /assets/images/gen/goal-tracking-step-1-goals-page-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-1-goals-page-300.webp 1x, /assets/images/gen/goal-tracking-step-1-goals-page-600.webp 2x" />
+              <img class="is-active" src="/assets/images/goal-demo/goal-tracking-step-1-goals-page.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds goals page with everything darkened except the Plant a new goal button, and an arrow pointing to it" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-2-new-goal-form-300.avif 1x, /assets/images/gen/goal-tracking-step-2-new-goal-form-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-2-new-goal-form-300.webp 1x, /assets/images/gen/goal-tracking-step-2-new-goal-form-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-2-new-goal-form.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Empty Plant a new goal form with fields for the goal name, target amount, amount already saved, target month and year, and a switch to add the monthly amount automatically" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-3-goal-filled-300.avif 1x, /assets/images/gen/goal-tracking-step-3-goal-filled-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-3-goal-filled-300.webp 1x, /assets/images/gen/goal-tracking-step-3-goal-filled-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-3-goal-filled.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Plant a new goal form filled in for a New Laptop goal: a $2,000 target, $0 saved, a target of August 2027 that works out to $200 a month, and automatic monthly adding switched on" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-4-plant-my-goal-300.avif 1x, /assets/images/gen/goal-tracking-step-4-plant-my-goal-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-4-plant-my-goal-300.webp 1x, /assets/images/gen/goal-tracking-step-4-plant-my-goal-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-4-plant-my-goal.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the Plant my goal button on the filled-in goal form" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-5-goal-created-300.avif 1x, /assets/images/gen/goal-tracking-step-5-goal-created-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-5-goal-created-300.webp 1x, /assets/images/gen/goal-tracking-step-5-goal-created-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-5-goal-created.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The new New Laptop goal card in focus: on track for August, right on time, saving $200 a month, with $200 of $2,000 saved and $200 added for November" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-6-tap-extra-300.avif 1x, /assets/images/gen/goal-tracking-step-6-tap-extra-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-6-tap-extra-300.webp 1x, /assets/images/gen/goal-tracking-step-6-tap-extra-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-6-tap-extra.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the + Extra button on the New Laptop goal card" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/goal-tracking-step-7-add-extra-payment-300.avif 1x, /assets/images/gen/goal-tracking-step-7-add-extra-payment-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/goal-tracking-step-7-add-extra-payment-300.webp 1x, /assets/images/gen/goal-tracking-step-7-add-extra-payment-600.webp 2x" />
+              <img src="/assets/images/goal-demo/goal-tracking-step-7-add-extra-payment.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Add an extra payment sheet for the New Laptop goal, with an amount field and a choice between this month's budget and money already saved" />
+            </picture>
           </div>
-          <figcaption class="feature-text" data-reveal>
-            <p class="feature-eyebrow">Income · Automatic Split</p>
-            <h3>Income tracking that splits itself</h3>
-            <p>Every dollar that comes in gets divided across Needs, Wants, and Savings the instant you log it — using whichever <a href="#budgeting-types">budgeting type</a> you've picked. No math, no spreadsheet, no deciding under pressure.</p>
-            <p>Tap <strong>Income</strong>, enter the amount, pick a source — paycheck, side gig, gift, bonus — and watch the split bar divide it before your eyes. Every good gift accounted for.</p>
-          </figcaption>
-        </figure>
+        </div>
+        <ol class="logdemo-steps" id="goaldemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 7</span><p>In the goals page, you see all your goals and their details. To create a new goal, click the "Plant a new goal" button.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 7</span><p>To create a new goal, you'll provide information on it.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 7</span><p>It will look something like this once it's filled out.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 7</span><p>Clicking the button will save your goal along with its information, giving you useful details for it.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 7</span><p>With the goal created, you can see useful details to help you accomplish your goal on schedule.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 7</span><p>Besides the minimum monthly amount, you can also add extra money to complete the goal faster.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 7 of 7</span><p>In this page, you can specify the amount, and whether it's coming from this month's budget or from money you'd already saved.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="goaldemo-range">Choose a step in creating a savings goal</label>
+        <input type="range" class="logdemo-range" id="goaldemo-range" min="1" max="7" step="1" value="1" aria-valuetext="Step 1 of 7: Goals page" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Goals page"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Goals page</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="New goal"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">New goal</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Fill it in"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Fill it in</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="Plant my goal"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">Plant my goal</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Goal created"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Goal created</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Tap + Extra"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Tap + Extra</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="7" data-label="Extra payment"><span class="logdemo-tick-num">7</span> <span class="logdemo-tick-label">Extra payment</span></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-        <figure class="feature-row" data-reveal-group>
-          <div class="feature-media" data-reveal>
-            <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1420" poster="/assets/images/gen/log-expense-600.jpg" aria-label="Screen recording of logging an expense in DollarSeeds with a category and subcategory">
-                <source src="/assets/video/log-expense.webm" type="video/webm" />
-                <source src="/assets/video/log-expense.mp4" type="video/mp4" />
-              </video>
-              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
-            </div>
+  <!-- HOW DEBTS WORK — slider demo -->
+  <section class="logdemo logdemo--debts" id="how-debts-work" aria-labelledby="debtdemo-heading">
+    <div class="section-inner">
+      <div class="logdemo-grid">
+        <div class="logdemo-intro" data-reveal-group>
+          <p class="eyebrow" data-reveal>Debt Snowball · Step by Step</p>
+          <h2 class="section-heading" id="debtdemo-heading" data-reveal>Add all your debts, and pay them off one by one using the <span class="accent">snowball method</span></h2>
+          <p data-reveal>DollarSeeds is a debt payoff tracker built on the debt snowball method. Instead of a snowball, every debt you add becomes a plant in its own pot. You pay the minimum on all of them, put any extra toward the smallest balance first, and each plant grows as its debt shrinks.</p>
+          <p data-reveal>When one debt is paid off, its payment waters the next one, so every debt you finish helps you pay off the next one faster. Slide through the steps to watch a $1,500 credit card get planted, paid down and grown into a full plant.</p>
+          <p class="logdemo-note" data-reveal>Debt Freedom is part of DollarSeeds Premium, which starts with a <span class="logdemo-nowrap">1-month</span> free trial.</p>
+        </div>
+        <div class="phone-frame" data-reveal>
+          <div class="phone-notch"></div>
+          <div class="logdemo-screen" data-step="1">
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-1-empty-garden-300.avif 1x, /assets/images/gen/debt-snowball-step-1-empty-garden-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-1-empty-garden-300.webp 1x, /assets/images/gen/debt-snowball-step-1-empty-garden-600.webp 2x" />
+              <img class="is-active" src="/assets/images/debt-demo/debt-snowball-step-1-empty-garden.jpeg" width="739" height="1600" loading="lazy" decoding="async" alt="DollarSeeds debts page with everything darkened except the Plant your first debt button, and an arrow pointing to it" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-2-new-debt-form-300.avif 1x, /assets/images/gen/debt-snowball-step-2-new-debt-form-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-2-new-debt-form-300.webp 1x, /assets/images/gen/debt-snowball-step-2-new-debt-form-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-2-new-debt-form.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="Empty New debt form with fields for the name, original balance, current balance, minimum payment, interest rate and due day, and a Plant it button" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-3-debt-filled-300.avif 1x, /assets/images/gen/debt-snowball-step-3-debt-filled-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-3-debt-filled-300.webp 1x, /assets/images/gen/debt-snowball-step-3-debt-filled-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-3-debt-filled.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="New debt form filled in for a BofA Credit Card: $1,500 original and current balance, a $35 minimum payment, 10.90% interest, due on the 22nd" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-4-plant-it-300.avif 1x, /assets/images/gen/debt-snowball-step-4-plant-it-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-4-plant-it-300.webp 1x, /assets/images/gen/debt-snowball-step-4-plant-it-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-4-plant-it.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="An arrow pointing to the Plant it button on the filled-in New debt form" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-5-min-payment-toggle-300.avif 1x, /assets/images/gen/debt-snowball-step-5-min-payment-toggle-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-5-min-payment-toggle-300.webp 1x, /assets/images/gen/debt-snowball-step-5-min-payment-toggle-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-5-min-payment-toggle.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The new BofA Credit Card debt in focus as a sprout in a pot, 2% paid, with its Min payment logged toggle and Extra button, and an arrow pointing to the toggle" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-6-extra-payment-300.avif 1x, /assets/images/gen/debt-snowball-step-6-extra-payment-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-6-extra-payment-300.webp 1x, /assets/images/gen/debt-snowball-step-6-extra-payment-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-6-extra-payment.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The BofA Credit Card plant and its payment buttons in focus, with an arrow pointing to the Extra button" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-7-plant-half-grown-300.avif 1x, /assets/images/gen/debt-snowball-step-7-plant-half-grown-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-7-plant-half-grown-300.webp 1x, /assets/images/gen/debt-snowball-step-7-plant-half-grown-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-7-plant-half-grown.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The BofA Credit Card plant half grown, with leaves and flower buds, $665 left, free by August 2028 and 55% paid" />
+            </picture>
+            <picture>
+              <source type="image/avif" srcset="/assets/images/gen/debt-snowball-step-8-mark-paid-off-300.avif 1x, /assets/images/gen/debt-snowball-step-8-mark-paid-off-600.avif 2x" />
+              <source type="image/webp" srcset="/assets/images/gen/debt-snowball-step-8-mark-paid-off-300.webp 1x, /assets/images/gen/debt-snowball-step-8-mark-paid-off-600.webp 2x" />
+              <img src="/assets/images/debt-demo/debt-snowball-step-8-mark-paid-off.jpeg" width="739" height="1600" loading="lazy" decoding="async" aria-hidden="true" alt="The BofA Credit Card plant fully grown and in bloom at 100% paid with $0 left, and an arrow pointing to the Mark as paid off button" />
+            </picture>
           </div>
-          <figcaption class="feature-text" data-reveal>
-            <p class="feature-eyebrow">Expenses · Know Where It Goes</p>
-            <h3>An expense tracker with real categories</h3>
-            <p>Every spend lands in a category and subcategory — dining, groceries, streaming, travel — and counts against that bucket's target, so you always know what's left before you buy, not after.</p>
-            <p>Tap <strong>Expense</strong>, enter the amount, choose the category, give it a name if you want one. Ten seconds, logged, done. Plant where it counts.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="feature-row" data-reveal-group>
-          <div class="feature-media" data-reveal>
-            <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1444" poster="/assets/images/gen/create-goal-600.jpg" aria-label="Screen recording of creating a savings goal in DollarSeeds with a target amount and timeline">
-                <source src="/assets/video/create-goal.webm" type="video/webm" />
-                <source src="/assets/video/create-goal.mp4" type="video/mp4" />
-              </video>
-              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
-            </div>
-          </div>
-          <figcaption class="feature-text" data-reveal>
-            <p class="feature-eyebrow">Savings · Named Goals</p>
-            <h3>Savings goals with targets and timelines</h3>
-            <p>A goal with a name, a number, and a date gets funded; vague intentions don't. DollarSeeds turns "we should save for that trip" into a target you can watch fill up.</p>
-            <p>Open <strong>Savings</strong>, create a goal, set the amount and the deadline — the app paces you from there. Little by little, it grows.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="feature-row" data-reveal-group>
-          <div class="feature-media" data-reveal>
-            <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/gen/fund-goal-600.jpg" aria-label="Screen recording of setting money aside toward a savings goal in DollarSeeds">
-                <source src="/assets/video/fund-goal.webm" type="video/webm" />
-                <source src="/assets/video/fund-goal.mp4" type="video/mp4" />
-              </video>
-              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
-            </div>
-          </div>
-          <figcaption class="feature-text" data-reveal>
-            <p class="feature-eyebrow">Savings · Set Aside</p>
-            <h3>Set money aside, goal by goal</h3>
-            <p>Your Savings bucket fills automatically every time income splits — funding a goal is how you decide what that money is <em>for</em>. Each set-aside moves real dollars from general savings into the goal you choose.</p>
-            <p>Open the goal, tap <strong>Set aside</strong>, enter the amount — and when the seed finally becomes the thing you were saving for, tap <strong>I bought it</strong>.</p>
-          </figcaption>
-        </figure>
-
-        <figure class="feature-row" data-reveal-group>
-          <div class="feature-media" data-reveal>
-            <div class="feature-screen">
-              <video muted loop playsinline preload="none" width="720" height="1558" poster="/assets/images/gen/pay-debt-600.jpg" aria-label="Screen recording of paying off debt from general savings in DollarSeeds">
-                <source src="/assets/video/pay-debt.webm" type="video/webm" />
-                <source src="/assets/video/pay-debt.mp4" type="video/mp4" />
-              </video>
-              <button class="video-toggle" type="button" hidden aria-label="Play video">Play</button>
-            </div>
-          </div>
-          <figcaption class="feature-text" data-reveal>
-            <p class="feature-eyebrow">Debt · Pay It Down</p>
-            <h3>Pay off debt straight from savings</h3>
-            <p>Debt payoff lives on the same screen as your goals, because getting free is one. Money you've built up in general savings can go straight at a balance you owe — and you watch it shrink the same way you watch a goal fill.</p>
-            <p>From <strong>Savings</strong>, choose the debt, enter the payment, and it's applied — no juggling a separate tracker. Freedom, funded a little at a time.</p>
-          </figcaption>
-        </figure>
-
+        </div>
+        <ol class="logdemo-steps" id="debtdemo-steps" aria-live="polite">
+          <li class="logdemo-step is-active"><span class="logdemo-step-num">Step 1 of 8</span><p>In the debts page, you see all your debts and their details. To track a new debt, click the "Plant your first debt" button.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 2 of 8</span><p>Fill the page with information about the debt you're trying to pay off.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 3 of 8</span><p>It will look something like this once it's filled out.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 4 of 8</span><p>Clicking the button will save your debt along with its information, giving you useful details for it.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 5 of 8</span><p>With the debt created, you can see useful details to help you pay off your debt as soon as possible. Turn on the min payment toggle each month after you pay the minimum, so you never miss a payment and get charged fees on any of your debts.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 6 of 8</span><p>You can pay extra money, but only for your current focused debt. With all your efforts going into the smallest debt at the moment, you'll quickly pay off more debts with the snowball effect.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 7 of 8</span><p>As you pay more, the plant will grow, signifying the growth of your finances.</p></li>
+          <li class="logdemo-step"><span class="logdemo-step-num">Step 8 of 8</span><p>In the end, you'll get a beautiful, fully grown plant. Clicking the button completes the debt, and any extra money along with that debt's min payment can snowball into the next debt.</p></li>
+        </ol>
+      </div>
+      <div class="logdemo-slider">
+        <label class="sr-only" for="debtdemo-range">Choose a step in paying off a debt</label>
+        <input type="range" class="logdemo-range" id="debtdemo-range" min="1" max="8" step="1" value="1" aria-valuetext="Step 1 of 8: Debts page" />
+        <ol class="logdemo-ticks">
+          <li><button type="button" class="logdemo-tick is-active" aria-current="step" data-step="1" data-label="Debts page"><span class="logdemo-tick-num">1</span> <span class="logdemo-tick-label">Debts page</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="2" data-label="New debt"><span class="logdemo-tick-num">2</span> <span class="logdemo-tick-label">New debt</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="3" data-label="Fill it in"><span class="logdemo-tick-num">3</span> <span class="logdemo-tick-label">Fill it in</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="4" data-label="Plant it"><span class="logdemo-tick-num">4</span> <span class="logdemo-tick-label">Plant it</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="5" data-label="Min payment"><span class="logdemo-tick-num">5</span> <span class="logdemo-tick-label">Min payment</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="6" data-label="Extra"><span class="logdemo-tick-num">6</span> <span class="logdemo-tick-label">Extra</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="7" data-label="Growing"><span class="logdemo-tick-num">7</span> <span class="logdemo-tick-label">Growing</span></button></li>
+          <li><button type="button" class="logdemo-tick" data-step="8" data-label="Paid off"><span class="logdemo-tick-num">8</span> <span class="logdemo-tick-label">Paid off</span></button></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -1063,57 +1217,6 @@
       </div>
 
       <p class="types-more" data-reveal>Want the deeper version, with worked examples? See the full <a href="/budgeting-types">budgeting types guide</a> or start with the <a href="/50-30-20-rule">50/30/20 rule</a>.</p>
-    </div>
-  </section>
-
-  <!-- FAITH & STEWARDSHIP + LESSONS -->
-  <section class="faith" id="faith" aria-labelledby="faith-heading">
-    <div class="section-inner">
-      <p class="eyebrow" data-reveal>Why DollarSeeds · Lessons</p>
-      <h2 class="section-heading" id="faith-heading" data-reveal style="margin-bottom:3rem;">The name behind the mission</h2>
-      <div class="faith-grid" data-reveal-group>
-        <div class="faith-text" data-reveal>
-          <p>A seed is small. It requires patience, intention, and care before it ever becomes something visible. That's exactly how finances work — not through sudden windfalls, but through faithful, daily decisions that compound over time.</p>
-          <p>The name DollarSeeds comes from that idea. Every dollar you earn is a seed. Where you plant it — how you tend it — determines what grows. Spend carelessly and nothing takes root. Steward it well, and it becomes provision, security, and generosity.</p>
-          <p>The Bible speaks about money more than almost any other topic. Yet for many Christians, faith and finances remain in separate rooms. DollarSeeds was built to open the door between them — not just to budget better, but to steward faithfully. And if you don't share the faith, the discipline still holds: the app never asks you to believe anything to budget well. It reads as conviction, not a gate.</p>
-          <div class="faith-verse">
-            <blockquote>"Little by little, it grows."</blockquote>
-            <cite>Proverbs 13:11</cite>
-          </div>
-        </div>
-        <div class="faith-lessons surface-card" id="lessons" data-reveal>
-          <div class="faith-lessons-screen">
-            <picture>
-              <source type="image/avif" srcset="/assets/images/gen/screen-lessons-480.avif 480w, /assets/images/gen/screen-lessons-739.avif 739w" sizes="(max-width: 900px) 100vw, 430px" />
-              <source type="image/webp" srcset="/assets/images/gen/screen-lessons-480.webp 480w, /assets/images/gen/screen-lessons-739.webp 739w" sizes="(max-width: 900px) 100vw, 430px" />
-              <img src="/assets/images/screen-lessons.png" width="739" height="1600" loading="lazy" alt="DollarSeeds Lessons screen listing Scripture-rooted money lessons with reading times, Bible references, and a completion progress bar" />
-            </picture>
-          </div>
-          <div class="faith-lessons-body">
-            <h3>Go deeper · Lessons inside the app</h3>
-            <ul>
-              <li>
-                <a href="/lessons/tithing">
-                  <span class="lesson-name">Tithing</span>
-                  <span class="lesson-note">What the tithe is, where it comes from, and how to practice it without legalism or guilt.</span>
-                </a>
-              </li>
-              <li>
-                <a href="/lessons/entrepreneurship">
-                  <span class="lesson-name">Entrepreneurship</span>
-                  <span class="lesson-note">Multiplying what you've been given — work, risk, and building something that blesses people.</span>
-                </a>
-              </li>
-              <li>
-                <a href="/lessons#in-the-app">
-                  <span class="lesson-name">Saving for the Unexpected</span>
-                  <span class="lesson-note">What the ants teach about having enough for each season — in the app, with every new lesson as it ships.</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1321,8 +1424,10 @@
       <nav class="footer-col" aria-label="Product">
         <h2>Product</h2>
         <ul>
-          <li><a href="/#features">Features</a></li>
-          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#how-tithing-works">Tithing</a></li>
+          <li><a href="/#how-logging-works">Expenses</a></li>
+          <li><a href="/#how-goals-work">Goals</a></li>
+          <li><a href="/#how-debts-work">Debts</a></li>
           <li><a href="/#budgeting-types">Budgeting Types</a></li>
           <li><a href="/#reviews">Reviews</a></li>
           <li><a href="/#faq">FAQ</a></li>
@@ -1391,42 +1496,63 @@
       .catch(function () { /* keep static fallback */ });
   })();
 
-
-  // Feature videos: play the row in view, pause everything else.
-  // With reduced motion: no autoplay — a manual play control appears instead.
+  // Slider demos (how logging works, how goals work): in each .logdemo, the
+  // slider and the step labels pick which phone screen and caption show. Every
+  // demo is set up from its own markup, so they never affect each other. No
+  // autoplay. Without JS the CSS shows step 1 and all captions.
   (function () {
-    var videos = Array.prototype.slice.call(document.querySelectorAll('.feature-screen video'));
-    if (!videos.length) return;
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function setupDemo(section) {
+      var range = section.querySelector('.logdemo-range');
+      var screen = section.querySelector('.logdemo-screen');
+      if (!range || !screen) return;
+      var imgs = Array.prototype.slice.call(screen.querySelectorAll('img'));
+      var captions = Array.prototype.slice.call(section.querySelectorAll('.logdemo-step'));
+      var ticks = Array.prototype.slice.call(section.querySelectorAll('.logdemo-tick'));
+      var total = Number(range.max) || imgs.length;
+      if (!total || !imgs.length) return;
 
-    function pauseOthers(current) {
-      videos.forEach(function (v) { if (v !== current && !v.paused) v.pause(); });
-    }
-    function play(v) { pauseOthers(v); v.play().catch(function () {}); }
-
-    videos.forEach(function (v) {
-      var btn = v.parentElement.querySelector('.video-toggle');
-      if (reduceMotion && btn) {
-        btn.hidden = false;
-        btn.addEventListener('click', function () {
-          if (v.paused) { play(v); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause video'); }
-          else { v.pause(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Play video'); }
+      function show(n) {
+        n = Math.min(total, Math.max(1, Math.round(Number(n)) || 1));
+        var i = n - 1;
+        screen.setAttribute('data-step', String(n));
+        imgs.forEach(function (img, k) {
+          img.classList.toggle('is-active', k === i);
+          if (k === i) img.removeAttribute('aria-hidden');
+          else img.setAttribute('aria-hidden', 'true');
         });
-      } else {
-        v.addEventListener('click', function () { v.paused ? play(v) : v.pause(); });
+        captions.forEach(function (li, k) { li.classList.toggle('is-active', k === i); });
+        ticks.forEach(function (btn, k) {
+          btn.classList.toggle('is-active', k === i);
+          if (k === i) btn.setAttribute('aria-current', 'step');
+          else btn.removeAttribute('aria-current');
+        });
+        if (Number(range.value) !== n) range.value = String(n);
+        range.style.setProperty('--fill', (total > 1 ? (n - 1) / (total - 1) * 100 : 0) + '%');
+        var label = ticks[i] ? ticks[i].getAttribute('data-label') : '';
+        range.setAttribute('aria-valuetext', 'Step ' + n + ' of ' + total + (label ? ': ' + label : ''));
       }
-    });
 
-    if (!reduceMotion && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var v = entry.target;
-          if (entry.intersectionRatio >= 0.5) play(v);
-          else if (!v.paused) v.pause();
-        });
-      }, { threshold: [0, 0.5] });
-      videos.forEach(function (v) { io.observe(v); });
+      range.addEventListener('input', function () { show(range.value); });
+      ticks.forEach(function (btn) {
+        btn.addEventListener('click', function () { show(btn.getAttribute('data-step')); });
+      });
+
+      // Fetch all of this demo's screens once it is ~400px away, so dragging
+      // the slider never waits on the network.
+      function loadAll() { imgs.forEach(function (img) { img.loading = 'eager'; }); }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          if (entries.some(function (e) { return e.isIntersecting; })) { loadAll(); io.disconnect(); }
+        }, { rootMargin: '400px 0px' });
+        io.observe(section);
+      } else {
+        loadAll();
+      }
+
+      show(range.value);
     }
+
+    document.querySelectorAll('.logdemo').forEach(setupDemo);
   })();
 
   // Budgeting-types demo: tabs + income slider/field driving a tweened split.

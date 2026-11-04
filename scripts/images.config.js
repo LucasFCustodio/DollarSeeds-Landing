@@ -18,27 +18,44 @@
 
 module.exports = [
   {
-    // Hero phone screen — the LCP element. Frame is 250px wide (200 under
-    // 900px, 185 under 580px), so 250/500 covers 1x/2x.
-    src: 'assets/images/dashboard-screen.jpeg',
-    widths: [250, 500],
+    // Hero phone screen — the LCP element. Frame is 280px wide (200 under
+    // 900px, 185 under 580px), so 280/560 covers 1x/2x.
+    src: 'assets/images/home-screen-2026-11.jpeg',
+    widths: [280, 560],
     formats: ['avif', 'webp'],
     note: 'hero / LCP'
   },
   {
-    // Hero tree illustration — rendered at 540px tall (square source), scaling
-    // down to 230px on small viewports.
-    src: 'assets/images/dollarseeds-tree.png',
-    widths: [400, 540, 1080],
+    // "How tithing works" demo: six 739x1600 screens in the same 300px phone
+    // frame (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/tithe-demo/*.jpeg',
+    widths: [300, 600],
     formats: ['avif', 'webp'],
-    note: 'hero decoration'
+    note: 'tithe demo'
   },
   {
-    // Lessons card screenshot, cropped to a 190px-tall band by object-fit.
-    src: 'assets/images/screen-lessons.png',
-    widths: [480, 739],
+    // "How logging works" demo: six 739x1600 screens in a 300px phone frame
+    // (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/log-demo/*.jpeg',
+    widths: [300, 600],
     formats: ['avif', 'webp'],
-    note: 'faith section card'
+    note: 'logging demo'
+  },
+  {
+    // "How goals work" demo: seven 739x1600 screens in the same 300px phone
+    // frame (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/goal-demo/*.jpeg',
+    widths: [300, 600],
+    formats: ['avif', 'webp'],
+    note: 'goal demo'
+  },
+  {
+    // "How debts work" demo: eight 739x1600 screens in the same 300px phone
+    // frame (260 under 580px), so 300/600 covers 1x/2x.
+    src: 'assets/images/debt-demo/*.jpeg',
+    widths: [300, 600],
+    formats: ['avif', 'webp'],
+    note: 'debt demo'
   },
   {
     // Logo: 38px in the nav, 72px in the footer, 240px on the press page.
@@ -46,15 +63,5 @@ module.exports = [
     widths: [76, 144, 240, 480],
     formats: ['avif', 'webp'],
     note: 'nav / footer / press'
-  },
-  {
-    // Video poster frames. A poster="" attribute cannot take a <picture>, so
-    // these get one resized JPEG each rather than a format ladder — the win is
-    // dropping 720px sources down to the 600px the 2x layout actually needs.
-    src: 'assets/images/posters/*.jpg',
-    widths: [600],
-    formats: ['jpeg'],
-    replacesPoster: true,
-    note: 'video posters'
   }
 ];

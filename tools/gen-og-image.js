@@ -5,7 +5,7 @@
  *
  * The card is composed in tools/og/og-image.html and screenshotted with
  * headless Chrome rather than drawn with sharp, because the type has to be set
- * in the real brand faces — Urbanist at font-weight 580 in particular, which
+ * in the real brand faces — Montserrat at font-weight 580 in particular, which
  * only a variable font resolves. sharp's SVG text renderer would fall back to a
  * system face and the card would not look like the site.
  *
@@ -55,6 +55,9 @@ function screenshot(chrome, url, out) {
       '--hide-scrollbars',
       '--force-device-scale-factor=2',   // render at 2x, downsample for crisp type
       '--window-size=' + WIDTH + ',' + HEIGHT,
+      // Without this, --screenshot fires before the webfonts swap in and the
+      // card is captured in the Arial-based fallback faces.
+      '--virtual-time-budget=5000',
       '--screenshot=' + out,
       url
     ], { stdio: ['ignore', 'ignore', 'pipe'] });
