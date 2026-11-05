@@ -2,7 +2,8 @@
 
 /**
  * Shared page shell for every generated Seed Rush and verse page: <head>, the
- * site header, the footer (with the NIV notice), and versioned asset URLs.
+ * site header, the footer (with the NIV notice). Asset URLs are versioned by
+ * scripts/asset-version.js.
  *
  * The header and footer reproduce the hand-written pages' markup exactly, with
  * Seed Rush as the first nav item. scripts/gen-seed-rush.js and
@@ -11,8 +12,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const { ROOT, APP, url } = require('./site.config.js');
+// Versioned asset URLs (?v=<content hash>): one implementation for the whole site.
+const { asset } = require('./asset-version.js');
 
 /** Required, word for word, on every Seed Rush and verse page. */
 const NIV_NOTICE = 'Scripture quotations taken from The Holy Bible, New International Version® NIV®. ' +
@@ -69,17 +71,6 @@ function clip(text, max) {
   const cut = s.slice(0, max - 1);
   const at = cut.lastIndexOf(' ');
   return (at > 40 ? cut.slice(0, at) : cut).replace(/[\s,;:.—-]+$/, '') + '…';
-}
-
-/**
- * `/assets/...` plus `?v=<content hash>`. /assets/* is cached immutable for a
- * year, so a file changed under the same name only reaches returning visitors
- * because this query changes with it.
- */
-function asset(rel) {
-  const file = path.join(ROOT, rel.replace(/^\//, ''));
-  const hash = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0, 10);
-  return rel + '?v=' + hash;
 }
 
 const NAV_ITEMS = [
@@ -198,7 +189,7 @@ function page(o) {
   const image = url('/assets/images/og-default.png');
   const imageAlt = 'DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone';
   const scripts = ['/assets/js/site.js'].concat(o.scripts || []).map(src =>
-    '<script src="' + (src === '/assets/js/site.js' ? src : asset(src)) + '"></script>').join('\n');
+    '<script src="' + asset(src) + '"></script>').join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -246,7 +237,7 @@ ${o.noindex ? '  <meta name="robots" content="noindex" />\n' : ''}
   <meta name="twitter:image" content="${image}" />
   <meta name="twitter:image:alt" content="${imageAlt}" />
 
-  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="${asset('/assets/css/base.css')}" />
   <link rel="stylesheet" href="${asset('/assets/css/seed-rush.css')}" />
 ${o.jsonld ? `
   <script type="application/ld+json">
