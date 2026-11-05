@@ -78,7 +78,8 @@ function llms() {
 
   const isLesson = p => p.path.startsWith('/lessons');
   const isLegal = p => ['/privacy', '/terms', '/cookie-policy', '/delete-account'].includes(p.path);
-  const core = PAGES.filter(p => !isLesson(p) && !isLegal(p));
+  const isSeedRush = p => p.path === '/seed-rush' || p.path === '/verses' || p.path.startsWith('/verses/');
+  const core = PAGES.filter(p => !isLesson(p) && !isLegal(p) && !isSeedRush(p));
 
   return [
     '# DollarSeeds',
@@ -99,6 +100,7 @@ function llms() {
     '',
     section('Core pages', core),
     section('Lessons', PAGES.filter(isLesson)),
+    section('Seed Rush and Bible verses', PAGES.filter(isSeedRush)),
     section('Legal and account', PAGES.filter(isLegal)),
     '## Optional',
     '',

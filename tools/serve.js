@@ -146,7 +146,7 @@ function startServer(root = ROOT, port = 8080) {
   });
 }
 
-module.exports = { startServer };
+module.exports = { startServer, handler };
 
 if (require.main === module) {
   const port = Number(process.argv[2] || 8080);

@@ -41,12 +41,15 @@ the two cannot drift silently.
 | Step | Script | Fatal on failure? |
 |---|---|---|
 | 1 | `gen-images.js` — AVIF/WebP/poster derivatives | yes |
-| 2 | `gen-static.js` — `robots.txt`, `llms.txt`, AASA, IndexNow key | yes |
-| 3 | `sync-app-stats.js` — live App Store rating | **no** |
-| 4 | `gen-sitemap.js` — `sitemap.xml` + lesson `dateModified` | yes |
-| 5 | `ping-indexnow.js` — announce the deploy | **no** |
+| 2 | `sync-verses.js` — Seed Rush verse snapshot from `GET {API}/seed-rush/verses` | **no** |
+| 3 | `gen-seed-rush.js` — Supabase vendor bundle, `seed-rush-config.js`, the Seed Rush pages | yes |
+| 4 | `gen-verses.js` — `/verses`, one page per verse, the Study page | yes |
+| 5 | `gen-static.js` — `robots.txt`, `llms.txt`, AASA, IndexNow key | yes |
+| 6 | `sync-app-stats.js` — live App Store rating | **no** |
+| 7 | `gen-sitemap.js` — `sitemap.xml` + lesson `dateModified` | yes |
+| 8 | `ping-indexnow.js` — announce the deploy | **no** |
 
-Steps 3 and 5 are the only ones that touch the network, and both are written to
+Steps 2, 6 and 8 are the only ones that touch the network, and all three are written to
 degrade quietly: a failed fetch logs a warning, changes nothing, and exits 0.
 A deploy must never fail — or worse, publish zeros — because Apple's lookup
 endpoint had a bad minute.
@@ -111,3 +114,21 @@ Image derivatives are named by width (`logo-144.avif`), not by content hash, and
 therefore needs a filename bump**, or returning visitors keep the old bytes.
 `gen-images.js` prints a `CHANGED` warning when a derivative's content moves
 under an existing name, so this cannot happen unnoticed.
+
+## Seed Rush (the daily verse game)
+
+- **Verse text** comes only from `assets/data/seed-rush-verses.json`, the public list the
+  backend serves (slug, reference, category, text, explanation). `sync-verses.js` refreshes
+  it and never writes an empty list; `gen-verses.js` refuses to run on an empty one, and
+  removes the page of any verse that leaves the list. `PAGES` in `site.config.js` adds the
+  verse pages from the same file, so the sitemap and `llms.txt` follow automatically.
+- **Generated pages** (`seed-rush/*.html`, `verses/*.html`) share one shell,
+  `scripts/seed-rush-shell.js`. Edit the shell or the generators, never the output.
+- **Cache busting**: those pages load `seed-rush.js`, `seed-rush.css`,
+  `seed-rush-config.js` and `vendor/supabase.js` with `?v=<content hash>`, written at
+  generation time, so the year-long immutable `/assets/*` cache cannot serve a stale copy.
+  `site.js` and `base.css` still have no version (see the caching caveat above).
+- **Local play-testing**: `node tools/seed-rush-dev.js [port]` serves the site with a fake
+  Seed Rush API and a fake Supabase sign-in on the same origin. Open
+  `/seed-rush?api=mock&auth=mock`. `?api=http://127.0.0.1:8000` targets a real local
+  backend instead. Both overrides work only on localhost.

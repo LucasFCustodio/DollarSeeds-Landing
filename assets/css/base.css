@@ -229,10 +229,16 @@ picture { display: contents; }
   transition: color var(--dur-fast) var(--ease-out); white-space: nowrap;
 }
 .nav-menu a:hover { color: var(--accent-text); }
-/* Six links only just fit at the narrowest desktop widths: tighten the gap
-   there so the App Store button keeps its full right padding. */
-@media (min-width: 901px) and (max-width: 960px) {
-  .nav-menu { gap: 1rem; }
+/* Seven links (Seed Rush first) only just fit at the narrower desktop widths:
+   tighten the gaps and side padding there so the App Store button stays whole. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .site-nav { padding-left: 1.5rem; padding-right: 1.5rem; gap: 1rem; }
+  .nav-menu { gap: 1.05rem; }
+}
+@media (min-width: 901px) and (max-width: 990px) {
+  .nav-menu { gap: 0.8rem; }
+  .nav-menu a { font-size: 0.8125rem; }
+  .nav-cta { padding: 0.5rem 0.95rem; font-size: 0.8125rem; }
 }
 
 .nav-cta {

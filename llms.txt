@@ -31,6 +31,31 @@ App Store listing: https://apps.apple.com/us/app/dollarseeds/id6780037284
 - [/lessons/tithing](https://dollarseeds.app/lessons/tithing): Lesson — what the tithe is, where it comes from in the Bible, and how to budget the first tenth without guilt.
 - [/lessons/entrepreneurship](https://dollarseeds.app/lessons/entrepreneurship): Lesson — entrepreneurship as stewardship: the parable of the talents, risk, work, and funding the first step.
 
+## Seed Rush and Bible verses
+
+- [/seed-rush](https://dollarseeds.app/seed-rush): Seed Rush — a free daily 1-minute game: fill in the missing words of Bible verses about money, work and stewardship, with a daily leaderboard.
+- [/verses](https://dollarseeds.app/verses): Bible verses about money, work and stewardship, grouped by topic, each with a plain-language explanation.
+- [/verses/proverbs-22-7](https://dollarseeds.app/verses/proverbs-22-7): Proverbs 22:7 (NIV) — what it teaches about finances & debt.
+- [/verses/proverbs-21-5](https://dollarseeds.app/verses/proverbs-21-5): Proverbs 21:5 (NIV) — what it teaches about planning & wisdom.
+- [/verses/proverbs-13-11](https://dollarseeds.app/verses/proverbs-13-11): Proverbs 13:11 (NIV) — what it teaches about growth.
+- [/verses/luke-16-11](https://dollarseeds.app/verses/luke-16-11): Luke 16:11 (NIV) — what it teaches about stewardship.
+- [/verses/malachi-3-10](https://dollarseeds.app/verses/malachi-3-10): Malachi 3:10 (NIV) — what it teaches about generosity & giving.
+- [/verses/2-corinthians-9-7](https://dollarseeds.app/verses/2-corinthians-9-7): 2 Corinthians 9:7 (NIV) — what it teaches about generosity & giving.
+- [/verses/proverbs-3-9](https://dollarseeds.app/verses/proverbs-3-9): Proverbs 3:9 (NIV) — what it teaches about generosity & giving.
+- [/verses/matthew-6-24](https://dollarseeds.app/verses/matthew-6-24): Matthew 6:24 (NIV) — what it teaches about finances & debt.
+- [/verses/matthew-6-19](https://dollarseeds.app/verses/matthew-6-19): Matthew 6:19 (NIV) — what it teaches about stewardship.
+- [/verses/1-timothy-6-10](https://dollarseeds.app/verses/1-timothy-6-10): 1 Timothy 6:10 (NIV) — what it teaches about contentment.
+- [/verses/hebrews-13-5](https://dollarseeds.app/verses/hebrews-13-5): Hebrews 13:5 (NIV) — what it teaches about contentment.
+- [/verses/philippians-4-19](https://dollarseeds.app/verses/philippians-4-19): Philippians 4:19 (NIV) — what it teaches about trust & provision.
+- [/verses/proverbs-6-6](https://dollarseeds.app/verses/proverbs-6-6): Proverbs 6:6 (NIV) — what it teaches about work & diligence.
+- [/verses/proverbs-6-8](https://dollarseeds.app/verses/proverbs-6-8): Proverbs 6:8 (NIV) — what it teaches about timeliness.
+- [/verses/ecclesiastes-3-1](https://dollarseeds.app/verses/ecclesiastes-3-1): Ecclesiastes 3:1 (NIV) — what it teaches about timeliness.
+- [/verses/proverbs-27-23](https://dollarseeds.app/verses/proverbs-27-23): Proverbs 27:23 (NIV) — what it teaches about stewardship.
+- [/verses/luke-14-28](https://dollarseeds.app/verses/luke-14-28): Luke 14:28 (NIV) — what it teaches about planning & wisdom.
+- [/verses/proverbs-16-3](https://dollarseeds.app/verses/proverbs-16-3): Proverbs 16:3 (NIV) — what it teaches about planning & wisdom.
+- [/verses/colossians-3-23](https://dollarseeds.app/verses/colossians-3-23): Colossians 3:23 (NIV) — what it teaches about work & diligence.
+- [/verses/2-thessalonians-3-10](https://dollarseeds.app/verses/2-thessalonians-3-10): 2 Thessalonians 3:10 (NIV) — what it teaches about responsibility.
+
 ## Legal and account
 
 - [/delete-account](https://dollarseeds.app/delete-account): How to delete a DollarSeeds account and every record attached to it.

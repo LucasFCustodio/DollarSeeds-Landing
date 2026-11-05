@@ -155,11 +155,14 @@
     # one response are enforced as their intersection — the strict one would win
     # and the pages would stay blank. So it is global, deliberately.
     #
+    # connect-src includes the Seed Rush backend on Render and the Supabase
+    # project (website sign-in for the game).
+    #
     # img-src includes the Apple CDN because the App Store badge and any
     # artwork pulled from an itunes lookup are served from mzstatic.
     # frame-src covers the policy iframe the embed injects
     # (app.termly.io/policy-viewer/iframe-content.html).
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.termly.io https://*.termly.io; style-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; img-src 'self' data: blob: https://app.termly.io https://*.termly.io https://*.mzstatic.com; font-src 'self' data:; connect-src 'self' https://app.termly.io https://*.termly.io https://itunes.apple.com; frame-src https://app.termly.io https://*.termly.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.termly.io https://*.termly.io; style-src 'self' 'unsafe-inline' https://app.termly.io https://*.termly.io; img-src 'self' data: blob: https://app.termly.io https://*.termly.io https://*.mzstatic.com; font-src 'self' data:; connect-src 'self' https://app.termly.io https://*.termly.io https://itunes.apple.com https://dollarseeds-1.onrender.com https://vbvsblpyeylnemrecyqv.supabase.co; frame-src https://app.termly.io https://*.termly.io; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
 
 # --- Fingerprint-stable assets: cache hard ----------------------------------
 #
@@ -194,6 +197,26 @@
 # Extensionless pretty URLs resolve to HTML too.
 [[headers]]
   for = "/lessons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/seed-rush"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/seed-rush/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/verses"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/verses/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
