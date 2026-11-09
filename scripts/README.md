@@ -82,6 +82,7 @@ them by hand when the input changes.
 | `npm run icons` | Favicon set, app icons, `site.webmanifest` |
 | `npm run og` | Render the 1200×630 Open Graph card in headless Chrome |
 | `node tools/gen-font-fallbacks.js` | Recompute the metric-matched fallback `@font-face` rules |
+| `node tools/gen-streak-art.js` | Composite the Seed Rush streak plant (six stages) from the app repo's debt-plant art into `assets/images/streak/` |
 
 ### Fonts: the 580 trap
 

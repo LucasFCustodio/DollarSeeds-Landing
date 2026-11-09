@@ -103,6 +103,9 @@ async function main() {
     const dl = await head('/download');
     report(dl.status === 302, '/download is a 302', 'HTTP ' + dl.status);
     report(dl.location === APP.storeUrl, '/download points at the App Store', dl.location || '');
+    const daily = await head('/seed-rush/daily');
+    report(daily.status === 301 && daily.location === '/seed-rush', '/seed-rush/daily is a 301 to /seed-rush',
+      'HTTP ' + daily.status + ' ' + (daily.location || ''));
 
     // ---- 6. 404 ----
     console.log('\n404 handling:');

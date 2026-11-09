@@ -46,9 +46,9 @@
   <meta name="twitter:image:alt" content="DollarSeeds — the Christian budgeting app for real financial freedom, shown on an iPhone" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=f202035539" />
-  <link rel="stylesheet" href="/assets/css/seed-rush.css?v=6ede427257" />
+  <link rel="stylesheet" href="/assets/css/seed-rush.css?v=0dd5bf5bdf" />
 </head>
-<body class="sr-page sr-play-page">
+<body class="sr-page sr-game-page">
 
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary">
@@ -78,25 +78,17 @@
 </header>
 
 <main>
-  <div class="page-header sr-game-header" data-sr-intro>
-    <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="/">Home</a></li>
-          <li><a href="/seed-rush">Seed Rush</a></li>
-          <li aria-current="page">Practice</li>
-        </ol>
-      </nav>
-      <h1 class="page-title">Practice</h1>
-      <p class="page-lede">Play as often as you like. Practice runs don't count on the leaderboard.</p>
+  <div class="sr-app">
+    <div class="sr-toolbar">
+      <span class="sr-toolbar-name">Seed Rush</span>
+      <div class="sr-toolbar-icons" data-sr-toolbar hidden></div>
     </div>
-  </div>
-
-  <div class="sr-game-wrap">
-    <noscript><p class="sr-noscript">Seed Rush needs JavaScript to play. You can still <a href="/verses">read the verses behind the game</a>.</p></noscript>
-    <div class="sr-game" id="sr-game" data-sr-game="practice"></div>
-    <div class="sr-account sr-account-game" data-sr-account></div>
+    <div class="sr-stage" id="sr-game" data-sr-game="practice">
+      <div class="sr-prerun">
+        <h1 class="sr-title sr-title-small">Practice</h1>
+        <noscript><p class="sr-noscript">Seed Rush needs JavaScript to play. You can still <a href="/verses">read the verses behind the game</a>.</p></noscript>
+      </div>
+    </div>
   </div>
 </main>
 
@@ -165,6 +157,6 @@
 <script src="/assets/js/site.js?v=9fc6786d46"></script>
 <script src="/assets/js/vendor/supabase.js?v=36f948ef7f"></script>
 <script src="/assets/js/seed-rush-config.js?v=f7ab57e94b"></script>
-<script src="/assets/js/seed-rush.js?v=e5fbf90ea1"></script>
+<script src="/assets/js/seed-rush.js?v=2ee4fae83d"></script>
 </body>
 </html>
