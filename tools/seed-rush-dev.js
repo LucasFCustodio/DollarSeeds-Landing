@@ -25,6 +25,9 @@
  * is not public. Its verification links are printed here, and the newest one
  * is at /__mock/last-link.
  *
+ * Test hooks: /__mock/expire-runs ends every run's clock; /__mock/seed-streak?days=N
+ * (with the player's bearer token) gives that account N past daily runs.
+ *
  * Env: SR_MOCK_START_DELAY=4000 delays POST /runs (to see "Waking up the game…").
  */
 
@@ -461,6 +464,20 @@ const server = http.createServer(async (req, res) => {
   try {
     if (u.pathname === '/__mock/last-link') return send(res, 200, { link: lastLink });
     if (u.pathname === '/__mock/audit') return send(res, 200, audit);
+    if (u.pathname === '/__mock/seed-streak') {   // test hook: give the caller N past daily runs
+      const user = userFromAuth(req);
+      if (!user || user === 'bad') return send(res, 401, { detail: 'sign in first' });
+      const days = Math.min(60, Number(u.searchParams.get('days') || 0));
+      const today = gameDay(Date.now());
+      for (let d = 1; d <= days; d++) {
+        const day = addDays(today, -d), t = dayStart(day) + 3600000;
+        const id = crypto.randomUUID();
+        runs[id] = { id, user_id: user.id, guest_id: null, kind: 'daily', mode: 'easy', game_day: day, verse_order: [1],
+          current_index: 1, started_at: new Date(t).toISOString(), deadline_at: new Date(t + RUN_MS).toISOString(),
+          finished_at: new Date(t + 40000).toISOString(), score: 5, words_right: 5, words_wrong: 1, flagged: false, answers: [] };
+      }
+      return send(res, 200, { ok: true, streak: streakFor('user_id', user.id, Date.now()) });
+    }
     if (u.pathname === '/__mock/expire-runs') {   // test hook: end every run's clock now
       for (const r of Object.values(runs)) if (!r.finished_at) r.deadline_at = new Date(Date.now() - GRACE_MS - 1).toISOString();
       return send(res, 200, { ok: true });

@@ -164,16 +164,14 @@ ${paragraphs(v.explanation, '            ')}
           <a class="sr-text-link" href="/verses/${v.slug}">Read the full page</a>
         </article>`).join('\n');
 
-  const body = `  <div class="page-header sr-game-header">
-    <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-${shell.breadcrumbNav([['Home', '/'], ['Seed Rush', '/seed-rush'], ['Study', '/seed-rush/study']])}
-      <h1 class="page-title">Study the verses</h1>
-      <p class="page-lede">Every verse in Seed Rush, with its explanation. No timer, no score.</p>
+  const body = `  <div class="sr-simple">
+    <div class="sr-simple-inner">
+      <h1 class="sr-title sr-title-small">Study the verses</h1>
+      <p class="sr-tagline">Every verse in Seed Rush, with its explanation. No timer, no score.</p>
     </div>
   </div>
 
-  <div class="sr-game-wrap">
+  <div class="sr-study-wrap">
     <div class="sr-study" data-sr-study>
       <div class="sr-study-cards">
 ${cards}
@@ -196,7 +194,7 @@ ${cards}
     navCurrent: '/seed-rush',
     noindex: true,
     body,
-    bodyClass: 'sr-page',
+    bodyClass: 'sr-page sr-calm-page',
     scripts: ['/assets/js/seed-rush-config.js', '/assets/js/seed-rush.js']
   });
 }

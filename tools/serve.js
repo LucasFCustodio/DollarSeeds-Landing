@@ -31,7 +31,11 @@ const TYPES = {
 
 // Mirrors the [[redirects]] blocks in netlify.toml.
 const REWRITES = { '/terms': '/terms-termly.html' };
-const REDIRECTS = { '/download': { to: APP.storeUrl, status: 302 } };
+const REDIRECTS = {
+  '/download': { to: APP.storeUrl, status: 302 },
+  '/seed-rush/daily': { to: '/seed-rush', status: 301 },
+  '/seed-rush/daily.html': { to: '/seed-rush', status: 301 }
+};
 
 /**
  * Parse the [[headers]] blocks out of netlify.toml so local previews carry the

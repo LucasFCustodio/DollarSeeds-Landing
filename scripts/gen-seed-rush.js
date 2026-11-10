@@ -6,7 +6,7 @@
  *   1. assets/js/vendor/supabase.js   — the Supabase UMD bundle, copied from
  *      node_modules (no CDN: the CSP allows scripts only from this site and Termly)
  *   2. assets/js/seed-rush-config.js — API and Supabase settings, from site.config.js
- *   3. seed-rush/index.html, daily.html, practice.html, verify.html
+ *   3. seed-rush/index.html (the daily game), practice.html, verify.html
  *
  * Pages reference the Seed Rush assets with a content-hash query (?v=…), so a
  * changed file reaches returning visitors despite /assets/* being immutable.
@@ -65,18 +65,24 @@ const APP_SCRIPTS = ['/assets/js/vendor/supabase.js', '/assets/js/seed-rush-conf
 
 const NOSCRIPT = `<noscript><p class="sr-noscript">Seed Rush needs JavaScript to play. You can still <a href="/verses">read the verses behind the game</a>.</p></noscript>`;
 
-const MODES = [
-  ['easy', 'Easy', '1 blank', 'Pick from 3 words', '1 point per verse'],
-  ['medium', 'Medium', '3 blanks', 'Pick from 6 words', '2 points per correct word'],
-  ['hard', 'Hard', '3 blanks', 'Type the words', '5 points per correct word']
-];
+/** The empty pot, as it shows before the script decides the real stage. */
+const MARK = `<img class="sr-plant sr-mark" src="/assets/images/streak/streak-stage-0-320.webp" srcset="/assets/images/streak/streak-stage-0-160.webp 1x, /assets/images/streak/streak-stage-0-320.webp 2x" width="160" height="173" alt="An empty pot, waiting for a seed" />`;
 
-function modeCards() {
-  return MODES.map(([key, name, blanks, options, points]) => `          <li class="sr-mode-card sr-mode-${key}">
-            <h3>${name}</h3>
-            <p class="sr-mode-facts"><span>${blanks}</span><span>${options}</span></p>
-            <p class="sr-mode-points">${points}</p>
-          </li>`).join('\n');
+/**
+ * The game area: a slim toolbar (How to play, Leaderboard, Account — filled in
+ * by the script) over the stage, where the landing, pre-run, run and end states
+ * replace one another. `fallback` is what shows before (or without) JavaScript.
+ */
+function gameArea(kind, fallback) {
+  return `  <div class="sr-app">
+    <div class="sr-toolbar">
+      <span class="sr-toolbar-name">Seed Rush</span>
+      <div class="sr-toolbar-icons" data-sr-toolbar hidden></div>
+    </div>
+    <div class="sr-stage" id="sr-game" data-sr-game="${kind}">
+${fallback}
+    </div>
+  </div>`;
 }
 
 function home() {
@@ -101,66 +107,24 @@ function home() {
     ]
   };
 
-  const body = `  <div class="page-header sr-hero">
-    <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-${shell.breadcrumbNav([['Home', '/'], ['Seed Rush', '/seed-rush']])}
-      <p class="page-eyebrow">Daily Bible verse game</p>
-      <h1 class="page-title">Seed Rush</h1>
-      <p class="page-lede">A free daily 1-minute Bible verse game about money, work and stewardship.</p>
-      <div class="sr-actions">
-        <a class="sr-btn sr-btn-primary" href="/seed-rush/daily">Play today's Seed Rush</a>
-        <a class="sr-btn sr-btn-secondary" href="/seed-rush/practice">Practice</a>
-        <a class="sr-text-link" href="/seed-rush/study">Study the verses</a>
-      </div>
-      <p class="sr-countdown" data-sr-countdown hidden>Next round in <span class="sr-countdown-time" data-sr-countdown-time>–</span></p>
-    </div>
-  </div>
+  const fallback = `      <div class="sr-landing">
+        ${MARK}
+        <h1 class="sr-title">Seed Rush</h1>
+        <p class="sr-tagline">Fill in the verse. 60 seconds. Once a day.</p>
+        ${NOSCRIPT}
+      </div>`;
 
-  <div class="page-body">
-    <div class="page-inner-wide sr-home">
-      ${NOSCRIPT}
+  const body = `${gameArea('daily', fallback)}
 
-      <div class="sr-home-top">
-        <section class="sr-status" data-sr-status aria-label="Your Seed Rush" hidden></section>
-        <div class="sr-account" data-sr-account></div>
-      </div>
-
-      <section class="sr-section" aria-labelledby="how-to-play">
-        <h2 id="how-to-play">How to play</h2>
-        <ol class="sr-steps">
-          <li><strong>Pick a mode.</strong> Easy, Medium or Hard.</li>
-          <li><strong>Fill in the missing words</strong> before the minute runs out. Each verse gets one try.</li>
-          <li><strong>Come back tomorrow.</strong> The day resets at 7:00 AM Eastern, with a new order of verses.</li>
-        </ol>
-      </section>
-
-      <section class="sr-section" aria-labelledby="modes">
-        <h2 id="modes">Three modes</h2>
-        <ul class="sr-modes" role="list">
-${modeCards()}
-        </ul>
-        <p class="sr-note">All modes share one leaderboard, so Easy is a good place to practice before moving up.</p>
-      </section>
-
-      <section class="sr-section" id="leaderboard" aria-labelledby="leaderboard-title">
-        <div class="sr-board-head">
-          <h2 id="leaderboard-title" data-sr-board-title>Today's leaderboard</h2>
-          <div class="sr-toggle" role="group" aria-label="Which day" data-sr-board-days hidden>
-            <button type="button" class="sr-toggle-btn" aria-pressed="true" data-day="today">Today</button>
-            <button type="button" class="sr-toggle-btn" aria-pressed="false" data-day="yesterday">Yesterday</button>
-          </div>
-        </div>
-        <div class="sr-board" data-sr-board>
-          <p class="sr-muted">The leaderboard loads with JavaScript.</p>
-        </div>
-      </section>
-
-      <p class="sr-verses-link"><a href="/verses">Read the verses behind the game.</a></p>
-
+  <section class="sr-about" aria-labelledby="about-title">
+    <div class="sr-about-inner">
+      <h2 id="about-title">About Seed Rush</h2>
+      <p>Seed Rush is a free daily game built on Bible verses about money, work and stewardship. Each round gives you one minute to fill in the missing words of as many verses as you can, and everyone plays the same verses that day.</p>
+      <p>Easy asks you to pick one missing word from three. Medium asks you to place three missing words from six. Hard asks you to type all three yourself. A new round starts every day at 7:00 AM Eastern.</p>
+      <p class="sr-about-links"><a href="/verses">Read the verses behind the game</a> <span aria-hidden="true">·</span> <a href="/seed-rush/study">Study mode</a></p>
 ${shell.appCta()}
     </div>
-  </div>`;
+  </section>`;
 
   return shell.page({
     generator: GENERATOR,
@@ -171,60 +135,35 @@ ${shell.appCta()}
     navCurrent: '/seed-rush',
     jsonld,
     body,
-    bodyClass: 'sr-page',
+    bodyClass: 'sr-page sr-game-page',
     scripts: APP_SCRIPTS
   });
 }
 
-function gamePage(kind) {
-  const daily = kind === 'daily';
-  const pagePath = '/seed-rush/' + kind;
-  const name = daily ? "Today's Seed Rush" : 'Practice';
-  const body = `  <div class="page-header sr-game-header" data-sr-intro>
-    <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-${shell.breadcrumbNav([['Home', '/'], ['Seed Rush', '/seed-rush'], [daily ? 'Daily' : 'Practice', pagePath]])}
-      <h1 class="page-title">${name}</h1>
-      <p class="page-lede">${daily
-        ? 'One run a day, one minute on the clock. Your score goes on today\'s leaderboard.'
-        : 'Play as often as you like. Practice runs don\'t count on the leaderboard.'}</p>
-    </div>
-  </div>
-
-  <div class="sr-game-wrap">
-    ${NOSCRIPT}
-    <div class="sr-game" id="sr-game" data-sr-game="${kind}"></div>
-    <div class="sr-account sr-account-game" data-sr-account></div>
-  </div>`;
-
+function practicePage() {
+  const fallback = `      <div class="sr-prerun">
+        <h1 class="sr-title sr-title-small">Practice</h1>
+        ${NOSCRIPT}
+      </div>`;
   return shell.page({
     generator: GENERATOR,
-    title: name + ' | Seed Rush | DollarSeeds',
-    description: daily
-      ? "Play today's Seed Rush: one minute to fill in the missing words of Bible verses about money, work and stewardship."
-      : 'Practice Seed Rush as often as you like: fill in the missing words of Bible verses about money and work.',
-    path: pagePath,
+    title: 'Practice | Seed Rush | DollarSeeds',
+    description: 'Practice Seed Rush as often as you like: fill in the missing words of Bible verses about money and work.',
+    path: '/seed-rush/practice',
     navCurrent: '/seed-rush',
     noindex: true,
-    body,
-    bodyClass: 'sr-page sr-play-page',
+    body: gameArea('practice', fallback),
+    bodyClass: 'sr-page sr-game-page',
     scripts: APP_SCRIPTS
   });
 }
 
 function verifyPage() {
-  const body = `  <div class="page-header">
-    <div class="page-header-blob"></div>
-    <div class="page-header-inner">
-${shell.breadcrumbNav([['Home', '/'], ['Seed Rush', '/seed-rush'], ['Verify your email', '/seed-rush/verify']])}
-      <h1 class="page-title">Verify your email</h1>
-    </div>
-  </div>
-
-  <div class="page-body">
-    <div class="page-inner">
+  const body = `  <div class="sr-simple">
+    <div class="sr-simple-inner">
+      <h1 class="sr-title sr-title-small">Verify your email</h1>
       ${NOSCRIPT}
-      <div class="sr-panel sr-verify" data-sr-verify aria-live="polite">
+      <div class="sr-verify" data-sr-verify aria-live="polite">
         <p class="sr-muted">Checking your link…</p>
       </div>
     </div>
@@ -238,7 +177,7 @@ ${shell.breadcrumbNav([['Home', '/'], ['Seed Rush', '/seed-rush'], ['Verify your
     navCurrent: '/seed-rush',
     noindex: true,
     body,
-    bodyClass: 'sr-page',
+    bodyClass: 'sr-page sr-calm-page',
     scripts: APP_SCRIPTS
   });
 }
@@ -247,9 +186,12 @@ function main() {
   vendor();
   config();
   out('seed-rush/index.html', home());
-  out('seed-rush/daily.html', gamePage('daily'));
-  out('seed-rush/practice.html', gamePage('practice'));
+  out('seed-rush/practice.html', practicePage());
   out('seed-rush/verify.html', verifyPage());
+  // The daily game now runs on /seed-rush itself; /seed-rush/daily is a 301
+  // (netlify.toml). Remove the page an older build generated.
+  const old = path.join(ROOT, 'seed-rush', 'daily.html');
+  if (fs.existsSync(old)) { fs.unlinkSync(old); changed.push('seed-rush/daily.html (removed)'); }
   for (const rel of changed) console.log('  wrote ' + rel);
   console.log('seed-rush: ' + (changed.length ? changed.length + ' file(s) updated' : 'everything current'));
 }

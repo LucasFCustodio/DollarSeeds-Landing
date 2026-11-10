@@ -5,11 +5,12 @@
      1. Utilities          small DOM, storage and time helpers
      2. Config and API     endpoints, the fetch wrapper, error messages
      3. Accounts           Supabase sign-in, the guest id, /me, guest claim
-     4. Account area       the panel, the sign-in dialog, the username prompt
-     5. Leaderboard
-     6. Home page          /seed-rush
-     7. The game           /seed-rush/daily and /seed-rush/practice
-     8. End of run         score, verses seen, share
+     4. Dialogs            the shared modal, account, username prompt
+     5. Leaderboard        (a dialog)
+     6. Toolbar            How to play, the toolbar, the streak plant
+     7. The game           /seed-rush (daily) and /seed-rush/practice: landing,
+                           pre-run, play — all states of one page
+     8. End of run         plant, score, share, verses seen
      9. Study              /seed-rush/study
     10. Verify             /seed-rush/verify
     11. Boot
@@ -87,7 +88,6 @@
     return d.toISOString().slice(0, 10);
   }
   function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
-  function sprouts(n) { return n > 0 ? new Array(Math.min(n, 7) + 1).join('🌱') : ''; }
 
   function toast(text) {
     var old = $('.sr-toast'); if (old) old.remove();
@@ -260,16 +260,27 @@
       String(sec).padStart(2, '0') + 's';
   }
 
+  /** "14:22:05" */
+  function clockText(ms) {
+    if (ms == null) return '–';
+    var s = Math.max(0, Math.floor(ms / 1000));
+    return Math.floor(s / 3600) + ':' + String(Math.floor((s % 3600) / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  }
+
   /** Keep an element showing the time to the next round. */
-  function liveCountdown(node, onZero) {
+  function liveCountdown(node, onZero, format) {
     function paint() {
+      // A re-drawn screen leaves this node behind: stop its timer.
+      if (painted && !node.isConnected) { clearInterval(timer); return; }
+      painted = true;
       var ms = Day.msToNext();
-      node.textContent = countdownText(ms);
+      node.textContent = (format || countdownText)(ms);
       if (ms != null && ms <= 0) {
         clearInterval(timer);
-        Day.load().then(function () { if (onZero) onZero(); else liveCountdown(node); }, function () {});
+        Day.load().then(function () { if (onZero) onZero(); else liveCountdown(node, null, format); }, function () {});
       }
     }
+    var painted = false;
     var timer = setInterval(paint, 1000);
     paint();
     return timer;
@@ -416,7 +427,58 @@
     }
   };
 
-  // ══ 4. Account area ═════════════════════════════════════════════════════
+  // ══ 4. Dialogs and the account area ═════════════════════════════════════
+
+  /**
+   * One modal <dialog> at a time. showModal() makes the page behind inert; Tab
+   * also wraps inside the dialog, Esc closes it, and focus returns to whatever
+   * opened it. On phones it is a full-width sheet (seed-rush.css).
+   */
+  var Modal = {
+    node: null,
+    titleEl: null,
+    open: function (title, build, opts) {
+      opts = opts || {};
+      Modal.close(true);
+      var opener = document.activeElement;
+      var titleEl = h('h2', { class: 'sr-modal-title', id: 'sr-modal-title' }, title);
+      var body = h('div', { class: 'sr-modal-body' });
+      var dlg = h('dialog', { class: 'sr-modal', 'aria-labelledby': 'sr-modal-title' },
+        h('div', { class: 'sr-modal-inner' },
+          h('div', { class: 'sr-modal-head' }, titleEl,
+            h('button', { class: 'sr-close', type: 'button', 'aria-label': 'Close', title: 'Close',
+              onclick: function () { dlg.close(); } }, '×')),
+          body));
+      Modal.node = dlg; Modal.titleEl = titleEl;
+      document.body.appendChild(dlg);
+      dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
+      dlg.addEventListener('keydown', function (ev) {
+        if (ev.key !== 'Tab') return;
+        var f = $all('a[href], button:not([disabled]), input:not([disabled]), summary, [tabindex]:not([tabindex="-1"])', dlg)
+          .filter(function (el) { return el.offsetParent !== null; });
+        if (!f.length) return;
+        if (ev.shiftKey && document.activeElement === f[0]) { ev.preventDefault(); f[f.length - 1].focus(); }
+        else if (!ev.shiftKey && document.activeElement === f[f.length - 1]) { ev.preventDefault(); f[0].focus(); }
+      });
+      dlg.addEventListener('close', function () {
+        dlg.remove();
+        if (Modal.node === dlg) Modal.node = null;
+        if (dlg.silent) return;
+        if (opener && opener.focus && document.contains(opener)) { try { opener.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+        if (opts.onClose) opts.onClose();
+      });
+      build(body);
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      return dlg;
+    },
+    setTitle: function (t) { if (Modal.titleEl) Modal.titleEl.textContent = t; },
+    /** silent: replaced by another dialog — no focus return, no onClose. */
+    close: function (silent) {
+      if (!Modal.node) return;
+      Modal.node.silent = !!silent;
+      Modal.node.close();
+    }
+  };
 
   var USERNAME_REASONS = {
     too_short: 'Too short: at least 3 characters.',
@@ -434,12 +496,6 @@
     return null;
   }
 
-  /** Opens the dialog's username step: the one place the form lives. */
-  function usernameButton(label) {
-    return h('button', { class: 'sr-btn sr-btn-primary sr-btn-small', type: 'button',
-      onclick: function () { AccountDialog.open('username'); } }, label || 'Pick a username');
-  }
-
   /** The username field: debounced live check, then save. */
   function usernameForm(onSaved) {
     var input = h('input', {
@@ -447,7 +503,7 @@
       spellcheck: 'false', maxlength: '20', required: true, 'aria-describedby': 'sr-username-hint'
     });
     var hint = h('p', { class: 'sr-hint', id: 'sr-username-hint', 'aria-live': 'polite' },
-      'Letters, numbers and underscores. This is what the leaderboard shows.');
+      'Letters, numbers and underscores.');
     var save = h('button', { class: 'sr-btn sr-btn-primary', type: 'submit', disabled: true }, 'Save username');
     var timer = null, seq = 0, okFor = null;
 
@@ -458,7 +514,7 @@
     input.addEventListener('input', function () {
       var u = input.value.trim();
       okFor = null; save.disabled = true; clearTimeout(timer);
-      if (!u) { setHint('Letters, numbers and underscores. This is what the leaderboard shows.'); return; }
+      if (!u) { setHint('Letters, numbers and underscores.'); return; }
       var quick = quickUsernameProblem(u);
       if (quick) { setHint(USERNAME_REASONS[quick], 'bad'); return; }
       setHint('Checking…');
@@ -475,7 +531,7 @@
     });
 
     var form = h('form', { class: 'sr-form', novalidate: true },
-      h('div', { class: 'sr-field' }, h('label', { for: 'sr-username' }, 'Pick a username'), input, hint),
+      h('div', { class: 'sr-field' }, h('label', { for: 'sr-username' }, 'Username'), input, hint),
       save);
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
@@ -496,117 +552,79 @@
     return form;
   }
 
-  /** "Send verification email", with every outcome the backend has. */
-  function verifyButton(label) {
-    var status = h('p', { class: 'sr-hint', 'aria-live': 'polite' });
-    var btn = h('button', { class: 'sr-btn sr-btn-secondary sr-btn-small', type: 'button' }, label || 'Send verification email');
+  /** "Send email" as a text-style button, with every outcome the backend has. */
+  function verifySend(label) {
+    var status = h('span', { class: 'sr-hint sr-inline-status', 'aria-live': 'polite' });
+    var btn = h('button', { class: 'sr-link-btn', type: 'button' }, label || 'Send email');
     btn.addEventListener('click', function () {
-      btn.disabled = true; status.textContent = 'Sending…'; status.className = 'sr-hint';
+      btn.disabled = true; status.textContent = 'Sending…'; status.className = 'sr-hint sr-inline-status';
       api('POST', '/seed-rush/verification/send', undefined, { auth: 'user' }).then(function (r) {
         if (r.status === 'sent') {
-          status.textContent = 'Sent! Check your inbox for a link from DollarSeeds.'; status.className = 'sr-hint is-ok';
+          status.textContent = 'Sent. Check your inbox.'; status.className = 'sr-hint sr-inline-status is-ok';
         } else if (r.status === 'already_verified') {
-          status.textContent = 'Your email is already verified.'; status.className = 'sr-hint is-ok';
+          status.textContent = 'Already verified.'; status.className = 'sr-hint sr-inline-status is-ok';
           Auth.refreshMe().then(Auth.emit);
         } else {
-          status.textContent = "We couldn't send it right now. Try again later."; status.className = 'sr-hint is-bad';
+          status.textContent = "We couldn't send it right now. Try again later."; status.className = 'sr-hint sr-inline-status is-bad';
           btn.disabled = false;
         }
       }, function (e) {
-        status.className = 'sr-hint is-bad';
+        status.className = 'sr-hint sr-inline-status is-bad';
         status.textContent = e.code === 'rate_limited'
           ? "You've asked for 3 emails in the last hour. Try again later." : e.message;
         btn.disabled = e.code === 'rate_limited';
       });
     });
-    return h('div', { class: 'sr-verify-send' }, btn, status);
+    return [btn, status];
   }
 
-  function verifyBanner() {
-    return h('div', { class: 'sr-banner' },
-      h('p', null, 'Verify your email to appear on the leaderboard.'),
-      verifyButton());
-  }
-
-  /** The panel on /seed-rush, /daily and /practice. */
-  function renderAccount(node) {
-    if (!node) return;
-    clear(node);
-    if (!Auth.sb) return;
-    if (!Auth.user) {
-      append(node, h('div', { class: 'sr-panel' },
-        h('h2', null, 'Play with an account'),
-        h('p', null, 'Sign in to get on the leaderboard and keep your streak on any device. Guests can play everything.'),
-        h('div', { class: 'sr-actions' },
-          h('button', { class: 'sr-btn sr-btn-primary sr-btn-small', type: 'button', onclick: function () { AccountDialog.open('signup'); } }, 'Create account'),
-          h('button', { class: 'sr-btn sr-btn-secondary sr-btn-small', type: 'button', onclick: function () { AccountDialog.open('signin'); } }, 'Sign in'))));
-      return;
-    }
-    var me = Auth.me;
-    if (me && !me.username) {
-      append(node, h('div', { class: 'sr-panel' },
-        h('h2', null, 'One last step'),
-        h('p', null, 'Pick the name the leaderboard will show.'),
-        h('div', { class: 'sr-actions' }, usernameButton(),
-          h('button', { class: 'sr-link-btn', type: 'button', onclick: function () { Auth.signOut(); } }, 'Sign out'))));
-      return;
-    }
-    var name = me && me.username ? me.username : (Auth.user.email || 'your account');
-    append(node, h('div', { class: 'sr-panel' },
-      h('div', { class: 'sr-account-row' },
-        h('div', null,
-          h('p', { class: 'sr-label' }, 'Signed in'),
-          h('p', { class: 'sr-who' }, name)),
-        h('button', { class: 'sr-link-btn', type: 'button', onclick: function () { Auth.signOut(); } }, 'Sign out')),
-      me ? h('p', null, me.streak > 0
-        ? plural(me.streak, 'day', 'days') + ' in a row ' + sprouts(me.streak)
-        : 'Play today to start a streak.') : null,
-      me && !me.email_verified ? verifyBanner() : null,
-      !me ? h('p', { class: 'sr-muted' }, "We couldn't load your Seed Rush profile. It will appear once the game is reachable.") : null));
-  }
-
+  /** The account dialog. Steps: account | signin | signup | username. */
   var AccountDialog = {
-    node: null,
     open: function (step) {
       if (!Auth.sb) return;
-      AccountDialog.close();
-      var dlg = h('dialog', { class: 'sr-dialog', 'aria-labelledby': 'sr-dialog-title' });
-      var panel = h('div', { class: 'sr-panel' });
-      dlg.appendChild(panel);
-      document.body.appendChild(dlg);
-      AccountDialog.node = dlg;
-      dlg.addEventListener('close', function () { dlg.remove(); if (AccountDialog.node === dlg) AccountDialog.node = null; });
-      dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
-      AccountDialog.render(panel, step);
-      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      step = step || 'account';
+      if (step === 'account' && !Auth.user) step = 'signin';
+      if (step === 'account' && Auth.me && !Auth.me.username) step = 'username';
+      Modal.open('Account', function (body) { AccountDialog.render(body, step); });
     },
-    close: function () { if (AccountDialog.node) AccountDialog.node.close(); },
-
-    head: function (title) {
-      return h('div', { class: 'sr-dialog-head' },
-        h('h2', { id: 'sr-dialog-title' }, title),
-        h('button', { class: 'sr-close', type: 'button', 'aria-label': 'Close', onclick: AccountDialog.close }, '×'));
-    },
+    close: function () { Modal.close(); },
 
     render: function (panel, step) {
       clear(panel);
       if (step === 'username') {
-        append(panel, [AccountDialog.head('Pick a username'),
-          h('p', null, 'This is the name the leaderboard shows. You can change it later.'),
+        Modal.setTitle('Pick a username');
+        append(panel, [
+          h('p', { class: 'sr-modal-lede' }, 'The name the leaderboard shows.'),
           usernameForm(function () {
             AccountDialog.close(); toast("You're all set.");
-            if (Game.lastResult && !Game.active) renderResult(Game.lastResult, Game.lastCtx);
+            repaintScreen();
           })]);
         return;
       }
+      if (step === 'account') {
+        var me = Auth.me;
+        Modal.setTitle('Account');
+        append(panel, [
+          h('p', { class: 'sr-who' }, me && me.username ? me.username : (Auth.user.email || 'Signed in')),
+          me ? h('p', { class: 'sr-muted' }, me.streak > 0 ? me.streak + '-day streak' : 'No streak yet. Play today to start one.')
+            : h('p', { class: 'sr-muted' }, "We couldn't load your Seed Rush profile right now."),
+          me && !me.email_verified ? h('p', { class: 'sr-quiet-line' },
+            'Verify your email to appear on the leaderboard. ', verifySend()) : null,
+          h('p', { class: 'sr-modal-foot' },
+            h('button', { class: 'sr-link-btn', type: 'button', onclick: function () { Auth.signOut(); AccountDialog.close(); } }, 'Sign out'))
+        ]);
+        return;
+      }
+
       var signup = step === 'signup';
+      Modal.setTitle(signup ? 'Create your account' : 'Log in');
       var error = h('p', { class: 'sr-error', role: 'alert' });
       var email = h('input', { class: 'sr-input', id: 'sr-email', type: 'email', name: 'email', autocomplete: 'email', required: true });
       var password = h('input', {
         class: 'sr-input', id: 'sr-password', type: 'password', name: 'password', minlength: '6', required: true,
         autocomplete: signup ? 'new-password' : 'current-password'
       });
-      var submit = h('button', { class: 'sr-btn sr-btn-primary', type: 'submit' }, signup ? 'Create account' : 'Sign in');
+      var submit = h('button', { class: 'sr-btn sr-btn-primary', type: 'submit' }, signup ? 'Create account' : 'Log in');
       var form = h('form', { class: 'sr-form', novalidate: true },
         h('div', { class: 'sr-field' }, h('label', { for: 'sr-email' }, 'Email'), email),
         h('div', { class: 'sr-field' }, h('label', { for: 'sr-password' }, 'Password'), password,
@@ -623,16 +641,16 @@
           submit.disabled = false;
           if (r.error) { error.textContent = authMessage(r.error); return; }
           if (!r.data || !r.data.session) {
-            error.textContent = 'Check your email to confirm your account, then sign in.';
+            error.textContent = 'Check your email to confirm your account, then log in.';
             return;
           }
           AccountDialog.close();
-          toast(signup ? 'Welcome to Seed Rush!' : 'Signed in.');
+          toast(signup ? 'Welcome to Seed Rush!' : 'Logged in.');
         }, function (e) { submit.disabled = false; error.textContent = authMessage(e); });
       });
 
       var tabs = h('div', { class: 'sr-tabs', role: 'tablist' },
-        h('button', { type: 'button', role: 'tab', 'aria-selected': String(!signup), onclick: function () { AccountDialog.render(panel, 'signin'); } }, 'Sign in'),
+        h('button', { type: 'button', role: 'tab', 'aria-selected': String(!signup), onclick: function () { AccountDialog.render(panel, 'signin'); } }, 'Log in'),
         h('button', { type: 'button', role: 'tab', 'aria-selected': String(signup), onclick: function () { AccountDialog.render(panel, 'signup'); } }, 'Create account'));
 
       var google = h('button', { class: 'sr-btn sr-btn-secondary sr-google', type: 'button' },
@@ -646,15 +664,13 @@
 
       var support = CFG.supportEmail || 'lucasquality555@gmail.com';
       append(panel, [
-        AccountDialog.head(signup ? 'Create your account' : 'Sign in'),
-        h('p', { class: 'sr-fineprint' }, 'Same account as the DollarSeeds app. Get on the leaderboard and keep your streak on any device.'),
-        h('div', { style: 'margin-top:1rem' }, tabs),
+        h('p', { class: 'sr-modal-lede' }, 'Same account as the DollarSeeds app. Get on the leaderboard and keep your streak on any device.'),
+        tabs,
         google,
         h('p', { class: 'sr-divider' }, 'or'),
         form,
-        h('p', { class: 'sr-fineprint', style: 'margin-top:1rem' },
-          'Signed up in the app with Apple? Website sign-in with Apple is coming soon.'),
-        signup ? null : h('p', { class: 'sr-fineprint', style: 'margin-top:0.5rem' },
+        h('p', { class: 'sr-fineprint' }, 'Signed up in the app with Apple? Website sign-in with Apple is coming soon.'),
+        signup ? null : h('p', { class: 'sr-fineprint' },
           'Forgot your password? Email ', h('a', { href: 'mailto:' + support + '?subject=Seed%20Rush%20password' }, support), ' and we\'ll help.')
       ]);
       setTimeout(function () { try { email.focus(); } catch (e) { /* ignore */ } }, 50);
@@ -677,21 +693,20 @@
 
   // ══ 5. Leaderboard ══════════════════════════════════════════════════════
 
-  function Leaderboard(node, opts) {
-    opts = opts || {};
+  function Leaderboard(node) {
     var state = { day: 'today', expanded: false, data: null };
-    var days = opts.daysNode, title = opts.titleNode;
 
     function load() {
       clear(node);
-      append(node, h('p', { class: 'sr-muted' }, 'Loading the leaderboard…'));
+      append(node, h('p', { class: 'sr-muted sr-board-msg' }, 'Loading the leaderboard…'));
       var path = '/seed-rush/leaderboard';
       if (state.day === 'yesterday' && Day.today()) path += '?day=' + prevDay(Day.today());
       return api('GET', path, undefined, { auth: 'optional' }).then(function (data) {
         state.data = data; paint();
       }, function (e) {
         clear(node);
-        append(node, h('p', { class: 'sr-error' }, e.code === 'network' ? 'The leaderboard is unavailable right now. Please try again in a minute.' : e.message));
+        append(node, h('p', { class: 'sr-error sr-board-msg' }, e.code === 'network' || e.code === 'unavailable'
+          ? 'The leaderboard is unavailable right now. Please try again in a minute.' : e.message));
       });
     }
 
@@ -706,9 +721,9 @@
     function paint() {
       clear(node);
       var data = state.data, entries = data.entries || [], me = data.me;
-      if (title) title.textContent = state.day === 'today' ? "Today's leaderboard" : "Yesterday's leaderboard";
+      Modal.setTitle(state.day === 'today' ? "Today's leaderboard" : "Yesterday's leaderboard");
       if (!entries.length) {
-        append(node, h('p', { class: 'sr-muted' }, state.day === 'today'
+        append(node, h('p', { class: 'sr-muted sr-board-msg' }, state.day === 'today'
           ? 'No ranked runs yet today. Be the first!' : 'Nobody was ranked yesterday.'));
       } else {
         var shown = state.expanded ? entries : entries.slice(0, 10);
@@ -719,7 +734,7 @@
           body.appendChild(row(me, true));
         }
         append(node, h('table', { class: 'sr-board-table' },
-          h('caption', { class: 'sr-only' }, title ? title.textContent : 'Leaderboard'),
+          h('caption', { class: 'sr-only' }, state.day === 'today' ? "Today's leaderboard" : "Yesterday's leaderboard"),
           h('thead', null, h('tr', null,
             h('th', { class: 'sr-col-rank', scope: 'col' }, 'Rank'),
             h('th', { scope: 'col' }, 'Player'),
@@ -728,7 +743,7 @@
           body));
         if (entries.length > 10) {
           append(node, h('div', { class: 'sr-board-foot' },
-            h('button', { class: 'sr-btn sr-btn-quiet sr-btn-small', type: 'button', 'aria-expanded': String(state.expanded),
+            h('button', { class: 'sr-link-btn', type: 'button', 'aria-expanded': String(state.expanded),
               onclick: function () { state.expanded = !state.expanded; paint(); } },
               state.expanded ? 'Show top 10' : 'Show all (' + entries.length + ')')));
         }
@@ -737,88 +752,136 @@
         var why = !Auth.me.username ? 'Pick a username to appear here.'
           : !Auth.me.email_verified ? 'Verify your email to appear here.'
             : Auth.me.played_today ? 'Your run will appear once it finishes.' : 'Play today to get on the board.';
-        append(node, h('p', { class: 'sr-muted', style: 'padding:0 1.5rem 1.1rem' }, why));
+        append(node, h('p', { class: 'sr-muted sr-board-msg' }, why));
       }
     }
 
-    if (days) {
-      days.hidden = false;
-      $all('button', days).forEach(function (b) {
+    function setDay(day) { state.day = day; state.expanded = false; load(); }
+    return { load: load, setDay: setDay };
+  }
+
+  function openLeaderboard() {
+    Modal.open("Today's leaderboard", function (body) {
+      var board = h('div', { class: 'sr-board' });
+      var lb = Leaderboard(board);
+      var buttons = ['today', 'yesterday'].map(function (day) {
+        var b = h('button', { type: 'button', class: 'sr-seg-btn', 'aria-pressed': String(day === 'today') },
+          day === 'today' ? 'Today' : 'Yesterday');
         b.addEventListener('click', function () {
-          state.day = b.getAttribute('data-day'); state.expanded = false;
-          $all('button', days).forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
-          load();
+          buttons.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+          lb.setDay(day);
         });
+        return b;
       });
-    }
-    return { load: load };
+      append(body, [h('div', { class: 'sr-seg sr-seg-small', role: 'group', 'aria-label': 'Which day' }, buttons), board]);
+      lb.load();
+    }, { cls: 'sr-modal-wide' });
   }
 
-  // ══ 6. Home page ════════════════════════════════════════════════════════
+  // ══ 6. Toolbar, How to play, the streak plant ═══════════════════════════
 
-  function guestStatus() {
-    var today = Day.today();
-    var last = store.get('sr.lastDaily');
-    var played = !!(last && today && last.game_day === today && last.guestId === Guest.id());
-    var s = store.get('sr.guestStreak');
-    var streak = 0;
-    if (s && today && (s.day === today || s.day === prevDay(today))) streak = s.streak || 0;
-    return { streak: streak, played: played, score: played ? last.result.score : null };
+  function openHelp(onClose) {
+    store.set('sr.seenHelp', true);
+    Modal.open('How to play', function (body) {
+      var rows = [['Easy', 'Pick 1 word from 3', '1 per verse'], ['Medium', 'Place 3 words from 6', '2 per word'],
+        ['Hard', 'Type 3 words', '5 per word']];
+      append(body, [
+        h('p', null, 'Fill in the missing words of each verse before the minute runs out.'),
+        h('p', null, 'One try per verse. Partial credit counts in Medium and Hard.'),
+        h('p', null, 'Everyone gets the same verses each day. A new round starts at 7:00 AM Eastern.'),
+        h('table', { class: 'sr-help-table' },
+          h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Mode'), h('th', { scope: 'col' }, 'You'), h('th', { scope: 'col' }, 'Points'))),
+          h('tbody', null, rows.map(function (r) {
+            return h('tr', null, h('th', { scope: 'row' }, r[0]), h('td', null, r[1]), h('td', null, r[2]));
+          }))),
+        h('p', null, "Practice anytime. It doesn't count on the leaderboard."),
+        h('div', { class: 'sr-modal-actions' },
+          h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { Modal.close(); } }, 'Got it'))
+      ]);
+    }, { onClose: onClose });
   }
 
-  function renderStatus(node) {
-    if (!node) return;
-    clear(node);
-    var st;
-    if (Auth.user && Auth.me) {
-      st = { streak: Auth.me.streak, played: Auth.me.played_today, score: Auth.me.today_run && Auth.me.today_run.score };
-    } else if (!Auth.user) {
-      st = guestStatus();
-    } else { node.hidden = true; return; }
-    node.hidden = false;
-    append(node, h('div', { class: 'sr-panel' },
-      h('p', { class: 'sr-label' }, Auth.user ? 'Your streak' : 'Your streak on this device'),
-      h('div', { class: 'sr-stat-row' },
-        h('div', { class: 'sr-stat' },
-          h('span', { class: 'sr-streak-num' }, String(st.streak || 0)),
-          h('span', { class: 'sr-muted' }, (st.streak === 1 ? 'day' : 'days') + ' in a row')),
-        st.streak ? h('span', { class: 'sr-sprouts', 'aria-hidden': 'true' }, sprouts(st.streak)) : null),
-      h('p', { style: 'margin-top:0.9rem' }, st.played
-        ? "You've played today" + (st.score != null ? ': ' + plural(st.score, 'point', 'points') + '.' : '.')
-        : "Today's run is waiting for you."),
-      h('div', { class: 'sr-actions', style: 'margin-top:0.75rem' },
-        h('a', { class: 'sr-btn sr-btn-primary sr-btn-small', href: '/seed-rush/daily' },
-          st.played ? "See today's result" : "Play today's Seed Rush"))));
+  var ICONS = {
+    help: '<circle cx="12" cy="12" r="9.25"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.85.85c0 1.65-2.45 2.2-2.45 3.6"/><circle cx="12" cy="16.9" r="0.4" fill="currentColor"/>',
+    trophy: '<path d="M8 4h8v5.5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5.5v1.2A3.3 3.3 0 0 0 8.4 10.5M16 6h2.5v1.2a3.3 3.3 0 0 1-2.9 3.3"/><path d="M12 13.5V17M8.5 20h7M10 17h4l.5 3h-5z"/>',
+    person: '<circle cx="12" cy="8.5" r="3.75"/><path d="M4.75 20a7.25 7.25 0 0 1 14.5 0"/>'
+  };
+
+  function icon(name) {
+    var span = document.createElement('span');
+    span.className = 'sr-icon';
+    span.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + ICONS[name] + '</svg>';
+    return span;
   }
 
-  function bootHome() {
-    var countdown = $('[data-sr-countdown]');
-    var status = $('[data-sr-status]');
-    var account = $('[data-sr-account]');
-    var board = Leaderboard($('[data-sr-board]'), {
-      daysNode: $('[data-sr-board-days]'), titleNode: $('[data-sr-board-title]')
-    });
-
-    function repaint() { renderStatus(status); renderAccount(account); }
-    Auth.on(function () { repaint(); board.load(); });
-
-    var dayP = Day.load().then(function () {
-      if (countdown) {
-        countdown.hidden = false;
-        liveCountdown($('[data-sr-countdown-time]'), function () { board.load(); repaint(); bootCountdown(); });
+  var Toolbar = {
+    node: null,
+    person: null,
+    build: function (node) {
+      if (!node) return;
+      Toolbar.node = node;
+      function btn(name, label, fn) {
+        return h('button', { class: 'sr-tool', type: 'button', 'aria-label': label, title: label, 'data-tooltip': label, onclick: fn }, icon(name));
       }
-    }, function () { /* the board and status still try */ });
-    function bootCountdown() { liveCountdown($('[data-sr-countdown-time]')); }
+      Toolbar.person = btn('person', 'Account', function () { AccountDialog.open('account'); });
+      Toolbar.person.appendChild(h('span', { class: 'sr-dot', 'aria-hidden': 'true', hidden: true }));
+      append(node, [
+        btn('help', 'How to play', function () { openHelp(); }),
+        btn('trophy', 'Leaderboard', openLeaderboard),
+        Auth.sb ? Toolbar.person : null
+      ]);
+      node.hidden = false;
+    },
+    update: function () {
+      if (!Toolbar.person) return;
+      var unverified = !!(Auth.user && Auth.me && !Auth.me.email_verified);
+      $('.sr-dot', Toolbar.person).hidden = !unverified;
+      var label = !Auth.user ? 'Account: log in' : unverified ? 'Account: email not verified' : 'Account';
+      Toolbar.person.setAttribute('aria-label', label);
+    }
+  };
 
-    Auth.ready.then(function () {
-      repaint();
-      return Promise.all([dayP, Auth.refreshMe()]);
-    }).then(function () {
-      repaint();
-      board.load();
-      if (Auth.user) Claim.maybe();
-      if (Auth.me && !Auth.me.username) { /* the panel already asks */ }
+  // Streak thresholds for the six plant stages: 0 | 1–2 | 3–6 | 7–13 | 14–29 | 30+.
+  var STAGE_AT = [0, 1, 3, 7, 14, 30];
+
+  function stageFor(streak) {
+    var s = 0;
+    for (var i = 1; i < STAGE_AT.length; i++) if (streak >= STAGE_AT[i]) s = i;
+    return s;
+  }
+
+  function plantImg(stage, cls) {
+    var base = '/assets/images/streak/streak-stage-' + stage;
+    return h('img', {
+      class: 'sr-plant ' + (cls || ''), src: base + '-320.webp', srcset: base + '-160.webp 1x, ' + base + '-320.webp 2x',
+      width: '160', height: '173', decoding: 'async',
+      alt: stage === 0 ? 'An empty pot, waiting for a seed' : 'A DollarSeeds plant at streak stage ' + stage + ' of 5'
     });
+  }
+
+  function growthHint(streak) {
+    var stage = stageFor(streak);
+    if (stage >= 5) return 'Fully grown. Keep it blooming.';
+    var left = STAGE_AT[stage + 1] - streak;
+    return plural(left, 'more day', 'more days') + ' until it grows';
+  }
+
+  /** The streak to show: the account's, or (guests) the last finished daily
+      run's, if it was today's or yesterday's game day. */
+  function currentStreak() {
+    if (Auth.user) return Auth.me ? Auth.me.streak || 0 : 0;
+    var s = store.get('sr.guestStreak'), today = Day.today();
+    if (s && today && (s.day === today || s.day === prevDay(today))) return s.streak || 0;
+    return 0;
+  }
+
+  /** "2026-11-09" → "November 9, 2026". */
+  function longDate(day) {
+    var p = String(day || '').split('-');
+    if (p.length !== 3) return '';
+    var names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return names[Number(p[1]) - 1] + ' ' + Number(p[2]) + ', ' + p[0];
   }
 
   // ══ 7. The game ═════════════════════════════════════════════════════════
@@ -836,12 +899,19 @@
     announced: {},
     score: 0,
     medium: null,      // {filled: [chipIndex|null ×3], order: [blank…]}
-    keyHandler: null
+    keyHandler: null,
+    screen: null       // re-renders the current screen (after sign-in etc.)
   };
 
-  function gameScreen(children) {
+  function gameScreen(children, repaint) {
     clear(Game.root);
     append(Game.root, children);
+    Game.screen = repaint || null;
+  }
+
+  /** Re-draw the current screen with fresh account data (not mid-run). */
+  function repaintScreen() {
+    if (!Game.active && Game.screen) Game.screen();
   }
 
   /** The timer sticks just under the fixed site header, whose height changes
@@ -864,23 +934,25 @@
   function bootGame(root) {
     Game.root = root;
     Game.kind = root.getAttribute('data-sr-game') === 'practice' ? 'practice' : 'daily';
-    var account = $('[data-sr-account]');
-    Auth.on(function () { if (!Game.active) renderAccount(account); });
+    measureHeader();
+    Toolbar.build($('[data-sr-toolbar]'));
+    Auth.on(function () { Toolbar.update(); repaintScreen(); });
 
-    gameScreen(h('p', { class: 'sr-muted sr-waiting' }, 'Loading…'));
     var dayP = Day.load().catch(function () { return null; });
 
     Auth.ready.then(function () {
-      renderAccount(account);
       return Promise.all([dayP, Auth.refreshMe()]);
     }).then(function () {
-      renderAccount(account);
+      Toolbar.update();
       if (Auth.user) Claim.maybe();
       return recoverStoredRun();
     }).then(function (recovered) {
       if (recovered) return;
-      if (Game.kind === 'daily') return showDailyIfPlayed().then(function (shown) { if (!shown) renderPicker(); });
-      renderPicker();
+      if (Game.kind === 'daily') {
+        return showDailyIfPlayed().then(function (shown) { if (!shown) renderLanding(); });
+      }
+      renderPrerun();
+      if (!store.get('sr.seenHelp')) openHelp();
     });
   }
 
@@ -894,20 +966,20 @@
     return api('POST', '/seed-rush/runs/' + stale.id + '/finish', undefined,
       stale.guestId ? { guestId: stale.guestId } : { auth: 'user' }).then(function (res) {
       rememberResult(res, stale.guestId);
-      renderResult(res, { note: 'You left a run before it ended. Here is how it went; the clock kept running.' });
+      renderResult(res, { note: 'You left a run before it ended. The clock kept running.' });
       return true;
     }, function () { return false; });
   }
 
-  /** Daily: today already played → straight to today's result. */
+  /** Daily: today already played → the played-today state. */
   function showDailyIfPlayed() {
     if (Auth.user && Auth.me && Auth.me.played_today && Auth.me.today_run) {
       var tr = Auth.me.today_run;
       if (!tr.finished) {
-        gameScreen(h('div', { class: 'sr-panel' },
-          h('h2', null, "Today's run is in progress"),
-          h('p', null, "It looks like today's run is still going in another tab or on another device."),
-          h('div', { class: 'sr-actions' },
+        gameScreen(h('div', { class: 'sr-center-col' },
+          h('h1', { class: 'sr-title sr-title-small' }, "Today's run is in progress"),
+          h('p', { class: 'sr-tagline' }, 'It looks like it is still going in another tab or on another device.'),
+          h('div', { class: 'sr-cta-row' },
             h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { finishById(tr.run_id, null); } }, 'Show my result'))));
         return Promise.resolve(true);
       }
@@ -931,36 +1003,63 @@
     });
   }
 
-  function renderPicker(message) {
+  /** Daily, not played yet: the mark, one line, one Play. */
+  function renderLanding() {
+    setPlaying(false);
+    var streak = currentStreak();
+    var play = h('button', { class: 'sr-btn sr-btn-primary sr-btn-play', type: 'button' }, "Play today's Seed Rush");
+    play.addEventListener('click', function () {
+      if (store.get('sr.seenHelp')) renderPrerun();
+      else openHelp(function () { renderPrerun(); });
+    });
+    var date = longDate(Day.today());
+    gameScreen(h('div', { class: 'sr-landing' },
+      plantImg(stageFor(streak), 'sr-mark'),
+      h('h1', { class: 'sr-title' }, 'Seed Rush'),
+      h('p', { class: 'sr-tagline' }, 'Fill in the verse. 60 seconds. Once a day.'),
+      h('div', { class: 'sr-cta-row' },
+        h('a', { class: 'sr-btn sr-btn-secondary', href: '/seed-rush/practice' }, 'Practice'),
+        Auth.sb && !Auth.user ? h('button', { class: 'sr-btn sr-btn-secondary', type: 'button',
+          onclick: function () { AccountDialog.open('signin'); } }, 'Log in') : null,
+        play),
+      date || streak ? h('p', { class: 'sr-landing-meta' },
+        date ? h('span', null, date) : null,
+        streak >= 1 ? h('span', null, streak + '-day streak') : null) : null), renderLanding);
+  }
+
+  var MODE_LINE = {
+    easy: 'Pick 1 word from 3 · 1 pt per verse',
+    medium: 'Place 3 words from 6 · 2 pts per word',
+    hard: 'Type 3 words · 5 pts per word'
+  };
+
+  /** Mode switch + Start. */
+  function renderPrerun(message) {
     setPlaying(false);
     var chosen = store.get('sr.mode');
     if (!MODE_NAMES[chosen]) chosen = 'easy';
-    var picks = Object.keys(MODE_NAMES).map(function (mode) {
-      var input = h('input', { type: 'radio', name: 'sr-mode', value: mode, class: 'sr-only', checked: mode === chosen });
-      var label = h('label', { class: 'sr-mode-pick' + (mode === chosen ? ' is-checked' : '') },
-        input,
-        h('span', { class: 'sr-mode-dot', 'aria-hidden': 'true' }),
-        h('span', { class: 'sr-mode-name' }, MODE_NAMES[mode]),
-        h('span', { class: 'sr-mode-desc' }, MODE_INFO[mode][0]),
-        h('span', { class: 'sr-mode-pts' }, MODE_INFO[mode][1]));
+    var line = h('p', { class: 'sr-mode-line', 'aria-live': 'polite' }, MODE_LINE[chosen]);
+    var options = Object.keys(MODE_NAMES).map(function (mode) {
+      var input = h('input', { type: 'radio', name: 'sr-mode', value: mode, class: 'sr-seg-input', checked: mode === chosen });
+      var label = h('label', { class: 'sr-seg-opt' + (mode === chosen ? ' is-checked' : '') }, input, h('span', null, MODE_NAMES[mode]));
       input.addEventListener('change', function () {
         chosen = mode; store.set('sr.mode', mode);
-        $all('.sr-mode-pick', Game.root).forEach(function (l) { l.classList.toggle('is-checked', l === label); });
+        line.textContent = MODE_LINE[mode];
+        $all('.sr-seg-opt', Game.root).forEach(function (l) { l.classList.toggle('is-checked', l === label); });
       });
       return label;
     });
-    var start = h('button', { class: 'sr-btn sr-btn-primary', type: 'button' },
-      Game.kind === 'daily' ? "Start today's run" : 'Start practice');
+    var start = h('button', { class: 'sr-btn sr-btn-primary sr-btn-play', type: 'button' }, 'Start');
     start.addEventListener('click', function () { countIn(chosen); });
 
-    gameScreen(h('div', { class: 'sr-picker' },
-      message ? h('p', { class: 'sr-error', role: 'alert', style: 'margin-bottom:1rem' }, message) : null,
-      h('h2', { class: 'sr-picker-title', id: 'sr-pick-title' }, 'Pick a mode'),
-      h('div', { class: 'sr-mode-list', role: 'radiogroup', 'aria-labelledby': 'sr-pick-title' }, picks),
-      h('p', { class: 'sr-note', style: 'margin:0 0 1.25rem' }, Game.kind === 'daily'
-        ? 'One run per day, 60 seconds on the clock. All modes share one leaderboard.'
-        : "Practice runs don't count on the leaderboard."),
-      start));
+    gameScreen(h('div', { class: 'sr-prerun' },
+      h('h1', { class: 'sr-title sr-title-small', id: 'sr-prerun-title' }, Game.kind === 'daily' ? "Today's Seed Rush" : 'Practice'),
+      message ? h('p', { class: 'sr-error', role: 'alert' }, message) : null,
+      h('div', { class: 'sr-seg', role: 'radiogroup', 'aria-label': 'Mode' }, options),
+      line,
+      start,
+      Game.kind === 'practice' ? h('p', { class: 'sr-quiet-line' }, "Practice runs don't count on the leaderboard.") : null),
+      function () { renderPrerun(); });
   }
 
   function countIn(mode) {
@@ -991,19 +1090,21 @@
         showDailyIfPlayed().then(function (shown) { if (!shown) renderAlreadyPlayed(); });
         return;
       }
-      renderPicker(e.message);
+      renderPrerun(e.message);
     });
   }
 
+  /** Played today, but the result itself isn't available here. */
   function renderAlreadyPlayed() {
-    var time = h('strong', null, '–');
-    gameScreen(h('div', { class: 'sr-panel' },
-      h('h2', null, "You've played today"),
-      h('p', null, "Today's Seed Rush is done. The next round starts in ", time, '.'),
-      h('div', { class: 'sr-actions' },
-        h('a', { class: 'sr-btn sr-btn-primary', href: '/seed-rush#leaderboard' }, 'View leaderboard'),
-        h('a', { class: 'sr-btn sr-btn-secondary', href: '/seed-rush/practice' }, 'Practice'))));
-    liveCountdown(time);
+    var streak = currentStreak();
+    var time = h('span', { class: 'sr-clock' }, '–');
+    gameScreen(h('div', { class: 'sr-center-col' },
+      plantImg(stageFor(streak), 'sr-mark'),
+      h('h1', { class: 'sr-title sr-title-small' }, "You've played today"),
+      h('p', { class: 'sr-next' }, 'Next Seed Rush in ', time),
+      h('div', { class: 'sr-cta-row' },
+        h('a', { class: 'sr-btn sr-btn-secondary', href: '/seed-rush/practice' }, 'Practice'))), renderAlreadyPlayed);
+    liveCountdown(time, null, clockText);
   }
 
   // ── Playing ──────────────────────────────────────────────────────────────
@@ -1036,7 +1137,9 @@
     hud.verse = h('div', { class: 'sr-verse' }, hud.ref, hud.text);
     hud.feedback = h('p', { class: 'sr-feedback', 'aria-live': 'polite' });
     hud.inputs = h('div', { class: 'sr-inputs' });
-    gameScreen(h('div', { class: 'sr-play' }, hud.box, hud.verse, hud.feedback, hud.inputs));
+    gameScreen(h('div', { class: 'sr-play' },
+      h('h1', { class: 'sr-only' }, Game.kind === 'daily' ? "Today's Seed Rush" : 'Practice'),
+      hud.box, hud.verse, hud.feedback, hud.inputs));
     window.scrollTo(0, 0);
 
     Game.timer = setInterval(tick, 200);
@@ -1398,10 +1501,10 @@
       res.score + ' pts\n' + (squares || '—') + '\ndollarseeds.app/seed-rush';
   }
 
-  function shareBlock(res) {
+  /** The one filled button of a daily end state. */
+  function shareButton(res, status) {
     var text = shareText(res);
-    var status = h('span', { class: 'sr-copied', 'aria-live': 'polite' });
-    var btn = h('button', { class: 'sr-btn sr-btn-secondary', type: 'button' }, 'Share');
+    var btn = h('button', { class: 'sr-btn sr-btn-primary', type: 'button' }, 'Share');
     btn.addEventListener('click', function () {
       var phone = navigator.share && matchMedia('(pointer: coarse)').matches;
       if (phone) {
@@ -1416,54 +1519,15 @@
       function fallback() {
         var ta = h('textarea', { style: 'position:fixed;opacity:0;top:0;left:0' }); ta.value = text;
         document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy'); done(); } catch (e) { status.textContent = 'Select the text above to copy it.'; }
+        try { document.execCommand('copy'); done(); } catch (e) { status.textContent = "Couldn't copy. Please try again."; }
         ta.remove();
       }
     }
-    return h('section', { class: 'sr-panel', 'aria-labelledby': 'sr-share-title' },
-      h('h3', { id: 'sr-share-title' }, 'Share your result'),
-      h('pre', { class: 'sr-share-box' }, text),
-      h('div', { class: 'sr-actions', style: 'margin-top:0.85rem' }, btn, status));
+    return btn;
   }
 
-  function rankBlock(res) {
-    if (res.kind !== 'daily') return null;
-    if (!Auth.user) {
-      return h('section', { class: 'sr-panel' },
-        h('p', null, 'Want to see how well you scored in today\'s leaderboard and unlock exclusive badges? Sign up with an account.'),
-        h('div', { class: 'sr-actions' },
-          h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { AccountDialog.open('signup'); } }, 'Sign up')));
-    }
-    var me = Auth.me;
-    if (me && !me.username) {
-      return h('section', { class: 'sr-panel' },
-        h('h3', null, 'Pick a username to get ranked'),
-        h('p', null, 'Your score is saved. Pick the name the leaderboard shows, then verify your email.'),
-        h('div', { class: 'sr-actions' }, usernameButton()));
-    }
-    if (me && !me.email_verified) {
-      return h('section', { class: 'sr-panel' },
-        h('h3', null, 'Verify your email to get ranked'),
-        h('p', null, 'Your score is saved. Verify your email and it will appear on today\'s leaderboard.'),
-        h('div', { style: 'margin-top:0.75rem' }, verifyButton()));
-    }
-    if (res.rank) {
-      return h('p', { class: 'sr-rank' }, "You're #" + res.rank + ' today. ',
-        h('a', { href: '/seed-rush#leaderboard' }, 'See the leaderboard'));
-    }
-    return h('p', { class: 'sr-rank' }, h('a', { href: '/seed-rush#leaderboard' }, 'See today\'s leaderboard'));
-  }
-
-  function renderResult(res, ctx) {
-    ctx = ctx || {};
-    Game.lastResult = res; Game.lastCtx = ctx;
-    setPlaying(false);
-    var daily = res.kind === 'daily';
-    // Signed in, named and verified: the rank sits in the score panel. Anyone
-    // else gets the step that would rank them (sign up, username, verify).
-    var ranked = daily && Auth.user && Auth.me && Auth.me.username && Auth.me.email_verified;
-    var verses = res.verses || [];
-    var items = verses.map(function (v) {
+  function verseList(res) {
+    return h('ul', { class: 'sr-result-list', role: 'list' }, (res.verses || []).map(function (v) {
       var o = verseOutcome(v);
       var label = { right: 'Right', part: 'Partly right', wrong: 'Wrong', skipped: 'Not answered' }[o];
       var icon = { right: '🟩', part: '🟨', wrong: '🟥', skipped: '⬜' }[o];
@@ -1474,44 +1538,90 @@
           h('span', { class: 'sr-result-ref' }, h('a', { href: '/verses/' + v.slug }, v.reference)),
           h('span', { class: 'sr-result-status is-' + o }, label)),
         words.length ? h('p', { class: 'sr-result-words' }, 'Missing words: ', h('b', null, words.join(', '))) : null);
-    });
+    }));
+  }
 
+  /** At most one quiet line about getting on the leaderboard. Daily only. */
+  function leaderboardLine(res) {
+    if (res.kind !== 'daily' || !Auth.sb) return null;
+    if (!Auth.user) {
+      return h('p', { class: 'sr-quiet-line' },
+        'Want to see how well you scored in today\'s leaderboard and unlock exclusive badges? Sign up with an account. ',
+        h('button', { class: 'sr-link-btn', type: 'button', onclick: function () { AccountDialog.open('signup'); } }, 'Create account'));
+    }
+    var me = Auth.me;
+    if (me && !me.username) {
+      return h('p', { class: 'sr-quiet-line' }, 'Pick a username to appear on the leaderboard. ',
+        h('button', { class: 'sr-link-btn', type: 'button', onclick: function () { AccountDialog.open('username'); } }, 'Pick a username'));
+    }
+    if (me && !me.email_verified) {
+      return h('p', { class: 'sr-quiet-line' }, 'Verify your email to appear on the leaderboard. ', verifySend());
+    }
+    return null;
+  }
+
+  /** The plant, optionally growing from the previous stage (once, after the
+      run that crossed a threshold). */
+  function plantBlock(streak, grew) {
+    var stage = stageFor(streak);
+    if (!grew) return h('div', { class: 'sr-plant-wrap' }, plantImg(stage, 'sr-plant-big'));
+    var before = plantImg(stage - 1, 'sr-plant-big sr-grow-from');
+    before.setAttribute('aria-hidden', 'true'); before.alt = '';
+    return h('div', { class: 'sr-plant-wrap is-growing' }, before, plantImg(stage, 'sr-plant-big sr-grow-to'));
+  }
+
+  function renderResult(res, ctx) {
+    ctx = ctx || {};
+    Game.lastResult = res; Game.lastCtx = ctx;
+    setPlaying(false);
+    var daily = res.kind === 'daily';
+    var streak = daily ? (res.streak || 0) : currentStreak();
+    var grew = daily && ctx.fresh && !reduceMotion && streak > 0 && stageFor(streak - 1) !== stageFor(streak);
+
+    var meta = res.words_right + ' right · ' + res.words_wrong + ' wrong · ' + MODE_NAMES[res.mode] +
+      (daily && res.rank ? ' · Rank #' + res.rank : '');
+    var listId = 'sr-verses-' + res.run_id;
+    var list = h('div', { id: listId, class: 'sr-result-verses', hidden: true }, verseList(res));
+    var toggle = h('button', { class: 'sr-btn sr-btn-secondary', type: 'button', 'aria-expanded': 'false', 'aria-controls': listId },
+      daily ? "See today's verses" : 'See the verses');
+    toggle.addEventListener('click', function () {
+      var open = list.hidden;
+      list.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    var copied = h('span', { class: 'sr-copied', 'aria-live': 'polite' });
     var countdown = null;
     if (daily) {
-      countdown = h('strong', null, '–');
-      if (Day.data) liveCountdown(countdown);
+      countdown = h('span', { class: 'sr-clock' }, '–');
+      if (Day.data) liveCountdown(countdown, null, clockText);
     }
 
-    gameScreen(h('div', { class: 'sr-result' },
-      ctx.note ? h('p', { class: 'sr-note', role: 'status' }, ctx.note) : null,
-      h('section', { class: 'sr-panel sr-result-top' },
-        h('p', { class: 'sr-label' }, daily ? (ctx.already ? "Today's result" : 'Daily run') : 'Practice run'),
-        h('p', { class: 'sr-result-score' }, String(res.score), h('small', null, 'pts')),
-        h('p', { class: 'sr-result-meta' },
-          h('span', null, h('strong', null, String(res.words_right)), ' right'),
-          h('span', null, h('strong', null, String(res.words_wrong)), ' wrong'),
-          h('span', null, MODE_NAMES[res.mode])),
-        h('p', { style: 'margin-top:0.9rem' }, res.streak > 0
-          ? h('span', null, plural(res.streak, 'day', 'days') + ' in a row ', h('span', { class: 'sr-sprouts' }, sprouts(res.streak)))
-          : (daily ? '' : 'Play the daily run to build a streak.')),
-        ranked ? rankBlock(res) : null,
-        daily ? h('p', { class: 'sr-muted', style: 'margin-top:0.75rem' }, 'Next round in ', countdown) : null),
-      daily && !ranked ? rankBlock(res) : null,
-      verses.length ? h('section', { class: 'sr-panel', 'aria-labelledby': 'sr-seen-title' },
-        h('h3', { id: 'sr-seen-title' }, 'The verses in this run'),
-        h('p', { class: 'sr-muted', style: 'margin-bottom:0.85rem' }, 'Open a verse to read what it teaches.'),
-        h('ul', { class: 'sr-result-list', role: 'list' }, items)) : null,
-      daily && verses.some(function (v) { return v.answered; }) ? shareBlock(res) : null,
-      h('div', { class: 'sr-actions sr-result-actions' }, daily ? [
-        h('a', { class: 'sr-btn sr-btn-primary', href: '/seed-rush#leaderboard' }, 'View leaderboard'),
+    var streakText = streak > 0
+      ? h('p', { class: 'sr-streak' }, h('span', { class: 'sr-streak-num' }, String(streak)), h('span', { class: 'sr-streak-label' }, 'day streak'))
+      : h('p', { class: 'sr-streak-empty' }, daily ? 'Play tomorrow to grow your streak' : "Play today's Seed Rush to grow your streak");
+
+    gameScreen(h('div', { class: 'sr-end' },
+      h('h1', { class: 'sr-only' }, daily ? "Today's Seed Rush result" : 'Practice result'),
+      ctx.note ? h('p', { class: 'sr-quiet-line', role: 'status' }, ctx.note) : null,
+      plantBlock(streak, grew),
+      streakText,
+      daily && streak > 0 ? h('p', { class: 'sr-hint-line' }, growthHint(streak)) : null,
+      h('p', { class: 'sr-score-big' }, String(res.score), h('span', null, res.score === 1 ? ' pt' : ' pts')),
+      h('p', { class: 'sr-score-meta' }, meta),
+      daily ? h('div', { class: 'sr-cta-row' }, shareButton(res, copied), copied) : null,
+      daily ? h('p', { class: 'sr-next' }, 'Next Seed Rush in ', countdown) : null,
+      h('div', { class: 'sr-cta-row' }, daily ? [
+        toggle,
         h('a', { class: 'sr-btn sr-btn-secondary', href: '/seed-rush/practice' }, 'Practice')
       ] : [
-        h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { countIn(res.mode); } }, 'Play again'),
-        h('button', { class: 'sr-btn sr-btn-secondary', type: 'button', onclick: function () { renderPicker(); } }, 'Change mode')
-      ])));
+        h('button', { class: 'sr-btn sr-btn-secondary', type: 'button', onclick: function () { renderPrerun(); } }, 'Change mode'),
+        toggle,
+        h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { countIn(res.mode); } }, 'Play again')
+      ]),
+      list,
+      leaderboardLine(res)
+    ), function () { renderResult(res, { already: ctx.already, note: ctx.note }); });
     window.scrollTo(0, 0);
-    var account = $('[data-sr-account]');
-    if (account) renderAccount(account);
   }
 
   // ══ 9. Study ════════════════════════════════════════════════════════════
@@ -1559,11 +1669,11 @@
       clear(node);
       append(node, [h('h2', null, title), text ? h('p', null, text) : null, extra || null]);
     }
-    function back() { return h('div', { class: 'sr-actions' }, h('a', { class: 'sr-btn sr-btn-primary', href: '/seed-rush' }, 'Back to Seed Rush')); }
+    function back() { return h('div', { class: 'sr-cta-row' }, h('a', { class: 'sr-btn sr-btn-primary', href: '/seed-rush' }, 'Back to Seed Rush')); }
     function expired() {
-      var extra = Auth.user ? h('div', null, h('p', null, 'Send yourself a new link:'), h('div', { style: 'margin-top:0.75rem' }, verifyButton('Send a new email')))
-        : h('div', { class: 'sr-actions' },
-          h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { AccountDialog.open('signin'); } }, 'Sign in to send a new email'));
+      var extra = Auth.user ? h('p', { class: 'sr-quiet-line' }, verifySend('Send a new email'))
+        : h('div', { class: 'sr-cta-row' },
+          h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { AccountDialog.open('signin'); } }, 'Log in to send a new email'));
       panel('This link has expired', 'Verification links work for 24 hours.', extra);
     }
 
@@ -1580,7 +1690,7 @@
       if (e.code === 'expired_token') { state = 'expired'; Auth.ready.then(expired); return; }
       if (e.code === 'invalid_token') { panel("This link isn't valid", "The token isn't valid. It may have been used already, or a newer email replaced it.", back()); return; }
       panel('Something went wrong', e.message,
-        h('div', { class: 'sr-actions' }, h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { location.reload(); } }, 'Try again')));
+        h('div', { class: 'sr-cta-row' }, h('button', { class: 'sr-btn sr-btn-primary', type: 'button', onclick: function () { location.reload(); } }, 'Try again')));
     });
   }
 
@@ -1590,7 +1700,6 @@
     var game = $('[data-sr-game]');
     var study = $('[data-sr-study]');
     var verify = $('[data-sr-verify]');
-    var home = $('[data-sr-board]');
 
     if (study) {
       bootStudy(study);
@@ -1600,7 +1709,6 @@
     Auth.init();
     if (game) bootGame(game);
     else if (verify) { Auth.ready.then(function () { return Auth.refreshMe(); }); bootVerify(verify); Day.load().catch(function () {}); }
-    else if (home) bootHome();
     else Day.load().catch(function () {});
   }
 

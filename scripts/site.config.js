@@ -109,7 +109,7 @@ const PAGES = [
 const NON_INDEXED = [
   '404.html',
   // Seed Rush's app-like pages: playable, but nothing for a search result.
-  'seed-rush/daily.html', 'seed-rush/practice.html', 'seed-rush/study.html', 'seed-rush/verify.html'
+  'seed-rush/practice.html', 'seed-rush/study.html', 'seed-rush/verify.html'
 ];
 
 module.exports = { ORIGIN, ROOT, url, APP, PAGES, NON_INDEXED, SEED_RUSH, seedRushVerses };
